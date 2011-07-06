@@ -7,12 +7,12 @@
  * @author Jeff Tilson
  * @copyright THINK Global School 2010
  * @link http://www.thinkglobalschool.com/
- * 
+ *
  */
 
 $english = array(
 	// Generic
-	
+
 	// Page titles 
 	'tgstheme:title:home' => 'Home',
 
