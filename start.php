@@ -13,16 +13,14 @@
 elgg_register_event_handler('init', 'system', 'tgstheme_init');
 
 function tgstheme_init() {
-	// Register CSS
+	// Register Global CSS
 	$t_css = elgg_get_simplecache_url('css', 'tgstheme/css');
 	elgg_register_css('elgg.tgstheme', $t_css);
+	elgg_load_css('elgg.tgstheme');
 
 	// Register JS library
 	$t_js = elgg_get_simplecache_url('js', 'tgstheme/tgstheme');
 	elgg_register_js('elgg.tgstheme', $t_js);
-
-	// Load JS/CSS Globally
-	elgg_load_css('elgg.tgstheme');
 	elgg_load_js('elgg.tgstheme');
 
 	// Register 'home' page handler
@@ -42,12 +40,13 @@ function tgstheme_init() {
 *
 */
 function home_page_handler($page) {
-	$params['title'] = elgg_echo('tgstheme:title:home');
-	$params['content'] = "Test";
+	$params['sidebar'] = elgg_view('launchpad/module');
 
-	$body = elgg_view_layout('one_column', $params);
+	$params['content'] = elgg_view('wire-extender/wire_form');
+	$params['content'] .= elgg_view('announcements/announcement_list');
 
-	echo elgg_view_page($params['title'], $body);
+	$body = elgg_view_layout('one_sidebar_right', $params);
+	echo elgg_view_page(elgg_echo('tgstheme:title:home'), $body);
 }
 
 /**

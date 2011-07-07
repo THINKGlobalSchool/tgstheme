@@ -10,3 +10,23 @@
  *
  */
 ?>
+
+.elgg-right-sidebar {
+	position: relative;
+	padding: 10px 10px;
+	float: left;
+	width: 400px;
+	margin: 0 0 10px 0;
+}
+
+.elgg-layout-one-sidebar-right {
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sidebar_background.gif) repeat-y left top;
+}
+
+.tgs-footer {
+	background: #aaa;
+	width: 100%;
+	padding: 5px;
+	color: #222222;
+	font-size: 10px;
+}
