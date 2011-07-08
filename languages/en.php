@@ -12,11 +12,19 @@
 
 $english = array(
 	// Generic
+	'home' => 'Home',
 
 	// Page titles 
 	'tgstheme:title:home' => 'Home',
 
 	// Labels
+	'tgstheme:label:welcome' => 'Welcome, %s',
+
+	// Stats
+	'tgstheme:stats:blog' => 'Blog Posts',
+	'tgstheme:stats:photo' => 'Photos',
+	'tgstheme:stats:todo' => 'Complete To Do\'s',
+	'tgstheme:stats:bookmark' => 'Bookmarks',
 
 	// River
 

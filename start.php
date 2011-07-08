@@ -26,6 +26,10 @@ function tgstheme_init() {
 	// Register 'home' page handler
 	elgg_register_page_handler('home', 'home_page_handler');
 
+	// Add a site navigation item
+	$item = new ElggMenuItem('home', "<span class='elgg-icon elgg-icon-home'></span>", 'home');
+	elgg_register_menu_item('site', $item);
+
 	// Plugin hook for index redirect
 	elgg_register_plugin_hook_handler('index', 'system', 'home_redirect', 600);
 
@@ -33,17 +37,25 @@ function tgstheme_init() {
 }
 
 /**
-* Home Page Handler
-*
-* @param array $page From the page_handler function
-* @return true|false Depending on success
-*
-*/
+ * Home Page Handler
+ *
+ * @param array $page From the page_handler function
+ * @return true|false Depending on success
+ *
+ */
 function home_page_handler($page) {
-	$params['sidebar'] = elgg_view('launchpad/module');
+
+	$params['sidebar'] = elgg_view('tgstheme/modules/profile');
+	$params['sidebar'] .= elgg_view('launchpad/module');
 
 	$params['content'] = elgg_view('wire-extender/wire_form');
 	$params['content'] .= elgg_view('announcements/announcement_list');
+
+	$params['content'] .= elgg_view('modules/riverajaxmodule', array(
+		'title' => elgg_echo('content:latest'),
+		'limit' => 5,
+		'module_type' => 'featured',
+	));
 
 	$body = elgg_view_layout('one_sidebar_right', $params);
 	echo elgg_view_page(elgg_echo('tgstheme:title:home'), $body);
