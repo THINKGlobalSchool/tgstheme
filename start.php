@@ -44,14 +44,32 @@ function tgstheme_init() {
  *
  */
 function home_page_handler($page) {
+	// Logged in users only
 	gatekeeper();
+
+	// Show profile module
 	$params['sidebar'] = elgg_view('tgstheme/modules/profile');
+
+	// Show groups module
 	$params['sidebar'] .= elgg_view('tgstheme/modules/groups');
+
+	// Grab tabs
+	$tags = elgg_get_tags();
+
+	// Tag Module
+	$options = array('class' => 'tgstheme-module');
+	$params['sidebar'] .= elgg_view_module('featured', elgg_echo('tagcloud'), elgg_view("output/tagcloud", array('value' => $tags)), $options);
+
+	// Show launchpad module
 	$params['sidebar'] .= elgg_view('launchpad/module');
 
+	// Share box area
 	$params['content'] = elgg_view('wire-extender/wire_form');
+
+	// Announcements
 	$params['content'] .= elgg_view('announcements/announcement_list');
 
+	// River module
 	$params['content'] .= elgg_view('modules/riverajaxmodule', array(
 		'title' => elgg_echo('content:latest'),
 		'limit' => 5,
