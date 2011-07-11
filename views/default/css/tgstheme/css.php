@@ -51,6 +51,36 @@ table.tgstheme-profile .profile-right {
 	box-shadow: 0 0 4px #000;
 }
 
+.tgstheme-module {
+	background: #FFF;
+}
+
+.tgstheme-group-listing {
+	clear: both;
+	border-bottom: 1px solid #ccc;
+	padding: 5px;
+}
+
+.tgstheme-group-icon {
+	float: left;
+	margin-right: 10px;
+}
+
+.tgstheme-group-info {
+	float: left;
+	width: 50%;
+}
+
+.tgstheme-group-updated {
+	float: right;
+	text-align: right;
+}
+
+.tgstheme-group-updated .time-updated {
+	font-weight: bold;
+	color: #888;
+}
+
 table#tgstheme-profile-stats td {
 	font-weight: bold;
 }

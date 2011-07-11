@@ -46,6 +46,7 @@ function tgstheme_init() {
 function home_page_handler($page) {
 	gatekeeper();
 	$params['sidebar'] = elgg_view('tgstheme/modules/profile');
+	$params['sidebar'] .= elgg_view('tgstheme/modules/groups');
 	$params['sidebar'] .= elgg_view('launchpad/module');
 
 	$params['content'] = elgg_view('wire-extender/wire_form');

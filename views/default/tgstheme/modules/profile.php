@@ -37,8 +37,7 @@ $body = <<<HTML
 HTML;
 
 $options = array(
-	'id' => 'parentportal-module-child-profile',
-	'class' => 'parentportal-module',
+	'class' => 'tgstheme-module',
 );
 
 echo elgg_view_module('featured', elgg_echo('tgstheme:label:welcome', array($user->name)), $body, $options);

@@ -45,7 +45,7 @@ $nav = elgg_extract('nav', $vars, elgg_view('navigation/breadcrumbs'));
 			}
 		?>
 	</div>
-	<div class="tgs-footer">
+	<!--<div class="tgs-footer">
 		This is an extra footer.
-	</div>
+	</div>-->
 </div>
