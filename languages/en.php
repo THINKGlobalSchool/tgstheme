@@ -19,6 +19,9 @@ $english = array(
 
 	// Labels
 	'tgstheme:label:welcome' => 'Welcome, %s',
+	'tgstheme:label:updated' => 'Updated:',
+	'tgstheme:label:allgroups' => 'All Groups',
+	'tgstheme:label:latestactivity' => 'Latest Activity',
 
 	// Stats
 	'tgstheme:stats:blog' => 'Blog Posts',
