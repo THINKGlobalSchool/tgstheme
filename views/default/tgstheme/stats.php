@@ -26,16 +26,40 @@ $bookmark_count = $bookmark_count ? $bookmark_count : 0;
 
 if (elgg_is_active_plugin('todo')) {
 	$todo_label = elgg_echo('tgstheme:stats:todo');
-	$todos = get_users_todos($user);
 	
-	$todo_count = 0;
-	if ($todos) {
-		foreach ($todos as $todo) {
-			if (has_user_submitted($user, $todo->getGUID())) {
-				$todo_count++;
-			}
-		}
-	}
+	global $CONFIG;
+
+	$test_id = get_metastring_id('manual_complete');
+	$one_id = get_metastring_id(1);
+	$wheres = array();
+
+	$user_id = $user->guid;
+	$relationship = COMPLETED_RELATIONSHIP;
+
+	$wheres[] = "(EXISTS (
+			SELECT 1 FROM {$CONFIG->dbprefix}entity_relationships r2
+			WHERE r2.guid_one = '$user_id'
+			AND r2.relationship = '$relationship'
+			AND r2.guid_two = e.guid) OR
+				EXISTS (
+			SELECT 1 FROM {$CONFIG->dbprefix}metadata md
+			WHERE md.entity_guid = e.guid
+				AND md.name_id = $test_id
+				AND md.value_id = $one_id))";
+
+	$todo_count = elgg_get_entities_from_relationship(array(
+		'type' => 'object',
+		'subtype' => 'todo',
+		'relationship' => TODO_ASSIGNEE_RELATIONSHIP,
+		'relationship_guid' => $user_id,
+		'inverse_relationship' => FALSE,
+		'metadata_name' => 'status',
+		'metadata_value' => TODO_STATUS_PUBLISHED,
+		'order_by_metadata' => array('name' => 'due_date', 'as' => 'int', 'direction' => get_input('direction', 'ASC')),
+		'wheres' => $wheres,
+		'count' => TRUE,
+	));
+
 	
 	$todo_content = <<<HTML
 	<tr>
