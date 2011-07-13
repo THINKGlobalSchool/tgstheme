@@ -13,15 +13,15 @@
 $user = elgg_get_logged_in_user_entity();
 
 $blog_label = elgg_echo('tgstheme:stats:blog');
-$blog_count = elgg_get_entities(array('owner_guid' => $user, 'type' => 'object', 'subtype' => 'blog', 'count' => true));
+$blog_count = elgg_get_entities(array('owner_guid' => $user->guid, 'type' => 'object', 'subtype' => 'blog', 'count' => true));
 $blog_count = $blog_count ? $blog_count : 0;
 
 $photo_label = elgg_echo('tgstheme:stats:photo');
-$photo_count = elgg_get_entities(array('owner_guid' => $user, 'type' => 'object', 'subtype' => 'image', 'count' => true));
+$photo_count = elgg_get_entities(array('owner_guid' => $user->guid, 'type' => 'object', 'subtype' => 'image', 'count' => true));
 $photo_count = $photo_count ? $photo_count : 0;
 
 $bookmark_label = elgg_echo('tgstheme:stats:bookmark');
-$bookmark_count = elgg_get_entities(array('owner_guid' => $user, 'type' => 'object', 'subtype' => 'bookmarks', 'count' => true));
+$bookmark_count = elgg_get_entities(array('owner_guid' => $user->guid, 'type' => 'object', 'subtype' => 'bookmarks', 'count' => true));
 $bookmark_count = $bookmark_count ? $bookmark_count : 0;
 
 if (elgg_is_active_plugin('todo')) {
