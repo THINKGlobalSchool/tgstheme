@@ -98,9 +98,6 @@ table#tgstheme-profile-stats td.stat {
 *************************************** */
 
 /* These menus always make room for icons: */
-.elgg-menu-owner-block li > a > .elgg-icon,
-.elgg-menu-extras li > a > .elgg-icon,
-.elgg-menu-page li > a > .elgg-icon,
 .elgg-menu-composer li > a > .elgg-icon {
 	margin-left: -20px;
 	margin-right: 4px;
