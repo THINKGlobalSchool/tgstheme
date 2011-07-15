@@ -92,3 +92,82 @@ table#tgstheme-profile-stats td.label {
 table#tgstheme-profile-stats td.stat {
 	color: #800518;
 }
+
+/* ***************************************
+    COMPOSER
+*************************************** */
+
+/* These menus always make room for icons: */
+.elgg-menu-owner-block li > a > .elgg-icon,
+.elgg-menu-extras li > a > .elgg-icon,
+.elgg-menu-page li > a > .elgg-icon,
+.elgg-menu-composer li > a > .elgg-icon {
+	margin-left: -20px;
+	margin-right: 4px;
+	vertial-align: middle;
+}
+
+.elgg-menu-composer {
+	display:inline-block;
+	height: 22px;
+}
+
+.elgg-menu-composer > li {
+	font-weight:bold;
+	margin-left: 10px;
+}
+
+.elgg-menu-composer > li > a {
+	line-height: 16px;
+	padding-left: 20px;
+}
+
+.elgg-menu-composer > li > a:hover {
+	text-decoration: underline;
+}
+
+.elgg-menu-composer > li.ui-state-active > a {
+	cursor: default;
+	color: black;
+	text-decoration: none;
+}
+
+.elgg-menu-composer > .ui-state-active > a:before,
+.elgg-menu-composer > .ui-state-active > a:after {
+	position: absolute;
+	display: block;
+	border-width: 8px;
+	border-style: solid;
+	content: " ";
+	height: 0;
+	width: 0;
+	left: 0;
+}
+
+.elgg-menu-composer > .ui-state-active > a:before {
+	top: 11px;
+	border-color: transparent transparent #B4BBCD transparent;
+}
+
+.elgg-menu-composer > .ui-state-active > a:after {
+	top: 12px;
+	border-color: transparent transparent white transparent;
+}
+
+/* NEW PAGE COMPONENT: COMPOSER */
+
+.ui-tabs-hide {
+	display:none;
+}
+
+.elgg-composer {
+}
+
+.elgg-composer > .ui-tabs-panel {
+	margin-top: 5px;
+	border: 1px solid #B4BBCD;
+	padding: 10px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
