@@ -73,7 +73,7 @@ if ($groups_count > $limit) {
 	$content .= "<span class='groups-widget-viewall'>" . elgg_view('output/url', array(
 		'text' => elgg_echo('tgstheme:label:allgroups'),
 		'value' => elgg_get_site_url() . 'groups/all',
-	)) . "</div>";
+	)) . "</span>";
 }
 
 $options = array(

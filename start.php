@@ -56,7 +56,7 @@ function home_page_handler($page) {
 	$params['sidebar'] = elgg_view('tgstheme/modules/profile');
 
 	// Show groups module
-	$params['sidebar'] .= elgg_view('tgstheme/modules/groups');
+	$params['sidebar'] .= elgg_view('tgstheme/modules/groups', array('limit' => 5));
 
 	// Grab tabs
 	$tags = elgg_get_tags();
