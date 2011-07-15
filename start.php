@@ -61,6 +61,9 @@ function home_page_handler($page) {
 	// Grab tabs
 	$tags = elgg_get_tags(array('threshold' => 2, 'limit' => 50));
 
+	// Shuffle tags
+	shuffle($tags);
+
 	// Tag Module
 	$options = array('class' => 'tgstheme-module');
 	$params['sidebar'] .= elgg_view_module('featured', elgg_echo('tagcloud'), elgg_view("output/tagcloud", array('value' => $tags)), $options);
