@@ -59,7 +59,7 @@ function home_page_handler($page) {
 	$params['sidebar'] .= elgg_view('tgstheme/modules/groups', array('limit' => 5));
 
 	// Grab tabs
-	$tags = elgg_get_tags(array('threshold' => 1, 'limit' => 75));
+	$tags = elgg_get_tags(array('threshold' => 2, 'limit' => 50));
 
 	// Tag Module
 	$options = array('class' => 'tgstheme-module');
