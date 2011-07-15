@@ -8,6 +8,8 @@
  * @copyright THINK Global School 2010
  * @link http://www.thinkglobalschool.com/
  *
+ * Composer code borrowed from Evan Winslow's Elgg Facebook Theme:
+ * https://github.com/ewinslow/elgg-facebook_theme
  */
 
 $english = array(
@@ -28,6 +30,13 @@ $english = array(
 	'tgstheme:stats:photo' => 'Photos',
 	'tgstheme:stats:todo' => 'Complete To Do\'s',
 	'tgstheme:stats:bookmark' => 'Bookmarks',
+
+	// Composer
+	'composer:object:thewire' => "The Wire",
+	'composer:object:bookmarks' => "Bookmark",
+	'composer:object:blog' => "Blog",
+	'composer:annotation:messageboard' => "Post",
+	'composer:object:file' => 'File',
 
 	// River
 
