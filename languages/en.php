@@ -24,6 +24,7 @@ $english = array(
 	'tgstheme:label:updated' => 'Updated:',
 	'tgstheme:label:allgroups' => 'All Groups',
 	'tgstheme:label:latestactivity' => 'Latest Activity',
+	'tgstheme:label:viewprofile' => 'View profile',
 
 	// Stats
 	'tgstheme:stats:blog' => 'Blog Posts',
@@ -59,6 +60,7 @@ $english = array(
 	'avatar:resize:fail' => 'Resize of the profile picture failed',
 	'avatar:crop:success' => 'Cropping the profile picture succeeded',
 	'avatar:crop:fail' => 'Profile picture cropping failed',
+	'river:update:user:avatar' => '%s has a new profile picture',
 );
 
 add_translation('en',$english);
