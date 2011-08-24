@@ -43,6 +43,9 @@ function tgstheme_init() {
 	// Composer menu hook
 	elgg_register_plugin_hook_handler('register', 'menu:composer', 'tgstheme_composer_menu_handler');
 
+	// Topbar menu hook
+	elgg_register_plugin_hook_handler('register', 'menu:topbar', 'tgstheme_topbar_menu_handler');
+
 	return true;
 }
 
@@ -180,5 +183,17 @@ function tgstheme_composer_menu_handler($hook, $type, $items, $params) {
 		elgg_view('file/composer');
 	}
 
+	return $items;
+}
+
+/**
+ * Hook to remove the elgg logo from the topbar menu
+ */
+function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
+	foreach($items as $idx => $item) {
+		if ($item->getName() == 'elgg_logo') {
+			unset($items[$idx]);
+		}
+	}
 	return $items;
 }
