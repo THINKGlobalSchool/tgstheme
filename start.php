@@ -8,6 +8,11 @@
  * @copyright THINK Global School 2010
  * @link http://www.thinkglobalschool.com/
  *
+ * VIEW OVERRIDES:
+ *   * navigation/menu/site - use text string 'Browse' instead of 'More'
+ *   * css/elgg
+ *   * css/elements/*
+ *
  * Composer code borrowed from Evan Winslow's Elgg Facebook Theme:
  * https://github.com/ewinslow/elgg-facebook_theme
  */
