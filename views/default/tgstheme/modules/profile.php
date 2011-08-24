@@ -18,6 +18,10 @@ $username = $user->username;
 
 $stats = elgg_view('tgstheme/stats', $vars);
 
+$view_label = elgg_echo('tgstheme:label:viewprofile');
+$edit_label = elgg_echo('avatar:edit');
+$edit_url = elgg_get_site_url() . 'avatar/edit/' . $user->username;
+
 $body = <<<HTML
 	<table class='tgstheme-profile'> 
 		<tr>
@@ -30,6 +34,10 @@ $body = <<<HTML
 			<td class='profile-right'>
 				<div class='tgstheme-profile-details'>
 					$stats
+				</div>
+				<div class='tgstheme-profile-links'>
+					<a href='{$user->getURL()}'>$view_label</a> | 
+					<a href='$edit_url'>$edit_label</a>
 				</div>
 			</td>
 		</tr>

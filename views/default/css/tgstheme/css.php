@@ -51,6 +51,12 @@ table.tgstheme-profile .profile-right {
 	box-shadow: 0 0 4px #000;
 }
 
+.tgstheme-profile-links {
+	text-align: right;
+	font-size: 11px;
+	margin-top: 4px;
+}
+
 .tgstheme-module {
 	background: #FFF;
 }
