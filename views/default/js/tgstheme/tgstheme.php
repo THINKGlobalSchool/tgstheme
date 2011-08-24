@@ -15,7 +15,7 @@ elgg.provide('elgg.tgstheme');
 
 // Init function
 elgg.tgstheme.init = function() {
-	console.log('theme loaded');
+	// Nothing.. yet.
 }
 
 elgg.register_hook_handler('init', 'system', elgg.tgstheme.init);

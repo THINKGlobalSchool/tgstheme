@@ -63,6 +63,9 @@ function home_page_handler($page) {
 	// Show profile module
 	$params['sidebar'] = elgg_view('tgstheme/modules/profile');
 
+	// Show launchpad module
+	$params['sidebar'] .= elgg_view('launchpad/module');
+
 	// Show groups module
 	$params['sidebar'] .= elgg_view('tgstheme/modules/groups', array('limit' => 5));
 
@@ -75,9 +78,6 @@ function home_page_handler($page) {
 	// Tag Module
 	$options = array('class' => 'tgstheme-module');
 	$params['sidebar'] .= elgg_view_module('featured', elgg_echo('tagcloud'), elgg_view("output/tagcloud", array('value' => $tags)), $options);
-
-	// Show launchpad module
-	$params['sidebar'] .= elgg_view('launchpad/module');
 
 	// Share box area
 	//$params['content'] = elgg_view('wire-extender/wire_form');
