@@ -46,6 +46,9 @@ function tgstheme_init() {
 	// also extend the core activity
 	elgg_extend_view('core/river/filter', 'tgstheme/update', -1);
 
+	// Extend HEAD
+	elgg_extend_view('page/elements/head', 'tgstheme/head');
+
 	// Plugin hook for index redirect
 	elgg_register_plugin_hook_handler('index', 'system', 'home_redirect', 600);
 
