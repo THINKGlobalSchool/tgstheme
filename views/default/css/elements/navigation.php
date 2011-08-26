@@ -260,6 +260,17 @@ li:hover > .elgg-menu-site-more {
 	margin-right: 4px;
 }
 
+/** HACKED IN TO RIGHT JUSTIFY THE MORE (browse) MENU **/
+
+.elgg-menu-more-right {
+    bottom: 8px;
+    float: right;
+    left: 670px;
+    position: absolute;
+}
+
+/** END HACKS **/
+
 /* ***************************************
 	TITLE
 *************************************** */

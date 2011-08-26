@@ -1,6 +1,6 @@
 <?php
 /**
- * TGS Theme 2 JS Library
+ * TGS Theme 2 Update link
  *
  * @package TGSTheme2
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
@@ -10,13 +10,4 @@
  *
  */
 ?>
-//<script>
-elgg.provide('elgg.tgstheme');
-
-// Init function
-elgg.tgstheme.init = function() {
-	console.log('theme loaded');
-}
-
-elgg.register_hook_handler('init', 'system', elgg.tgstheme.init);
-//</script>
+<div id='activity-updates'></div>

@@ -8,6 +8,11 @@
  * @copyright THINK Global School 2010
  * @link http://www.thinkglobalschool.com/
  *
+ * VIEW OVERRIDES:
+ *   * navigation/menu/site - use text string 'Browse' instead of 'More'
+ *   * css/elgg
+ *   * css/elements/*
+ *
  * Composer code borrowed from Evan Winslow's Elgg Facebook Theme:
  * https://github.com/ewinslow/elgg-facebook_theme
  */
@@ -21,22 +26,34 @@ function tgstheme_init() {
 	elgg_load_css('elgg.tgstheme');
 
 	// Register JS library
-	$t_js = elgg_get_simplecache_url('js', 'tgstheme/tgstheme');
-	elgg_register_js('elgg.tgstheme', $t_js);
-	elgg_load_js('elgg.tgstheme');
+	$ap_js = elgg_get_simplecache_url('js', 'tgstheme/activityping');
+	elgg_register_js('elgg.activityping', $ap_js);
+
+	if (elgg_get_context() == 'activity') {
+		elgg_load_js('elgg.activityping');
+	}
 
 	// Register 'home' page handler
 	elgg_register_page_handler('home', 'home_page_handler');
 
+	// Register activity ping page handler
+	elgg_register_page_handler('activity_ping', 'ping_page_handler');
+
 	// Add a site navigation item
 	$item = new ElggMenuItem('home', "<span class='elgg-icon elgg-icon-home'></span>", 'home');
 	elgg_register_menu_item('site', $item);
+
+	// also extend the core activity
+	elgg_extend_view('core/river/filter', 'tgstheme/update', -1);
 
 	// Plugin hook for index redirect
 	elgg_register_plugin_hook_handler('index', 'system', 'home_redirect', 600);
 
 	// Composer menu hook
 	elgg_register_plugin_hook_handler('register', 'menu:composer', 'tgstheme_composer_menu_handler');
+
+	// Topbar menu hook
+	elgg_register_plugin_hook_handler('register', 'menu:topbar', 'tgstheme_topbar_menu_handler');
 
 	return true;
 }
@@ -55,6 +72,9 @@ function home_page_handler($page) {
 	// Show profile module
 	$params['sidebar'] = elgg_view('tgstheme/modules/profile');
 
+	// Show launchpad module
+	$params['sidebar'] .= elgg_view('launchpad/module');
+
 	// Show groups module
 	$params['sidebar'] .= elgg_view('tgstheme/modules/groups', array('limit' => 5));
 
@@ -67,9 +87,6 @@ function home_page_handler($page) {
 	// Tag Module
 	$options = array('class' => 'tgstheme-module');
 	$params['sidebar'] .= elgg_view_module('featured', elgg_echo('tagcloud'), elgg_view("output/tagcloud", array('value' => $tags)), $options);
-
-	// Show launchpad module
-	$params['sidebar'] .= elgg_view('launchpad/module');
 
 	// Share box area
 	//$params['content'] = elgg_view('wire-extender/wire_form');
@@ -88,6 +105,54 @@ function home_page_handler($page) {
 
 	$body = elgg_view_layout('one_sidebar_right', $params);
 	echo elgg_view_page(elgg_echo('tgstheme:title:home'), $body);
+}
+
+/**
+ * Ping Page Handler
+ *
+ * @param array $page From the page_handler function
+ * @return true|false Depending on success
+ *
+ */
+function ping_page_handler($page) {
+	if (elgg_is_xhr()) {
+		// check for last checked time
+		if (!$seconds_passed = get_input('seconds_passed', 0)) {
+			echo '';
+			exit;
+		}
+
+		$last_reload = time() - $seconds_passed;
+
+		// Get current count of entries
+		$current_count = elgg_get_river(array(
+			'count' => TRUE,
+		));
+
+		// Get the count at the last reload
+		$last_count = elgg_get_river(array(
+			'count' => TRUE,
+			'posted_time_upper' => $last_reload,
+		));
+
+		if ($current_count > $last_count) {
+			$count = $current_count - $last_count;
+
+			$s = ($count == 1) ? '' : 's';
+
+			$link = "<a href='' onClick=\"window.location.reload();\" class='update_link'>$count update$s!</a>";
+			$page_title = "[$count update$s] ";
+
+			echo json_encode(array(
+				'count' => $count,
+				'link' => $link,
+				'page_title' => $page_title,
+			));
+
+			exit;
+		}
+	}
+	return;
 }
 
 /**
@@ -175,5 +240,17 @@ function tgstheme_composer_menu_handler($hook, $type, $items, $params) {
 		elgg_view('file/composer');
 	}
 
+	return $items;
+}
+
+/**
+ * Hook to remove the elgg logo from the topbar menu
+ */
+function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
+	foreach($items as $idx => $item) {
+		if ($item->getName() == 'elgg_logo') {
+			unset($items[$idx]);
+		}
+	}
 	return $items;
 }

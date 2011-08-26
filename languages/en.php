@@ -24,6 +24,7 @@ $english = array(
 	'tgstheme:label:updated' => 'Updated:',
 	'tgstheme:label:allgroups' => 'All Groups',
 	'tgstheme:label:latestactivity' => 'Latest Activity',
+	'tgstheme:label:viewprofile' => 'View profile',
 
 	// Stats
 	'tgstheme:stats:blog' => 'Blog Posts',
@@ -43,6 +44,23 @@ $english = array(
 	// Messages
 
 	// Other content
+
+	// Avatar overrides
+	'avatar' => 'Profile Picture',
+	'avatar:create' => 'Create your profile picture',
+	'avatar:edit' => 'Edit profile picture',
+	'avatar:preview' => 'Preview',
+	'avatar:upload' => 'Upload a new profile picture',
+	'avatar:current' => 'Current profile picture',
+	'avatar:crop:title' => 'Profile picture cropping tool',
+	'avatar:upload:instructions' => "Your profile picture is displayed throughout the site. You can change it as often as you'd like. (File formats accepted: GIF, JPG or PNG)",
+	'avatar:create:instructions' => 'Click and drag a square below to match how you want your profile picture cropped. A preview will appear in the box on the right. When you are happy with the preview, click \'Create your profile picture\'. This cropped version will be used throughout the site as your profile picture.',
+	'avatar:upload:success' => 'Profile picture successfully uploaded',
+	'avatar:upload:fail' => 'Profile picture upload failed',
+	'avatar:resize:fail' => 'Resize of the profile picture failed',
+	'avatar:crop:success' => 'Cropping the profile picture succeeded',
+	'avatar:crop:fail' => 'Profile picture cropping failed',
+	'river:update:user:avatar' => '%s has a new profile picture',
 );
 
 add_translation('en',$english);
