@@ -15,7 +15,62 @@ elgg.provide('elgg.tgstheme');
 
 // Init function
 elgg.tgstheme.init = function() {
-	// Nothing.. yet.
+	var updates = new elgg.tgstheme.activityUpdateChecker(10000);
+	updates.start();
+}
+
+elgg.tgstheme.activityUpdateChecker = function(interval) {
+	this.intervalID = null;
+	this.interval = interval;
+	this.url = '<?php echo elgg_get_site_url(); ?>activity_ping';
+	this.seconds_passed = 0;
+
+	this.start = function() {
+		// needed to complete closure scope.
+		var self = this;
+
+		this.intervalID = setInterval(function() { self.checkUpdates(); }, this.interval);
+	}
+
+	this.checkUpdates = function() {
+		this.seconds_passed += this.interval / 1000;
+		// more closure fun
+		var self = this;
+		$.ajax({
+			'type': 'GET',
+			'url': this.url,
+			'data': {'seconds_passed': this.seconds_passed},
+			'success': function(data) {
+				if (data) {
+					json_response = eval( "(" + data + ")" );
+					//console.log(json_response);
+					//console.log(data);
+					$('#activity-updates').html(json_response.link).slideDown();
+
+					var pageTitleSubstring;
+					var stringStartPosition = document.title.indexOf("]");
+
+					if (stringStartPosition == -1) { // we haven't already altered page title
+						pageTitleSubstring = document.title;
+					} else { // we previously prepended to page title, need to remove it first
+						pageTitleSubstring = document.title.substring( (stringStartPosition+2) );
+					}
+
+					document.title = json_response.page_title + pageTitleSubstring;
+				}
+			}
+		})
+	}
+
+	this.stop = function() {
+		clearInterval(this.interval);
+	}
+
+	this.changeInterval = function(interval) {
+		this.stop();
+		this.interval = interval;
+		this.start();
+	}
 }
 
 elgg.register_hook_handler('init', 'system', elgg.tgstheme.init);
