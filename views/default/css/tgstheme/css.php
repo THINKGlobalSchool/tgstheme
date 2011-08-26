@@ -11,6 +11,23 @@
  */
 ?>
 
+#activity-updates a.update_link {
+	display: inline-table;
+	color:white;
+	font-weight: bold;
+	padding:1px 8px 2px 24px;
+	margin-top:9px;
+	cursor: pointer;
+	background: red url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/refresh.png") no-repeat 5px 3px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+}
+#activity-updates a.update_link:hover {
+	background: #4690D6 url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/refresh.png") no-repeat 5px -22px;
+	color:white;
+	text-decoration: none;
+}
+
 .elgg-right-sidebar {
 	position: relative;
 	padding: 10px 10px;

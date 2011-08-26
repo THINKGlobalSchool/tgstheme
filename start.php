@@ -33,9 +33,15 @@ function tgstheme_init() {
 	// Register 'home' page handler
 	elgg_register_page_handler('home', 'home_page_handler');
 
+	// Register activity ping page handler
+	elgg_register_page_handler('activity_ping', 'ping_page_handler');
+
 	// Add a site navigation item
 	$item = new ElggMenuItem('home', "<span class='elgg-icon elgg-icon-home'></span>", 'home');
 	elgg_register_menu_item('site', $item);
+
+	// also extend the core activity
+	elgg_extend_view('core/river/filter', 'tgstheme/update', -1);
 
 	// Plugin hook for index redirect
 	elgg_register_plugin_hook_handler('index', 'system', 'home_redirect', 600);
@@ -96,6 +102,54 @@ function home_page_handler($page) {
 
 	$body = elgg_view_layout('one_sidebar_right', $params);
 	echo elgg_view_page(elgg_echo('tgstheme:title:home'), $body);
+}
+
+/**
+ * Ping Page Handler
+ *
+ * @param array $page From the page_handler function
+ * @return true|false Depending on success
+ *
+ */
+function ping_page_handler($page) {
+	if (elgg_is_xhr()) {
+		// check for last checked time
+		if (!$seconds_passed = get_input('seconds_passed', 0)) {
+			echo '';
+			exit;
+		}
+
+		$last_reload = time() - $seconds_passed;
+
+		// Get current count of entries
+		$current_count = elgg_get_river(array(
+			'count' => TRUE,
+		));
+
+		// Get the count at the last reload
+		$last_count = elgg_get_river(array(
+			'count' => TRUE,
+			'posted_time_upper' => $last_reload,
+		));
+
+		if ($current_count > $last_count) {
+			$count = $current_count - $last_count;
+
+			$s = ($count == 1) ? '' : 's';
+
+			$link = "<a href='' onClick=\"window.location.reload();\" class='update_link'>$count update$s!</a>";
+			$page_title = "[$count update$s] ";
+
+			echo json_encode(array(
+				'count' => $count,
+				'link' => $link,
+				'page_title' => $page_title,
+			));
+
+			exit;
+		}
+	}
+	return;
 }
 
 /**
