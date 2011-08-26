@@ -11,15 +11,15 @@
  */
 ?>
 //<script>
-elgg.provide('elgg.tgstheme');
+elgg.provide('elgg.activityping');
 
 // Init function
-elgg.tgstheme.init = function() {
-	var updates = new elgg.tgstheme.activityUpdateChecker(10000);
+elgg.activityping.init = function() {
+	var updates = new elgg.activityping.activityUpdateChecker(10000);
 	updates.start();
 }
 
-elgg.tgstheme.activityUpdateChecker = function(interval) {
+elgg.activityping.activityUpdateChecker = function(interval) {
 	this.intervalID = null;
 	this.interval = interval;
 	this.url = '<?php echo elgg_get_site_url(); ?>activity_ping';
@@ -73,5 +73,5 @@ elgg.tgstheme.activityUpdateChecker = function(interval) {
 	}
 }
 
-elgg.register_hook_handler('init', 'system', elgg.tgstheme.init);
+elgg.register_hook_handler('init', 'system', elgg.activityping.init);
 //</script>

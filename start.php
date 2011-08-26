@@ -26,9 +26,9 @@ function tgstheme_init() {
 	elgg_load_css('elgg.tgstheme');
 
 	// Register JS library
-	$t_js = elgg_get_simplecache_url('js', 'tgstheme/tgstheme');
-	elgg_register_js('elgg.tgstheme', $t_js);
-	elgg_load_js('elgg.tgstheme');
+	$ap_js = elgg_get_simplecache_url('js', 'tgstheme/activityping');
+	elgg_register_js('elgg.activityping', $ap_js);
+	elgg_load_js('elgg.activityping');
 
 	// Register 'home' page handler
 	elgg_register_page_handler('home', 'home_page_handler');
