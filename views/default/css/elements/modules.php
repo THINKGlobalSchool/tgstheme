@@ -86,10 +86,11 @@
 }
 .elgg-module-featured > .elgg-head {
 	padding: 5px;
-	background-color: #4690D6;
+	background-color: #3E545C;
 }
 .elgg-module-featured > .elgg-head * {
 	color: white;
+	text-transform:uppercase;
 }
 .elgg-module-featured > .elgg-body {
 	padding: 10px;
