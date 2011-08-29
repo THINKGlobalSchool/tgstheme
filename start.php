@@ -257,6 +257,16 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 		if ($item->getName() == 'elgg_logo') {
 			unset($items[$idx]);
 		}
+
+		if ($item->getName() == 'friends') {
+			$text = $item->getText();
+			$item->setText($text . elgg_echo('friends'));
+		}
+
+		if ($item->getName() == 'messages') {
+			$text = $item->getText();
+			$item->setText($text . elgg_echo('messages'));
+		}
 	}
 	return $items;
 }

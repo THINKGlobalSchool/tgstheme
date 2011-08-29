@@ -33,7 +33,7 @@ $nav = elgg_extract('nav', $vars, elgg_view('navigation/breadcrumbs'));
 		?>
 	</div>
 
-	<div class="elgg-main elgg-body">
+	<div class="elgg-main elgg-body elgg-home-right">
 		<?php
 			echo $nav;
 			
