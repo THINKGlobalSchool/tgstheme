@@ -111,6 +111,8 @@ table#tgstheme-profile-stats td {
 
 table#tgstheme-profile-stats td.label {
 	color: #333333;
+	text-align:right;
+	padding-right:10px;
 }
 
 table#tgstheme-profile-stats td.stat {
