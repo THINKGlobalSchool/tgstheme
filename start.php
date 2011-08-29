@@ -49,6 +49,9 @@ function tgstheme_init() {
 	// Extend HEAD
 	elgg_extend_view('page/elements/head', 'tgstheme/head');
 
+	// Extend topbar
+	elgg_extend_view('page/elements/topbar', 'tgstheme/topbar');
+
 	// Plugin hook for index redirect
 	elgg_register_plugin_hook_handler('index', 'system', 'home_redirect', 600);
 
