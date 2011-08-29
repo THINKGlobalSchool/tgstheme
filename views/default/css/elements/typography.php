@@ -13,11 +13,11 @@
 body {
 	font-size: 80%;
 	line-height: 1.4em;
-	font-family: "Lucida Grande", Arial, Tahoma, Verdana, sans-serif;
+	font-family: "Lucida Grande", Arial, Tahoma, Verdana, sans-serif;	
 }
 
 a {
-	color: #4690D6;
+	color: #91131E;
 }
 
 a:hover,
@@ -76,8 +76,8 @@ blockquote {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-weight: bold;
-	color: #0054A7;
+	font-weight: normal;
+	color: #3E545C;
 }
 
 h1 { font-size: 1.8em; }
@@ -101,6 +101,10 @@ h6 { font-size: 0.8em; }
 	float: left;
 	max-width: 530px;
 	margin-right: 10px;
+	font-family: 'Questrial', sans-serif;
+	text-transform:uppercase;
+	color:#3E545C;
+	font-size:130%;
 }
 .elgg-heading-basic {
 	color: #0054A7;

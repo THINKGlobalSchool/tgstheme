@@ -30,10 +30,11 @@
 
 .elgg-right-sidebar {
 	position: relative;
-	padding: 10px 10px;
+	padding: 20px 10px 10px 10px;
 	float: left;
 	width: 400px;
 	margin: 0 0 10px 0;
+	background:url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/logo-bottom.png") no-repeat;
 }
 
 .elgg-layout-one-sidebar-right {
@@ -113,7 +114,7 @@ table#tgstheme-profile-stats td.label {
 }
 
 table#tgstheme-profile-stats td.stat {
-	color: #800518;
+	color: #91131E;
 }
 
 /* ***************************************
@@ -130,6 +131,9 @@ table#tgstheme-profile-stats td.stat {
 .elgg-menu-composer {
 	display:inline-block;
 	height: 22px;
+	font-family: 'Questrial', sans-serif;
+	text-transform:uppercase;
+	font-size:100%;
 }
 
 .elgg-menu-composer > li {

@@ -37,15 +37,17 @@ a.elgg-button {
 	color: white;
 	text-shadow: 1px 1px 0px black;
 	text-decoration: none;
-	border: 1px solid #4690d6;
-	background: #4690d6 url(<?php echo elgg_get_site_url(); ?>_graphics/button_graduation.png) repeat-x left 10px;
+	border:none;
+	background: #91131E;
+	/*url(<?php echo elgg_get_site_url(); ?>_graphics/button_graduation.png) repeat-x left 10px;*/
 }
 
 .elgg-button-submit:hover {
-	border-color: #0054a7;
+	border-color: none;
 	text-decoration: none;
 	color: white;
-	background: #0054a7 url(<?php echo elgg_get_site_url(); ?>_graphics/button_graduation.png) repeat-x left 10px;
+	background: #3E545C;
+	/*url(<?php echo elgg_get_site_url(); ?>_graphics/button_graduation.png) repeat-x left 10px;*/
 }
 
 .elgg-button-submit.elgg-state-disabled {

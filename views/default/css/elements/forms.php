@@ -24,7 +24,7 @@ fieldset > div:last-child {
 label {
 	font-weight: bold;
 	color: #333;
-	font-size: 110%;
+	font-size: 100%;
 }
 
 input, textarea {
