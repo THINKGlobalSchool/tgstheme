@@ -148,7 +148,7 @@
 	background-position: 0 -756px;
 }
 .elgg-icon-settings {
-	background-position: 0 -774px;
+	background-position: 0 -756px;
 }
 .elgg-icon-share:hover {
 	background-position: 0 -792px;

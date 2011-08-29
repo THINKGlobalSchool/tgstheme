@@ -46,7 +46,9 @@
 	z-index: 9000;
 }
 .elgg-page-topbar > .elgg-inner {
-	padding: 0 10px;
+	padding: 10px 10px;
+	width: 990px;
+	margin:auto;
 }
 
 /***** PAGE MESSAGES ******/
@@ -72,6 +74,12 @@
 }
 .elgg-page-header > .elgg-inner {
 	position: relative;	
+}
+
+.logo{
+	width:204px;
+	height:216px;
+	float:left;
 }
 
 /***** PAGE BODY LAYOUT ******/
@@ -101,7 +109,8 @@
 .elgg-main {
 	position: relative;
 	min-height: 360px;
-	padding: 10px;
+	padding: 20px 10px 10px 10px;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/logo-bottom.png) no-repeat;
 }
 .elgg-main > .elgg-head {
 	padding-bottom: 3px;

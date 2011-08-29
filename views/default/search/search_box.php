@@ -24,10 +24,20 @@ $display_query = mb_convert_encoding($value, 'HTML-ENTITIES', 'UTF-8');
 $display_query = htmlspecialchars($display_query, ENT_QUOTES, 'UTF-8', false);
 
 ?>
-
-<form class="elgg-search" action="<?php echo elgg_get_site_url(); ?>search" method="get">
+<!-- 
+<form class="elgg-search" action="<?php // echo elgg_get_site_url(); ?>search" method="get">
 	<fieldset>
-		<input type="text" size="21" name="q" value="<?php echo elgg_echo('search'); ?>" onblur="if (this.value=='') { this.value='<?php echo elgg_echo('search'); ?>' }" onfocus="if (this.value=='<?php echo elgg_echo('search'); ?>') { this.value='' };" class="search-input" />
-		<input type="submit" value="<?php echo elgg_echo('search:go'); ?>" class="search-submit-button" />
+		<input type="text" size="21" name="q" value="<?php // echo elgg_echo('search'); ?>" onblur="if (this.value=='') { this.value='<?php // echo elgg_echo('search'); ?>' }" onfocus="if (this.value=='<?php // echo elgg_echo('search'); ?>') { this.value='' };" class="search-input" />
+		<input type="submit" value="<?php // echo elgg_echo('search:go'); ?>" class="search-submit-button" />
 	</fieldset>
 </form>
+ -->
+
+<div class="search-wrapper"> 
+	<form class="elgg-search" action="<?php echo elgg_get_site_url(); ?>search" method="get">
+		<fieldset>
+			<input type="text" name="q" value="<?php // echo elgg_echo('search'); ?>" class="search-input" />
+			<input type="submit" value="" class="search-submit-button" />
+		</fieldset>
+	</form>
+</div>

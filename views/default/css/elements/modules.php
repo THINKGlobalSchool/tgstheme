@@ -78,7 +78,7 @@
 
 /* Featured */
 .elgg-module-featured {
-	border: 1px solid #4690D6;
+	border: 1px solid #CCCCCC;
 	
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
@@ -90,7 +90,9 @@
 }
 .elgg-module-featured > .elgg-head * {
 	color: white;
+	font-family: 'Questrial', sans-serif;
 	text-transform:uppercase;
+	font-size:1em;
 }
 .elgg-module-featured > .elgg-body {
 	padding: 10px;

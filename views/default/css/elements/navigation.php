@@ -142,6 +142,10 @@
 
 .elgg-menu-topbar-alt {
 	float: right;
+	font-family: 'Questrial', sans-serif;
+	text-transform:uppercase;
+	font-size:97%;
+	font-weight:bold;
 }
 
 .elgg-menu-topbar .elgg-icon {
@@ -170,8 +174,11 @@
 
 .elgg-menu-site > li > a {
 	font-weight: bold;
-	padding: 3px 13px 0px 13px;
-	height: 20px;
+	padding: 6px 10px 0px 10px;
+	height: 30px;
+	font-family: 'Questrial', sans-serif;
+	text-transform:uppercase;
+	font-size:.97em;	
 }
 
 .elgg-menu-site > li > a:hover {
@@ -182,8 +189,8 @@
 .elgg-menu-site-default {
 	position: absolute;
 	bottom: 0;
-	left: 0;
-	height: 23px;
+	left: 420px;
+	height: 40px;
 }
 
 .elgg-menu-site-default > li {
@@ -196,8 +203,8 @@
 
 .elgg-menu-site-default > .elgg-state-selected > a,
 .elgg-menu-site-default > li:hover > a {
-	background: white;
-	color: #555;
+	background:#85161D;
+	color: #FFFFFF;
 	
 	-webkit-box-shadow: 2px -1px 1px rgba(0, 0, 0, 0.25);
 	-moz-box-shadow: 2px -1px 1px rgba(0, 0, 0, 0.25);
@@ -263,9 +270,9 @@ li:hover > .elgg-menu-site-more {
 /** HACKED IN TO RIGHT JUSTIFY THE MORE (browse) MENU **/
 
 .elgg-menu-more-right {
-    bottom: 8px;
+    bottom: 0px;
     float: right;
-    left: 670px;
+    left: 850px;
     position: absolute;
 }
 
