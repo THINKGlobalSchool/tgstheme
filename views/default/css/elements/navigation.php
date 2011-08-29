@@ -127,16 +127,31 @@
 
 .elgg-menu-topbar > li {
 	float: left;
+	font-family: 'Questrial', sans-serif;
+	text-transform:uppercase;
+	font-size:97%;
+	font-weight:bold;
 }
 
 .elgg-menu-topbar > li > a {
 	padding: 2px 15px 0;
-	color: #eee;
-	margin-top: 1px;
+	color: #FFFFFF;
+	margin-top: 1px;	
 }
 
+/* ***************************************
+	TOPBAR BORDERS 
+*************************************** */
+
+.elgg-menu-item-administration > a { border-right:1px solid #DB1730; }
+.elgg-menu-item-usersettings > a { border-right:1px solid #DB1730; }
+.elgg-menu-item-friends > a { border-right:1px solid #DB1730; }
+.elgg-menu-item-messages > a { border-right:1px solid #DB1730; }
+
+/****************************************/
+
 .elgg-menu-topbar > li > a:hover {
-	color: #4690D6;
+	color: #CCCCCC;
 	text-decoration: none;
 }
 

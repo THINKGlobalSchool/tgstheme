@@ -51,7 +51,6 @@ textarea {
 	height: 200px;
 }
 
-
 .elgg-longtext-control {
 	float: right;
 	margin-left: 14px;

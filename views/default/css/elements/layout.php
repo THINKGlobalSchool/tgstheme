@@ -118,6 +118,10 @@
 	margin-bottom: 10px;
 }
 
+.elgg-home-right{
+	background:none;
+}
+
 /***** PAGE FOOTER ******/
 .elgg-page-footer {
 	position: relative;

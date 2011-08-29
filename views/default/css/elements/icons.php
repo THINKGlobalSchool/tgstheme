@@ -13,10 +13,10 @@
 *************************************** */
 
 .elgg-icon {
-	background: transparent url(<?php echo elgg_get_site_url(); ?>_graphics/elgg_sprites.png) no-repeat left;
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/elgg_sprites.png) no-repeat left;
 	width: 16px;
 	height: 16px;
-	margin: 0 2px;
+	margin: 0 6px 0 0;
 }
 .elgg-icon-arrow-left {
 	background-position: 0 -0px;
@@ -215,6 +215,11 @@
 .elgg-icon-thumbs-up {
 	background-position: 0 -1152px;
 }
+
+.elgg-icon .todo-notifier{
+	background-position: 0 -1314px;
+}
+
 .elgg-icon-trash {
 	background-position: 0 -1170px;
 }
