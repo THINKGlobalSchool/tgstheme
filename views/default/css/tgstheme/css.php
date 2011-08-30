@@ -133,13 +133,14 @@ table#tgstheme-profile-stats td.stat {
 .elgg-menu-composer {
 	display:inline-block;
 	height: 22px;
-	font-family: 'Questrial', sans-serif;
+	font-family: 'Shanti', sans-serif;
 	text-transform:uppercase;
-	font-size:100%;
+	font-size:1em;
+	font-weight:normal;
 }
 
 .elgg-menu-composer > li {
-	font-weight:bold;
+	font-weight:normal;
 	margin-left: 10px;
 }
 
