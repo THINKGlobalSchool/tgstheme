@@ -26,12 +26,12 @@
 	border-radius: 4px;
 	
 	padding: 2px 6px;
-	color: #4690d6;
-	border: 1px solid #4690d6;
+	color: #85161D;
+	border: 1px solid #85161D;
 	font-size: 12px;
 }
 .elgg-pagination a:hover {
-	background: #4690d6;
+	background: #85161D;
 	color: white;
 	text-decoration: none;
 }
@@ -40,8 +40,8 @@
 	border-color: #CCCCCC;
 }
 .elgg-pagination .elgg-state-selected span {
-	color: #555555;
-	border-color: #555555;
+	color: #2D3F46;
+	border-color: #2D3F46;
 }
 
 /* ***************************************
@@ -127,10 +127,10 @@
 
 .elgg-menu-topbar > li {
 	float: left;
-	font-family: 'Questrial', sans-serif;
+	font-family: 'Shanti', sans-serif;
 	text-transform:uppercase;
-	font-size:97%;
-	font-weight:bold;
+	font-size:1em;
+	font-weight:normal;
 }
 
 .elgg-menu-topbar > li > a {
@@ -157,10 +157,10 @@
 
 .elgg-menu-topbar-alt {
 	float: right;
-	font-family: 'Questrial', sans-serif;
+	font-family: 'Shanti', sans-serif;
 	text-transform:uppercase;
-	font-size:97%;
-	font-weight:bold;
+	font-size:1em;
+	font-weight:normal;
 }
 
 .elgg-menu-topbar .elgg-icon {
@@ -188,12 +188,12 @@
 }
 
 .elgg-menu-site > li > a {
-	font-weight: bold;
+	font-weight: normal;
 	padding: 6px 10px 0px 10px;
 	height: 30px;
-	font-family: 'Questrial', sans-serif;
+	font-family: 'Shanti', sans-serif;
 	text-transform:uppercase;
-	font-size:.97em;	
+	font-size:1em;	
 }
 
 .elgg-menu-site > li > a:hover {
@@ -369,12 +369,12 @@ li:hover > .elgg-menu-site-more {
 	padding: 2px 4px 2px 8px;
 }
 .elgg-menu-page a:hover {
-	background-color: #0054A7;
+	background-color: #85161D;
 	color: white;
 	text-decoration: none;
 }
 .elgg-menu-page li.elgg-state-selected > a {
-	background-color: #4690D6;
+	background-color: #2D3F46;
 	color: white;
 }
 .elgg-menu-page .elgg-child-menu {

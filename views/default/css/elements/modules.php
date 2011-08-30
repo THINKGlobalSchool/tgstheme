@@ -90,7 +90,7 @@
 }
 .elgg-module-featured > .elgg-head * {
 	color: white;
-	font-family: 'Questrial', sans-serif;
+	font-family: 'Shanti', sans-serif;
 	text-transform:uppercase;
 	font-size:1em;
 }

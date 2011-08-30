@@ -77,8 +77,8 @@ blockquote {
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: normal;
-	color: #3E545C;
-	font-family: 'Questrial', sans-serif;
+	color: #2D3F46;
+	font-family: 'Shanti', sans-serif;
 	text-transform:uppercase;
 }
 
@@ -103,9 +103,9 @@ h6 { font-size: 0.8em; }
 	float: left;
 	max-width: 530px;
 	margin-right: 10px;
-	font-family: 'Questrial', sans-serif;
+	font-family: 'Shanti', sans-serif;
 	text-transform:uppercase;
-	color:#3E545C;
+	color:#2D3F46;
 	font-size:130%;
 }
 .elgg-heading-basic {
