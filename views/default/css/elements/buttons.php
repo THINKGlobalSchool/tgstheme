@@ -105,7 +105,7 @@ a.elgg-button {
 }
 
 
-/* ------ Submit Button ------ */
+/* ------ Delete Button ------ */
 
 .elgg-button-delete {
 	color: #FFFFFF;
@@ -115,6 +115,7 @@ a.elgg-button {
 }
 .elgg-button-delete:hover {
 	color: #999;
+	border: 1px solid #2D3F46;
 	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #333333;
 	text-decoration: none;
 }

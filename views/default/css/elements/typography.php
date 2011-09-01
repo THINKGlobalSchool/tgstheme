@@ -13,7 +13,8 @@
 body {
 	font-size: 80%;
 	line-height: 1.4em;
-	font-family: "Lucida Grande", Arial, Tahoma, Verdana, sans-serif;	
+	font-family: "Lucida Grande", Arial, Tahoma, Verdana, sans-serif;
+	color: #333333;
 }
 
 a {
@@ -22,7 +23,7 @@ a {
 
 a:hover,
 a.selected { <?php //@todo remove .selected ?>
-	color: #555555;
+	color: #2D3F46;
 	text-decoration: underline;
 }
 
