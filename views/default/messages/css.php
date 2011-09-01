@@ -9,14 +9,24 @@
 .messages-container {
 	min-height: 200px;
 }
-.message.unread a {
-	color: #d40005;
+
+.messages-container ul li:hover{
+	background:#EFEFEF;
 }
+
+.message.unread a {
+	color: #91131E;
+	margin-bottom:3px;
+}
+.message.unread a:hover {
+	color: #2D3F46;
+}
+
 .messages-buttonbank {
-	text-align: right;
+	text-align: left;
 }
 .messages-buttonbank input {
-	margin-left: 10px;
+	margin-left: 6px;
 }
 
 /*** message metadata ***/
@@ -24,26 +34,39 @@
 	float: left;
 	width: 20%;
 	margin-right: 2%;
+	margin-top:3px;
 }
 .messages-subject {
 	float: left;
 	width: 55%;
 	margin-right: 2%;
+	margin-top:3px;
 }
+
+.messages-subject input[type="checkbox"]{
+ 	vertical-align: bottom;
+    position: relative;
+    top: -3px;
+    *overflow: hidden;
+}
+
 .messages-timestamp {
 	float: left;
 	width: 14%;
 	margin-right: 2%;
+	margin-top:3px;
 }
 .messages-delete {
 	float: left;
 	width: 5%;
+	margin-top:3px;
 }
 /*** topbar icon ***/
 .messages-new {
-	color: white;
-	background-color: red;
-	
+	color: #FFFFFF;
+	background-color: #2D3F46;
+	border:1px solid #FFFFFF;
+	padding-right: 1px;
 	-webkit-border-radius: 10px; 
 	-moz-border-radius: 10px;
 	border-radius: 10px;
@@ -54,8 +77,8 @@
 	
 	position: absolute;
 	text-align: center;
-	top: 0px;
-	left: 26px;
+	top: 8px;
+	left: 8px;
 	min-width: 16px;
 	height: 16px;
 	font-size: 10px;
