@@ -94,6 +94,7 @@
 	font-weight: bold;
 	line-height: 1.2em;
 	color: #bababa;
+	text-transform: uppercase;
 }
 .elgg-breadcrumbs > li {
 	display: inline-block;
@@ -108,7 +109,7 @@
 	color: #999;
 }
 .elgg-breadcrumbs > li > a:hover {
-	color: #0054a7;
+	color: #91131E;
 	text-decoration: underline;
 }
 
@@ -256,7 +257,7 @@ li:hover > .elgg-menu-site-more {
 .elgg-menu-site-more > li > a {
 	background: white;
 	color: #555;
-	
+	height:24px;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	border-radius: 0;
@@ -266,7 +267,7 @@ li:hover > .elgg-menu-site-more {
 	box-shadow: none;
 }
 .elgg-menu-site-more > li > a:hover {
-	background: #4690D6;
+	background: #2D3F46;
 	color: white;
 }
 .elgg-menu-site-more > li:last-child > a,
@@ -310,15 +311,18 @@ li:hover > .elgg-menu-site-more {
 *************************************** */
 .elgg-menu-filter {
 	margin-bottom: 5px;
-	border-bottom: 2px solid #ccc;
+	border-bottom: 1px solid #2D3F46;
 	display: table;
 	width: 100%;
+	text-transform:uppercase;
+	font-family: 'Shanti',sans-serif;
+	font-size:90%;
 }
 .elgg-menu-filter > li {
 	float: left;
-	border: 2px solid #ccc;
+	border: 1px solid #2D3F46;
 	border-bottom: 0;
-	background: #eee;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
 	margin: 0 0 0 10px;
 	
 	-webkit-border-radius: 5px 5px 0 0;
@@ -334,20 +338,21 @@ li:hover > .elgg-menu-site-more {
 	padding: 3px 10px 0;
 	text-align: center;
 	height: 21px;
-	color: #999;
+	color: #FFFFFF;
 }
 .elgg-menu-filter > li > a:hover {
-	background: #dedede;
-	color: #4690D6;
+	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #E72139;
+	color: #FFFFFF;
 }
 .elgg-menu-filter > .elgg-state-selected {
-	border-color: #ccc;
-	background: white;
+	border-color: #85161D;
+	background: #BD1429;
 }
 .elgg-menu-filter > .elgg-state-selected > a {
 	position: relative;
-	top: 2px;
-	background: white;
+	text-decoration: none;
+	color: #FFFFFF;	
+	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #BD1429;
 }
 
 /* ***************************************
@@ -357,26 +362,37 @@ li:hover > .elgg-menu-site-more {
 	margin-bottom: 15px;
 }
 
+/* ------ NEW BUTTONS ------ */
+
 .elgg-menu-page a {
 	display: block;
 	
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
 	
-	background-color: white;
-	margin: 0 0 3px;
+color: white;
+	border: 1px solid #2D3F46;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;	
+	margin: 0 0 6px 0;
 	padding: 2px 4px 2px 8px;
 }
 .elgg-menu-page a:hover {
-	background-color: #85161D;
-	color: white;
+	color: #999;
+	border: 1px solid #2D3F46;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #333333;
 	text-decoration: none;
 }
+
 .elgg-menu-page li.elgg-state-selected > a {
-	background-color: #2D3F46;
-	color: white;
+	border:1px solid #85161D;
+	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #E72139;
+	color: #FFFFFF;	
 }
+
+/* --------------------------- */
+
+
 .elgg-menu-page .elgg-child-menu {
 	display: none;
 	margin-left: 15px;
@@ -472,8 +488,13 @@ li:hover > .elgg-menu-site-more {
 	margin-left: 15px;
 }
 .elgg-menu-entity > li > a {
-	color: #aaa;
+	color: #91131E;
 }
+
+.elgg-menu-entity > li > a:hover {
+	color: #2D3F46;
+}
+
 <?php // need to override .elgg-menu-hz ?>
 .elgg-menu-entity > li > a {
 	display: block;
@@ -488,22 +509,26 @@ li:hover > .elgg-menu-site-more {
 .elgg-menu-owner-block li a {
 	display: block;
 	
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
 	
-	background-color: white;
-	margin: 3px 0 5px 0;
+color: white;
+	border: 1px solid #2D3F46;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;	
+	margin: 0 0 6px 0;
 	padding: 2px 4px 2px 8px;
 }
 .elgg-menu-owner-block li a:hover {
-	background-color: #0054A7;
-	color: white;
+	color: #999;
+	border: 1px solid #2D3F46;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #333333;
 	text-decoration: none;
 }
 .elgg-menu-owner-block li.elgg-state-selected > a {
-	background-color: #4690D6;
-	color: white;
+	border:1px solid #85161D;
+	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #E72139;
+	color: #FFFFFF;
 }
 
 /* ***************************************
