@@ -32,9 +32,9 @@
 	font-size: 12px;
 }
 .elgg-pagination a:hover {
-	border:1px solid #85161D;
-	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #BD1429;
-	color: #CCCCCC;
+	color: #999;
+	border: 1px solid #2D3F46;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #333333;
 	text-decoration: none;
 }
 .elgg-pagination .elgg-state-disabled span {
