@@ -26,22 +26,25 @@
 	border-radius: 4px;
 	
 	padding: 2px 6px;
-	color: #85161D;
-	border: 1px solid #85161D;
+	color: #FFFFFF;
+	border: 1px solid #2D3F46;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
 	font-size: 12px;
 }
 .elgg-pagination a:hover {
-	background: #85161D;
-	color: white;
+	border:1px solid #85161D;
+	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #BD1429;
+	color: #CCCCCC;
 	text-decoration: none;
 }
 .elgg-pagination .elgg-state-disabled span {
 	color: #CCCCCC;
 	border-color: #CCCCCC;
+	background:none;
 }
 .elgg-pagination .elgg-state-selected span {
-	color: #2D3F46;
-	border-color: #2D3F46;
+	border:1px solid #85161D;
+	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #BD1429;
 }
 
 /* ***************************************
