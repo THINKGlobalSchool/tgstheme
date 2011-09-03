@@ -314,19 +314,20 @@ li:hover > .elgg-menu-site-more {
 *************************************** */
 .elgg-menu-filter {
 	margin-bottom: 5px;
-	border-bottom: 1px solid #2D3F46;
+	/*border-bottom: 1px solid #2D3F46;*/
 	display: table;
 	width: 100%;
 	text-transform:uppercase;
 	font-family: 'Shanti',sans-serif;
 	font-size:90%;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/filter-back.jpg) left top;
 }
 .elgg-menu-filter > li {
 	float: left;
 	border: 1px solid #2D3F46;
 	border-bottom: 0;
 	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
-	margin: 0 0 0 10px;
+	margin: 6px 0 0 10px;
 	
 	-webkit-border-radius: 5px 5px 0 0;
 	-moz-border-radius: 5px 5px 0 0;
@@ -374,16 +375,19 @@ li:hover > .elgg-menu-site-more {
 	-moz-border-radius: 4px;
 	border-radius: 4px;
 	
-color: white;
-	border: 1px solid #2D3F46;
-	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;	
+	color: #2D3F46;
+	border: 1px solid #999999;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-med-grey.png) repeat-x bottom left #F8F8F8;	
 	margin: 0 0 6px 0;
-	padding: 2px 4px 2px 8px;
+	padding: 3px 4px 2px 8px;
+    font-family: 'Shanti',sans-serif;
+    font-size: 100%;
+    text-transform: uppercase;
 }
 .elgg-menu-page a:hover {
-	color: #999;
+	color: #FFFFFF;
 	border: 1px solid #2D3F46;
-	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #333333;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
 	text-decoration: none;
 }
 
@@ -516,22 +520,25 @@ color: white;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
 	
-color: white;
-	border: 1px solid #2D3F46;
-	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;	
+	color: #2D3F46;
+	border: 1px solid #999999;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-med-grey.png) repeat-x bottom left #F8F8F8;	
 	margin: 0 0 6px 0;
-	padding: 2px 4px 2px 8px;
+	padding: 3px 4px 2px 8px;
+    font-family: 'Shanti',sans-serif;
+    font-size: 100%;
+    text-transform: uppercase;
 }
 .elgg-menu-owner-block li a:hover {
-	color: #999;
+	color: #FFFFFF;
 	border: 1px solid #2D3F46;
-	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #333333;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
 	text-decoration: none;
 }
 .elgg-menu-owner-block li.elgg-state-selected > a {
 	border:1px solid #85161D;
 	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #E72139;
-	color: #FFFFFF;
+	color: #FFFFFF;	
 }
 
 /* ***************************************

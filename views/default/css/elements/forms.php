@@ -47,6 +47,10 @@ input:focus, textarea:focus {
 	color:#333;
 }
 
+ul.as-selections li.as-original input:focus{
+	border: solid 1px #91131E;
+}
+
 textarea {
 	height: 200px;
 }

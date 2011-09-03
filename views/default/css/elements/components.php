@@ -24,16 +24,58 @@
 	Image Block
 *************************************** */
 .elgg-image-block {
-	padding: 3px 0;
+	padding:0;		
+	margin:0 0 10px 0;	
 }
+
+.elgg-image-block h3 a{	
+	color:#FFFFFF;
+}
+
 .elgg-image-block .elgg-image {
 	float: left;
-	margin-right: 5px;
+	margin:2px 6px 0 10px;
+	padding:1px 0 0 1px;
 }
 .elgg-image-block .elgg-image-alt {
 	float: right;
 	margin-left: 5px;
 }
+
+/* ***************************************
+	Image Block - Group Badge
+***************************************
+
+.elgg-image-block {
+	padding:8px 0 8px 0;
+	border: 1px solid #85161D;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/badge-back.png) repeat-x bottom left #DD2036;
+	min-height:34px;
+	
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	margin:0 0 6px 0;	
+}
+
+.elgg-image-block h3 a{	
+	color:#FFFFFF;
+}
+
+.elgg-image-block .elgg-image {
+	float: left;
+	margin:2px 6px 0 10px;
+	padding:1px 0 0 1px;
+	background:#FFFFFF;
+	width:26px;
+	height:26px;
+	border:1px solid #85161D;
+}
+.elgg-image-block .elgg-image-alt {
+	float: right;
+	margin-left: 5px;
+}
+
 
 /* ***************************************
 	List
