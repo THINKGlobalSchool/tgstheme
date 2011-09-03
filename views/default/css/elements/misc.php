@@ -3,9 +3,20 @@
 *************************************** */
 #login-dropdown {
 	position: absolute;
-	top:60px;
-	right:10px;
+	top:0px;
+	right:325px;
 	z-index: 100;
+}
+#login-dropdown .elgg-button-dropdown{
+	-webkit-border-radius:0px 0px 4px 4px;
+	-moz-border-radius:0px 0px 4px 4px;
+	border-radius:0px 0px 4px 4px;
+}
+
+#login-dropdown .elgg-button-dropdown.elgg-state-active {
+	-webkit-border-radius:0;
+	-moz-border-radius:0;
+	border-radius:0;
 }
 
 /* ***************************************

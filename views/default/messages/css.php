@@ -77,8 +77,8 @@
 	
 	position: absolute;
 	text-align: center;
-	top: 8px;
-	left: 8px;
+	top: -6px;
+	left: 4px;
 	min-width: 16px;
 	height: 16px;
 	font-size: 10px;

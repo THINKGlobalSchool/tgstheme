@@ -77,14 +77,13 @@ a.elgg-button {
 /* ------ Action Button ------ */
 
 .elgg-button-action {
-	background: #ccc url(<?php echo elgg_get_site_url(); ?>_graphics/button_background.gif) repeat-x 0 0;
-	border:1px solid #999;
-	color: #333;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-med-grey.png) repeat-x bottom left #F8F8F8;
+	border:1px solid #999999;
+	color: #2D3F46;
 	padding: 2px 15px;
 	text-align: center;
 	font-weight: normal;
 	text-decoration: none;
-	text-shadow: 0 1px 0 white;
 	cursor: pointer;
 	
 	-webkit-border-radius: 4px;
@@ -97,11 +96,11 @@ a.elgg-button {
 }
 
 .elgg-button-action:hover,
-.elgg-button-action:focus {
-	background: #ccc url(<?php echo elgg_get_site_url(); ?>_graphics/button_background.gif) repeat-x 0 -15px;
-	color: #111;
+.elgg-button-action:focus {	
+	color: #FFFFFF;
 	text-decoration: none;
-	border: 1px solid #999;
+	border: 1px solid #2D3F46;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
 }
 
 
