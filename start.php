@@ -268,6 +268,13 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 			$item->setText($text . elgg_echo('friends'));
 		}
 
+		if ($item->getName() == 'profile') {
+			$text = $item->getText();
+			$user = elgg_get_logged_in_user_entity();
+			$name_text = "<span style='margin-left: 10px; float: right'>" . $user->name . "</span>";
+			$item->setText($text . $name_text);
+		}
+
 		if ($item->getName() == 'messages') {
 			$text = $item->getText();
 			$item->setText($text . elgg_echo('messages'));
