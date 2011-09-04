@@ -180,7 +180,6 @@
 }
 
 .elgg-menu-topbar > li > a.elgg-topbar-avatar {
-	width: 18px;
 	height: 18px;
 }
 
