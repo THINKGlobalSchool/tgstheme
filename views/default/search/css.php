@@ -9,7 +9,7 @@
 Search plugin
 ***********************************/
 
-/*------ Start Lucas ------ */
+/* ------ Start Lucas ------ */
 
 .search-wrapper{
 	float:right;
@@ -39,7 +39,7 @@ Search plugin
 	height:23px;
 	float:right;
 	cursor:pointer;
-]
+}
 
 /*------ End Lucas ------ */
 

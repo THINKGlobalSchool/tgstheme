@@ -10,8 +10,13 @@
  *
  * VIEW OVERRIDES:
  *   * navigation/menu/site - use text string 'Browse' instead of 'More'
- *   * css/elgg
  *   * css/elements/*
+ *   * css/typeaheadtags/css
+ * 	 * messages/css
+ *   * page/elements/header_logo
+ *   * page/elements/owner_block
+ *   * search/css
+ *   * search/search_box
  *
  * Composer code borrowed from Evan Winslow's Elgg Facebook Theme:
  * https://github.com/ewinslow/elgg-facebook_theme
