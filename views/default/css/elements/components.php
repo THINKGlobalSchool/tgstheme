@@ -236,7 +236,7 @@
 .elgg-river-comments-tab {
 	display: block;
 	background-color: #EEE;
-	color: #4690D6;
+	color: #91131E;
 	margin-top: 5px;
 	width: auto;
 	float: right;
