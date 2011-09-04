@@ -207,7 +207,7 @@
 .elgg-menu-site-default {
 	position: absolute;
 	bottom: 0;
-	left: 420px;
+	left: 360px;
 	height: 40px;
 }
 
