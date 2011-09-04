@@ -22,7 +22,7 @@
 .elgg-page-default .elgg-page-header > .elgg-inner {
 	width: 990px;
 	margin: 0 auto;
-	height:116px;
+	height:126px;
 	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/back-header-full.png) no-repeat;
 	
 }
@@ -40,7 +40,6 @@
 /***** TOPBAR ******/
 .elgg-page-topbar {
 	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/back-top.jpg) repeat-x top left;
-	border-bottom: 1px solid #000000;
 	position: relative;
 	height: 41px;
 	z-index: 9000;
@@ -70,7 +69,7 @@
 .elgg-page-header {
 	position: relative;
 	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/back-header.jpg) repeat-x;
-	height:116px;
+	height:126px;
 }
 .elgg-page-header > .elgg-inner {
 	position: relative;	

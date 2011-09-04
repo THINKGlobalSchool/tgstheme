@@ -29,7 +29,7 @@
 }
 
 .elgg-image-block h3 a{	
-	color:#FFFFFF;
+	color:#91131E;
 }
 
 .elgg-image-block .elgg-image {
@@ -44,9 +44,9 @@
 
 /* ***************************************
 	Image Block - Group Badge
-***************************************
+****************************************/
 
-.elgg-image-block {
+#badge .elgg-image-block {
 	padding:8px 0 8px 0;
 	border: 1px solid #85161D;
 	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/badge-back.png) repeat-x bottom left #DD2036;
@@ -58,11 +58,11 @@
 	margin:0 0 6px 0;	
 }
 
-.elgg-image-block h3 a{	
+#badge .elgg-image-block  h3 a{	
 	color:#FFFFFF;
 }
 
-.elgg-image-block .elgg-image {
+#badge .elgg-image-block .elgg-image {
 	float: left;
 	margin:2px 6px 0 10px;
 	padding:1px 0 0 1px;
@@ -71,6 +71,14 @@
 	height:26px;
 	border:1px solid #85161D;
 }
+
+.#badge .elgg-subtext {
+	color: #DDDDDD;
+	font-size: 85%;
+	line-height: 1.2em;
+	font-style: italic;
+}
+
 .elgg-image-block .elgg-image-alt {
 	float: right;
 	margin-left: 5px;
