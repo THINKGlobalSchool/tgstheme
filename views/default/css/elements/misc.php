@@ -3,8 +3,8 @@
 *************************************** */
 #login-dropdown {
 	position: absolute;
-	top:0px;
-	right:325px;
+	top:52px;
+	right:25px;
 	z-index: 100;
 }
 #login-dropdown .elgg-button-dropdown{
