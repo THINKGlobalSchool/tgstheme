@@ -181,6 +181,17 @@ table#tgstheme-profile-stats td.stat {
 	border-color: transparent transparent white transparent;
 }
 
+/* STATS */
+
+table#stats-table td.label {
+	text-shadow: 1px 1px 1px #AAAAAA;
+}
+
+table#stats-table td.stat {
+	font-weight: bold;
+	color: #800518;
+}
+
 /* NEW PAGE COMPONENT: COMPOSER */
 
 .ui-tabs-hide {

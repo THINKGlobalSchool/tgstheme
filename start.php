@@ -57,6 +57,11 @@ function tgstheme_init() {
 	// Extend topbar
 	elgg_extend_view('page/elements/topbar', 'tgstheme/topbar');
 
+	// Extend activity sidebar
+	if (elgg_is_logged_in() && elgg_get_context() == 'activity') {
+		elgg_extend_view('page/elements/sidebar', 'tgstheme/main_stats', 501);
+	}
+
 	// Plugin hook for index redirect
 	elgg_register_plugin_hook_handler('index', 'system', 'home_redirect', 600);
 
@@ -65,6 +70,10 @@ function tgstheme_init() {
 
 	// Topbar menu hook
 	elgg_register_plugin_hook_handler('register', 'menu:topbar', 'tgstheme_topbar_menu_handler');
+
+//	elgg_unregister_page_handler('activity');
+
+//	elgg_register_page_handler('activity', 'tgstheme_river_page_handler');
 
 	return true;
 }
@@ -164,6 +173,33 @@ function ping_page_handler($page) {
 		}
 	}
 	return;
+}
+
+/**
+ * Custom page handler for activiy
+ *
+ * @param array $page
+ */
+function tgstheme_river_page_handler($page) {
+	global $CONFIG;
+
+	elgg_set_page_owner_guid(elgg_get_logged_in_user_guid());
+
+	// make a URL segment available in page handler script
+	$page_type = elgg_extract(0, $page, 'all');
+	$page_type = preg_replace('[\W]', '', $page_type);
+	if ($page_type == 'owner') {
+		$page_type = 'mine';
+	}
+	set_input('page_type', $page_type);
+
+	// content filter code here
+	$entity_type = '';
+	$entity_subtype = '';
+
+	$path = elgg_get_plugins_path() . "tgstheme/pages/river.php";
+
+	require_once($path);
 }
 
 /**
