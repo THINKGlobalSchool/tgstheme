@@ -25,6 +25,7 @@ $english = array(
 	'tgstheme:label:allgroups' => 'All Groups',
 	'tgstheme:label:latestactivity' => 'Latest Activity',
 	'tgstheme:label:viewprofile' => 'View profile',
+	'tgstheme:label:spotstats' => 'Spot Stats',
 
 	// Stats
 	'tgstheme:stats:blog' => 'Blog Posts',
