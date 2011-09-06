@@ -15,8 +15,6 @@ ul.as-selections {
 	padding: 4px 0 4px 4px;
 	margin: 0;
 	overflow: auto;
-
-
 	
 	border: 1px solid #ccc;
 	color: #666;
@@ -34,8 +32,8 @@ ul.as-selections {
 }
 
 ul.as-selections:focus {
-	border: solid 1px #4690d6;
-	background: #e4ecf5;
+	border: solid 1px #91131E;
+	background: #F7CED1;
 	color:#333;
 }
 
@@ -53,10 +51,10 @@ ul.as-selections li.as-selection-item {
 	font-size: 13px;
 	font-family: "Lucida Grande", arial, sans-serif;
 	text-shadow: 0 1px 1px #fff;
-	background-color: #ddeefe;
+	background-color: #F7CED1;
 	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ddeefe), to(#bfe0f1));
-	border: 1px solid #acc3ec;
-	border-top-color: #c0d9e9;
+	border: 1px solid #91131E;
+	border-top-color: #91131E;
 	padding: 2px 7px 2px 10px;
 	border-radius: 12px;
 	-webkit-border-radius: 12px;
