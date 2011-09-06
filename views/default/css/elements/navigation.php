@@ -52,16 +52,20 @@
 *************************************** */
 .elgg-tabs {
 	margin-bottom: 5px;
-	border-bottom: 2px solid #cccccc;
+	/*border-bottom: 1px solid #2D3F46;*/
 	display: table;
 	width: 100%;
+	text-transform:uppercase;
+	font-family: 'Shanti',sans-serif;
+	font-size:90%;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/filter-back.jpg) left top;
 }
 .elgg-tabs li {
 	float: left;
-	border: 2px solid #ccc;
+	border: 1px solid #2D3F46;
 	border-bottom: 0;
-	background: #eee;
-	margin: 0 0 0 10px;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
+	margin: 6px 0 0 10px;	
 	
 	-webkit-border-radius: 5px 5px 0 0;
 	-moz-border-radius: 5px 5px 0 0;
@@ -73,20 +77,71 @@
 	padding: 3px 10px 0 10px;
 	text-align: center;
 	height: 21px;
-	color: #999;
+	color: #FFFFFF;
 }
 .elgg-tabs a:hover {
-	background: #dedede;
-	color: #4690D6;
+	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #E72139;
+	color: #FFFFFF;
 }
 .elgg-tabs .elgg-state-selected {
-	border-color: #ccc;
-	background: white;
+	border-color: #85161D;
+	background: #BD1429;
 }
 .elgg-tabs .elgg-state-selected a {
+position: relative;
+	text-decoration: none;
+	color: #FFFFFF;	
+	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #BD1429;
+}
+
+/* ***************************************
+	FILTER MENU
+*************************************** */
+.elgg-menu-filter {
+	margin-bottom: 5px;
+	/*border-bottom: 1px solid #2D3F46;*/
+	display: table;
+	width: 100%;
+	text-transform:uppercase;
+	font-family: 'Shanti',sans-serif;
+	font-size:90%;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/filter-back.jpg) left top;
+}
+.elgg-menu-filter > li {
+	float: left;
+	border: 1px solid #2D3F46;
+	border-bottom: 0;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
+	margin: 6px 0 0 10px;
+	
+	-webkit-border-radius: 5px 5px 0 0;
+	-moz-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
+}
+.elgg-menu-filter > li:hover {
+	background: #dedede;
+}
+.elgg-menu-filter > li > a {
+	text-decoration: none;
+	display: block;
+	padding: 3px 10px 0;
+	text-align: center;
+	height: 21px;
+	color: #FFFFFF;
+}
+.elgg-menu-filter > li > a:hover {
+	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #E72139;
+	color: #FFFFFF;
+}
+.elgg-menu-filter > .elgg-state-selected {
+	border-color: #85161D;
+	background: #BD1429;
+}
+.elgg-menu-filter > .elgg-state-selected > a {
 	position: relative;
-	top: 2px;
-	background: white;
+	text-decoration: none;
+	color: #FFFFFF;	
+	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #BD1429;
 }
 
 /* ***************************************
@@ -309,56 +364,6 @@ li:hover > .elgg-menu-site-more {
 }
 
 /* ***************************************
-	FILTER MENU
-*************************************** */
-.elgg-menu-filter {
-	margin-bottom: 5px;
-	/*border-bottom: 1px solid #2D3F46;*/
-	display: table;
-	width: 100%;
-	text-transform:uppercase;
-	font-family: 'Shanti',sans-serif;
-	font-size:90%;
-	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/filter-back.jpg) left top;
-}
-.elgg-menu-filter > li {
-	float: left;
-	border: 1px solid #2D3F46;
-	border-bottom: 0;
-	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
-	margin: 6px 0 0 10px;
-	
-	-webkit-border-radius: 5px 5px 0 0;
-	-moz-border-radius: 5px 5px 0 0;
-	border-radius: 5px 5px 0 0;
-}
-.elgg-menu-filter > li:hover {
-	background: #dedede;
-}
-.elgg-menu-filter > li > a {
-	text-decoration: none;
-	display: block;
-	padding: 3px 10px 0;
-	text-align: center;
-	height: 21px;
-	color: #FFFFFF;
-}
-.elgg-menu-filter > li > a:hover {
-	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #E72139;
-	color: #FFFFFF;
-}
-.elgg-menu-filter > .elgg-state-selected {
-	border-color: #85161D;
-	background: #BD1429;
-}
-.elgg-menu-filter > .elgg-state-selected > a {
-	position: relative;
-	text-decoration: none;
-	color: #FFFFFF;	
-	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #BD1429;
-}
-
-/* ***************************************
 	PAGE MENU
 *************************************** */
 .elgg-menu-page {
@@ -449,11 +454,11 @@ li:hover > .elgg-menu-site-more {
 	text-decoration: none;
 }
 .elgg-menu-hover-admin a {
-	color: red;
+	color: #91131E;
 }
 .elgg-menu-hover-admin a:hover {
-	color: white;
-	background-color: red;
+	color: #FFFFFF;
+	background-color: #91131E;
 }
 
 /* ***************************************

@@ -110,7 +110,7 @@ h6 { font-size: 0.8em; }
 	font-size:130%;
 }
 .elgg-heading-basic {
-	color: #0054A7;
+	color: #2D3F46;
 	font-size: 1.2em;
 	font-weight: bold;
 }
