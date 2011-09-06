@@ -21,11 +21,10 @@ li.typeaheadtags-help-button  span:hover {
 
 li.typeaheadtags-help-button, li.typeaheadtags-help-button.blur {
 	padding: 2px 7px 2px 8px !important;
-	color: #2b3840 !important;
-	background-color: #bbd4f1 !important;
-	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#bbd4f1), to(#a3c2e5)) !important;
-	border-color: #6da0e0 !important;
-	border-top-color: #8bb7ed !important;
+	color: #FFFFFF !important;	
+	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #E72139 !important;
+	border-color: #85161D !important;
+	border-top-color: #85161D !important;
 }
 
 li.typeaheadtags-help-button:hover {
