@@ -209,3 +209,9 @@ table#stats-table td.stat {
 	-moz-border-radius: 6px;
 	border-radius: 6px;
 }
+
+/* PROFILE TWEAK */
+
+#profile-owner-block ul.elgg-menu {
+	margin-top: 15px;
+}
