@@ -16,19 +16,21 @@ li.typeaheadtags-help-button  span {
 }
 
 li.typeaheadtags-help-button  span:hover {
+	border-color: #444 !important;
 	cursor: pointer;
 }
 
 li.typeaheadtags-help-button, li.typeaheadtags-help-button.blur {
 	padding: 2px 7px 2px 8px !important;
 	color: #FFFFFF !important;	
-	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #E72139 !important;
-	border-color: #85161D !important;
-	border-top-color: #85161D !important;
+	background: #bbb !important;
+	border-color: #666666 !important;
+	border-top-color: #666666 !important;
 }
 
 li.typeaheadtags-help-button:hover {
 	cursor: pointer;
+	background: #999 !important;
 }
 
 div.typeaheadtags-help-container {
