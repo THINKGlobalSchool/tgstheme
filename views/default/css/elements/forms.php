@@ -42,13 +42,15 @@ input, textarea {
 }
 
 input:focus, textarea:focus {
-	border: solid 1px #91131E;
-	background: #F7CED1;
+	border: solid 1px #666;
+	-webkit-box-shadow: inset 1px 1px 3px 1px #999999;
+	-moz-box-shadow: inset 1px 1px 3px 1px #999999;
+	box-shadow: inset 1px 1px 3px 1px #999999;
 	color:#333;
 }
 
 ul.as-selections li.as-original input:focus{
-	border: solid 1px #91131E;
+	border: solid 1px #666;
 }
 
 textarea {
