@@ -194,6 +194,7 @@
 }
 .elgg-icon-tag {
 	background-position: 0 -1044px;
+	margin-top: 4px;
 }
 .elgg-icon-thumbs-down-alt:hover {
 	background-position: 0 -1062px;

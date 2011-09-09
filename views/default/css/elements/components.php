@@ -329,6 +329,8 @@
 .elgg-tags {
 	display: inline;
 	font-size: 85%;
+	position: relative;
+	bottom: 4px;
 }
 .elgg-tags li {
 	display: inline;
