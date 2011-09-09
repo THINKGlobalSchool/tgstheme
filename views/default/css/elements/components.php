@@ -213,6 +213,7 @@
 	font-size: 85%;
 	font-style: italic;
 	line-height: 1.2em;
+	display: block;
 }
 
 .elgg-river-attachments,
