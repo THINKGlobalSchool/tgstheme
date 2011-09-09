@@ -69,6 +69,12 @@ span.tag-name a:hover {
 	cursor: pointer;
 }
 
+/* Parentportal */
+.parentportal-header-two-column {
+	background:url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/logo-bottom.png") no-repeat;
+	padding-top: 10px;
+}
+
 /* Tooltips */
 
 span.tag-name {
