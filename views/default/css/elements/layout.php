@@ -34,7 +34,6 @@
 	width: 990px;
 	margin: 0 auto;
 	padding: 5px 0;
-	border-top: 1px solid #DEDEDE;
 }
 
 /***** TOPBAR ******/
@@ -124,6 +123,11 @@
 /***** PAGE FOOTER ******/
 .elgg-page-footer {
 	position: relative;
+	background: #000000;
+    height: 130px;
+	background-image:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/globe.png);
+	background-repeat:repeat-y;
+	background-position: center top;
 }
 .elgg-page-footer {
 	color: #999;
