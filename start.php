@@ -300,8 +300,7 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 		}
 
 		if ($item->getName() == 'friends') {
-			$text = $item->getText();
-			$item->setText($text . elgg_echo('friends'));
+			unset($items[$idx]);
 		}
 
 		if ($item->getName() == 'profile') {
