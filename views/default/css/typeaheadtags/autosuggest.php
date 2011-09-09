@@ -137,7 +137,6 @@ ul.as-selections li.as-original input {
 }
 
 ul.as-selections li.as-original input:focus {
-	border: 1px solid #91131E;
 }
 
 ul.as-list {
@@ -181,8 +180,8 @@ li.as-message {
 }
 
 li.as-result-item.active {
-	background-color: #F7CED1;
-	border-color: #91131E;
+	background-color: #bbb;
+	border-color: #666;
 	color: #fff;
 	text-shadow: 0 1px 2px #222222;
 }
@@ -195,7 +194,7 @@ li.as-result-item em {
 }
 
 li.as-result-item.active em { 
-	background: #F7CED1;  
+	background: #333;
 	color: #fff;
 }
 
