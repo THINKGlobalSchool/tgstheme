@@ -41,12 +41,22 @@ function tgstheme_init() {
 	// Register 'home' page handler
 	elgg_register_page_handler('home', 'home_page_handler');
 
+	// Register 'legal' page handler
+	elgg_register_page_handler('legal','legal_page_handler');
+
 	// Register activity ping page handler
 	elgg_register_page_handler('activity_ping', 'ping_page_handler');
 
 	// Add a site navigation item
 	$item = new ElggMenuItem('home', "<span class='elgg-icon elgg-icon-home'></span>", 'home');
 	elgg_register_menu_item('site', $item);
+
+	// Add a couple footer items
+	$item = new ElggMenuItem('1termsofuse', elgg_echo("tgstheme:label:terms"), elgg_get_site_url() . 'legal/spot_terms_of_use');
+	elgg_register_menu_item('footer', $item);
+
+	$item = new ElggMenuItem('2privacypolicysuppliment', elgg_echo("tgstheme:label:policysuppliment"), elgg_get_site_url() . 'legal/privacy_suppliment');
+	elgg_register_menu_item('footer', $item);
 
 	// also extend the core activity
 	elgg_extend_view('core/river/filter', 'tgstheme/update', -1);
@@ -125,6 +135,25 @@ function home_page_handler($page) {
 
 	$body = elgg_view_layout('one_sidebar_right', $params);
 	echo elgg_view_page(elgg_echo('tgstheme:title:home'), $body);
+}
+
+/* Legal Page Handler */
+function legal_page_handler($page) {
+	switch($page[0]) {
+		case 'spot_terms_of_use':
+			$title = "THINK Spot Terms of Use";
+			$content = elgg_view('tgstheme/legal/spot_terms_of_use');
+			break;
+		case 'privacy_supplement':
+			$title = "SUPPLEMENTAL POLICY TO THE TGS PRIVACY AND INFORMATION SECURITY POLICY";
+			$content = elgg_view('tgstheme/legal/privacy_supplement');
+			break;
+	}
+
+	$params['content'] = $content;
+
+	$body = elgg_view_layout('one_column', $params);
+	echo elgg_view_page($title, $body);
 }
 
 /**
