@@ -185,6 +185,7 @@
 }
 .elgg-state-success {
 	background-color: black;
+	border: 2px solid white;
 }
 .elgg-state-error {
 	background-color: red;
