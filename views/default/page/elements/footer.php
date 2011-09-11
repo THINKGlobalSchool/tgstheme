@@ -19,4 +19,3 @@ echo elgg_view('output/url', array(
 	'class' => '',
 ));
 echo '</div>';
-echo "<a href='http://thinkglobalschool.org'><span class='footer-logo'></span></a>";

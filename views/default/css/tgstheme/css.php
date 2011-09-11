@@ -215,3 +215,9 @@ table#stats-table td.stat {
 #profile-owner-block ul.elgg-menu {
 	margin-top: 15px;
 }
+
+/* Parentportal */
+.parentportal-header-two-column {
+	background:url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/logo-bottom.png") no-repeat;
+	padding-top: 10px;
+}
