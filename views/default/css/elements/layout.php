@@ -123,11 +123,9 @@
 /***** PAGE FOOTER ******/
 .elgg-page-footer {
 	position: relative;
-	background: #000000;
-    height: 130px;
-	background-image:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/globe.png);
-	background-repeat:repeat-y;
-	background-position: center top;
+    height: 90px;
+    padding:10px 0 0 0;
+	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/back-footer.png) repeat-x;
 }
 .elgg-page-footer {
 	color: #999;
