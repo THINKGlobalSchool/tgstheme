@@ -85,6 +85,10 @@ function tgstheme_init() {
 
 //	elgg_register_page_handler('activity', 'tgstheme_river_page_handler');
 
+//	var_dump(elgg_get_processed_upgrades());
+	
+//	var_dump(elgg_get_unprocessed_upgrades());
+
 	return true;
 }
 
