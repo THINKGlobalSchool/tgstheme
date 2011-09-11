@@ -210,6 +210,12 @@ table#stats-table td.stat {
 	border-radius: 6px;
 }
 
+/* Remove icon padding for home menu */
+
+.elgg-menu-item-home .elgg-icon {
+	margin-right: 0px;
+}
+
 /* PROFILE TWEAK */
 
 #profile-owner-block ul.elgg-menu {
