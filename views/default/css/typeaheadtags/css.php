@@ -69,28 +69,6 @@ span.tag-name a:hover {
 	cursor: pointer;
 }
 
-/* Footer */
-
-.footer-logo {
-	width: 278px;
-    height: 79px;
-    background-image: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/logo.png);
-    background-repeat: no-repeat;
-    background-position: 0 0;
-	text-indent: -9999px;
-    float:left;
-	display: block;
-	vertical-align: middle;
-	position: absolute;
-	bottom: 30px;
-}
-
-/* Parentportal */
-.parentportal-header-two-column {
-	background:url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/logo-bottom.png") no-repeat;
-	padding-top: 10px;
-}
-
 /* Tooltips */
 
 span.tag-name {
