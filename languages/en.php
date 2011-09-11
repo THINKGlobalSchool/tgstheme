@@ -36,7 +36,7 @@ $english = array(
 	'tgstheme:stats:bookmark' => 'Bookmarks',
 
 	// Composer
-	'composer:object:thewire' => "The Wire",
+	'composer:object:thewire' => "Mini Post",
 	'composer:object:bookmarks' => "Bookmark",
 	'composer:object:blog' => "Blog",
 	'composer:annotation:messageboard' => "Post",
