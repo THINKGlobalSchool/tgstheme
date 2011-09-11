@@ -32,10 +32,15 @@
 }
 .elgg-page-default .elgg-page-footer > .elgg-inner {
 	width: 990px;
+	height:90px;
 	margin: 0 auto;
-	padding: 5px 0;
+	padding: 10px 0 0 0;		
+	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/back-footer-full.png) no-repeat;	
 }
 
+.elgg-page-footer:after {
+	content:none;
+}
 /***** TOPBAR ******/
 .elgg-page-topbar {
 	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/back-top.jpg) repeat-x top left;
@@ -123,13 +128,13 @@
 /***** PAGE FOOTER ******/
 .elgg-page-footer {
 	position: relative;
-    height: 90px;
-    padding:10px 0 0 0;
+    height: 100px;
+    padding:0;
 	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/back-footer.png) repeat-x;
 }
 .elgg-page-footer {
 	color: #999;
 }
 .elgg-page-footer a:hover {
-	color: #666;
+	color: #FFF;
 }
