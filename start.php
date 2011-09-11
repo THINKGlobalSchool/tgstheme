@@ -69,7 +69,7 @@ function tgstheme_init() {
 
 	// Extend activity sidebar
 	if (elgg_is_logged_in() && elgg_get_context() == 'activity') {
-		elgg_extend_view('page/elements/sidebar', 'tgstheme/main_stats', 501);
+		elgg_extend_view('page/elements/sidebar', 'tgstheme/main_stats', 499);
 	}
 
 	// Plugin hook for index redirect
