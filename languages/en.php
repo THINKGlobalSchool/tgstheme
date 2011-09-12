@@ -23,6 +23,7 @@ $english = array(
 	'tgstheme:label:welcome' => 'Welcome, %s',
 	'tgstheme:label:updated' => 'Updated:',
 	'tgstheme:label:allgroups' => 'All Groups',
+	'tgstheme:label:allmygroups' => 'All My Groups',
 	'tgstheme:label:latestactivity' => 'Latest Activity',
 	'tgstheme:label:viewprofile' => 'View profile',
 	'tgstheme:label:spotstats' => 'Spot Stats',
