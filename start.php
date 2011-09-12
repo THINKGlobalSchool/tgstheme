@@ -110,7 +110,7 @@ function home_page_handler($page) {
 	$params['sidebar'] .= elgg_view('launchpad/module');
 
 	// Show groups module
-	$params['sidebar'] .= elgg_view('tgstheme/modules/groups', array('limit' => 5));
+	$params['sidebar'] .= elgg_view('tgstheme/modules/groups', array('limit' => 6));
 
 	// Grab tabs
 	$tags = elgg_get_tags(array('threshold' => 2, 'limit' => 50));
