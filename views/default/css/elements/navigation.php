@@ -477,7 +477,7 @@ li:hover > .elgg-menu-site-more {
 
 .elgg-menu-footer-default {
 	float: right;
-	margin:30px 0 0 0;
+	margin:20px 0 0 0;
 }
 
 .elgg-menu-footer-alt {
