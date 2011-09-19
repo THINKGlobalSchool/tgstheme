@@ -69,6 +69,10 @@ span.tag-name a:hover {
 	cursor: pointer;
 }
 
+.tag-error {
+	border: 3px solid Red !important;
+}
+
 /* Tooltips */
 
 span.tag-name {
