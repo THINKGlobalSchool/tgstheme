@@ -46,8 +46,8 @@ $english = array(
 	// River
 
 	// Messages
-	'mentions:notification_types:object:thewire' => 'a mini post',
-
+	'mentions:notification_types:object:thewire' => 'a mini post',	
+	
 	// Other content
 
 	// Avatar overrides
