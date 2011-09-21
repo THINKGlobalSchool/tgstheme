@@ -15,6 +15,7 @@
  * 	 * messages/css
  *   * page/elements/header_logo
  *   * page/elements/owner_block
+ *   * page/elements/shortcut_icon
  *   * search/css
  *   * search/search_box
  *
