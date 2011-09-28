@@ -298,7 +298,7 @@
 	height: 30px;
 }
 .elgg-river-item input[type=text] {
-	width: 80%;
+	width: 79%;
 }
 .elgg-river-item input[type=submit] {
 	margin: 0 0 0 10px;
