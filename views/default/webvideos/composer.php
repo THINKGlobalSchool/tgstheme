@@ -10,3 +10,4 @@ $form_vars = array(
 );
 
 echo elgg_view_form('webvideos/save', $form_vars);
+echo elgg_view('composer/extend');

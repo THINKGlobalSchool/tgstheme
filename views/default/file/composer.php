@@ -10,3 +10,4 @@ $form_vars = array(
 $body_vars = file_prepare_form_vars();
 
 echo elgg_view_form('file/upload', $form_vars, array_merge($body_vars, $vars));
+echo elgg_view('composer/extend');
