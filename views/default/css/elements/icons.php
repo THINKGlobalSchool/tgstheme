@@ -243,6 +243,17 @@
 	background-position: 0 -1278px;
 }
 
+.elgg-icon-video {
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/elgg_icon_video.png) no-repeat left;
+	background-position: 0 -0px;
+	width: 16px;
+	height: 16px;
+	margin: 0 6px 0 0;
+}
+
+.elgg-icon-video:hover {
+	background-position: 0 -18px;
+}
 
 .elgg-avatar > .elgg-icon-hover-menu {
 	display: none;

@@ -42,6 +42,7 @@ $english = array(
 	'composer:object:blog' => "Blog",
 	'composer:annotation:messageboard' => "Post",
 	'composer:object:file' => 'File',
+	'composer:object:webvideo' => 'Web Video',
 
 	// River
 

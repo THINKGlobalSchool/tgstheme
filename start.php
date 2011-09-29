@@ -321,6 +321,22 @@ function tgstheme_composer_menu_handler($hook, $type, $items, $params) {
 		elgg_view('file/composer');
 	}
 
+	if (elgg_is_active_plugin('webvideos') && $entity->canWriteToContainer(0, 'object', 'webvideo')) {
+		
+		$icon = "<span class=\"elgg-icon elgg-icon-video\"></span>";
+		
+		$items[] = ElggMenuItem::factory(array(
+			'name' => 'webvideos',
+			'href' => "/ajax/view/webvideos/composer?container_guid=$entity->guid",
+			'text' => $icon . elgg_echo("composer:object:webvideo"),
+			'priority' => 800,
+		));
+
+		//trigger any javascript loads that we might need
+		elgg_view('webvideos/composer');
+	}
+	
+
 	return $items;
 }
 
