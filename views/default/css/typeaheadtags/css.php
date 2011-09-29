@@ -49,13 +49,12 @@ div.typeaheadtags-module .elgg-body {
 
 div.typeaheadtags-module-standard {
 	float: left;
-	width: 300px;
-	overflow: visible;
+	width: 45%;
 }
 
 div.typeaheadtags-module-help {
 	float: right;
-	width: 300px;
+	width: 45%;
 	margin-right: 5px;
 }
 

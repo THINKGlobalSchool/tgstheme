@@ -335,7 +335,6 @@ function tgstheme_composer_menu_handler($hook, $type, $items, $params) {
 		//trigger any javascript loads that we might need
 		elgg_view('webvideos/composer');
 	}
-	
 
 	return $items;
 }
