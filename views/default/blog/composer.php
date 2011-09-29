@@ -12,3 +12,4 @@ if (elgg_is_xhr() && isset($vars['container_guid'])) {
 }
 
 echo elgg_view_form('blog/save', array(), array_merge($body_vars, $vars));
+echo elgg_view('composer/extend');
