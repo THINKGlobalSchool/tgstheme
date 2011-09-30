@@ -16,8 +16,8 @@
 	text-align: center;
 }
 .elgg-pagination li {
-	display: inline;
-	margin: 0 6px 0 0;
+	display: inline-block;
+	margin: 0 6px 4px 0;
 	text-align: center;
 }
 .elgg-pagination a, .elgg-pagination span {
