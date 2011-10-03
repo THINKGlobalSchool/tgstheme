@@ -67,6 +67,9 @@ function tgstheme_init() {
 
 	// Extend topbar
 	elgg_extend_view('page/elements/topbar', 'tgstheme/topbar');
+	
+	// Extend admin CSS
+	elgg_extend_view('css/admin', 'css/tgstheme/admin');
 
 	// Extend activity sidebar
 	if (elgg_is_logged_in() && elgg_get_context() == 'activity') {
