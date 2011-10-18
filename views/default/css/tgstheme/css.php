@@ -227,3 +227,18 @@ table#stats-table td.stat {
 	background:url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/logo-bottom.png") no-repeat;
 	padding-top: 10px;
 }
+
+/* Spot Logo */
+.spot-logo {
+	position: absolute;
+	left: 0;
+}
+
+/* Custom menu tweaks */
+#custommenu {
+	margin-top: -4px;
+}
+
+#custommenu ul.elgg-menu {
+	margin-top: -2px;
+}
