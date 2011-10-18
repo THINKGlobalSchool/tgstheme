@@ -14,7 +14,5 @@ $site_url = elgg_get_site_url();
 	</a>
 </h1>
 -->
- 
- 
- 	<a href="<?php echo $site_url; ?>"><img src="<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/logo.jpg" border="0" alt="Think Spot Logo"></img></a>
+<a href="<?php echo $site_url; ?>"><img class='spot-logo' src="<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/logo.jpg" border="0" alt="Think Spot Logo"></img></a>
   
