@@ -70,6 +70,9 @@ function tgstheme_init() {
 	
 	// Extend admin CSS
 	elgg_extend_view('css/admin', 'css/tgstheme/admin');
+	
+	// Extend custommenus CSS
+	elgg_extend_view('css/custommenus/css', 'css/tgstheme/custommenus');
 
 	// Extend activity sidebar
 	if (elgg_is_logged_in() && elgg_get_context() == 'activity') {

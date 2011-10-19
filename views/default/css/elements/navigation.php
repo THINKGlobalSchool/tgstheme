@@ -206,6 +206,7 @@ position: relative;
 .elgg-menu-item-usersettings > a { border-right:1px solid #DB1730; }
 .elgg-menu-item-friends > a { border-right:1px solid #DB1730; }
 .elgg-menu-item-messages > a { border-right:1px solid #DB1730; }
+.elgg-menu-item-profile > a { border-right:1px solid #DB1730; }
 
 /****************************************/
 
