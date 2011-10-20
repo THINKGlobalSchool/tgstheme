@@ -25,7 +25,7 @@
 *************************************** */
 .elgg-image-block {
 	padding:0;		
-	margin:0 0 10px 0;	
+	margin: 4px 0 6px 0;	
 }
 
 .elgg-image-block h3 a{	
@@ -101,7 +101,7 @@
 	margin-bottom: 5px;
 }
 .elgg-item .elgg-content {
-	margin: 10px 5px;
+	margin: 10px 5px 3px 5px;
 }
 
 /* ***************************************
