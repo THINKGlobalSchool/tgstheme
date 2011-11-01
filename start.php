@@ -28,11 +28,13 @@ elgg_register_event_handler('init', 'system', 'tgstheme_init');
 function tgstheme_init() {
 	// Register Global CSS
 	$t_css = elgg_get_simplecache_url('css', 'tgstheme/css');
+	elgg_register_simplecache_view('css/tgstheme/css');
 	elgg_register_css('elgg.tgstheme', $t_css);
 	elgg_load_css('elgg.tgstheme');
 
 	// Register JS library
 	$ap_js = elgg_get_simplecache_url('js', 'tgstheme/activityping');
+	elgg_register_simplecache_view('js/tgstheme/activityping');
 	elgg_register_js('elgg.activityping', $ap_js);
 
 	if (elgg_get_context() == 'activity') {
