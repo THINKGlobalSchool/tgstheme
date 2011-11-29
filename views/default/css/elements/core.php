@@ -53,6 +53,7 @@
 	visibility: hidden;
 	height: 0 !important;
 	line-height: 0;
+	overflow: hidden;
 	
 	/* Stretch to fill up available space */
 	font-size: xx-large;
