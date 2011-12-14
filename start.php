@@ -82,7 +82,9 @@ function tgstheme_init() {
 	}
 
 	// Plugin hook for index redirect
-	elgg_register_plugin_hook_handler('index', 'system', 'home_redirect', 600);
+	if (elgg_is_logged_in()) {
+		elgg_register_plugin_hook_handler('index', 'system', 'home_redirect', 600);
+	}
 
 	// Composer menu hook
 	elgg_register_plugin_hook_handler('register', 'menu:composer', 'tgstheme_composer_menu_handler');
