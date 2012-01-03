@@ -94,6 +94,10 @@ position: relative;
 	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #BD1429;
 }
 
+.tabbed-profile .elgg-tabs {
+	width: auto;
+}
+
 /* ***************************************
 	FILTER MENU
 *************************************** */
