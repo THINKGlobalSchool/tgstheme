@@ -212,11 +212,10 @@ function ping_page_handler($page) {
 				'link' => $link,
 				'page_title' => $page_title,
 			));
-
-			exit;
 		}
+		return TRUE;
 	}
-	return;
+	return FALSE;
 }
 
 /**
