@@ -43,8 +43,7 @@ elgg.activityping.activityUpdateChecker = function(interval) {
 			'success': function(data) {
 				if (data) {
 					json_response = eval( "(" + data + ")" );
-					//console.log(json_response);
-					//console.log(data);
+
 					$('#activity-updates').html(json_response.link).slideDown();
 
 					var pageTitleSubstring;
