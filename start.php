@@ -118,6 +118,13 @@ function home_page_handler($page) {
 	// Logged in users only
 	gatekeeper();
 
+	// Forward parents to parentportal home, not the dashboard
+	if (elgg_is_active_plugin('parentportal')) {
+		if (parentportal_is_user_parent(elgg_get_logged_in_user_entity())) {
+			forward('parentportal');
+		}
+	}
+
 	// Show profile module
 	$params['sidebar'] = elgg_view('tgstheme/modules/profile');
 
