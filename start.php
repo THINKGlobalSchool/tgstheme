@@ -96,9 +96,13 @@ function tgstheme_init() {
 
 //	elgg_register_page_handler('activity', 'tgstheme_river_page_handler');
 
-//	var_dump(elgg_get_processed_upgrades());
-	
-//	var_dump(elgg_get_unprocessed_upgrades());
+	// Whitelist ajax views
+	elgg_register_ajax_view('thewire/composer');
+	elgg_register_ajax_view('messageboard/composer');
+	elgg_register_ajax_view('bookmarks/composer');
+	elgg_register_ajax_view('blog/composer');
+	elgg_register_ajax_view('file/composer');
+	elgg_register_ajax_view('webvideos/composer');
 
 	return true;
 }
