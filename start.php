@@ -41,6 +41,9 @@ function tgstheme_init() {
 		elgg_load_js('elgg.activityping');
 	}
 
+	// Register JS for jQuery HTML extension (fixes weird autocomplete when ajax loaded)
+	elgg_register_js('elgg.userpicker.html', 'mod/tgstheme/vendors/jquery.ui.autocomplete.html.js');
+
 	// Register 'home' page handler
 	elgg_register_page_handler('home', 'home_page_handler');
 
