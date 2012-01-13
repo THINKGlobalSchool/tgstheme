@@ -284,6 +284,10 @@ input[type="radio"] {
 .elgg-user-picker-list > li {
 	border-bottom: 1px dotted #ccc;
 }
+/* HIDE FRIENDS CHECKBOX */
+.elgg-user-picker input[name="match_on"] {
+	display: none;
+}
 
 /* ***************************************
       DATE PICKER
