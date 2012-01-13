@@ -72,6 +72,7 @@ function tgstheme_init() {
 	
 	// Extend admin CSS
 	elgg_extend_view('css/admin', 'css/tgstheme/admin');
+	elgg_extend_view('css/admin', 'css/elements/autocomplete_admin');
 	
 	// Extend custommenus CSS
 	elgg_extend_view('css/custommenus/css', 'css/tgstheme/custommenus');
