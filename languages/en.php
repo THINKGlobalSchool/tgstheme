@@ -50,6 +50,7 @@ $english = array(
 	'mentions:notification_types:object:thewire' => 'a mini post',	
 	
 	// Other content
+	'userpicker:only_friends' => '', // Hide only friends
 
 	// Avatar overrides
 	'avatar' => 'Profile Picture',
