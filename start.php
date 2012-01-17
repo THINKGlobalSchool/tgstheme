@@ -129,8 +129,11 @@ function home_page_handler($page) {
 		}
 	}
 
+	// Extendable sidebar view
+	$params['sidebar'] = elgg_view('tgstheme/home/sidebar_top');
+
 	// Show profile module
-	$params['sidebar'] = elgg_view('tgstheme/modules/profile');
+	$params['sidebar'] .= elgg_view('tgstheme/modules/profile');
 
 	// Show launchpad module
 	$params['sidebar'] .= elgg_view('launchpad/module');
@@ -148,10 +151,12 @@ function home_page_handler($page) {
 	$options = array('class' => 'tgstheme-module');
 	$params['sidebar'] .= elgg_view_module('featured', elgg_echo('tagcloud'), elgg_view("output/tagcloud", array('value' => $tags)), $options);
 
+	// Extendable content view
+	$params['content'] = elgg_view('tgstheme/home/content_top');
+
 	// Share box area
-	//$params['content'] = elgg_view('wire-extender/wire_form');
 	$composer = elgg_view('page/elements/composer', array('entity' => elgg_get_logged_in_user_entity()));
-	$params['content'] = elgg_view_module('info', elgg_echo("wire-extender:label:thewire:doing"), $composer);
+	$params['content'] .= elgg_view_module('info', elgg_echo("wire-extender:label:thewire:doing"), $composer);
 
 	// Announcements
 	$params['content'] .= elgg_view('announcements/announcement_list');
