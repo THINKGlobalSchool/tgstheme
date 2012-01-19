@@ -4,6 +4,9 @@
  * @link https://github.com/ewinslow/elgg-facebook_theme
  */
 elgg_load_library('elgg:file');
+elgg_load_js('elgg.fileextender');
+elgg_load_js('jQuery-File-Upload');
+elgg_load_css('elgg.fileextender');
 $form_vars = array(
 	'enctype' => 'multipart/form-data', 
 );
