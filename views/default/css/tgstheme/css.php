@@ -242,3 +242,72 @@ table#stats-table td.stat {
 #custommenu ul.elgg-menu {
 	margin-top: -2px;
 }
+
+/* Entity Menu Improvements */
+
+.tgstheme-entity-menu {
+	float: right;
+	height: 25px;
+}
+
+.tgstheme-entity-menu .tgstheme-entity-menu-actions {
+	display: none;
+}
+
+.tgstheme-entity-menu-actions .elgg-menu-entity {
+	margin-left: 0px;
+}
+
+.tgstheme-entity-menu-actions {
+	width: auto;
+	height: auto;
+	position: absolute;
+}
+
+.elgg-icon-settings-menu {
+	background-position: 0 -738px;
+	float: right;
+	margin-left: 5px;
+}
+
+.callout-up {
+    height: 0;
+    width: 0;
+    border-bottom: 8px solid #666666;
+    border-left: 8px dotted transparent;
+    border-right: 8px dotted transparent;
+    left: 0px;
+    top: 0px;
+    margin-right: 6px;
+    z-index: 10;
+}
+
+.callout-up2 {
+    position: relative;
+    left: -10px;
+    top: 2px;
+    height: 0;
+    width: 0;
+    border-bottom: 9px solid #ffffff;
+    border-left: 10px dotted transparent;
+    border-right: 10px dotted transparent;
+    z-index: 11;
+}
+
+.callout-container {
+	text-align: left;
+	background-color: #ffffff;
+	border: solid 1px #666666;
+	position: relative;
+	top: -1px;
+	z-index: 9;
+	min-height: 24px;
+	-moz-border-radius: 7px; 
+	-webkit-border-radius: 7px;
+	-webkit-box-shadow: 1px 1px 5px #999;
+	-moz-box-shadow: 1px 1px 5px #999;
+	box-shadow: 1px 1px 5px #999;
+	padding-bottom: 4px;
+    padding-right: 10px;
+    padding-top: 8px;
+}

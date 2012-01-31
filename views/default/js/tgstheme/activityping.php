@@ -1,6 +1,6 @@
 <?php
 /**
- * TGS Theme 2 JS Library
+ * TGS Theme 2 Activity Ping JS Library
  *
  * @package TGSTheme2
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
@@ -73,4 +73,3 @@ elgg.activityping.activityUpdateChecker = function(interval) {
 }
 
 elgg.register_hook_handler('init', 'system', elgg.activityping.init);
-//</script>

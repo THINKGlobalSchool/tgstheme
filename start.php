@@ -32,10 +32,16 @@ function tgstheme_init() {
 	elgg_register_css('elgg.tgstheme', $t_css);
 	elgg_load_css('elgg.tgstheme');
 
-	// Register JS library
+	// Register Activity Ping JS library
 	$ap_js = elgg_get_simplecache_url('js', 'tgstheme/activityping');
 	elgg_register_simplecache_view('js/tgstheme/activityping');
 	elgg_register_js('elgg.activityping', $ap_js);
+	
+	// Register Entity Menu JS library
+	$em_js = elgg_get_simplecache_url('js', 'tgstheme/entitymenu');
+	elgg_register_simplecache_view('js/tgstheme/entitymenu');
+	elgg_register_js('elgg.entitymenu', $em_js);
+	elgg_load_js('elgg.entitymenu');
 
 	if (elgg_get_context() == 'activity') {
 		elgg_load_js('elgg.activityping');
@@ -107,7 +113,7 @@ function tgstheme_init() {
 	elgg_register_ajax_view('blog/composer');
 	elgg_register_ajax_view('file/composer');
 	elgg_register_ajax_view('webvideos/composer');
-
+	
 	return true;
 }
 
