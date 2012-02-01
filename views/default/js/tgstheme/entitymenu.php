@@ -49,7 +49,7 @@ elgg.entitymenu.actionsClick = function(event) {
 			my: "right top",
 			at: "right bottom",
 			of: $container,
-			//offset: "0 0",
+			offset: "0 5",
 		});
 	} else {
 		$menu = $($(this).attr('href') + ".tgstheme-entity-menu-actions");
