@@ -40,25 +40,28 @@ elgg.entitymenu.actionsHover = function(event) {
 	
 	// Get the actions menu
 	$menu = $container.find('div.tgstheme-entity-menu-actions');
-	
-	// If we found a menu in this container, append it to the body and toggle
-	if ($menu.length != 0) {
-		$menu.fadeIn();
-		$menu.position({
+
+	$menu.fadeIn();
+
+	if (!$menu.data('positioned')) {
+		// This is hacky... but its the only way I can get a consitent div
+		$clone = $menu.clone();
+		var width = $clone.appendTo('body').outerWidth();
+		$clone.remove()
+
+		$menu.css('width', width-10).position({
 			my: "right top",
 			at: "right bottom",
 			of: $container,
-			offset: "0 5",
+			offset: "0 6",
 		});
-	} else {
-		$menu = $($(this).attr('href') + ".tgstheme-entity-menu-actions");
-		$menu.fadeIn();
+		
+		$menu.data('positioned', 1);
 	}
 
 	// Hide all other action divs
 	$('.tgstheme-entity-menu-actions').each(function() {
 		if (!$(this).is($menu)) {
-		
 			$(this).fadeOut();
 		}
 	});
