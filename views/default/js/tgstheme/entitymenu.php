@@ -15,15 +15,14 @@ elgg.provide('elgg.entitymenu');
 
 // Init function
 elgg.entitymenu.init = function() {
-	// Click handler for icon (action/settings/whatev..)
-	$('a.toggle-actions').live('click', elgg.entitymenu.actionsClick);
-	
+	// Hover handler for icon (action/settings/whatev..)
+	// LIVE IS DEPRECATED :( but delegate works better :) (actually so is delegate in pre jQuery 1.7)
+	$(document).delegate('span.toggle-actions', 'hover', elgg.entitymenu.actionsHover);
+
 	// Hide multi-todo's when clicking outside box
 	$('body').live('click', function(event) {
-		// Note this is the best way yet I've discovered...
-		if ($(event.target).closest('.tgstheme-entity-menu-actions').get(0) == null // Not *inside* the div
-			&& !$(event.target).hasClass('elgg-icon-settings-menu')) // Not the button that triggers the div
-		{ 
+		// Note: this is the best way yet I've discovered...
+		if ($(event.target).closest('.tgstheme-entity-menu-actions').get(0) == null) { // Not *inside* the div 
 			$(".tgstheme-entity-menu-actions").fadeOut();
 		}
 	});
@@ -35,7 +34,7 @@ elgg.entitymenu.destroy = function() {
 	$('a.toggle-actions').die();
 }
 
-elgg.entitymenu.actionsClick = function(event) {	
+elgg.entitymenu.actionsHover = function(event) {	
 	// Get the special menu container
 	$container = $(this).closest('.tgstheme-entity-menu');
 	
@@ -44,8 +43,8 @@ elgg.entitymenu.actionsClick = function(event) {
 	
 	// If we found a menu in this container, append it to the body and toggle
 	if ($menu.length != 0) {
-		$menu.fadeToggle();
-		$menu.appendTo('body').position({
+		$menu.fadeIn();
+		$menu.position({
 			my: "right top",
 			at: "right bottom",
 			of: $container,
@@ -53,14 +52,13 @@ elgg.entitymenu.actionsClick = function(event) {
 		});
 	} else {
 		$menu = $($(this).attr('href') + ".tgstheme-entity-menu-actions");
-		$menu.fadeToggle();
+		$menu.fadeIn();
 	}
-	
-	var $id = $(this).attr('href');
-	
+
 	// Hide all other action divs
 	$('.tgstheme-entity-menu-actions').each(function() {
-		if (!$(this).is($id)) {
+		if (!$(this).is($menu)) {
+		
 			$(this).fadeOut();
 		}
 	});

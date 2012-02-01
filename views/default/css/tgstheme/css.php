@@ -303,14 +303,15 @@ table#stats-table td.stat {
 }
 
 .tgstheme-entity-menu-actions {
-	position: absolute;
-	background-color: #ffffff;
-	border: solid 1px #666666;
+	background-color: #FFFFFF;
+	border: 1px solid #999999;
+	box-shadow: 0 0 2px #BBBBBB;
+	-webkit-box-shadow: 0 0 2px #BBBBBB;
+	-moz-box-shadow: 0 0 2px #BBBBBB;
 	min-height: 24px;
-	-webkit-box-shadow: 1px 1px 5px #999;
-	-moz-box-shadow: 1px 1px 5px #999;
-	box-shadow: 1px 1px 5px #999;
 	padding-bottom: 4px;
-    padding-right: 10px;
-    padding-top: 8px;
+	padding-right: 10px;
+	padding-top: 8px;
+	position: absolute;
+	z-index: 10;
 }
