@@ -264,6 +264,9 @@ table#stats-table td.stat {
 }
 
 .elgg-icon-settings-menu {
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/elgg_sprites.png) no-repeat left;
+	width: 16px;
+	height: 16px;
 	background-position: 0 -738px;
 	float: right;
 	margin-left: 5px;
