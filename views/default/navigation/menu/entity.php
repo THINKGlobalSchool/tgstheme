@@ -11,64 +11,39 @@
  *
  */
 
-/* 
- We're going to make all new sections here:
- - default will be broken up into 'info' and 'actions' (and maybe 'other')
-   we can add items to these two sections manually as needed
-*/
+//  Make sure this is an entity (not a user/group)
+if (!elgg_instanceof($vars['entity'], 'object')) {
+	$type = $vars['entity']->getType();
 
-$entity_menu = array();
-
-// Core 'info' menu items (as decided by me)
-$core_info_items = array(
-	'access',
-	'published_status', // Blogs
-);
-
-// Core 'action' items 
-$core_action_items = array(
-	'edit',
-	'delete',
-	'likes',
-);
-
-elgg_dump($vars['menu']);
-
-// Move sections around
-foreach ($vars['menu'] as $section => $menu_items) {
-	// Move default items into new sections (these will be mostly core registered, ie: likes, edit, delete, etc..)
-	foreach ($menu_items as $item) {
-		if ($section == 'default') {
-			if (in_array($item->getName(), $core_info_items)) {
-		        $entity_menu['info'][] = $item;
-			} else if (in_array($item->getName(), $core_action_items)) {
-		        $entity_menu['actions'][] = $item;
-			} else {
-		        $entity_menu['other'][] = $item;
-			}
-		} else {
-			$entity_menu[$item->getSection()][] = $item;
-		}
+	// Display the correct view by type
+	if (elgg_view_exists("navigation/menu/$type")) {
+		echo elgg_view("navigation/menu/$type", $vars);
+	} else {
+		echo elgg_view("navigation/menu/default", $vars);
 	}
+	return;
 }
 
-// Re-sort menus
-//ksort($entity_menu['info']);
-//ksort($entity_menu['actions']);
-//ksort($entity_menu['other']);
+
+$entity_menu = $vars['menu'];
 
 $uid = uniqid();
 
-// Add the actions button to the info menu
-$options = array(
-	'name' => 'entity-actions',
-	'text' => elgg_view_icon('settings-menu'),
-	'href' => '#' . $uid,
-	'link_class' => 'toggle-actions',
-	'priority' => 9000,
-);
+// Count actions and other menu items
+$count = (int)(count($entity_menu['actions']) + count($entity_menu['other']));
 
-$entity_menu['info'][9000] = ElggMenuItem::factory($options);
+// Add the actions button to the info menu if we have actions/other
+if ($count > 0) {
+	$options = array(
+		'name' => 'entity-actions',
+		'text' => elgg_view_icon('settings-menu'),
+		'href' => '#' . $uid,
+		'link_class' => 'toggle-actions',
+		'priority' => 9000,
+	);
+
+	$entity_menu['info'][9000] = ElggMenuItem::factory($options);
+}
 
 // we want css classes to use dashes
 $vars['name'] = preg_replace('/[^a-z0-9\-]/i', '-', $vars['name']);
@@ -109,22 +84,25 @@ $other = elgg_view('navigation/menu/elements/section', array(
 	'item_class' => $item_class,
 ));
 
+// Other menu (not sure what I'm doing with this yet)
+$other = elgg_view('navigation/menu/elements/section', array(
+	'items' => $entity_menu['hidden'],
+	'class' => "$class elgg-menu-{$vars['name']}-hidden clearfix",
+	'section' => 'hidden',
+	'name' => $vars['name'],
+	'show_section_headers' => FALSE,
+	'item_class' => $item_class,
+));
+
 $content = <<<HTML
 	<div class='tgstheme-entity-menu'>	
 		$info
 		<div id='$uid' class='tgstheme-entity-menu-actions'>
-			<!--
-			<div align='right'>
-			<div class="callout-up">
-				<div class="callout-up2">
-				</div>
-			</div>
-			</div>-->
-			<div align='left' class='callout-container'>
 			$actions
 			$other
-			<div class='clearfix'></div>
-			</div>
+			$hidden
+			<b class='border-notch notch'></b>
+			<b class='notch'></b>
 		</div>
 		$icon
 	</div>	

@@ -234,6 +234,11 @@ table#stats-table td.stat {
 	left: 0;
 }
 
+/* Likes Tweak */
+.elgg-menu .elgg-menu-item-likes-count {
+	margin-left: 15px !important; 
+}
+
 /* Custom menu tweaks */
 #custommenu {
 	margin-top: -4px;
@@ -258,52 +263,50 @@ table#stats-table td.stat {
 	margin-left: 0px;
 }
 
-.tgstheme-entity-menu-actions {
-	width: auto;
-	height: auto;
-	position: absolute;
-}
-
 .elgg-icon-settings-menu {
 	background-position: 0 -738px;
 	float: right;
 	margin-left: 5px;
 }
 
-.callout-up {
-    height: 0;
-    width: 0;
-    border-bottom: 8px solid #666666;
-    border-left: 8px dotted transparent;
-    border-right: 8px dotted transparent;
-    left: 0px;
-    top: 0px;
-    margin-right: 6px;
-    z-index: 10;
+.elgg-menu-entity-hidden {
+	display: none;
 }
 
-.callout-up2 {
-    position: relative;
-    left: -10px;
-    top: 2px;
-    height: 0;
-    width: 0;
-    border-bottom: 9px solid #ffffff;
-    border-left: 10px dotted transparent;
-    border-right: 10px dotted transparent;
-    z-index: 11;
+.elgg-menu-entity-actions {
+	
 }
 
-.callout-container {
-	text-align: left;
+.tgstheme-entity-menu-actions .notch {
+    position: absolute;
+    top: -10px;
+    right: 3px;
+    margin: 0;
+    border-top: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #FFFFFF;
+    padding: 0;
+    width: 0;
+    height: 0;
+    /* ie6 height fix */
+    font-size: 0;
+    line-height: 0;
+     /* ie6 transparent fix */
+    _border-right-color: pink;
+    _border-left-color: pink;
+    _filter: chroma(color=pink);
+}
+
+.tgstheme-entity-menu-actions .border-notch { 
+	border-bottom-color: #333333; top: -11px;
+}
+
+.tgstheme-entity-menu-actions {
+	position: absolute;
 	background-color: #ffffff;
 	border: solid 1px #666666;
-	position: relative;
-	top: -1px;
-	z-index: 9;
 	min-height: 24px;
-	-moz-border-radius: 7px; 
-	-webkit-border-radius: 7px;
 	-webkit-box-shadow: 1px 1px 5px #999;
 	-moz-box-shadow: 1px 1px 5px #999;
 	box-shadow: 1px 1px 5px #999;

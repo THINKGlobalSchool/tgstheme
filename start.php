@@ -101,6 +101,9 @@ function tgstheme_init() {
 
 	// Topbar menu hook
 	elgg_register_plugin_hook_handler('register', 'menu:topbar', 'tgstheme_topbar_menu_handler');
+	
+	// Entity menu hook, used to reorganize the entity menu
+	elgg_register_plugin_hook_handler('register', 'menu:entity', 'tgstheme_entity_menu_handler', 9999);
 
 //	elgg_unregister_page_handler('activity');
 
@@ -400,4 +403,45 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 		}
 	}
 	return $items;
+}
+
+/**
+ * Reorganize the entity menu
+ */ 
+function tgstheme_entity_menu_handler($hook, $type, $return, $params) {
+	if (elgg_instanceof($params['entity'], 'object')) {
+		/* 
+		 We're going to make all new sections here:
+		 - default will be broken up into 'info' and 'actions' and 'other'
+		   we can add items to these sections manually as needed
+		*/
+
+		// Core 'info' menu items (as decided by me)
+		$core_info_items = array(
+			'access',
+			'published_status', // Blogs
+			'likes_count'
+		);
+
+		// Core 'action' items 
+		$core_action_items = array(
+			'edit',
+			'delete',
+			'likes',
+		);
+
+		// Assign new sections
+		foreach ($return as $item) {
+			if ($item->getSection() == 'default') {
+				if (in_array($item->getName(), $core_info_items)) {
+			        $item->setSection('info');
+				} else if (in_array($item->getName(), $core_action_items)) {
+			        $item->setSection('actions');
+				} else {
+			        $item->setSection('other');
+				}
+			}
+		}
+	}
+	return $return;
 }
