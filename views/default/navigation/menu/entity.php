@@ -52,44 +52,52 @@ if (isset($vars['class'])) {
 }
 
 // Info Menu
-$info = elgg_view('navigation/menu/elements/section', array(
-	'items' => $entity_menu['info'],
-	'class' => "$class elgg-menu-{$vars['name']}-info",
-	'section' => 'info',
-	'name' => $vars['name'],
-	'show_section_headers' => FALSE,
-	'item_class' => $item_class,
-));
+if ($entity_menu['info']) {
+	$info = elgg_view('navigation/menu/elements/section', array(
+		'items' => $entity_menu['info'],
+		'class' => "$class elgg-menu-{$vars['name']}-info",
+		'section' => 'info',
+		'name' => $vars['name'],
+		'show_section_headers' => FALSE,
+		'item_class' => $item_class,
+	));
+}
 
 // Actions menu
-$actions = elgg_view('navigation/menu/elements/section', array(
-	'items' => $entity_menu['actions'],
-	'class' => "$class elgg-menu-{$vars['name']}-actions clearfix",
-	'section' => 'actions',
-	'name' => $vars['name'],
-	'show_section_headers' => FALSE,
-	'item_class' => $item_class,
-));
+if ($entity_menu['actions']) {
+	$actions = elgg_view('navigation/menu/elements/section', array(
+		'items' => $entity_menu['actions'],
+		'class' => "$class elgg-menu-{$vars['name']}-actions clearfix",
+		'section' => 'actions',
+		'name' => $vars['name'],
+		'show_section_headers' => FALSE,
+		'item_class' => $item_class,
+	));
+}
 
-// Other menu (not sure what I'm doing with this yet)
-$other = elgg_view('navigation/menu/elements/section', array(
-	'items' => $entity_menu['other'],
-	'class' => "$class elgg-menu-{$vars['name']}-other clearfix",
-	'section' => 'other',
-	'name' => $vars['name'],
-	'show_section_headers' => FALSE,
-	'item_class' => $item_class,
-));
+// Other menu (Catch all)
+if ($entity_menu['other']) {
+	$other = elgg_view('navigation/menu/elements/section', array(
+		'items' => $entity_menu['other'],
+		'class' => "$class elgg-menu-{$vars['name']}-other clearfix",
+		'section' => 'other',
+		'name' => $vars['name'],
+		'show_section_headers' => FALSE,
+		'item_class' => $item_class,
+	));
+}
 
-// Other menu (not sure what I'm doing with this yet)
-$other = elgg_view('navigation/menu/elements/section', array(
-	'items' => $entity_menu['hidden'],
-	'class' => "$class elgg-menu-{$vars['name']}-hidden clearfix",
-	'section' => 'hidden',
-	'name' => $vars['name'],
-	'show_section_headers' => FALSE,
-	'item_class' => $item_class,
-));
+// Hidden menu, for hidden items
+if ($entity_menu['hidden']) {
+	$hidden = elgg_view('navigation/menu/elements/section', array(
+		'items' => $entity_menu['hidden'],
+		'class' => "$class elgg-menu-{$vars['name']}-hidden clearfix",
+		'section' => 'hidden',
+		'name' => $vars['name'],
+		'show_section_headers' => FALSE,
+		'item_class' => $item_class,
+	));
+}
 
 $content = <<<HTML
 	<div class='tgstheme-entity-menu'>	
