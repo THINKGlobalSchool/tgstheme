@@ -15,58 +15,42 @@ elgg.provide('elgg.entitymenu');
 
 // Init function
 elgg.entitymenu.init = function() {
-	// Hover handler for icon (action/settings/whatev..)
-	// LIVE IS DEPRECATED :( but delegate works better :) (actually so is delegate in pre jQuery 1.7)
-	$(document).delegate('span.toggle-actions', 'hover', elgg.entitymenu.actionsHover);
-
-	// Hide multi-todo's when clicking outside box
-	$('body').live('click', function(event) {
-		// Note: this is the best way yet I've discovered...
-		if ($(event.target).closest('.tgstheme-entity-menu-actions').get(0) == null) { // Not *inside* the div 
-			$(".tgstheme-entity-menu-actions").fadeOut();
-		}
-	});
+	// Extra click handler for the toggle button
+	$(document).delegate('a.entity-action-toggler', 'click', elgg.entitymenu.toggleClick);
 }
 
-// Destroy function
-elgg.entitymenu.destroy = function() {
-	// Unbind all events
-	$('a.toggle-actions').die();
-}
-
-elgg.entitymenu.actionsHover = function(event) {	
-	// Get the special menu container
-	$container = $(this).closest('.tgstheme-entity-menu');
+// Click handler for toggler
+elgg.entitymenu.toggleClick = function(event) {
+	var id = $(this).attr('href');
 	
-	// Get the actions menu
-	$menu = $container.find('div.tgstheme-entity-menu-actions');
-
-	$menu.fadeIn();
-
-	if (!$menu.data('positioned')) {
-		// This is hacky... but its the only way I can get a consitent div
-		$clone = $menu.clone();
-		var width = $clone.appendTo('body').outerWidth();
-		$clone.remove()
-
-		$menu.css('width', width-10).position({
-			my: "right top",
-			at: "right bottom",
-			of: $container,
-			offset: "0 6",
-		});
-		
-		$menu.data('positioned', 1);
-	}
-
-	// Hide all other action divs
+	// Hide all other popups, except this one
 	$('.tgstheme-entity-menu-actions').each(function() {
-		if (!$(this).is($menu)) {
+		if (!$(this).is($(id))) {
 			$(this).fadeOut();
 		}
 	});
-
-	event.preventDefault();
 }
 
+/**
+ * Repositions the entity menu popup
+ *
+ * @param {String} hook    'getOptions'
+ * @param {String} type    'ui.popup'
+ * @param {Object} params  An array of info about the target and source.
+ * @param {Object} options Options to pass to
+ *
+ * @return {Object}
+ */
+elgg.portfolio.entityMenuHandler = function(hook, type, params, options) {	
+	// Interesting way to check if string starts with (see below)
+	if (params.target.attr('id').lastIndexOf("entity-actions-", 0) === 0) {
+		options.my = 'right top';
+		options.at = 'right bottom';
+		options.offset = "0 15";
+		return options;
+	}
+	return null;
+};
+
+elgg.register_hook_handler('getOptions', 'ui.popup', elgg.portfolio.entityMenuHandler);
 elgg.register_hook_handler('init', 'system', elgg.entitymenu.init);

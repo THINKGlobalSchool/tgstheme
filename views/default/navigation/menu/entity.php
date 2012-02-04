@@ -33,9 +33,10 @@ $count = (int)(count($entity_menu['actions']) + count($entity_menu['other']));
 if ($count > 0) {
 	$options = array(
 		'name' => 'entity-actions',
-		'text' => "<span class='toggle-actions'><a href='#'>" . elgg_echo('tgstheme:label:actions') . elgg_view_icon('settings-menu') ."</a></span>",
-		'href' => FALSE,
-		'link_class' => 'toggle-actions',
+		'text' => "<span class='actions-text'>" . elgg_echo('tgstheme:label:actions') . "</span><span class='actions-caret'>▾</span>",
+		'href' => '#entity-actions-' . $vars['entity']->guid,
+		'class' => 'entity-action-toggler elgg-button elgg-button-action',
+		'rel' => 'popup',
 		'priority' => 9000,
 	);
 
@@ -102,7 +103,7 @@ if ($entity_menu['hidden']) {
 $content = <<<HTML
 	<div class='tgstheme-entity-menu'>	
 		$info
-		<div class='tgstheme-entity-menu-actions'>
+		<div id='entity-actions-{$vars['entity']->guid}' class='tgstheme-entity-menu-actions'>
 			$actions
 			$other
 			$hidden
