@@ -318,3 +318,24 @@ table#stats-table td.stat {
 	position: absolute;
 	z-index: 10;
 }
+
+span.actions-caret {
+	position: relative;
+	bottom: 1px;
+	margin-left: 3px;
+}
+
+span.actions-text {
+	border-right: 1px dotted #999999;
+	padding-right: 3px;
+}
+
+.entity-action-toggler {
+	color: #333333 !important;
+	font-size: 1em;
+	padding: 3px 3px 3px 5px !important;
+}
+
+.entity-action-toggler:hover, .entity-action-toggler:focus {
+	color: #FFFFFF !important;
+}
