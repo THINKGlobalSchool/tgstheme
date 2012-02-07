@@ -556,13 +556,13 @@ li:hover > .elgg-menu-site-more {
 	OWNER BLOCK
 *************************************** */
 .elgg-menu-owner-block {
-	float: right;
+	/*float: right;*/
 }
 
 .elgg-menu-owner-block li a {
-	background-color: white;
 	padding: 2px 4px 2px 8px;
 	text-transform: uppercase;
+	font-family: 'Shanti',sans-serif;
 }
 .elgg-menu-owner-block li a:hover {
 	background-color: #666666;
