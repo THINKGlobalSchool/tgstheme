@@ -30,6 +30,7 @@ $english = array(
 	'tgstheme:label:terms' => 'Terms of Use',
 	'tgstheme:label:policysuppliment' => 'Privacy Policy Suppliment',
 	'tgstheme:label:actions' => 'Actions',
+	'tgstheme:label:content' => '%s\'s Content',
 
 	// Stats
 	'tgstheme:stats:blog' => 'Blog Posts',

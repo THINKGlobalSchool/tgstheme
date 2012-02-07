@@ -72,8 +72,8 @@
 	border:1px solid #85161D;
 }
 
-.#badge .elgg-subtext {
-	color: #DDDDDD;
+#badge .elgg-subtext {
+	color: #EEEEEE;
 	font-size: 85%;
 	line-height: 1.2em;
 	font-style: italic;
