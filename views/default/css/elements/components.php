@@ -51,7 +51,7 @@
 	border: 1px solid #85161D;
 	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/badge-back.png) repeat-x bottom left #DD2036;
 	min-height:34px;
-	
+
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
@@ -82,6 +82,25 @@
 .elgg-image-block .elgg-image-alt {
 	float: right;
 	margin-left: 5px;
+}
+
+#badge > .elgg-body {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-bottom: 1px solid #85161D;
+	border-left: 1px solid #85161D;
+
+	border-radius: 0 0 4px 4px;
+	-webkit-border-radius: 0 0 4px 4px;
+	-moz-border-radius: 0 0 4px 4px;
+
+	border-right: 1px solid #85161D;
+	margin-top: -8px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+
+	-moz-box-shadow:inset 0px 0px 5px #3d3d3d;
+	-webkit-box-shadow:inset 0px 0px 5px #3d3d3d;
+	box-shadow:inset 0px 0px 5px #3d3d3d;
 }
 
 

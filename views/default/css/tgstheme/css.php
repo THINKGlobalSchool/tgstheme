@@ -347,36 +347,15 @@ span.actions-text {
 }
 
 /* Owner Block Improvements */
-#tgstheme-ownerblock-menu {
-	background-color: #FFFFFF;
-	border:5px solid #CCC;
-
-	-webkit-border-radius: 5px 0 5px 5px;
-	-moz-border-radius: 5px 0 5px 5px;
-	border-radius: 5px 0 5px 5px;
-
-	-webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.45);
-	-moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.45);
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.45);
-
+#tgstheme-ownerblock-sidebar-menu {
 	min-height: 24px;
-	padding: 8px;
-	position: absolute;
-	z-index: 10;
-	display: none;
 }
 
-#tgstheme-ownerblock-menu ul {
+#tgstheme-ownerblock-sidebar-menu ul#list1 {
+	padding-left: 2px;
+}
+
+#tgstheme-ownerblock-sidebar-menu ul {
 	float: left;
 	font-size: 95%;
-}
-
-.entity-ownerblock-dropdown-button {
-	font-size: 12px;
-	text-align: center;
-}
-
-.entity-ownerblock-toggler:hover span,
-.entity-ownerblock-toggler:focus span {
-	color: #FFFFFF !important;
 }
