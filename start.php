@@ -458,7 +458,6 @@ function tgstheme_ownerblock_menu_handler($hook, $type, $return, $params) {
 		// Assign new sections
 		foreach ($return as $item) {
 			$item->setText(substr($item->getText(), 6));
-			elgg_dump($item->getText());
 		}
 	}
 	return $return;
