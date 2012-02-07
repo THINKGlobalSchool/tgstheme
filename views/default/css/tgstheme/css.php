@@ -341,7 +341,8 @@ span.actions-text {
 	text-transform: uppercase !important;
 }
 
-.entity-action-toggler:hover, .entity-action-toggler:focus {
+.entity-action-toggler:hover span, 
+.entity-action-toggler:focus span {
 	color: #FFFFFF !important;
 }
 
