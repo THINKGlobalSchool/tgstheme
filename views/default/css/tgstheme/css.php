@@ -331,11 +331,18 @@ span.actions-text {
 }
 
 .entity-action-toggler {
-	color: #333333 !important;
 	font-size: 1em;
 	padding: 3px 3px 3px 5px !important;
+}
+
+.entity-action-toggler span {
+	color: #333333 !important;
+	font-size: 11px !important;
+	text-transform: uppercase !important;
 }
 
 .entity-action-toggler:hover, .entity-action-toggler:focus {
 	color: #FFFFFF !important;
 }
+
+/* Owner Bock Improvements */
