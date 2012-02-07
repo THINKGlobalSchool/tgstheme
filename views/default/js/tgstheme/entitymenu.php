@@ -41,9 +41,9 @@ elgg.entitymenu.toggleClick = function(event) {
  *
  * @return {Object}
  */
-elgg.portfolio.entityMenuHandler = function(hook, type, params, options) {	
+elgg.entitymenu.entityMenuHandler = function(hook, type, params, options) {
 	// Interesting way to check if string starts with (see below)
-	if (params.target.attr('id').lastIndexOf("entity-actions-", 0) === 0) {
+	if (params.target.attr('id') && params.target.attr('id').lastIndexOf("entity-actions-", 0) === 0) {
 		options.my = 'right top';
 		options.at = 'right bottom';
 		options.offset = "0 15";
@@ -52,5 +52,25 @@ elgg.portfolio.entityMenuHandler = function(hook, type, params, options) {
 	return null;
 };
 
-elgg.register_hook_handler('getOptions', 'ui.popup', elgg.portfolio.entityMenuHandler);
+/**
+ * Repositions the owner_block popup
+ *
+ * @param {String} hook    'getOptions'
+ * @param {String} type    'ui.popup'
+ * @param {Object} params  An array of info about the target and source.
+ * @param {Object} options Options to pass to
+ *
+ * @return {Object}
+ */
+elgg.entitymenu.ownerblockMenuHandler = function(hook, type, params, options) {
+	if (params.target.attr('id') == 'tgstheme-ownerblock-menu') {
+		options.my = 'right top';
+		options.at = 'right bottom';
+		return options;
+	}
+	return null;
+};
+
+elgg.register_hook_handler('getOptions', 'ui.popup', elgg.entitymenu.entityMenuHandler);
+elgg.register_hook_handler('getOptions', 'ui.popup', elgg.entitymenu.ownerblockMenuHandler);
 elgg.register_hook_handler('init', 'system', elgg.entitymenu.init);

@@ -523,6 +523,7 @@ li:hover > .elgg-menu-site-more {
 /* ***************************************
 	OWNER BLOCK
 *************************************** */
+/*
 .elgg-menu-owner-block li a {
 	display: block;
 	
@@ -550,7 +551,28 @@ li:hover > .elgg-menu-site-more {
 	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #E72139;
 	color: #FFFFFF;	
 }
+*/
+/* ***************************************
+	OWNER BLOCK
+*************************************** */
+.elgg-menu-owner-block {
+	float: right;
+}
 
+.elgg-menu-owner-block li a {
+	background-color: white;
+	padding: 2px 4px 2px 8px;
+	text-transform: uppercase;
+}
+.elgg-menu-owner-block li a:hover {
+	background-color: #666666;
+	color: white;
+	text-decoration: none;
+}
+.elgg-menu-owner-block li.elgg-state-selected > a {
+	background-color: #91131E;
+	color: white;
+}
 /* ***************************************
 	LONGTEXT
 *************************************** */

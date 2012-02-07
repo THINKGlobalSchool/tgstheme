@@ -105,6 +105,9 @@ function tgstheme_init() {
 	// Entity menu hook, used to reorganize the entity menu
 	elgg_register_plugin_hook_handler('register', 'menu:entity', 'tgstheme_entity_menu_handler', 9999);
 
+	// Entity menu hook, used to reorganize the entity menu
+	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'tgstheme_ownerblock_menu_handler', 9999);
+
 //	elgg_unregister_page_handler('activity');
 
 //	elgg_register_page_handler('activity', 'tgstheme_river_page_handler');
@@ -441,6 +444,21 @@ function tgstheme_entity_menu_handler($hook, $type, $return, $params) {
 			        $item->setSection('other');
 				}
 			}
+		}
+	}
+	return $return;
+}
+
+/**
+ * Modify the owner block menu
+ */
+function tgstheme_ownerblock_menu_handler($hook, $type, $return, $params) {
+	// Strip the 'group' text from the group menu items
+	if (elgg_instanceof($params['entity'], 'group')) {
+		// Assign new sections
+		foreach ($return as $item) {
+			$item->setText(substr($item->getText(), 6));
+			elgg_dump($item->getText());
 		}
 	}
 	return $return;
