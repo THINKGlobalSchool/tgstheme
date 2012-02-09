@@ -362,7 +362,7 @@ span.actions-text {
 	font-size: 0.8em;
 	border-radius: 10px 0 0 0;
 	float: right;
-	margin-top: 3px;
+	margin-top: 2px;
 }
 
 .ownerblock-show-more:after {
