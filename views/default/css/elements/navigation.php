@@ -570,7 +570,7 @@ li:hover > .elgg-menu-site-more {
 	text-decoration: none;
 }
 .elgg-menu-owner-block li.elgg-state-selected > a {
-	background: url("http://192.168.0.111/elgg/mod/tgstheme/_graphics/badge-back.png") repeat-x scroll left bottom #DD2036;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/badge-back.png) repeat-x bottom left #DD2036;
 	color: white;
 }
 
