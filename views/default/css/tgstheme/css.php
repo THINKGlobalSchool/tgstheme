@@ -376,7 +376,7 @@ span.actions-text {
 }
 
 .ownerblock-show-more:hover, .ownerblock-show-less:hover {
-	background: url("http://192.168.0.111/elgg/mod/tgstheme/_graphics/badge-back.png") repeat-x scroll left bottom #DD2036 !important;
+	background: #444444 !important;
 	color: white !important;
 }
 
