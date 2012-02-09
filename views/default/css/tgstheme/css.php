@@ -359,16 +359,19 @@ span.actions-text {
 	background: url("http://192.168.0.111/elgg/mod/tgstheme/_graphics/badge-back.png") repeat-x scroll left bottom #DD2036;
 	color: white;
 	text-align: right;
-	font-size: 90%;
+	font-size: 0.8em;
 	border-radius: 10px 0 0 0;
 	float: right;
+	margin-top: 3px;
 }
 
 .ownerblock-show-more:after {
+	font-size: smaller;
 	content: "\25BC";
 }
 
 .ownerblock-show-less:after {
+	font-size: smaller;
 	content: "\25B2";
 }
 
@@ -377,13 +380,7 @@ span.actions-text {
 	color: white !important;
 }
 
-#tgstheme-ownerblock-sidebar-menu ul {
-
-}
-
-#tgstheme-ownerblock-sidebar-menu ul li {
-
-}
-
-#tgstheme-ownerblock-sidebar-menu ul li a:before {
+#tgstheme-ownerblock-sidebar-menu ul li.elgg-menu-item-more-ownerblock,
+#tgstheme-ownerblock-sidebar-menu ul li.elgg-menu-item-less-ownerblock {
+	position: inherit;
 }
