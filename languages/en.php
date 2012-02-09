@@ -31,6 +31,8 @@ $english = array(
 	'tgstheme:label:policysuppliment' => 'Privacy Policy Suppliment',
 	'tgstheme:label:actions' => 'Actions',
 	'tgstheme:label:content' => '%s\'s Content',
+	'tgstheme:label:more' => 'Show More ',
+	'tgstheme:label:less' => 'Show Less ',
 
 	// Stats
 	'tgstheme:stats:blog' => 'Blog Posts',

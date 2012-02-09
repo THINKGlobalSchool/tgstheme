@@ -351,11 +351,39 @@ span.actions-text {
 	min-height: 24px;
 }
 
-#tgstheme-ownerblock-sidebar-menu ul#list1 {
-	padding-left: 2px;
+#tgstheme-ownerblock-sidebar-menu-full {
+	display: none;
+}
+
+.ownerblock-show-more, .ownerblock-show-less {
+	background: url("http://192.168.0.111/elgg/mod/tgstheme/_graphics/badge-back.png") repeat-x scroll left bottom #DD2036;
+	color: white;
+	text-align: right;
+	font-size: 90%;
+	border-radius: 10px 0 0 0;
+	float: right;
+}
+
+.ownerblock-show-more:after {
+	content: "\25BC";
+}
+
+.ownerblock-show-less:after {
+	content: "\25B2";
+}
+
+.ownerblock-show-more:hover, .ownerblock-show-less:hover {
+	background: url("http://192.168.0.111/elgg/mod/tgstheme/_graphics/badge-back.png") repeat-x scroll left bottom #DD2036 !important;
+	color: white !important;
 }
 
 #tgstheme-ownerblock-sidebar-menu ul {
-	float: left;
-	font-size: 95%;
+
+}
+
+#tgstheme-ownerblock-sidebar-menu ul li {
+
+}
+
+#tgstheme-ownerblock-sidebar-menu ul li a:before {
 }

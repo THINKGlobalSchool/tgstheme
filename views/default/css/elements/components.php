@@ -48,7 +48,7 @@
 
 #badge .elgg-image-block {
 	padding:8px 0 8px 0;
-	border: 1px solid #85161D;
+	border: 2px solid #85161D;
 	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/badge-back.png) repeat-x bottom left #DD2036;
 	min-height:34px;
 
@@ -69,7 +69,7 @@
 	background:#FFFFFF;
 	width:26px;
 	height:26px;
-	border:1px solid #85161D;
+	border:2px solid #85161D;
 }
 
 #badge .elgg-subtext {
@@ -85,22 +85,19 @@
 }
 
 #badge > .elgg-body {
-	background: none repeat scroll 0 0 #FFFFFF;
-	border-bottom: 1px solid #85161D;
-	border-left: 1px solid #85161D;
-
 	border-radius: 0 0 4px 4px;
 	-webkit-border-radius: 0 0 4px 4px;
 	-moz-border-radius: 0 0 4px 4px;
 
-	border-right: 1px solid #85161D;
-	margin-top: -8px;
-	padding-top: 4px;
-	padding-bottom: 4px;
+    border-color: #85161D;
+    border-radius: 0 0 4px 4px;
+    border-style: solid;
+    border-width: 4px 2px 2px;
+    margin-top: -8px;
 
-	-moz-box-shadow:inset 0px 0px 5px #3d3d3d;
+/*	-moz-box-shadow:inset 0px 0px 5px #3d3d3d;
 	-webkit-box-shadow:inset 0px 0px 5px #3d3d3d;
-	box-shadow:inset 0px 0px 5px #3d3d3d;
+	box-shadow:inset 0px 0px 5px #3d3d3d; */
 }
 
 
