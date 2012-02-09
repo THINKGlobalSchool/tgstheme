@@ -92,7 +92,7 @@
     border-color: #666666;
     border-radius: 0 0 4px 4px;
     border-style: solid;
-    border-width: 0 2px 2px;
+    border-width: 0 1px 1px;
     margin-top: -6px;
 
 /*	-moz-box-shadow:inset 0px 0px 5px #3d3d3d;
