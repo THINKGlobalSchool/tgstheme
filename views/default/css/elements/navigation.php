@@ -559,6 +559,10 @@ li:hover > .elgg-menu-site-more {
 	/*float: right;*/
 }
 
+.elgg-menu-owner-block li:last-child {
+	margin-bottom: 2px;
+}
+
 .elgg-menu-owner-block li a {
 	padding: 2px 4px 2px 8px;
 	text-transform: uppercase;

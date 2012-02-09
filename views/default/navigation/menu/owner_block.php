@@ -16,8 +16,14 @@ if (!elgg_in_context('profile') && (elgg_instanceof($entity, 'group') || elgg_in
 	// New short menu items array
 	$short_menu_items = array();
 
+	// Count items in menu 
+	$menu_count = count($vars['menu']['default']);
+	
+	// We're showing the top 3 items, so if we have less.. show less
+	$count = $menu_count < 3 ? $menu_count : 3;
+
 	// Grab the first 3 menu items, and remove from the main menu
-	for ($i = 0; $i < 3; $i++) {
+	for ($i = 0; $i < $count; $i++) {
 		if ($vars['selected_item'] && $vars['selected_item']->getName() == $vars['menu']['default'][$i]->getName()) {
 			$selected_in_list = TRUE;
 		}
@@ -38,15 +44,17 @@ if (!elgg_in_context('profile') && (elgg_instanceof($entity, 'group') || elgg_in
 		}
 	}
 
-	// Create show more item
-	$options = array(
-		'name' => 'more-ownerblock',
-		'text' => elgg_echo('tgstheme:label:more'),
-		'href' => '#',
-		'class' => 'ownerblock-show-more',
-		'priority' => 9000,
-	);
-	$short_menu_items[] = ElggMenuItem::factory($options);
+	// Create show more item as needed
+	if ($menu_count > $count) {
+		$options = array(
+			'name' => 'more-ownerblock',
+			'text' => elgg_echo('tgstheme:label:more'),
+			'href' => '#',
+			'class' => 'ownerblock-show-more',
+			'priority' => 9000,
+		);
+		$short_menu_items[] = ElggMenuItem::factory($options);
+	}
 
 	// These are the remaining items
 	$long_menu_items = $vars['menu']['default'];
