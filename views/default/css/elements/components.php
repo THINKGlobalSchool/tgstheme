@@ -94,6 +94,7 @@
     border-style: solid;
     border-width: 0 1px 1px;
     margin-top: -6px;
+	padding-top: 2px;
 
 /*	-moz-box-shadow:inset 0px 0px 5px #3d3d3d;
 	-webkit-box-shadow:inset 0px 0px 5px #3d3d3d;
