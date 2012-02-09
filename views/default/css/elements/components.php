@@ -52,10 +52,12 @@
 	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/badge-back.png) repeat-x bottom left #DD2036;
 	min-height:34px;
 
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px 4px 0 0;
+	-moz-border-radius: 4px 4px 0 0;
 	border-radius: 4px 4px 0 0;
+
 	margin:0 0 6px 0;	
+	padding-right: 4px;
 }
 
 #badge .elgg-image-block  h3 a{	
