@@ -356,7 +356,7 @@ span.actions-text {
 }
 
 .ownerblock-show-more, .ownerblock-show-less {
-	background: url("http://192.168.0.111/elgg/mod/tgstheme/_graphics/badge-back.png") repeat-x scroll left bottom #DD2036;
+	background: #666666;
 	color: white;
 	text-align: right;
 	font-size: 0.8em;
