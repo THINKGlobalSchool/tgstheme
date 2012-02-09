@@ -26,13 +26,13 @@ if (!elgg_in_context('profile') && (elgg_instanceof($entity, 'group') || elgg_in
 	}
 
 	// If the selected item wasn't one of the first 3 items
-	if (!$selected_in_list) {
+	if ($vars['selected_item'] && !$selected_in_list) {
 		// Add it to the short list
 		$short_menu_items[] = $vars['selected_item'];
 
 		// Remove it from the long list
 		foreach($vars['menu']['default'] as $idx => $item) {
-			if ($item->getName() == $vars['selected_item']->getName()) {
+			if ($vars['selected_item'] && $item->getName() == $vars['selected_item']->getName()) {
 				unset($vars['menu']['default'][$idx]);
 			}
 		}
