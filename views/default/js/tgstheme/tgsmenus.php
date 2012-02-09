@@ -11,16 +11,22 @@
  */
 ?>
 //<script>
-elgg.provide('elgg.entitymenu');
+elgg.provide('elgg.tgsmenus');
 
 // Init function
-elgg.entitymenu.init = function() {
+elgg.tgsmenus.init = function() {
 	// Extra click handler for the toggle button
-	$(document).delegate('a.entity-action-toggler', 'click', elgg.entitymenu.toggleClick);
+	$(document).delegate('a.entity-action-toggler', 'click', elgg.tgsmenus.toggleClick);
+
+	// Owner block show more click handler
+	$(document).delegate('a.ownerblock-show-more', 'click', elgg.tgsmenus.ownerblockShowMoreClick);
+
+	// Owner block show less click handler
+	$(document).delegate('a.ownerblock-show-less', 'click', elgg.tgsmenus.ownerblockShowLessClick);
 }
 
 // Click handler for toggler
-elgg.entitymenu.toggleClick = function(event) {
+elgg.tgsmenus.toggleClick = function(event) {
 	var id = $(this).attr('href');
 	
 	// Hide all other popups, except this one
@@ -29,6 +35,28 @@ elgg.entitymenu.toggleClick = function(event) {
 			$(this).fadeOut();
 		}
 	});
+}
+
+// Click handler for show more
+elgg.tgsmenus.ownerblockShowMoreClick = function(event) {
+	// Toggle more button off
+	$(this).parent().slideToggle(function(){
+		// Show full menu
+		$('#tgstheme-ownerblock-sidebar-menu-full').slideToggle();
+	});
+
+	event.preventDefault();
+}
+
+// Click handler for show less
+elgg.tgsmenus.ownerblockShowLessClick = function(event) {
+	// Hide full menu
+	$('#tgstheme-ownerblock-sidebar-menu-full').slideToggle(function() {
+		// Toggle more button back on
+		$('a.ownerblock-show-more').parent().slideToggle();
+	});
+
+	event.preventDefault();
 }
 
 /**
@@ -41,7 +69,7 @@ elgg.entitymenu.toggleClick = function(event) {
  *
  * @return {Object}
  */
-elgg.entitymenu.entityMenuHandler = function(hook, type, params, options) {
+elgg.tgsmenus.entityMenuHandler = function(hook, type, params, options) {
 	// Interesting way to check if string starts with (see below)
 	if (params.target.attr('id') && params.target.attr('id').lastIndexOf("entity-actions-", 0) === 0) {
 		options.my = 'right top';
@@ -62,7 +90,7 @@ elgg.entitymenu.entityMenuHandler = function(hook, type, params, options) {
  *
  * @return {Object}
  */
-elgg.entitymenu.ownerblockMenuHandler = function(hook, type, params, options) {
+elgg.tgsmenus.ownerblockMenuHandler = function(hook, type, params, options) {
 	if (params.target.attr('id') == 'tgstheme-ownerblock-menu') {
 		options.my = 'right top';
 		options.at = 'right bottom';
@@ -71,6 +99,6 @@ elgg.entitymenu.ownerblockMenuHandler = function(hook, type, params, options) {
 	return null;
 };
 
-elgg.register_hook_handler('getOptions', 'ui.popup', elgg.entitymenu.entityMenuHandler);
-elgg.register_hook_handler('getOptions', 'ui.popup', elgg.entitymenu.ownerblockMenuHandler);
-elgg.register_hook_handler('init', 'system', elgg.entitymenu.init);
+elgg.register_hook_handler('getOptions', 'ui.popup', elgg.tgsmenus.entityMenuHandler);
+elgg.register_hook_handler('getOptions', 'ui.popup', elgg.tgsmenus.ownerblockMenuHandler);
+elgg.register_hook_handler('init', 'system', elgg.tgsmenus.init);

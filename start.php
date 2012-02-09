@@ -37,11 +37,11 @@ function tgstheme_init() {
 	elgg_register_simplecache_view('js/tgstheme/activityping');
 	elgg_register_js('elgg.activityping', $ap_js);
 	
-	// Register Entity Menu JS library
-	$em_js = elgg_get_simplecache_url('js', 'tgstheme/entitymenu');
-	elgg_register_simplecache_view('js/tgstheme/entitymenu');
-	elgg_register_js('elgg.entitymenu', $em_js);
-	elgg_load_js('elgg.entitymenu');
+	// Register Menus JS library
+	$m_js = elgg_get_simplecache_url('js', 'tgstheme/tgsmenus');
+	elgg_register_simplecache_view('js/tgstheme/tgsmenus');
+	elgg_register_js('elgg.tgsmenus', $m_js);
+	elgg_load_js('elgg.tgsmenus');
 
 	if (elgg_get_context() == 'activity') {
 		elgg_load_js('elgg.activityping');

@@ -565,7 +565,7 @@ li:hover > .elgg-menu-site-more {
 	font-family: 'Shanti',sans-serif;
 }
 .elgg-menu-owner-block li a:hover {
-	background-color: #666666;
+	background-color: #2D3F46;
 	color: white;
 	text-decoration: none;
 }
@@ -573,6 +573,7 @@ li:hover > .elgg-menu-site-more {
 	background-color: #91131E;
 	color: white;
 }
+
 /* ***************************************
 	LONGTEXT
 *************************************** */
