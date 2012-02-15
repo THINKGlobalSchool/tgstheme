@@ -19,10 +19,10 @@ elgg.tgsmenus.init = function() {
 	$(document).delegate('a.entity-action-toggler', 'click', elgg.tgsmenus.toggleClick);
 
 	// Owner block show more click handler
-	$(document).delegate('a.ownerblock-show-more', 'click', elgg.tgsmenus.ownerblockShowMoreClick);
+	//$(document).delegate('a.ownerblock-show-more', 'click', elgg.tgsmenus.ownerblockShowMoreClick);
 
 	// Owner block show less click handler
-	$(document).delegate('a.ownerblock-show-less', 'click', elgg.tgsmenus.ownerblockShowLessClick);
+	//$(document).delegate('a.ownerblock-show-less', 'click', elgg.tgsmenus.ownerblockShowLessClick);
 }
 
 // Click handler for toggler
