@@ -13,6 +13,7 @@
 $entity = elgg_extract('entity', $vars);
 
 if (!elgg_in_context('profile') && (elgg_instanceof($entity, 'group') || elgg_instanceof($entity, 'user'))) {
+	/*
 	// New short menu items array
 	$short_menu_items = array();
 
@@ -85,6 +86,16 @@ if (!elgg_in_context('profile') && (elgg_instanceof($entity, 'group') || elgg_in
 			</div>
 		</div>
 HTML;
+	*/
+	
+	$menu = elgg_view("navigation/menu/default", $vars);
+	
+	$content = <<<HTML
+		<div id='tgstheme-ownerblock-sidebar-menu' class='clearfix'>
+			$menu
+		</div>
+HTML;
+	
 	echo $content;
 
 } else {
