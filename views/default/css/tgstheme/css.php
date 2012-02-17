@@ -316,7 +316,7 @@ table#stats-table td.stat {
 	padding-right: 10px;
 	padding-top: 8px;
 	position: absolute;
-	z-index: 10;
+	z-index: 9004;
 }
 
 span.actions-caret {
