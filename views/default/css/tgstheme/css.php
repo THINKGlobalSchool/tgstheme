@@ -384,3 +384,9 @@ span.actions-text {
 #tgstheme-ownerblock-sidebar-menu ul li.elgg-menu-item-less-ownerblock {
 	position: inherit;
 }
+
+/* Fancybox Overrides */
+
+#fancybox-wrap {
+	z-index: 9001 !important;
+}
