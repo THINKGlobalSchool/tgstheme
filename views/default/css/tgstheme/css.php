@@ -390,3 +390,7 @@ span.actions-text {
 #fancybox-wrap {
 	z-index: 9001 !important;
 }
+
+#fancybox-loading {
+	z-index: 9002 !important;
+}
