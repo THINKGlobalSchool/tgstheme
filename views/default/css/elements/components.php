@@ -330,6 +330,29 @@
 .elgg-comments {
 	margin-top: 25px;
 }
+
+.elgg-comments .elgg-list {
+	border-top: 0;
+}
+
+.elgg-comments .elgg-list > li {
+	border-top: 1px solid #CCCCCC;
+	border-bottom: 0;
+}
+
+.elgg-comments .elgg-list > li .elgg-output p {
+	font-size: 95%;
+}
+
+.elgg-comments .elgg-list > li > .elgg-image-block {
+	margin: 4px 0 0;
+	padding: 0 0 8px;
+}
+
+.elgg-comments .elgg-list > li:nth-child(odd) {
+	background: #EEEEEE;
+}
+
 .elgg-comments > form {
 	margin-top: 15px;
 }
