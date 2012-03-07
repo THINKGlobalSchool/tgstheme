@@ -174,9 +174,17 @@ function home_page_handler($page) {
 	$params['content'] .= elgg_view('announcements/announcement_list');
 
 	// River module
+	$river_title = elgg_echo('content:latest');
+
+	$river_title .= elgg_view('output/url', array(
+		'text' => elgg_echo('link:view:all'),
+		'href' => elgg_get_site_url() . 'activity',
+		'class' => 'right'
+	));
+
 	$params['content'] .= elgg_view('modules/riverajaxmodule', array(
-		'title' => elgg_echo('content:latest'),
-		'limit' => 5,
+		'title' => $river_title,
+		'limit' => 10,
 		'module_type' => 'featured',
 	));
 
