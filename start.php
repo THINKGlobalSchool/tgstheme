@@ -37,6 +37,11 @@ function tgstheme_init() {
 	elgg_register_simplecache_view('js/tgstheme/activityping');
 	elgg_register_js('elgg.activityping', $ap_js);
 	
+	// Register Share Ping JS library
+	$s_js = elgg_get_simplecache_url('js', 'tgstheme/share');
+	elgg_register_simplecache_view('js/tgstheme/share');
+	elgg_register_js('elgg.share', $s_js);
+	
 	// Register Menus JS library
 	$m_js = elgg_get_simplecache_url('js', 'tgstheme/tgsmenus');
 	elgg_register_simplecache_view('js/tgstheme/tgsmenus');
@@ -69,6 +74,27 @@ function tgstheme_init() {
 
 	$item = new ElggMenuItem('2privacypolicysuppliment', elgg_echo("tgstheme:label:policysuppliment"), elgg_get_site_url() . 'legal/privacy_suppliment');
 	elgg_register_menu_item('footer', $item);
+	
+	// Register share by email item
+	if (elgg_is_logged_in()) {
+		elgg_load_js('lightbox');
+		elgg_load_js('elgg.share');
+		elgg_load_css('lightbox');
+	
+		$address = urlencode(current_page_url());
+	
+		elgg_register_menu_item('extras', array(
+			'name' => 'email_share',
+			'text' => elgg_view_icon('mail-red'),
+			'href' => "ajax/view/tgstheme/email_share?address=$address",
+			'link_class' => 'elgg-lightbox',
+			'rel' => 'nofollow',
+		));
+	}
+	
+	// Share by email action
+	$action_path = elgg_get_plugins_path() . 'tgstheme/actions/share';
+	elgg_register_action('share/email', "$action_path/email.php");
 
 	// also extend the core activity
 	elgg_extend_view('core/river/filter', 'tgstheme/update', -1);
@@ -119,6 +145,7 @@ function tgstheme_init() {
 	elgg_register_ajax_view('blog/composer');
 	elgg_register_ajax_view('file/composer');
 	elgg_register_ajax_view('webvideos/composer');
+	elgg_register_ajax_view('tgstheme/email_share');
 	
 	return true;
 }

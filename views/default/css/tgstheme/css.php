@@ -385,6 +385,22 @@ span.actions-text {
 	position: inherit;
 }
 
+.tgstheme-share-email-module {
+	width: 500px;
+}
+
+.tgstheme-share-email-from {
+	color: #999;
+}
+
+.tgstheme-share-email-from:focus {
+	border: 1px solid #CCCCCC;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	color: #999999;
+}
+
 /* Fancybox Overrides */
 
 #fancybox-wrap {

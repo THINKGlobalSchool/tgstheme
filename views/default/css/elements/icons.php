@@ -90,6 +90,9 @@
 .elgg-icon-mail-alt {
 	background-position: 0 -414px;
 }
+.elgg-icon-mail-red {
+	background-position: 0 -396px;
+}
 .elgg-icon-mail:hover {
 	background-position: 0 -432px;
 }
