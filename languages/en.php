@@ -18,6 +18,7 @@ $english = array(
 
 	// Page titles 
 	'tgstheme:title:home' => 'Home',
+	'tgstheme:title:emailshare' => 'Email this page',
 
 	// Labels
 	'tgstheme:label:welcome' => 'Welcome, %s',
@@ -33,6 +34,20 @@ $english = array(
 	'tgstheme:label:content' => '%s\'s Content',
 	'tgstheme:label:more' => 'Show More ',
 	'tgstheme:label:less' => 'Show Less ',
+	'tgstheme:label:to' => 'To',
+	'tgstheme:label:from' => 'From',
+	'tgstheme:label:subject' => 'Subject',
+	'tgstheme:label:body' => 'Body',
+	
+	// Email message
+	'tgstheme:email:subject' => '%s wants to share a link with you!',
+	'tgstheme:email:body' => 'Check this out!
+
+%s
+
+
+',
+	
 
 	// Stats
 	'tgstheme:stats:blog' => 'Blog Posts',
@@ -51,6 +66,10 @@ $english = array(
 	// River
 
 	// Messages
+	'tgstheme:success:emailshare' => 'Page shared!',
+	'tgstheme:error:requiredfields' => 'One or more required fields are missing',
+	'tgstheme:error:invalidemail' => 'Invalid email address(es) supplied: %s',
+	'tgstheme:error:emailerror' => 'There was an error sending the email',
 	'mentions:notification_types:object:thewire' => 'a mini post',	
 	
 	// Other content
