@@ -13,23 +13,43 @@
 
 $address = urldecode(elgg_extract('address', $vars));
 
-$to_label = elgg_echo('tgstheme:label:to');
+$to_user_label = elgg_echo('tgstheme:label:tousers');
+$to_address_label = elgg_echo('tgstheme:label:toaddress');
 $from_label = elgg_echo('tgstheme:label:from');
 $subject_label = elgg_echo('tgstheme:label:subject');
 $body_label = elgg_echo('tgstheme:label:body');
 
 $user = elgg_get_logged_in_user_entity();
 
-/*
-$to_input = elgg_view('input/text', array(
-	'name' => 'to',
-	'class' => 'tgstheme-share-email-to',
+// Simple tab interface for switching between users and text entry
+elgg_register_menu_item('share-users-text-menu', array(
+	'name' => 'share-users',
+	'text' => elgg_echo('tgstheme:label:spotusers'),
+	'href' => '#email-to-users',
+	'priority' => 0,
+	'item_class' => 'elgg-state-selected',
+	'class' => 'share-email-menu-item',
 ));
-*/
 
-$to_input = elgg_view('input/userpicker', array(
-	'name' => 'members[]'
+elgg_register_menu_item('share-users-text-menu', array(
+	'name' => 'share-text',
+	'text' => elgg_echo('tgstheme:label:emails'),
+	'href' => '#email-to-addresses',
+	'priority' => 1,
+	'class' => 'share-email-menu-item',
 ));
+
+$menu = elgg_view_menu('share-users-text-menu', array(
+	'sort_by' => 'priority',
+	'class' => 'elgg-menu-hz elgg-menu-filter elgg-menu-filter-default'
+));
+
+$to_address_input = elgg_view('input/text', array(
+	'name' => 'to',
+	'class' => 'tgstheme-share-email-text',
+));
+
+$to_user_input = elgg_view('input/userpicker');
 
 $from_input = elgg_view('input/text', array(
 	'name' => 'from',
@@ -58,8 +78,15 @@ $submit_input = elgg_view('input/submit', array(
 
 $content = <<<HTML
 	<div>
-		<label>$to_label</label>
-		$to_input
+		$menu
+	</div>
+	<div class='email-to-container' id='email-to-users'>
+		<label>$to_user_label</label>
+		$to_user_input
+	</div>
+	<div class='email-to-container' id='email-to-addresses' style='display: none;'>
+		<label>$to_address_label</label>
+		$to_address_input
 	</div>
 	<div>
 		<label>$from_label</label>
