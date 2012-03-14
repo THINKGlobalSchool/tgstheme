@@ -246,9 +246,10 @@ input[type="radio"] {
 .ui-autocomplete {
 	position: absolute;
 	cursor: default;
+	z-index: 9005 !important;
 }
 .elgg-autocomplete-item .elgg-body {
-	max-width: 600px;
+	max-width: 500px;
 }
 .ui-autocomplete {
 	background-color: white;

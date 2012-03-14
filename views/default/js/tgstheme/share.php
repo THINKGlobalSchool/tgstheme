@@ -30,11 +30,24 @@ elgg.share.emailSendClick = function(event) {
 	$inputs.each(function() {
 		values[this.name] = $(this).val();
 	});
+	
+	// Get 'members' from userpicker
+	var members = [];
+	$("#tgstheme-share-email-form input[name='members[]']").each(function() {
+		members.push($(this).val());
+	});
+	
+	// Get any text entered into the userpicker input
+	var text_to = $("#tgstheme-share-email-form .elgg-input-user-picker").val();
+	
+	text_to = text_to ? text_to : 0;
 
 	// Check for existing book by title
 	elgg.action('share/email', {
 		data: {
-			to: values['to'],
+			//to: values['to'],
+			to: members,
+			text_to: text_to,
 			from: values['from'],
 			subject: values['subject'],
 			body: values['body'],

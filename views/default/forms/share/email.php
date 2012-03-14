@@ -20,9 +20,15 @@ $body_label = elgg_echo('tgstheme:label:body');
 
 $user = elgg_get_logged_in_user_entity();
 
+/*
 $to_input = elgg_view('input/text', array(
 	'name' => 'to',
 	'class' => 'tgstheme-share-email-to',
+));
+*/
+
+$to_input = elgg_view('input/userpicker', array(
+	'name' => 'members[]'
 ));
 
 $from_input = elgg_view('input/text', array(
@@ -70,6 +76,9 @@ $content = <<<HTML
 	<div class='elgg-foot'>
 		$submit_input
 	</div>
+	<script type='text/javascript'>
+		elgg.userpicker.init();
+	</script>
 HTML;
 
 echo $content;
