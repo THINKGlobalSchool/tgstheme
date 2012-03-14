@@ -10,27 +10,28 @@
  *
  */
 
-$to = get_input('to', FALSE);
-$text_to = get_input('text_to', FALSE);
+$to_users = get_input('to_users', FALSE);
+$to_text = get_input('to_text', FALSE);
 $from = get_input('from', FALSE);
 $subject = get_input('subject', FALSE);
 $body = get_input('body', FALSE);
 
-// Check empty (to: can be either members or text, need at least one)
-if ((empty($to) && empty($text_to)) || empty($from) || empty($subject) || empty($body)) {
+// Check empty (to: can be either members or text)
+if ((empty($to_users) && empty($to_text)) || empty($from) || empty($subject) || empty($body)) {
 	register_error(elgg_echo('tgstheme:error:requiredfields'));
 	forward(REFERER);
 }
 
-$text_emails = array();
+$emails = array();
 
-if ($text_to) {
+if ($to_text) {
+	echo 'eherer';
 	// Parse text entered emails
-	$text_emails = explode(',', $text_to);
+	$text_emails = explode(',', $to_text);
 
 	// Validate text emails
 	if (is_array($text_emails) && count($text_emails) >= 1) {
-		foreach ($text_emails as $idx => $email) {
+		foreach ($text_emails as $email) {
 			$trimmed_email = trim($email);
 
 			// Validate each one
@@ -38,23 +39,21 @@ if ($text_to) {
 				register_error(elgg_echo('tgstheme:error:invalidemail', array($trimmed_email)));
 				forward(REFERER);
 			} else {
-				$text_emails[$idx] = $trimmed_email;
+				$emails[] = $trimmed_email;
 			}
 		}
 	}
-}
-
-// Parse users supplied from userpicker
-$member_emails = array();
-foreach ($to as $guid) {
-	$user = get_entity($guid);
-	if (elgg_instanceof($user, 'user')) {
-		$member_emails[] = $user->email;
+} else if ($to_users) {
+	// Parse users supplied from userpicker
+	$member_emails = array();
+	foreach ($to_users as $guid) {
+		$user = get_entity($guid);
+		if (elgg_instanceof($user, 'user')) {
+			$emails[] = $user->email;
+		}
 	}
+	
 }
-
-// Merge text/user emails
-$emails = array_merge($text_emails, $member_emails);
 
 // Try to send
 if (is_array($emails) && count($emails) > 0) {

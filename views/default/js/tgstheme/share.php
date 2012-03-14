@@ -17,6 +17,12 @@ elgg.provide('elgg.share');
 elgg.share.init = function() {
 	// Email send handler
 	$(document).delegate('#tgstheme-share-email-send', 'click', elgg.share.emailSendClick);
+	
+	// Prevent form submit on enter
+	$(document).delegate('#tgstheme-share-email-form input', 'keypress', elgg.share.preventSubmit);
+
+	// Share user/address menu click handler
+	$(document).delegate('.share-email-menu-item', 'click', elgg.share.shareMenuClick);
 }
 
 // Email send handler
@@ -36,18 +42,13 @@ elgg.share.emailSendClick = function(event) {
 	$("#tgstheme-share-email-form input[name='members[]']").each(function() {
 		members.push($(this).val());
 	});
-	
-	// Get any text entered into the userpicker input
-	var text_to = $("#tgstheme-share-email-form .elgg-input-user-picker").val();
-	
-	text_to = text_to ? text_to : 0;
 
 	// Check for existing book by title
 	elgg.action('share/email', {
 		data: {
 			//to: values['to'],
-			to: members,
-			text_to: text_to,
+			to_users: members,
+			to_text: values['to'],
 			from: values['from'],
 			subject: values['subject'],
 			body: values['body'],
@@ -61,6 +62,30 @@ elgg.share.emailSendClick = function(event) {
 		}
 	});
 
+	event.preventDefault();
+}
+
+// Prevent submit helper
+elgg.share.preventSubmit = function(event) {
+	if (event.keyCode == 13) {
+		return false;
+	}
+}
+
+// Share user/address menu click handler
+elgg.share.shareMenuClick = function(event) {
+	$('.share-email-menu-item').parent().removeClass('elgg-state-selected');
+	$(this).parent().addClass('elgg-state-selected');
+	
+	// Nuke inputs
+	$('ul.elgg-user-picker-list li').each(function() {
+		$(this).remove();
+	})
+	$('input[name="to"]').val('');
+	
+	$('.email-to-container').hide();
+	$($(this).attr('href')).show();
+	
 	event.preventDefault();
 }
 
