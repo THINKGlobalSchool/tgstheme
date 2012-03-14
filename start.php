@@ -80,6 +80,8 @@ function tgstheme_init() {
 		elgg_load_js('lightbox');
 		elgg_load_js('elgg.share');
 		elgg_load_css('lightbox');
+		elgg_load_js('elgg.userpicker');
+		elgg_load_js('elgg.userpicker.html');
 	
 		$address = urlencode(current_page_url());
 	
