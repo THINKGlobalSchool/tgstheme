@@ -33,6 +33,12 @@ function tgstheme_init() {
 	elgg_load_css('elgg.tgstheme');
 
 	// Register Activity Ping JS library
+	$t_js = elgg_get_simplecache_url('js', 'tgstheme/tgstheme');
+	elgg_register_simplecache_view('js/tgstheme/tgstheme');
+	elgg_register_js('elgg.tgstheme', $t_js);
+	elgg_load_js('elgg.tgstheme');
+
+	// Register Activity Ping JS library
 	$ap_js = elgg_get_simplecache_url('js', 'tgstheme/activityping');
 	elgg_register_simplecache_view('js/tgstheme/activityping');
 	elgg_register_js('elgg.activityping', $ap_js);
