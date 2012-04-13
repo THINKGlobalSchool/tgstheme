@@ -18,6 +18,7 @@
  *   * page/elements/shortcut_icon
  *   * search/css
  *   * search/search_box
+ *   * js/tinymce
  *
  * Composer code borrowed from Evan Winslow's Elgg Facebook Theme:
  * https://github.com/ewinslow/elgg-facebook_theme
@@ -31,6 +32,12 @@ function tgstheme_init() {
 	elgg_register_simplecache_view('css/tgstheme/css');
 	elgg_register_css('elgg.tgstheme', $t_css);
 	elgg_load_css('elgg.tgstheme');
+	
+	// Register TinyMCE CSS
+	$tm_css = elgg_get_simplecache_url('css', 'tgstheme/tinymce');
+	elgg_register_simplecache_view('css/tgstheme/tinymce');
+	elgg_register_css('elgg.tgstheme.tinymce', $tm_css);
+	elgg_load_css('elgg.tgstheme.tinymce');
 
 	// Register Activity Ping JS library
 	$t_js = elgg_get_simplecache_url('js', 'tgstheme/tgstheme');
@@ -42,6 +49,11 @@ function tgstheme_init() {
 	$ap_js = elgg_get_simplecache_url('js', 'tgstheme/activityping');
 	elgg_register_simplecache_view('js/tgstheme/activityping');
 	elgg_register_js('elgg.activityping', $ap_js);
+	
+	// Register Share Ping JS library
+	$s_js = elgg_get_simplecache_url('js', 'tgstheme/share');
+	elgg_register_simplecache_view('js/tgstheme/share');
+	elgg_register_js('elgg.share', $s_js);
 	
 	// Register Share Ping JS library
 	$s_js = elgg_get_simplecache_url('js', 'tgstheme/share');
