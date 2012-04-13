@@ -77,6 +77,8 @@ $english = array(
 	
 	// Other content
 	'userpicker:only_friends' => '', // Hide only friends
+	'twitter:notsetup' => 'User has not supplied a twitter username',
+	'profile:twitter_tab' => 'Twitter',
 
 	// Avatar overrides
 	'avatar' => 'Profile Picture',

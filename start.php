@@ -154,6 +154,9 @@ function tgstheme_init() {
 	// Entity menu hook, used to reorganize the entity menu
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'tgstheme_ownerblock_menu_handler', 9999);
 
+	// Add a new tab to the tabbed profile
+	elgg_register_plugin_hook_handler('tabs', 'profile', 'tgstheme_twitter_profile_tab_hander');
+
 //	elgg_unregister_page_handler('activity');
 
 //	elgg_register_page_handler('activity', 'tgstheme_river_page_handler');
@@ -516,4 +519,14 @@ function tgstheme_ownerblock_menu_handler($hook, $type, $return, $params) {
 		}
 	}
 	return $return;
+}
+
+/**
+ * Handler to add a twitter tab to the tabbed profile
+ */
+function tgstheme_twitter_profile_tab_hander($hook, $type, $value, $params) {
+	if (!empty(elgg_get_page_owner_entity()->twitter)) {
+		$value[] = 'twitter_tab';
+	}
+	return $value;
 }
