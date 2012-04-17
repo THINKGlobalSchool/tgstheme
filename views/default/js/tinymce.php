@@ -54,7 +54,7 @@ elgg.tinymce.init = function() {
 		relative_urls : false,
 		remove_script_host : false,
 		document_base_url : elgg.config.wwwroot,
-		theme_advanced_buttons1 : "bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright,fontsizeselect,formatselect,bullist,numlist,indent,outdent,undo,redo,link,unlink,anchor,image,blockquote,code,pastetext,pasteword,more,fullscreen",
+		theme_advanced_buttons1 : "bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright,forecolor,fontsizeselect,formatselect,bullist,numlist,indent,outdent,undo,redo,link,unlink,anchor,image,blockquote,code,pastetext,pasteword,more,fullscreen",
 		theme_advanced_buttons2 : "",
 		theme_advanced_buttons3 : "",
 		theme_advanced_toolbar_location : "top",
