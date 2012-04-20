@@ -492,11 +492,14 @@ function tgstheme_entity_menu_handler($hook, $type, $return, $params) {
 		);
 
 		// Assign new sections
-		foreach ($return as $item) {
+		foreach ($return as $idx => $item) {
 			if ($item->getSection() == 'default') {
 				if (in_array($item->getName(), $core_info_items)) {
 			        $item->setSection('info');
 				} else if (in_array($item->getName(), $core_action_items)) {
+					if ($item->getName() == 'likes' && !elgg_is_logged_in()) {
+						unset($return[$idx]); // Likes are showing up not logged in for some reason
+					}
 			        $item->setSection('actions');
 				} else {
 			        $item->setSection('other');
