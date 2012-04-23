@@ -156,6 +156,9 @@ function tgstheme_init() {
 
 	// Add a new tab to the tabbed profile
 	elgg_register_plugin_hook_handler('tabs', 'profile', 'tgstheme_twitter_profile_tab_hander');
+	
+	// Add a hook handler for HTMLawed allowed styles
+	elgg_register_plugin_hook_handler('allowed_styles', 'htmlawed', 'tgstheme_allowed_styles_handler');
 
 //	elgg_unregister_page_handler('activity');
 
@@ -531,5 +534,13 @@ function tgstheme_twitter_profile_tab_hander($hook, $type, $value, $params) {
 	if (!empty(elgg_get_page_owner_entity()->twitter)) {
 		$value[] = 'twitter_tab';
 	}
+	return $value;
+}
+
+/**
+ * Handler add any required css styles to HTMLawed's allowed styles list
+ */
+function tgstheme_allowed_styles_handler($hook, $type, $value, $params) {
+	$value[] = 'display';
 	return $value;
 }
