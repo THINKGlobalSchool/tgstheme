@@ -82,8 +82,13 @@ function tgstheme_init() {
 	// Register activity ping page handler
 	elgg_register_page_handler('activity_ping', 'ping_page_handler');
 
-	// Add a site navigation item
-	$item = new ElggMenuItem('home', "<span class='elgg-icon elgg-icon-home'></span>", 'home');
+	// Add 'home' navigation item
+	if (elgg_is_logged_in()) {
+		$home_url = 'home';
+	} else {
+		$home_url = '';
+	}
+	$item = new ElggMenuItem('home', "<span class='elgg-icon elgg-icon-home'></span>", $home_url);
 	elgg_register_menu_item('site', $item);
 
 	// Add a couple footer items
