@@ -95,7 +95,7 @@ function tgstheme_init() {
 	$item = new ElggMenuItem('1termsofuse', elgg_echo("tgstheme:label:terms"), elgg_get_site_url() . 'legal/spot_terms_of_use');
 	elgg_register_menu_item('footer', $item);
 
-	$item = new ElggMenuItem('2privacypolicysuppliment', elgg_echo("tgstheme:label:policysuppliment"), elgg_get_site_url() . 'legal/privacy_suppliment');
+	$item = new ElggMenuItem('2privacypolicysupplement', elgg_echo("tgstheme:label:policysupplement"), elgg_get_site_url() . 'legal/privacy_supplement');
 	elgg_register_menu_item('footer', $item);
 	
 	// Register share by email item
