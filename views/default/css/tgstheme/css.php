@@ -406,7 +406,7 @@ span.actions-text {
 .help-link-wrapper{
 	float:right;
 	min-width: 50px;
-	margin: -2px 16px 0 0;
+	margin: -2px 36px 0 0;
 }
 
 .help-link-wrapper .tgstheme-module {
@@ -419,13 +419,14 @@ span.actions-text {
 	position: relative;
 	top: 10px;
 	margin-left: 2px;
+	margin-right: 3px;
 }
 
 .help-link-module {
     border: 1px solid #162024;
-    border-radius: 0px 0px 0px 6px;
-	-webkit-border-radius: 0px 0px 0px 6px;
-	-moz-border-radius: 0px 0px 0px 6px;
+    border-radius: 0px 0px 6px 6px;
+	-webkit-border-radius: 0px 0px 6px 6px;
+	-moz-border-radius: 0px 0px 6px 6px;
     margin-bottom: 20px;
     overflow: hidden;
 	height: 50px;
