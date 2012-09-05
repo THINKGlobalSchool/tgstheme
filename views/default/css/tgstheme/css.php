@@ -401,6 +401,58 @@ span.actions-text {
 	color: #999999;
 }
 
+/* Help Link */
+
+.help-link-wrapper{
+	float:right;
+	min-width: 50px;
+	margin: -2px 16px 0 0;
+}
+
+.help-link-wrapper .tgstheme-module {
+	-webkit-box-shadow: 1px 1px 3px 1px #000000;
+	-moz-box-shadow: 1px 1px 3px 1px #000000;
+	box-shadow: 1px 1px 3px 1px #000000;
+}
+
+.help-link-wrapper h3 {
+	position: relative;
+	top: 10px;
+	margin-left: 2px;
+}
+
+.help-link-module {
+    border: 1px solid #162024;
+    border-radius: 0px 0px 0px 6px;
+	-webkit-border-radius: 0px 0px 0px 6px;
+	-moz-border-radius: 0px 0px 0px 6px;
+    margin-bottom: 20px;
+    overflow: hidden;
+	height: 50px;
+}
+
+.help-link-module > .elgg-head {
+	background-color: #162024;
+	padding: 3px 5px 5px 5px;
+	height: 100%;
+}
+
+.help-link-module > .elgg-head * {
+    color: white;
+    font-family: 'Shanti',sans-serif;
+    font-size: 1em;
+    text-transform: uppercase;
+}
+
+.help-link-wrapper .help-icon {
+	/*background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/question-white.png) no-repeat left;*/
+	width: 16px;
+	height: 16px;
+	margin: 0 2px 0 0;
+	position: relative;
+	top: 3px;
+}
+
 /* Fancybox Overrides */
 
 #fancybox-wrap {
