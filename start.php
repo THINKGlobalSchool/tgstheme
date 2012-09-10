@@ -142,6 +142,10 @@ function tgstheme_init() {
 		elgg_extend_view('page/elements/sidebar', 'tgstheme/main_stats', 499);
 	}
 
+	if (!elgg_is_logged_in()) {
+		elgg_extend_view('page/elements/head', 'tgstheme/analytics');
+	}
+
 	// Plugin hook for index redirect
 	if (elgg_is_logged_in()) {
 		elgg_register_plugin_hook_handler('index', 'system', 'home_redirect', 600);
