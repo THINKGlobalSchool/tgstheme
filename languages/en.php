@@ -42,6 +42,10 @@ $english = array(
 	'tgstheme:label:subject' => 'Subject',
 	'tgstheme:label:body' => 'Body',
 	
+	// Admin
+	'tgstheme:label:helplink' => 'Help Link Title',
+	'tgstheme:label:helpgroup' => 'Link To Group:',
+	
 	// Email message
 	'tgstheme:email:subject' => '%s wants to share a link with you!',
 	'tgstheme:email:body' => 'Check this out!
