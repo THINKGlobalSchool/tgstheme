@@ -136,6 +136,11 @@ function tgstheme_init() {
 	
 	// Extend custommenus CSS
 	elgg_extend_view('css/custommenus/css', 'css/tgstheme/custommenus');
+	
+	// Extend search/searchbox
+	if (elgg_get_plugin_setting('help_group', 'tgstheme') && elgg_is_logged_in()) {
+		elgg_extend_view('search/search_box', 'tgstheme/help_link');
+	}
 
 	// Extend activity sidebar
 	if (elgg_is_logged_in() && elgg_get_context() == 'activity') {
