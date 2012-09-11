@@ -41,6 +41,7 @@ $english = array(
 	'tgstheme:label:from' => 'From',
 	'tgstheme:label:subject' => 'Subject',
 	'tgstheme:label:body' => 'Body',
+	'tgstheme:label:analytics_enable' => 'Enable Google Analytics Code',
 	
 	// Admin
 	'tgstheme:label:helplink' => 'Help Link Title',

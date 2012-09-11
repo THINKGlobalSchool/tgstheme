@@ -45,6 +45,17 @@ $groups_input = elgg_view('input/dropdown', array(
 	'value' => $vars['entity']->help_group,
 ));
 
+$analytics_label = elgg_echo('tgstheme:label:analytics_enable');
+
+$analytics_input = elgg_view('input/dropdown', array(
+	'name' => 'params[analytics_enable]', 
+	'value' => $vars['entity']->analytics_enable, 
+	'options_values' => array(
+		0 => elgg_echo('No'), 
+		1 => elgg_echo('Yes')
+	))
+);
+
 $content = <<<HTML
 	<br />
 	<div>
@@ -54,6 +65,10 @@ $content = <<<HTML
 	<div>
 		<label>$groups_label</label><br />
 		$groups_input
+	</div>
+	<div>
+		<label>$analytics_label</label><br />
+		$analytics_input
 	</div>
 HTML;
 

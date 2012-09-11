@@ -147,7 +147,7 @@ function tgstheme_init() {
 		elgg_extend_view('page/elements/sidebar', 'tgstheme/main_stats', 499);
 	}
 
-	if (!elgg_is_logged_in()) {
+	if (!elgg_is_logged_in() && elgg_get_plugin_setting('analytics_enable', 'tgstheme')) {
 		elgg_extend_view('page/elements/head', 'tgstheme/analytics');
 	}
 
