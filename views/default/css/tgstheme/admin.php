@@ -83,3 +83,46 @@
 .elgg-menu-item-likes {
 	display: none !important;
 }
+
+/** Filter menu **/
+.elgg-menu-filter {
+	margin-bottom: 5px;
+	border-bottom: 2px solid #ccc;
+	display: table;
+	width: 100%;
+}
+.elgg-menu-filter > li {
+	float: left;
+	border: 2px solid #ccc;
+	border-bottom: 0;
+	background: #eee;
+	margin: 0 0 0 10px;
+	
+	-webkit-border-radius: 5px 5px 0 0;
+	-moz-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
+}
+.elgg-menu-filter > li:hover {
+	background: #dedede;
+}
+.elgg-menu-filter > li > a {
+	text-decoration: none;
+	display: block;
+	padding: 3px 10px 0;
+	text-align: center;
+	height: 21px;
+	color: #999;
+}
+.elgg-menu-filter > li > a:hover {
+	background: #dedede;
+	color: #4690D6;
+}
+.elgg-menu-filter > .elgg-state-selected {
+	border-color: #ccc;
+	background: white;
+}
+.elgg-menu-filter > .elgg-state-selected > a {
+	position: relative;
+	top: 2px;
+	background: white;
+}
