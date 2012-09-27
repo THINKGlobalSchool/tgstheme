@@ -126,3 +126,7 @@
 	top: 2px;
 	background: white;
 }
+
+.entity-action-toggler span {
+	color: #FFFFFF !important;
+}

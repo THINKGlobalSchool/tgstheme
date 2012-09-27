@@ -336,7 +336,7 @@ span.actions-text {
 }
 
 .entity-action-toggler span {
-	color: #333333 !important;
+	color: #333333;
 	font-size: 11px !important;
 	text-transform: uppercase !important;
 }
