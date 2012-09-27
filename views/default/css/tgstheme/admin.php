@@ -130,3 +130,36 @@
 .entity-action-toggler span {
 	color: #FFFFFF !important;
 }
+
+/* ***************************************
+	BREADCRUMBS
+*************************************** */
+.elgg-breadcrumbs {
+	font-size: 80%;
+	font-weight: bold;
+	line-height: 1.2em;
+	color: #999999;
+}
+.elgg-breadcrumbs > li {
+	display: inline-block;
+}
+.elgg-breadcrumbs > li:after{
+	content: "\003E";
+	padding: 0 4px;
+	font-weight: normal;
+}
+.elgg-breadcrumbs > li > a {
+	display: inline-block;
+	color: #999;
+}
+.elgg-breadcrumbs > li > a:hover {
+	color: #91131E;
+	text-decoration: underline;
+}
+
+.elgg-main .elgg-breadcrumbs {
+	position: relative;
+	top: -6px;
+	left: 0;
+}
+
