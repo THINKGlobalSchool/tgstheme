@@ -12,7 +12,7 @@
 ?>
 
 #activity-updates a.update_link {
-	display: inline-table;
+	display: inline-block;
 	color:white;
 	font-weight: bold;
 	padding:1px 8px 2px 24px;
@@ -21,6 +21,7 @@
 	background: red url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/refresh.png") no-repeat 5px 3px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
+	border-radius: 10px;
 }
 #activity-updates a.update_link:hover {
 	background: #4690D6 url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/refresh.png") no-repeat 5px -22px;
