@@ -463,3 +463,21 @@ span.actions-text {
 #fancybox-loading {
 	z-index: 9002 !important;
 }
+
+/* Home page modules */
+
+.home-popup { 
+	position: absolute;
+	border: 1px solid #bbb;
+    background-color: #fff;
+    width: 200px;
+	padding: 5px;
+	height: auto;
+	top: -2em;
+	text-align: left;
+	display: block;
+}
+
+.home-small {
+	font-size: 85% !important; 
+}

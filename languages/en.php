@@ -42,6 +42,12 @@ $english = array(
 	'tgstheme:label:subject' => 'Subject',
 	'tgstheme:label:body' => 'Body',
 	'tgstheme:label:analytics_enable' => 'Enable Google Analytics Code',
+	'tgstheme:label:module_enable' => 'Enable home page module',
+	'tgstheme:label:module_title' => 'Module title',
+	'tgstheme:label:module_tag' => 'Module tag',
+	'tgstheme:label:module_subtype' => 'Module subtype',
+	'tgstheme:label:module_description' => 'Module description',
+	'tgstheme:label:whatisthis' => 'What is this?',
 	
 	// Admin
 	'tgstheme:label:helplink' => 'Help Link Title',

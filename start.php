@@ -239,6 +239,29 @@ function home_page_handler($page) {
 
 	// Announcements
 	$params['content'] .= elgg_view('announcements/announcement_list');
+	
+	// Extra info module
+	if (elgg_get_plugin_setting('module_enable', 'tgstheme')) {
+		$popup_label = elgg_echo('tgstheme:label:whatisthis');
+		$popup_info = elgg_echo(elgg_get_plugin_setting('module_description', 'tgstheme'));
+	
+		$title = elgg_get_plugin_setting('module_title', 'tgstheme');
+	
+		$module_title = elgg_echo($title) . "<span class='home-small right'><a rel='popup' href='#info'>$popup_label</a><div id='info' class='home-popup' style='display: none;'>$popup_info</div>";
+	
+		$params['content'] .= elgg_view('modules/ajaxmodule', array(
+			'title' => $module_title,
+			'tag' => elgg_get_plugin_setting('module_tag', 'tgstheme'),
+			'subtypes' => array(elgg_get_plugin_setting('module_subtype', 'tgstheme')),
+			'listing_type' => 'simple',
+			'restrict_tag' => TRUE,
+			'limit' => 2,
+			'module_type' => 'featured',
+			'module_id' => 'home-page-info-module',
+			'hide_empty' => TRUE,
+	 	));
+
+	}
 
 	// River module
 	$river_title = elgg_echo('content:latest');
