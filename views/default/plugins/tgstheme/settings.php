@@ -56,6 +56,41 @@ $analytics_input = elgg_view('input/dropdown', array(
 	))
 );
 
+$module_enable_label = elgg_echo('tgstheme:label:module_enable');
+$module_enable_input = elgg_view('input/dropdown', array(
+	'name' => 'params[module_enable]', 
+	'value' => $vars['entity']->module_enable, 
+	'options_values' => array(
+		0 => elgg_echo('No'), 
+		1 => elgg_echo('Yes')
+	))
+);
+
+$module_title_label = elgg_echo('tgstheme:label:module_title');
+$module_title_input = elgg_view('input/text', array(
+	'name' => 'params[module_title]', 
+	'value' => $vars['entity']->module_title)
+);
+
+$module_tag_label = elgg_echo('tgstheme:label:module_tag');
+$module_tag_input = elgg_view('input/text', array(
+	'name' => 'params[module_tag]', 
+	'value' => $vars['entity']->module_tag)
+);
+
+$module_subtype_label = elgg_echo('tgstheme:label:module_subtype');
+$module_subtype_input = elgg_view('input/text', array(
+	'name' => 'params[module_subtype]', 
+	'value' => $vars['entity']->module_subtype)
+);
+
+$module_description_label = elgg_echo('tgstheme:label:module_description');
+$module_description_input = elgg_view('input/text', array(
+	'name' => 'params[module_description]', 
+	'value' => $vars['entity']->module_description)
+);
+
+
 $content = <<<HTML
 	<br />
 	<div>
@@ -69,6 +104,26 @@ $content = <<<HTML
 	<div>
 		<label>$analytics_label</label><br />
 		$analytics_input
+	</div>
+	<div>
+		<label>$module_enable_label</label><br />
+		$module_enable_input
+	</div>
+	<div>
+		<label>$module_title_label</label><br />
+		$module_title_input
+	</div>
+	<div>
+		<label>$module_tag_label</label><br />
+		$module_tag_input
+	</div>
+	<div>
+		<label>$module_subtype_label</label><br />
+		$module_subtype_input
+	</div>
+	<div>
+		<label>$module_description_label</label><br />
+		$module_description_input
 	</div>
 HTML;
 
