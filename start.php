@@ -170,6 +170,7 @@ function tgstheme_init() {
 
 	// Add a new tab to the tabbed profile
 	elgg_register_plugin_hook_handler('tabs', 'profile', 'tgstheme_twitter_profile_tab_hander');
+	elgg_register_plugin_hook_handler('tabs', 'profile', 'tgstheme_liked_profile_tab_hander');
 	
 	// Add a hook handler for HTMLawed allowed styles
 	elgg_register_plugin_hook_handler('allowed_styles', 'htmlawed', 'tgstheme_allowed_styles_handler');
@@ -186,6 +187,7 @@ function tgstheme_init() {
 	elgg_register_ajax_view('file/composer');
 	elgg_register_ajax_view('webvideos/composer');
 	elgg_register_ajax_view('tgstheme/email_share');
+	elgg_register_ajax_view('tgstheme/modules/liked');
 	
 	return true;
 }
@@ -560,7 +562,8 @@ function tgstheme_ownerblock_menu_handler($hook, $type, $return, $params) {
 		foreach ($return as $item) {
 			$item->setText(substr($item->getText(), 6));
 		}
-	}
+	}	
+
 	return $return;
 }
 
@@ -571,6 +574,15 @@ function tgstheme_twitter_profile_tab_hander($hook, $type, $value, $params) {
 	if (!empty(elgg_get_page_owner_entity()->twitter)) {
 		$value[] = 'twitter_tab';
 	}
+	return $value;
+}
+
+
+/**
+ * Handler to add a 'Things I've Liked' tab to the tabbed profile
+ */
+function tgstheme_liked_profile_tab_hander($hook, $type, $value, $params) {
+	$value[] = 'liked_tab';
 	return $value;
 }
 

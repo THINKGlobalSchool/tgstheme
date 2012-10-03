@@ -48,6 +48,7 @@ $english = array(
 	'tgstheme:label:module_subtype' => 'Module subtype',
 	'tgstheme:label:module_description' => 'Module description',
 	'tgstheme:label:whatisthis' => 'What is this?',
+	'tgstheme:label:thingsliked' => 'Things %s Liked',
 	
 	// Admin
 	'tgstheme:label:helplink' => 'Help Link Title',
@@ -61,7 +62,6 @@ $english = array(
 
 
 ',
-	
 
 	// Stats
 	'tgstheme:stats:blog' => 'Blog Posts',
@@ -90,6 +90,7 @@ $english = array(
 	'userpicker:only_friends' => '', // Hide only friends
 	'twitter:notsetup' => 'User has not supplied a twitter username',
 	'profile:twitter_tab' => 'Twitter',
+	'profile:liked_tab' => 'Liked',
 
 	// Avatar overrides
 	'avatar' => 'Profile Picture',
