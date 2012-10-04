@@ -255,7 +255,7 @@ function home_page_handler($page) {
 			'title' => $module_title,
 			'tag' => elgg_get_plugin_setting('module_tag', 'tgstheme'),
 			'subtypes' => array(elgg_get_plugin_setting('module_subtype', 'tgstheme')),
-			'listing_type' => 'simple',
+			'listing_type' => 'simpleicon',
 			'restrict_tag' => TRUE,
 			'limit' => 2,
 			'module_type' => 'featured',
