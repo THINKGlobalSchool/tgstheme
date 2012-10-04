@@ -137,6 +137,9 @@ function tgstheme_init() {
 	// Extend custommenus CSS
 	elgg_extend_view('css/custommenus/css', 'css/tgstheme/custommenus');
 	
+	// Extend Fullcalendar CSS
+	elgg_extend_view('css/fullcalendar', 'css/tgstheme/fullcalendar');
+	
 	// Extend search/searchbox
 	if (elgg_get_plugin_setting('help_group', 'tgstheme') && elgg_is_logged_in()) {
 		elgg_extend_view('search/search_box', 'tgstheme/help_link');
