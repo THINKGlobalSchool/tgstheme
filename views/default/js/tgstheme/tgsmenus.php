@@ -28,7 +28,6 @@ elgg.tgsmenus.init = function() {
 // Click handler for toggler
 elgg.tgsmenus.toggleClick = function(event) {
 	var id = $(this).attr('href');
-	
 	// Hide all other popups, except this one
 	$('.tgstheme-entity-menu-actions').each(function() {
 		if (!$(this).is($(id))) {

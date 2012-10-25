@@ -286,10 +286,21 @@ table#stats-table td.stat {
 .elgg-menu-entity-core {
 	height: auto;
 	float: none;
-	text-align: right;
+	text-align: left;
 	width: 100%;
+	border-bottom: 1px dotted #CDCDCD;
+	padding-bottom: 4px;
 }
 
+.elgg-menu-entity-core.core-only-child {
+	border-bottom: none;
+	padding-bottom: 0px;
+}
+
+.elgg-menu-entity-core li {
+	margin-left: 0;
+	margin-right: 15px;
+}
 
 .elgg-menu-entity-hidden {
 	display: none;
@@ -375,6 +386,10 @@ span.actions-text {
 	color: #333333;
 	font-size: 11px !important;
 	text-transform: uppercase !important;
+}
+
+.elgg-module-featured > .elgg-head .entity-action-toggler span {
+	color: #333333;
 }
 
 .entity-action-toggler:hover span, 

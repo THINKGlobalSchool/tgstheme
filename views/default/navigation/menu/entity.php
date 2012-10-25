@@ -68,18 +68,6 @@ if ($entity_menu['info']) {
 	));
 }
 
-// Core menu
-if ($entity_menu['core']) {
-	$core = elgg_view('navigation/menu/elements/section', array(
-		'items' => $entity_menu['core'],
-		'class' => "elgg-menu elgg-menu-entity $class elgg-menu-{$vars['name']}-core clearfix elgg-menu-hz",
-		'section' => 'core',
-		'name' => $vars['name'],
-		'show_section_headers' => FALSE,
-		'item_class' => $item_class,
-	));
-}
-
 // Buttons menu
 if ($entity_menu['buttons']) {
 	$buttons = elgg_view('navigation/menu/elements/section', array(
@@ -122,6 +110,22 @@ if ($entity_menu['hidden']) {
 		'items' => $entity_menu['hidden'],
 		'class' => "$class elgg-menu-{$vars['name']}-hidden clearfix",
 		'section' => 'hidden',
+		'name' => $vars['name'],
+		'show_section_headers' => FALSE,
+		'item_class' => $item_class,
+	));
+}
+
+if (!$buttons && !$actions && !$other) {
+	$core_only_child = 'core-only-child';
+}
+
+// Core menu
+if ($entity_menu['core']) {
+	$core = elgg_view('navigation/menu/elements/section', array(
+		'items' => $entity_menu['core'],
+		'class' => "elgg-menu elgg-menu-entity $class elgg-menu-{$vars['name']}-core clearfix elgg-menu-hz $core_only_child",
+		'section' => 'core',
 		'name' => $vars['name'],
 		'show_section_headers' => FALSE,
 		'item_class' => $item_class,
