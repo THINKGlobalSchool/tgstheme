@@ -518,7 +518,7 @@ function tgstheme_entity_menu_handler($hook, $type, $return, $params) {
 	if (elgg_instanceof($params['entity'], 'object')) {
 		/* 
 		 We're going to make all new sections here:
-		 - default will be broken up into 'info' and 'actions' and 'other'
+		 - default will be broken up into 'info' 'core' 'buttons' 'actions' and 'other'
 		   we can add items to these sections manually as needed
 		*/
 
@@ -534,6 +534,7 @@ function tgstheme_entity_menu_handler($hook, $type, $return, $params) {
 			'edit',
 			'delete',
 			'likes',
+			'history',
 		);
 
 		// Assign new sections
@@ -545,12 +546,25 @@ function tgstheme_entity_menu_handler($hook, $type, $return, $params) {
 					if ($item->getName() == 'likes' && !elgg_is_logged_in()) {
 						unset($return[$idx]); // Likes are showing up not logged in for some reason
 					}
-			        $item->setSection('actions');
+			        $item->setSection('core');
 				} else {
 			        $item->setSection('other');
 				}
 			}
 		}
+
+		// Add entity anchor
+		$options = array(
+			'name' => 'entity_anchor',
+			'text' => '',
+			'title' => 'entity_anchor',
+			'href' => '#',
+			'item_class' => 'entity_anchor_hidden',
+			'section' => 'info',
+			'id' => 'entity-anchor-' . $params['entity']->guid,
+			'priority' => 0,
+		);
+		$return[] = ElggMenuItem::factory($options);
 	}
 	return $return;
 }
