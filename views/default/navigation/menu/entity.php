@@ -26,8 +26,10 @@ if (!elgg_instanceof($vars['entity'], 'object')) {
 
 $entity_menu = $vars['menu'];
 
+//elgg_dump($entity_menu);
+
 // Count actions and other menu items
-$count = (int)(count($entity_menu['actions']) + count($entity_menu['other']));
+$count = (int)(count($entity_menu['core']) + count($entity_menu['buttons']) + count($entity_menu['actions']) + count($entity_menu['other']));
 
 // Add the actions button to the info menu if we have actions/other
 if ($count > 0) {
@@ -47,17 +49,43 @@ if ($count > 0) {
 $vars['name'] = preg_replace('/[^a-z0-9\-]/i', '-', $vars['name']);
 $item_class = elgg_extract('item_class', $vars, '');
 
-$class = "elgg-menu elgg-menu-{$vars['name']}";
 if (isset($vars['class'])) {
 	$class .= " {$vars['class']}";
 }
+
+// Strip out 'elgg-menu-hz'
+$class = str_replace('elgg-menu-hz', '', $class);
 
 // Info Menu
 if ($entity_menu['info']) {
 	$info = elgg_view('navigation/menu/elements/section', array(
 		'items' => $entity_menu['info'],
-		'class' => "$class elgg-menu-{$vars['name']}-info",
+		'class' => "elgg-menu elgg-menu-entity $class elgg-menu-{$vars['name']}-info elgg-menu-hz",
 		'section' => 'info',
+		'name' => $vars['name'],
+		'show_section_headers' => FALSE,
+		'item_class' => $item_class,
+	));
+}
+
+// Core menu
+if ($entity_menu['core']) {
+	$core = elgg_view('navigation/menu/elements/section', array(
+		'items' => $entity_menu['core'],
+		'class' => "elgg-menu elgg-menu-entity $class elgg-menu-{$vars['name']}-core clearfix elgg-menu-hz",
+		'section' => 'core',
+		'name' => $vars['name'],
+		'show_section_headers' => FALSE,
+		'item_class' => $item_class,
+	));
+}
+
+// Buttons menu
+if ($entity_menu['buttons']) {
+	$buttons = elgg_view('navigation/menu/elements/section', array(
+		'items' => $entity_menu['buttons'],
+		'class' => "$class elgg-menu-{$vars['name']}-buttons clearfix",
+		'section' => 'buttons',
 		'name' => $vars['name'],
 		'show_section_headers' => FALSE,
 		'item_class' => $item_class,
@@ -104,6 +132,8 @@ $content = <<<HTML
 	<div class='tgstheme-entity-menu'>	
 		$info
 		<div id='entity-actions-{$vars['entity']->guid}' class='tgstheme-entity-menu-actions'>
+			$core
+			$buttons
 			$actions
 			$other
 			$hidden

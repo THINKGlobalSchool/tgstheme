@@ -251,6 +251,10 @@ table#stats-table td.stat {
 
 /* Entity Menu Improvements */
 
+.entity_anchor_hidden {
+	display: none !important;
+}
+
 .tgstheme-entity-menu {
 	float: right;
 	height: 25px;
@@ -273,12 +277,45 @@ table#stats-table td.stat {
 	margin-left: 5px;
 }
 
+.elgg-menu-entity-buttons {
+	float: none;
+	height: auto;
+	margin-top: 11px;
+}
+
+.elgg-menu-entity-core {
+	height: auto;
+	float: none;
+	text-align: right;
+	width: 100%;
+}
+
+
 .elgg-menu-entity-hidden {
 	display: none;
 }
 
 .elgg-menu-entity-actions {
-	
+	height: auto;
+	float: none;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	text-align: left;
+}
+
+.elgg-menu-entity-actions li {
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/elgg_sprites.png) no-repeat left;
+	background-position: 0 -1008px;
+	height: 16px;
+	margin-top: 5px;
+}
+
+.elgg-menu-entity-actions li:hover {
+	background-position: 0 -990px;
+}
+
+.elgg-menu-entity-actions li a {
+	margin-left: 20px;
 }
 
 .tgstheme-entity-menu-actions .notch {
@@ -313,9 +350,7 @@ table#stats-table td.stat {
 	-webkit-box-shadow: 0 0 2px #BBBBBB;
 	-moz-box-shadow: 0 0 2px #BBBBBB;
 	min-height: 24px;
-	padding-bottom: 4px;
-	padding-right: 10px;
-	padding-top: 8px;
+	padding: 8px 10px 4px;
 	position: absolute;
 	z-index: 9004;
 }
