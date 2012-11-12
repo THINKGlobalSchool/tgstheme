@@ -220,7 +220,9 @@ function home_page_handler($page) {
 	$params['sidebar'] .= elgg_view('tgstheme/modules/profile');
 
 	// Show launchpad module
-	$params['sidebar'] .= elgg_view('launchpad/module');
+	if (elgg_is_active_plugin('launchpad')) {
+		$params['sidebar'] .= elgg_view('launchpad/module');
+	}
 
 	// Show groups module
 	$params['sidebar'] .= elgg_view('tgstheme/modules/groups', array('limit' => 6));
@@ -243,7 +245,9 @@ function home_page_handler($page) {
 	$params['content'] .= elgg_view_module('info', elgg_echo("wire-extender:label:thewire:doing"), $composer);
 
 	// Announcements
-	$params['content'] .= elgg_view('announcements/announcement_list');
+	if (elgg_is_active_plugin('announcements')) {
+		$params['content'] .= elgg_view('announcements/announcement_list');
+	}
 	
 	// Extra info module
 	if (elgg_get_plugin_setting('module_enable', 'tgstheme')) {
