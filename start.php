@@ -86,7 +86,7 @@ function tgstheme_init() {
 	if (elgg_is_logged_in()) {
 		$home_url = 'home';
 	} else {
-		$home_url = '';
+		$home_url = elgg_get_site_url();
 	}
 	$item = new ElggMenuItem('home', "<span class='elgg-icon elgg-icon-home'></span>", $home_url);
 	elgg_register_menu_item('site', $item);
