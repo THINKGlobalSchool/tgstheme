@@ -26,5 +26,10 @@
 		<version>1.8</version>
 		<comparison>ge</comparison>
 	</requires>
+	<requires>
+		<type>priority</type>
+		<priority>after</priority>
+		<plugin>tinymce</plugin>
+	</requires>
 	<activate_on_install>true</activate_on_install>
 </plugin_manifest>
