@@ -50,6 +50,14 @@ $english = array(
 	'tgstheme:label:whatisthis' => 'What is this?',
 	'tgstheme:label:thingsliked' => 'Things %s Liked',
 	
+	'tgstheme:stats:blog' => 'Blog Posts',
+	'tgstheme:stats:photo' => 'Photos',
+	'tgstheme:stats:bookmark' => 'Bookmarks',
+	'tgstheme:stats:rubric' => 'Rubrics',
+	'tgstheme:stats:group' => 'Groups',
+	'tgstheme:stats:todo' => 'Complete To Do\'s',
+	'tgstheme:stats:spotvideos' => 'Spot Videos',
+	
 	// Admin
 	'tgstheme:label:helplink' => 'Help Link Title',
 	'tgstheme:label:helpgroup' => 'Link To Group:',
