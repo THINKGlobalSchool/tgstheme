@@ -14,26 +14,26 @@ $ia = elgg_get_ignore_access();
 elgg_set_ignore_access(true);
 
 $blog_label = elgg_echo('tgstheme:stats:blog');
-$blog_count = elgg_get_entities(array('type' => 'object', 'subtype' => 'blog', 'count' => true));
+$blog_count = (int)elgg_get_entities(array('type' => 'object', 'subtype' => 'blog', 'count' => true));
 
 $photo_label = elgg_echo('tgstheme:stats:photo');
-$photo_count = elgg_get_entities(array('type' => 'object', 'subtype' => 'image', 'count' => true));
+$photo_count = (int)elgg_get_entities(array('type' => 'object', 'subtype' => 'image', 'count' => true));
 
 $videos_label = elgg_echo('tgstheme:stats:spotvideos');
-$videos_count = elgg_get_entities(array('type' => 'object', 'subtype' => 'simplekaltura_video', 'count' => true));
+$videos_count = (int)elgg_get_entities(array('type' => 'object', 'subtype' => 'simplekaltura_video', 'count' => true));
 
 $bookmark_label = elgg_echo('tgstheme:stats:bookmark');
-$bookmark_count = elgg_get_entities(array('type' => 'object', 'subtype' => 'bookmarks', 'count' => true));
+$bookmark_count = (int)elgg_get_entities(array('type' => 'object', 'subtype' => 'bookmarks', 'count' => true));
 
 $rubric_label = elgg_echo('tgstheme:stats:rubric');
-$rubric_count = elgg_get_entities(array('type' => 'object', 'subtype' => 'rubric', 'count' => true));
+$rubric_count = (int)elgg_get_entities(array('type' => 'object', 'subtype' => 'rubric', 'count' => true));
 
 $group_label = elgg_echo('tgstheme:stats:group');
-$group_count = elgg_get_entities(array('type' => 'group', 'count' => true));
+$group_count = (int)elgg_get_entities(array('type' => 'group', 'count' => true));
 
 // This actually counts submissions instead of todos
 $todo_label = elgg_echo('tgstheme:stats:todo');
-$todo_count = elgg_get_entities(array('type' => 'object', 'subtype' => 'todosubmission', 'count' => true)); 
+$todo_count = (int)elgg_get_entities(array('type' => 'object', 'subtype' => 'todosubmission', 'count' => true)); 
 
 elgg_set_ignore_access($ia);
 
