@@ -395,7 +395,6 @@ function tgstheme_river_page_handler($page) {
  */
 function home_redirect($hook, $entity_type, $returnvalue, $params) {
 	forward('home');
-	return $returnvalue;
 }
 
 /**
