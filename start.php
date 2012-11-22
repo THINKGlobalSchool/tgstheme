@@ -508,7 +508,7 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 
 		if ($item->getName() == 'messages') {
 			$text = $item->getText();
-			$item->setText($text . elgg_echo('messages'));
+			$item->setText($text);
 		}
 	}
 	return $items;
