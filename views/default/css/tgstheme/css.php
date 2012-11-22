@@ -532,3 +532,8 @@ span.actions-text {
 .home-small {
 	font-size: 85% !important; 
 }
+
+/** Messages Topbar **/
+.elgg-menu-item-messages a {
+	padding: 2px 8px 0 15px !important;
+}
