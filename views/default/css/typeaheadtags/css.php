@@ -36,6 +36,7 @@ li.typeaheadtags-help-button:hover {
 div.typeaheadtags-help-container {
 	margin-top: 5px;
 	display: none;
+	background: #FFFFFF;
 }
 
 table#typeaheadtags-tags-list {
@@ -68,6 +69,10 @@ div#typeaheadtags-module-help h3 {
 
 a.typeaheadtags-help-close:hover {
 	cursor: pointer;
+}
+
+.elgg-input-tags-parent .as-selections {
+	background: #FFFFFF;
 }
 
 span.tag-name a:hover {
