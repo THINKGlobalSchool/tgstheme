@@ -1,5 +1,5 @@
 <style type='text/css'>
-	li {
+	.elgg-output li {
 		padding-top: 5px;
 	}
 </style>
