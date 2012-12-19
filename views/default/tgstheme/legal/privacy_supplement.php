@@ -5,7 +5,7 @@
 </style>
 <h1>SUPPLEMENTAL POLICY TO THE TGS PRIVACY AND INFORMATION SECURITY POLICY ("POLICY")</h1>
 <br />
-<p>EFFECTIVE DATE: FEBRUARY 1, 2013</p>
+<p>EFFECTIVE DATE: JANUARY 3RD, 2013</p>
 
 <p>This Think Global School ("TGS") Supplemental Policy ("Supplemental Policy") to the <a href="http://thinkglobalschool.org/privacy-policy/">TGS Privacy and Information Security Policy</a> ("Master Policy") supplements the Master Policy. Together, the Supplemental Policy and the Master Policy constitute the TGS Privacy and Information Security Policy ("Policy"). This Supplemental Policy is being made available to you because you have been invited to enroll in TGS, are the parent or guardian of a student who has received such an offer, or you have been made an offer of employment or other retention by TGS.</p>
 
