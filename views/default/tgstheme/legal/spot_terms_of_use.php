@@ -5,7 +5,7 @@
 </style>
 <h1>THINK SPOT TERMS OF USE</h1>
 <br />
-<p>EFFECTIVE DATE: FEBRUARY 1, 2013</p>
+<p>EFFECTIVE DATE: JANUARY 3RD, 2013</p>
 
 <p>Welcome to spot.thinkglobalschool.com. Spot.thinkglobalschool.com is operated for Think Global School ("TGS") students and faculty ("<strong>Spot</strong>"). Spot has members-only areas that are governed by these Think Global School Spot Terms of Use ("<strong>Spot Terms</strong>"). TGS also offers a mobile application in connection with Spot ("<strong>Spot App</strong>")—the Spot App is also governed by these Spot Terms. If you have not been authorized by TGS to become a member of Spot or to use the Spot App, you are not authorized to use these areas of Spot or the Spot App.</p> 
 
