@@ -41,23 +41,23 @@ $group_guid = $group->guid;
 
 $updated_label = elgg_echo('tgstheme:label:updated');
 $updated = elgg_view_friendly_time($time);
-$activity_link = elgg_view('output/url', array(
-	'text' => elgg_echo('tgstheme:label:latestactivity'),
-	'href' => "#toggle-activity-{$group_guid}",
-	'rel' => 'toggle',
-));
+// $activity_link = elgg_view('output/url', array(
+// 	'text' => elgg_echo('tgstheme:label:latestactivity'),
+// 	'href' => "#toggle-activity-{$group_guid}",
+// 	'rel' => 'toggle',
+// ));
 
 
 
-elgg_push_context('widgets');
-$db_prefix = elgg_get_config('dbprefix');
-$activity = elgg_list_river(array(
-	'limit' => 3,
-	'pagination' => false,
-	'joins' => array("JOIN {$db_prefix}entities e1 ON e1.guid = rv.object_guid"),
-	'wheres' => array("(e1.container_guid = $group_guid)"),
-));
-elgg_pop_context();
+// elgg_push_context('widgets');
+// $db_prefix = elgg_get_config('dbprefix');
+// $activity = elgg_list_river(array(
+// 	'limit' => 3,
+// 	'pagination' => false,
+// 	'joins' => array("JOIN {$db_prefix}entities e1 ON e1.guid = rv.object_guid"),
+// 	'wheres' => array("(e1.container_guid = $group_guid)"),
+// ));
+// elgg_pop_context();
 
 
 $content = <<<HTML
@@ -72,7 +72,7 @@ $content = <<<HTML
 		<div class='tgstheme-group-updated'>
 			<span class='elgg-subtext'>$updated_label</span><br />
 			<span class='time-updated'>$updated</span><br />
-			<span class='elgg-subtext activity-link'>$activity_link</span>
+			<!--<span class='elgg-subtext activity-link'>$activity_link</span>-->
 		</div>
 		<div style='clear: both;'></div>
 		<div id='toggle-activity-$group_guid' style='display: none;'>$activity</div>
