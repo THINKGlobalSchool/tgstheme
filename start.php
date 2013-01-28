@@ -227,15 +227,15 @@ function home_page_handler($page) {
 	// Show groups module
 	$params['sidebar'] .= elgg_view('tgstheme/modules/groups', array('limit' => 6));
 
-	// Grab tabs
-	$tags = elgg_get_tags(array('threshold' => 2, 'limit' => 50));
+	// // Grab tabs
+	// $tags = elgg_get_tags(array('threshold' => 2, 'limit' => 50));
 
-	// Shuffle tags
-	shuffle($tags);
+	// // Shuffle tags
+	// shuffle($tags);
 
-	// Tag Module
-	$options = array('class' => 'tgstheme-module');
-	$params['sidebar'] .= elgg_view_module('featured', elgg_echo('tagcloud'), elgg_view("output/tagcloud", array('value' => $tags)), $options);
+	// // Tag Module
+	// $options = array('class' => 'tgstheme-module');
+	// $params['sidebar'] .= elgg_view_module('featured', elgg_echo('tagcloud'), elgg_view("output/tagcloud", array('value' => $tags)), $options);
 
 	// Extendable content view
 	$params['content'] = elgg_view('tgstheme/home/content_top');
