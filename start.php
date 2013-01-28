@@ -228,28 +228,30 @@ function home_page_handler($page) {
 	// Show groups module
 	$params['sidebar'] .= elgg_view('tgstheme/modules/groups', array('limit' => 6));
 
-	// // Grab tabs
-	// $tags = elgg_get_tags(array('threshold' => 2, 'limit' => 50));
-
-	// // Shuffle tags
-	// shuffle($tags);
-
-	// // Tag Module
-	// $options = array('class' => 'tgstheme-module');
-	// $params['sidebar'] .= elgg_view_module('featured', elgg_echo('tagcloud'), elgg_view("output/tagcloud", array('value' => $tags)), $options);
-
 	// Extendable content view
 	$params['content'] = elgg_view('tgstheme/home/content_top');
 
-	// Share box area
-	$composer = elgg_view('page/elements/composer', array('entity_guid' => elgg_get_logged_in_user_guid()));
+	// Non-ajaxy composer
+	//$composer = elgg_view('page/elements/composer', array('entity_guid' => elgg_get_logged_in_user_guid()));
 
-	// $composer_module .= elgg_view('modules/genericmodule', array(
-	// 	'view' => 'page/elements/composer',
-	// 	'view_vars' => array('entity_guid' => elgg_get_logged_in_user_guid()), 
-	// ));
-	$params['content'] .= elgg_view_module('info', elgg_echo("wire-extender:label:thewire:doing"), $composer);
+	elgg_load_js('autosuggest');
+	elgg_load_css('autosuggest');
+	elgg_load_js('elgg.typeaheadtags');
+	elgg_load_library('elgg:blog');
+	elgg_load_library('elgg:bookmarks');
+	elgg_load_library('elgg:file');
+	elgg_load_js('elgg.fileextender');
+	elgg_load_js('jQuery-File-Upload');
+	elgg_load_css('elgg.fileextender');
+	elgg_load_css('elgg.webvideos');
+	elgg_load_js('elgg.webvideos');
 
+	$composer_module .= elgg_view('modules/genericmodule', array(
+		'view' => 'page/elements/composer',
+		'view_vars' => array('entity_guid' => elgg_get_logged_in_user_guid()), 
+	));
+
+	$params['content'] .= elgg_view_module('info', elgg_echo("wire-extender:label:thewire:doing"), $composer_module);
 	// Announcements
 	if (elgg_is_active_plugin('announcements')) {
 		$params['content'] .= elgg_view('announcements/announcement_list');
