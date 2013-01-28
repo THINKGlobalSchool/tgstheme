@@ -192,6 +192,7 @@ function tgstheme_init() {
 	elgg_register_ajax_view('tgstheme/email_share');
 	elgg_register_ajax_view('tgstheme/modules/liked');
 	elgg_register_ajax_view('page/elements/composer');
+	elgg_register_ajax_view('page/elements/topbar_ajax');
 	
 	return true;
 }
