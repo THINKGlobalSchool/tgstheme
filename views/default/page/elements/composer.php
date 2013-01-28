@@ -3,11 +3,12 @@
  * @author Evan Winslow
  * @link https://github.com/ewinslow/elgg-facebook_theme
  */
+$entity = get_entity($vars['entity_guid']);
 ?>
 <div class="elgg-composer">
 	<?php 
 		echo elgg_view_menu('composer', array(
-			'entity' => $vars['entity'],
+			'entity' => $entity,
 			'class' => 'elgg-menu-hz',
 			'sort_by' => 'priority',
 		));
