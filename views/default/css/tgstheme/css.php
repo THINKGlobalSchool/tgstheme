@@ -537,3 +537,8 @@ span.actions-text {
 .elgg-menu-item-messages a {
 	padding: 2px 8px 0 15px !important;
 }
+
+/** Ajax topbar **/
+.elgg-page-topbar > .elgg-inner {
+	display: none;
+}
