@@ -191,6 +191,7 @@ function tgstheme_init() {
 	elgg_register_ajax_view('webvideos/composer');
 	elgg_register_ajax_view('tgstheme/email_share');
 	elgg_register_ajax_view('tgstheme/modules/liked');
+	elgg_register_ajax_view('page/elements/composer');
 	
 	return true;
 }
@@ -241,7 +242,12 @@ function home_page_handler($page) {
 	$params['content'] = elgg_view('tgstheme/home/content_top');
 
 	// Share box area
-	$composer = elgg_view('page/elements/composer', array('entity' => elgg_get_logged_in_user_entity()));
+	$composer = elgg_view('page/elements/composer', array('entity_guid' => elgg_get_logged_in_user_guid()));
+
+	// $composer_module .= elgg_view('modules/genericmodule', array(
+	// 	'view' => 'page/elements/composer',
+	// 	'view_vars' => array('entity_guid' => elgg_get_logged_in_user_guid()), 
+	// ));
 	$params['content'] .= elgg_view_module('info', elgg_echo("wire-extender:label:thewire:doing"), $composer);
 
 	// Announcements
@@ -406,7 +412,7 @@ function home_redirect($hook, $entity_type, $returnvalue, $params) {
 function tgstheme_composer_menu_handler($hook, $type, $items, $params) {
 	$entity = $params['entity'];
 
-	if (elgg_is_active_plugin('thewire') && $entity->canWriteToContainer(0, 'object', 'thewire')) {
+	if (elgg_is_active_plugin('thewire')) {
 		$items[] = ElggMenuItem::factory(array(
 			'name' => 'thewire',
 			'href' => "/ajax/view/thewire/composer?container_guid=$entity->guid",
@@ -418,21 +424,7 @@ function tgstheme_composer_menu_handler($hook, $type, $items, $params) {
 		elgg_view('thewire/composer');
 	}
 
-	/*
-	if (elgg_is_active_plugin('messageboard') && $entity->canAnnotate(0, 'messageboard')) {
-		$items[] = ElggMenuItem::factory(array(
-			'name' => 'messageboard',
-			'href' => "/ajax/view/messageboard/composer?entity_guid=$entity->guid",
-			'text' => elgg_view_icon('speech-bubble-alt') . elgg_echo("composer:annotation:messageboard"),
-			'priority' => 200,
-		));
-
-		//trigger any javascript loads that we might need
-		elgg_view('messageboard/composer');
-	}
-	*/
-
-	if (elgg_is_active_plugin('bookmarks') && $entity->canWriteToContainer(0, 'object', 'bookmarks')) {
+	if (elgg_is_active_plugin('bookmarks')) {
 		$items[] = ElggMenuItem::factory(array(
 			'name' => 'bookmarks',
 			'href' => "/ajax/view/bookmarks/composer?container_guid=$entity->guid",
@@ -444,7 +436,7 @@ function tgstheme_composer_menu_handler($hook, $type, $items, $params) {
 		elgg_view('bookmarks/composer');
 	}
 
-	if (elgg_is_active_plugin('blog') && $entity->canWriteToContainer(0, 'object', 'blog')) {
+	if (elgg_is_active_plugin('blog')) {
 		$items[] = ElggMenuItem::factory(array(
 			'name' => 'blog',
 			'href' => "/ajax/view/blog/composer?container_guid=$entity->guid",
@@ -456,7 +448,7 @@ function tgstheme_composer_menu_handler($hook, $type, $items, $params) {
 		elgg_view('blog/composer');
 	}
 
-	if (elgg_is_active_plugin('file') && $entity->canWriteToContainer(0, 'object', 'file')) {
+	if (elgg_is_active_plugin('file')) {
 		$items[] = ElggMenuItem::factory(array(
 			'name' => 'file',
 			'href' => "/ajax/view/file/composer?container_guid=$entity->guid",
@@ -468,7 +460,7 @@ function tgstheme_composer_menu_handler($hook, $type, $items, $params) {
 		elgg_view('file/composer');
 	}
 
-	if (elgg_is_active_plugin('webvideos') && $entity->canWriteToContainer(0, 'object', 'webvideo')) {
+	if (elgg_is_active_plugin('webvideos')) {
 		
 		$icon = "<span class=\"elgg-icon elgg-icon-video\"></span>";
 		
