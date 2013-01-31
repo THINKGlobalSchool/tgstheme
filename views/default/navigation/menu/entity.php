@@ -26,6 +26,8 @@ if (!elgg_instanceof($vars['entity'], 'object')) {
 
 $entity_menu = $vars['menu'];
 
+$uid = uniqid();
+
 //elgg_dump($entity_menu);
 
 // Count actions and other menu items
@@ -36,7 +38,7 @@ if ($count > 0) {
 	$options = array(
 		'name' => 'entity-actions',
 		'text' => "<span class='actions-text'>" . elgg_echo('tgstheme:label:actions') . "</span><span class='actions-caret'>▾</span>",
-		'href' => '#entity-actions-' . $vars['entity']->guid,
+		'href' => '#entity-actions-' . $vars['entity']->guid . '-' . $uid,
 		'class' => 'entity-action-toggler elgg-button elgg-button-action',
 		'rel' => 'popup',
 		'priority' => 9000,
@@ -135,7 +137,7 @@ if ($entity_menu['core']) {
 $content = <<<HTML
 	<div class='tgstheme-entity-menu'>	
 		$info
-		<div id='entity-actions-{$vars['entity']->guid}' class='tgstheme-entity-menu-actions'>
+		<div id='entity-actions-{$vars['entity']->guid}-{$uid}' class='tgstheme-entity-menu-actions'>
 			$core
 			$buttons
 			$actions
