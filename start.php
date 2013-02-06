@@ -168,6 +168,9 @@ function tgstheme_init() {
 	// Entity menu hook, used to reorganize the entity menu
 	elgg_register_plugin_hook_handler('register', 'menu:entity', 'tgstheme_entity_menu_handler', 9999);
 
+	// Hook into entity menu for tidypics specific items
+	elgg_register_plugin_hook_handler('register', 'menu:entity', 'tgstheme_tidypics_entity_menu_handler');
+
 	// Entity menu hook, used to reorganize the entity menu
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'tgstheme_ownerblock_menu_handler', 9999);
 
@@ -563,6 +566,30 @@ function tgstheme_entity_menu_handler($hook, $type, $return, $params) {
 			'priority' => 0,
 		);
 		$return[] = ElggMenuItem::factory($options);
+	}
+	return $return;
+}
+
+/**
+ * Customize tidypics (photos/albums) entity menu items
+ */ 
+function tgstheme_tidypics_entity_menu_handler($hook, $type, $return, $params) {
+	if (elgg_instanceof($params['entity'], 'object', 'image')) {
+		$info_items = array('album-info');
+		$action_items = array('tagging');
+		foreach ($return as $idx => $item) {
+			if ($item->getSection() == 'default') {
+				// Set info items
+				if (in_array($item->getName(), $info_items)) {
+					$item->setSection('info');
+				}
+
+				// Set actions items
+				if (in_array($item->getName(), $action_items)) {
+					$item->setSection('actions');
+				}
+			}
+		}
 	}
 	return $return;
 }

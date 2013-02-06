@@ -98,6 +98,15 @@ elgg.tgsmenus.ownerblockMenuHandler = function(hook, type, params, options) {
 	return null;
 };
 
+// Convenience function to hide all menus
+elgg.tgsmenus.hideMenus = function() {
+	$('.tgstheme-entity-menu-actions').fadeOut();
+}
+
 elgg.register_hook_handler('getOptions', 'ui.popup', elgg.tgsmenus.entityMenuHandler);
 elgg.register_hook_handler('getOptions', 'ui.popup', elgg.tgsmenus.ownerblockMenuHandler);
 elgg.register_hook_handler('init', 'system', elgg.tgsmenus.init);
+elgg.register_hook_handler('peopleTagStarted', 'tidypics', elgg.tgsmenus.hideMenus);
+elgg.register_hook_handler('photoLightboxLikeClick', 'tidypics', elgg.tgsmenus.hideMenus);
+elgg.register_hook_handler('photoLightboxBeforeShow', 'tidypics', elgg.tgsmenus.hideMenus);
+elgg.register_hook_handler('popState', 'tidypics', elgg.tgsmenus.hideMenus);

@@ -542,3 +542,8 @@ span.actions-text {
 .elgg-page-topbar > .elgg-inner {
 	display: none;
 }
+
+/** Tidypics **/
+.elgg-menu-item-tagging {
+	background-position: 0 -1044px !important;
+}
