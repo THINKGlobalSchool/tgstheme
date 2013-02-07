@@ -109,4 +109,5 @@ elgg.register_hook_handler('init', 'system', elgg.tgsmenus.init);
 elgg.register_hook_handler('peopleTagStarted', 'tidypics', elgg.tgsmenus.hideMenus);
 elgg.register_hook_handler('photoLightboxLikeClick', 'tidypics', elgg.tgsmenus.hideMenus);
 elgg.register_hook_handler('photoLightboxBeforeShow', 'tidypics', elgg.tgsmenus.hideMenus);
+elgg.register_hook_handler('photoLightboxBeforeClose', 'tidypics', elgg.tgsmenus.hideMenus);
 elgg.register_hook_handler('popState', 'tidypics', elgg.tgsmenus.hideMenus);
