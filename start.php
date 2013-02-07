@@ -574,9 +574,9 @@ function tgstheme_entity_menu_handler($hook, $type, $return, $params) {
  * Customize tidypics (photos/albums) entity menu items
  */ 
 function tgstheme_tidypics_entity_menu_handler($hook, $type, $return, $params) {
-	if (elgg_instanceof($params['entity'], 'object', 'image')) {
+	if (elgg_instanceof($params['entity'], 'object', 'image') || elgg_instanceof($params['entity'], 'object', 'album')) {
 		$info_items = array('album-info');
-		$action_items = array('tagging');
+		$action_items = array('tagging', 'set_cover', 'sort');
 		foreach ($return as $idx => $item) {
 			if ($item->getSection() == 'default') {
 				// Set info items
@@ -591,6 +591,7 @@ function tgstheme_tidypics_entity_menu_handler($hook, $type, $return, $params) {
 			}
 		}
 	}
+
 	return $return;
 }
 
