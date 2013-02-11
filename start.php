@@ -576,7 +576,7 @@ function tgstheme_entity_menu_handler($hook, $type, $return, $params) {
 function tgstheme_tidypics_entity_menu_handler($hook, $type, $return, $params) {
 	if (elgg_instanceof($params['entity'], 'object', 'image') || elgg_instanceof($params['entity'], 'object', 'album')) {
 		$info_items = array('album-info');
-		$action_items = array('tagging', 'set_cover', 'sort');
+		$action_items = array('tagging', 'set_cover', 'sort', 'move_to_album');
 		foreach ($return as $idx => $item) {
 			if ($item->getSection() == 'default') {
 				// Set info items
