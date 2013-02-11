@@ -111,3 +111,4 @@ elgg.register_hook_handler('photoLightboxLikeClick', 'tidypics', elgg.tgsmenus.h
 elgg.register_hook_handler('photoLightboxBeforeShow', 'tidypics', elgg.tgsmenus.hideMenus);
 elgg.register_hook_handler('photoLightboxBeforeClose', 'tidypics', elgg.tgsmenus.hideMenus);
 elgg.register_hook_handler('popState', 'tidypics', elgg.tgsmenus.hideMenus);
+elgg.register_hook_handler('moveToAlbumOpened', 'tidypics', elgg.tgsmenus.hideMenus);
