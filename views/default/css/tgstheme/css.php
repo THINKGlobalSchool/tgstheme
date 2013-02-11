@@ -508,11 +508,11 @@ span.actions-text {
 /* Fancybox Overrides */
 
 #fancybox-wrap {
-	z-index: 9001 !important;
+	z-index: 9002 !important;
 }
 
 #fancybox-loading {
-	z-index: 9002 !important;
+	z-index: 9003 !important;
 }
 
 /* Home page modules */
