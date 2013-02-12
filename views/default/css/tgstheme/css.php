@@ -547,3 +547,7 @@ span.actions-text {
 .elgg-menu-item-tagging {
 	background-position: 0 -1044px !important;
 }
+
+div.tidypics-upload-image-element .tidypics-upload-image-progress .tidypics-upload-image-progress-bar {
+	background: darkred !important;
+}
