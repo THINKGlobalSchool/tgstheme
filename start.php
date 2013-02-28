@@ -19,6 +19,7 @@
  *   * search/css
  *   * search/search_box
  *   * js/tinymce
+ *   * bookmarks/bookmarklet
  *
  * Composer code borrowed from Evan Winslow's Elgg Facebook Theme:
  * https://github.com/ewinslow/elgg-facebook_theme
@@ -78,6 +79,9 @@ function tgstheme_init() {
 
 	// Register 'legal' page handler
 	elgg_register_page_handler('legal','legal_page_handler');
+
+	// Register bookmarklet page handler
+	elgg_register_page_handler('bookmarklet','bookmarklet_page_handler');
 
 	// Register activity ping page handler
 	elgg_register_page_handler('activity_ping', 'ping_page_handler');
@@ -367,6 +371,24 @@ function ping_page_handler($page) {
 		return TRUE;
 	}
 	return FALSE;
+}
+
+/* Bookmarklet Page Handler */
+function bookmarklet_page_handler($page) {
+	switch ($page[0]) {
+		case 'add':
+			elgg_load_library('elgg:bookmarks');
+
+			$content = elgg_view('tgstheme/bookmarklet');
+			
+			echo elgg_view_page($title, $content, 'bookmarklet');
+
+			break;
+		default:
+			forward();
+			break;
+	}
+	return TRUE;
 }
 
 /**

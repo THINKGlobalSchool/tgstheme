@@ -551,3 +551,17 @@ span.actions-text {
 div.tidypics-upload-image-element .tidypics-upload-image-progress .tidypics-upload-image-progress-bar {
 	background: darkred !important;
 }
+
+/** Bookmarklet **/
+body#elgg-bookmarklet-body {
+	background-color: transparent;
+	overflow: hidden;
+}
+
+div#elgg-bookmarklet-wrapper {
+	width: 400px;
+}
+
+div#elgg-bookmarklet-form {
+	padding: 10px;
+}
