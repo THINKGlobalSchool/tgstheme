@@ -57,6 +57,12 @@ $english = array(
 	'tgstheme:stats:group' => 'Groups',
 	'tgstheme:stats:todo' => 'Complete To Do\'s',
 	'tgstheme:stats:spotvideos' => 'Spot Videos',
+
+	// Bookmarklet
+	'bookmarklet:bookmarkthis' => 'Bookmark this page on %s',
+	'bookmarklet:login' => 'Log in to bookmark this page',
+	'bookmarks:this' => "Bookmark this page on %s",
+	'bookmarks:this:group' => "Bookmark in %s on %s",
 	
 	// Admin
 	'tgstheme:label:helplink' => 'Help Link Title',
