@@ -56,7 +56,9 @@ echo <<<JAVASCRIPT
 					tinyMCE.triggerSave();
 				}
 
-				elgg.action($(this).attr('action'), {
+				var action = $(this).attr('action').replace('http', 'https');
+
+				elgg.action(action, {
 					data: $(this).serialize(),
 					success: function(json) {
 						$.fancybox.close();
@@ -73,7 +75,10 @@ echo <<<JAVASCRIPT
 			// Ajax submit login form
 			$('form.elgg-form-login').submit(function(event) {
 				event.preventDefault();
-				elgg.action($(this).attr('action'), {
+				
+				var action = $(this).attr('action').replace('http', 'https');
+				
+				elgg.action(action, {
 					data: $(this).serialize(),
 					success: function(json) {
 						$.fancybox.close();
