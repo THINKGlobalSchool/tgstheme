@@ -23,8 +23,7 @@ if (!$name && ($user = elgg_get_logged_in_user_entity())) {
 	$name = $user->username;
 }
 
-$url = str_replace('http://','https://', elgg_get_site_url());
-
+$url = elgg_get_site_url();
 $img = elgg_view('output/img', array(
 	'src' => 'mod/bookmarks/graphics/bookmarklet.gif',
 	'alt' => $title,
