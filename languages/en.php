@@ -63,6 +63,7 @@ $english = array(
 	'bookmarklet:login' => 'Log in to bookmark this page',
 	'bookmarks:this' => "Bookmark this page on %s",
 	'bookmarks:this:group' => "Bookmark in %s on %s",
+	'bookmarklet:saved' => 'Successfully saved bookmark!',
 	
 	// Admin
 	'tgstheme:label:helplink' => 'Help Link Title',

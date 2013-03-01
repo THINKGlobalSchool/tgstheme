@@ -71,11 +71,18 @@ echo <<<JAVASCRIPT
 					tinyMCE.triggerSave();
 				}
 
+				$('#elgg-bookmarklet-content').addClass('elgg-ajax-loader');
+
 				elgg.action($(this).attr('action'), {
 					data: $(this).serialize(),
 					success: function(json) {
-						$.fancybox.close();
-						destroy();
+						$('#fancybox-close').hide();
+						$('#elgg-bookmarklet-content').removeClass('elgg-ajax-loader');
+						$('#elgg-bookmarklet-content').html("<h2 style='text-align: center;'>" + elgg.echo('bookmarklet:saved') + "</h2>");
+						setTimeout(function() {
+							$.fancybox.close();
+							destroy();
+						}, 1500);
 					}
 				});
 			});
