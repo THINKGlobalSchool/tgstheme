@@ -27,7 +27,7 @@ if (elgg_is_logged_in()) {
 	}
 
 	// Set last_forward_from so form redirects back here after login
-	$url = elgg_get_site_url() . "bookmarklet/add/{$page_owner_guid}?title={$title}&address={$address}";
+	$url = elgg_get_site_url() . "bookmarks/add/{$page_owner_guid}?title={$title}&address={$address}&v=" . BOOKMARKLET_VERSION;
 	$_SESSION['last_forward_from'] = $url;
 
 	$header = elgg_view_title(elgg_echo('bookmarklet:login'));
