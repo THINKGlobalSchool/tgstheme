@@ -15,10 +15,21 @@ if (elgg_is_logged_in()) {
 	$header = elgg_view_title(elgg_echo('bookmarklet:bookmarkthis', array(elgg_get_site_entity()->name)));
 	$content = elgg_view_form('bookmarks/save', array(), $vars);
 } else { // Show login form
+
+	// Grab input to reconstruct the bookmarklet url
+	$page_owner_guid = elgg_extract('page_owner_guid', $vars);
+	$title = elgg_extract('title', $vars);
+	$address = elgg_extract('address', $vars);
+
 	$login_url = elgg_get_site_url();
 	if (elgg_get_config('https_login')) {
 		$login_url = str_replace("http:", "https:", elgg_get_site_url());
 	}
+
+	// Set last_forward_from so form redirects back here after login
+	$url = elgg_get_site_url() . "bookmarklet/add/{$page_owner_guid}?title={$title}&address={$address}";
+	$_SESSION['last_forward_from'] = $url;
+
 	$header = elgg_view_title(elgg_echo('bookmarklet:login'));
 	$content = elgg_view_form('login', array('action' => "{$login_url}action/login"));
 }
@@ -73,21 +84,6 @@ echo <<<JAVASCRIPT
 			setInterval(function(){
 				$.fancybox.resize();
 			},100);
-
-			// Ajax submit login form
-			$('form.elgg-form-login').submit(function(event) {
-				event.preventDefault();
-				console.log($(this).attr('action'));
-
-				elgg.action($(this).attr('action'), {
-					data: $(this).serialize(),
-					success: function(json) {
-						console.log('what the fuck??');
-						$.fancybox.close();
-						window.location.reload();
-					}
-				});
-			});
 
 			// Open any other links in login form in a new tab
 			$('form.elgg-form-login a').click(function(event) {

@@ -379,7 +379,11 @@ function bookmarklet_page_handler($page) {
 		case 'add':
 			elgg_load_library('elgg:bookmarks');
 
-			$content = elgg_view('tgstheme/bookmarklet');
+			$content = elgg_view('tgstheme/bookmarklet', array(
+				'page_owner_guid' => $page[1],
+				'address' => get_input('address'),
+				'title' => get_input('title'),
+			));
 			
 			echo elgg_view_page($title, $content, 'bookmarklet');
 
