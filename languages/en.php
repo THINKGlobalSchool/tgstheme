@@ -64,6 +64,7 @@ $english = array(
 	'bookmarks:this' => "Bookmark this page on %s",
 	'bookmarks:this:group' => "Bookmark in %s on %s",
 	'bookmarklet:saved' => 'Successfully saved bookmark!',
+	'bookmarklet:oldversion' => 'It looks like your using an old version of the bookmarklet, <a href="%s">click here</a> to get the new one',
 	
 	// Admin
 	'tgstheme:label:helplink' => 'Help Link Title',

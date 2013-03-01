@@ -28,6 +28,9 @@
 elgg_register_event_handler('init', 'system', 'tgstheme_init');
 
 function tgstheme_init() {
+	// Set a bookmarklet version
+	define('BOOKMARKLET_VERSION', '1');
+
 	// Register Global CSS
 	$t_css = elgg_get_simplecache_url('css', 'tgstheme/css');
 	elgg_register_simplecache_view('css/tgstheme/css');
@@ -80,8 +83,8 @@ function tgstheme_init() {
 	// Register 'legal' page handler
 	elgg_register_page_handler('legal','legal_page_handler');
 
-	// Register bookmarklet page handler
-	elgg_register_page_handler('bookmarklet','bookmarklet_page_handler');
+	// Extend bookmarks page handler
+	elgg_register_plugin_hook_handler('route', 'bookmarks', 'tgstheme_route_bookmarks_handler');
 
 	// Register activity ping page handler
 	elgg_register_page_handler('activity_ping', 'ping_page_handler');
@@ -373,10 +376,14 @@ function ping_page_handler($page) {
 	return FALSE;
 }
 
-/* Bookmarklet Page Handler */
-function bookmarklet_page_handler($page) {
-	switch ($page[0]) {
-		case 'add':
+// Hook into bookmakrs routing to provide extra content
+function tgstheme_route_bookmarks_handler($hook, $type, $return, $params) {
+	if (is_array($return['segments']) && $return['segments'][0] == 'add') {
+		$address = get_input('address');
+		$title = get_input('title');
+		$version = get_input('v', FALSE);
+
+		if ($version == BOOKMARKLET_VERSION) {
 			elgg_load_library('elgg:bookmarks');
 
 			$content = elgg_view('tgstheme/bookmarklet', array(
@@ -386,13 +393,12 @@ function bookmarklet_page_handler($page) {
 			));
 			
 			echo elgg_view_page($title, $content, 'bookmarklet');
-
-			break;
-		default:
-			forward();
-			break;
+			return false;
+		} else if ($address && $title) {
+			elgg_extend_view('forms/bookmarks/save', 'tgstheme/oldbookmarklet', 0);
+		}
 	}
-	return TRUE;
+	return $return;
 }
 
 /**
