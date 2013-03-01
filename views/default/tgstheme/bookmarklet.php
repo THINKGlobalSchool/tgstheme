@@ -15,8 +15,12 @@ if (elgg_is_logged_in()) {
 	$header = elgg_view_title(elgg_echo('bookmarklet:bookmarkthis', array(elgg_get_site_entity()->name)));
 	$content = elgg_view_form('bookmarks/save', array(), $vars);
 } else { // Show login form
+	$login_url = elgg_get_site_url();
+	if (elgg_get_config('https_login')) {
+		$login_url = str_replace("http:", "https:", elgg_get_site_url());
+	}
 	$header = elgg_view_title(elgg_echo('bookmarklet:login'));
-	$content = elgg_view_form('login');
+	$content = elgg_view_form('login', array('action' => "{$login_url}action/login"));
 }
 
 echo <<<HTML
@@ -73,9 +77,12 @@ echo <<<JAVASCRIPT
 			// Ajax submit login form
 			$('form.elgg-form-login').submit(function(event) {
 				event.preventDefault();
+				console.log($(this).attr('action'));
+
 				elgg.action($(this).attr('action'), {
 					data: $(this).serialize(),
 					success: function(json) {
+						console.log('what the fuck??');
 						$.fancybox.close();
 						window.location.reload();
 					}
