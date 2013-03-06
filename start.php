@@ -89,6 +89,9 @@ function tgstheme_init() {
 	// Register activity ping page handler
 	elgg_register_page_handler('activity_ping', 'ping_page_handler');
 
+	// Hook into mentions get views
+	elgg_register_plugin_hook_handler('get_views', 'mentions', 'tgstheme_mentions_get_views_handler');
+
 	// Add 'home' navigation item
 	if (elgg_is_logged_in()) {
 		$home_url = 'home';
@@ -428,8 +431,12 @@ function tgstheme_river_page_handler($page) {
 	require_once($path);
 }
 
+function home_redirect($hook, $entity_type, $returnvalue, $params) {
+	forward('home');
+}
+
 /**
- * Plugin hook to redirect users from index
+ * Plugin hook to add views to be parsed for usernames
  *
  * @param unknown_type $hook
  * @param unknown_type $entity_type
@@ -437,8 +444,10 @@ function tgstheme_river_page_handler($page) {
  * @param unknown_type $params
  * @return unknown
  */
-function home_redirect($hook, $entity_type, $returnvalue, $params) {
-	forward('home');
+function tgstheme_mentions_get_views_handler($hook, $entity_type, $returnvalue, $params) {
+	$returnvalue[] = 'output/text';
+	$returnvalue[] = 'river/elements/body';
+	return $returnvalue;
 }
 
 /**
