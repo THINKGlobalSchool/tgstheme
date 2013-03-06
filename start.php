@@ -447,6 +447,7 @@ function home_redirect($hook, $entity_type, $returnvalue, $params) {
 function tgstheme_mentions_get_views_handler($hook, $entity_type, $returnvalue, $params) {
 	$returnvalue[] = 'output/text';
 	$returnvalue[] = 'river/elements/body';
+	$returnvalue[] = 'object/elements/summary';
 	return $returnvalue;
 }
 
