@@ -20,6 +20,7 @@
  *   * search/search_box
  *   * js/tinymce
  *   * bookmarks/bookmarklet
+ *   * river/elements/image
  *
  * Composer code borrowed from Evan Winslow's Elgg Facebook Theme:
  * https://github.com/ewinslow/elgg-facebook_theme

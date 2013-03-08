@@ -320,10 +320,22 @@
 }
 
 /* Tweak avatars on river */
-.elgg-list-river .elgg-avatar-small > a > img { 
-	background-size: 50px 50px !important;
+.elgg-list-river .elgg-avatar-medium > a > img {
 	width: 50px;
 	height: 50px;
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	
+	-moz-background-clip:  border;
+	background-clip:  border;
+
+	-webkit-background-size: 40px;
+	-khtml-background-size: 40px;
+	-moz-background-size: 40px;
+	-o-background-size: 40px;
+	background-size: 50px !important;
 }
 
 .elgg-list-river > .elgg-item > .elgg-river-item > .elgg-image {
