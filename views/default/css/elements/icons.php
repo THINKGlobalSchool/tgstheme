@@ -318,6 +318,20 @@
 	-o-background-size: 40px;
 	background-size: 40px;
 }
+
+/* Tweak avatars on river */
+.elgg-list-river .elgg-avatar-small > a > img { 
+	background-size: 50px 50px !important;
+	width: 50px;
+	height: 50px;
+}
+
+.elgg-list-river > .elgg-item > .elgg-river-item > .elgg-image {
+	 margin: 2px 6px 0 0px;
+}
+
+/* End river tweaks */
+
 .elgg-avatar-medium > a > img {
 	width: 100px;
 	height: 100px;
