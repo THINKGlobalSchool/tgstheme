@@ -210,7 +210,8 @@
 	background-color: red;
 }
 .elgg-state-notice {
-	background-color: #4690D6;
+	background-color: #666666;
+	padding-bottom: 5px;
 }
 
 /* ***************************************
