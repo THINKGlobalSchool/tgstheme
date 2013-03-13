@@ -69,7 +69,11 @@ foreach($groups as $group) {
 	$content .= elgg_view('tgstheme/group_listing', array('group' => $group));
 }
 
-if ($groups_count > $limit) {
+if (!$content) {
+	$content = "<h3 class='center'>" . elgg_echo('tgstheme:label:noresults') . "</h3>";
+}
+
+if ($groups_count > $limit || $groups_count == 0) {
 	$content .= "<span class='groups-widget-viewall'>" . elgg_view('output/url', array(
 		'text' => elgg_echo('tgstheme:label:allmygroups'),
 		'value' => elgg_get_site_url() . 'groups/member/' . elgg_get_logged_in_user_entity()->username,
