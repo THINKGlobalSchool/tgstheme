@@ -49,6 +49,7 @@ $english = array(
 	'tgstheme:label:module_description' => 'Module description',
 	'tgstheme:label:whatisthis' => 'What is this?',
 	'tgstheme:label:thingsliked' => 'Things %s Liked',
+	'tgstheme:label:noresults' => 'No results',
 	
 	'tgstheme:stats:blog' => 'Blog Posts',
 	'tgstheme:stats:photo' => 'Photos',
