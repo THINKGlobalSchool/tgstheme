@@ -581,6 +581,11 @@ function tgstheme_entity_menu_handler($hook, $type, $return, $params) {
 			'history',
 		);
 
+		// Other items (plugins) for actions
+		$plugin_actions_items = array(
+			'download_video',
+		);
+
 		// Assign new sections
 		foreach ($return as $idx => $item) {
 			if ($item->getSection() == 'default') {
@@ -591,6 +596,8 @@ function tgstheme_entity_menu_handler($hook, $type, $return, $params) {
 						unset($return[$idx]); // Likes are showing up not logged in for some reason
 					}
 			        $item->setSection('core');
+			    } else if (in_array($item->getName(), $plugin_actions_items)) {
+			    	$item->setSection('actions');
 				} else {
 			        $item->setSection('other');
 				}
