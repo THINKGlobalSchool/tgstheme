@@ -493,7 +493,7 @@ li:hover > .elgg-menu-site-more {
 	ENTITY
 *************************************** */
 <?php // height depends on line height/font size ?>
-.elgg-menu-entity {
+.elgg-menu-entity, .elgg-menu-annotation {
 	float: right;
 	margin-left: 15px;
 	font-size: 90%;
@@ -501,22 +501,22 @@ li:hover > .elgg-menu-site-more {
 	line-height: 16px;
 	height: 16px;
 }
-.elgg-menu-entity > li {
+.elgg-menu-entity > li, .elgg-menu-annotation > li {
 	margin-left: 15px;
 }
-.elgg-menu-entity > li > a {
+.elgg-menu-entity > li > a, .elgg-menu-annotation > li > a {
 	color: #91131E;
 }
 
-.elgg-menu-entity > li > a:hover {
+.elgg-menu-entity > li > a:hover, , .elgg-menu-annotation > li > a:hover {
 	color: #2D3F46;
 }
 
 <?php // need to override .elgg-menu-hz ?>
-.elgg-menu-entity > li > a {
+.elgg-menu-entity > li > a, .elgg-menu-annotation > li > a {
 	display: block;
 }
-.elgg-menu-entity > li > span {
+.elgg-menu-entity > li > span, .elgg-menu-annotation > li > span {
 	vertical-align: baseline;
 }
 
