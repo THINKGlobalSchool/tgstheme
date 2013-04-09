@@ -565,3 +565,11 @@ div#elgg-bookmarklet-wrapper {
 div#elgg-bookmarklet-form {
 	padding: 10px;
 }
+
+/** Fix for: https://github.com/Elgg/Elgg/issues/5336 **/
+span.message.warning {
+	color: #777777;
+	display: inline-block;
+	font-weight: bold;
+	margin-bottom: 7px;
+}
