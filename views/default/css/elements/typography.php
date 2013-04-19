@@ -205,8 +205,15 @@ h6 { font-size: 0.8em; }
 	font-weight: bold;
 }
 
-.elgg-output a:hover { <?php //@todo remove .selected ?>
+.elgg-output a img {
+	vertical-align:top;  /* hack */
+	border-bottom: none;
+}
+
+.elgg-output a:hover {
 	color: #2D3F46;
 	border-bottom: 1px solid #2D3F46;
 	text-decoration: none;
 }
+
+
