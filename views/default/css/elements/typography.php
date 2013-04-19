@@ -202,6 +202,7 @@ h6 { font-size: 0.8em; }
 .elgg-output a {
 	color: #91131E;
 	border-bottom: 1px dotted #91131E;
+	font-weight: bold;
 }
 
 .elgg-output a:hover { <?php //@todo remove .selected ?>
