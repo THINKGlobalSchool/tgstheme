@@ -166,3 +166,46 @@ h6 { font-size: 0.8em; }
 .elgg-output img {
 	max-width: 100%;
 }
+
+
+.elgg-output p,
+.elgg-output pre,
+.elgg-output blockquote,
+.elgg-output ol,
+.elgg-output ul,
+.elgg-output code {
+	font-size: 13px;
+	line-height: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+
+.elgg-output h1, 
+.elgg-output h2, 
+.elgg-output h3, 
+.elgg-output h4, 
+.elgg-output h5, 
+.elgg-output h6 {
+	font-weight: normal;
+	color: #2D3F46;
+	font-family: 'Shanti', sans-serif;
+	text-transform:none;
+}
+
+.elgg-output h1 { font-size: 2.0em; line-height: 0.75em; margin-bottom: 0.75em;}
+.elgg-output h2 { font-size: 1.8em; line-height: 0.83em; margin-bottom: 0.75em;}
+.elgg-output h3 { font-size: 1.6em; line-height: 0.94em; margin-bottom: 0.75em;}
+.elgg-output h4 { font-size: 1.4em; line-height: 1.07em; margin-bottom: 0.75em;}
+.elgg-output h5 { font-size: 1.2em; line-height: 1.25em; margin-bottom: 0.75em;}
+.elgg-output h6 { font-size: 1.0em; line-height: 1.5em; margin-bottom: 0.75em;}
+
+.elgg-output a {
+	color: #91131E;
+	border-bottom: 1px dotted #91131E;
+}
+
+.elgg-output a:hover { <?php //@todo remove .selected ?>
+	color: #2D3F46;
+	border-bottom: 1px solid #2D3F46;
+	text-decoration: none;
+}
