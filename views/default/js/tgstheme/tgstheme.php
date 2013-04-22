@@ -19,7 +19,21 @@ elgg.tgstheme.init = function() {
 	$('iframe').each(function() {
 		var url = $(this).attr("src");
 		if (url.indexOf('youtube.com') >= 0) {
-			$(this).attr("src",url+"?wmode=opaque");
+			// See: http://stackoverflow.com/questions/821359/reload-an-iframe-without-adding-to-the-history
+			// Clone the iframe in question
+			var iframe = $(this).clone();
+
+			// Find it's parent
+			var parent = $(this).parent();
+
+			// Remove original
+			$(this).remove();
+
+			// Modify src attribute
+			iframe.attr("src",url+"?wmode=opaque");
+
+			// Append new iframe to parent
+			parent.append(iframe);
 		}
 	});
 }
