@@ -44,7 +44,7 @@ function tgstheme_init() {
 	elgg_register_css('elgg.tgstheme.tinymce', $tm_css);
 	elgg_load_css('elgg.tgstheme.tinymce');
 
-	// Register Activity Ping JS library
+	// Register general tgstheme JS library
 	$t_js = elgg_get_simplecache_url('js', 'tgstheme/tgstheme');
 	elgg_register_simplecache_view('js/tgstheme/tgstheme');
 	elgg_register_js('elgg.tgstheme', $t_js);

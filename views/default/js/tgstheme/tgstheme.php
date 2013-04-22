@@ -18,7 +18,9 @@ elgg.tgstheme.init = function() {
 	// Fix broken youtube embed
 	$('iframe').each(function() {
 		var url = $(this).attr("src");
-		$(this).attr("src",url+"?wmode=opaque");
+		if (url.indexOf('youtube.com') >= 0) {
+			$(this).attr("src",url+"?wmode=opaque");
+		}
 	});
 }
 
