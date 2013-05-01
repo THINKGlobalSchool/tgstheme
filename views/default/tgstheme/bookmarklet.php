@@ -54,10 +54,18 @@ echo <<<JAVASCRIPT
 				window.parent.postMessage("destroy_bookmarklet","*");
 			};
 
+			var resizeFancyBox = function() {
+
+			}
+
 			// Init bookmarklet lightbox, and trigger immediately
 			$(".bookmarklet-lightbox").fancybox({
 				scrolling: 'no',
+				onStart: function() {
+					//$(window).bind('resize', resizeFancyBox);
+				},
 				onClosed: function() {
+					//$(window).unbind('resize', resizeFancyBox);
 					destroy();
 				}
 			}).trigger('click');
@@ -87,10 +95,30 @@ echo <<<JAVASCRIPT
 				});
 			});
 
+			// Grab bookmarklet element
+			bookmarklet = $('#elgg-bookmarklet-content');
+
+			// Get the initial, full height
+			initial_height = bookmarklet.height();
+
 			// Force the lightbox to resize
 			setInterval(function(){
+				// Move lightbox
 				$.fancybox.resize();
-			},100);
+
+				// Get new window height
+				window_height = $(window).height();
+
+				// Shrink bookmarklet div and set overflow
+				if (bookmarklet.height() > (window_height - 60)) {
+					bookmarklet.height(window_height - 50);
+					bookmarklet.css('overflow-y', 'scroll');
+				} else { // Reset bookmarklet height, unset overflow
+					bookmarklet.height(initial_height + 50);
+					bookmarklet.css('overflow-y', 'hidden');
+				}	
+
+			},300);
 
 			// Open any other links in login form in a new tab
 			$('form.elgg-form-login a').click(function(event) {
