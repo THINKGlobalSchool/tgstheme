@@ -25,4 +25,16 @@ if (isset($vars['menu']['more'])) {
 	
 	echo '</li>';
 }
+
+echo <<<JAVASCRIPT
+	<script type='text/javascript'>
+		var ios = (navigator.userAgent.match(/ipad|ipod|iphone/i));
+		if (ios) {
+			$('.elgg-more').bind('click', function(e) {
+				$(this).addClass('ios-touchactive');
+			});
+		}
+	</script>
+JAVASCRIPT;
+
 echo '</ul>';
