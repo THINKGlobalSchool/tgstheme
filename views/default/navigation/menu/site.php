@@ -31,7 +31,7 @@ echo <<<JAVASCRIPT
 		var ios = (navigator.userAgent.match(/ipad|ipod|iphone/i));
 		if (ios) {
 			$('.elgg-more').bind('click', function(e) {
-				//$(this).addClass('ios-touchactive');
+				$(this).toggleClass('ios-more-off');
 			});
 		}
 	</script>
