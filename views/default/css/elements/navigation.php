@@ -293,6 +293,11 @@ position: relative;
 	border-radius: 4px 4px 0 0;
 }
 
+/** ios fix **/
+.elgg-more.ios-more-off ul {
+	display: none !important;
+}
+
 .elgg-menu-site-more {
 	display: none;
 	position: relative;
