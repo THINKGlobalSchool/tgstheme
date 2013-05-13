@@ -182,6 +182,9 @@ function tgstheme_init() {
 	// Hook into entity menu for tidypics specific items
 	elgg_register_plugin_hook_handler('register', 'menu:entity', 'tgstheme_tidypics_entity_menu_handler');
 
+	// Hook into entity menu for podcast specific items
+	elgg_register_plugin_hook_handler('register', 'menu:entity', 'tgstheme_podcasts_entity_menu_handler');
+
 	// Entity menu hook, used to reorganize the entity menu
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'tgstheme_ownerblock_menu_handler', 9999);
 
@@ -642,6 +645,21 @@ function tgstheme_tidypics_entity_menu_handler($hook, $type, $return, $params) {
 		}
 	}
 
+	return $return;
+}
+
+/**
+ * Customize podcasts entity menu items
+ */ 
+function tgstheme_podcasts_entity_menu_handler($hook, $type, $return, $params) {
+	if (elgg_instanceof($params['entity'], 'object', 'podcast')) {
+		foreach ($return as $idx => $item) {
+
+			if ($item->getName() == 'podcast_link') {
+				$item->setSection('info');
+			}
+		}
+	}
 	return $return;
 }
 
