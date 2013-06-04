@@ -27,6 +27,7 @@
  */
 
 elgg_register_event_handler('init', 'system', 'tgstheme_init');
+elgg_register_event_handler('pagesetup', 'system', 'tgstheme_pagesetup', 501);
 
 function tgstheme_init() {
 	// Set a bookmarklet version
@@ -92,22 +93,6 @@ function tgstheme_init() {
 
 	// Hook into mentions get views
 	elgg_register_plugin_hook_handler('get_views', 'mentions', 'tgstheme_mentions_get_views_handler');
-
-	// Add 'home' navigation item
-	if (elgg_is_logged_in()) {
-		$home_url = 'home';
-	} else {
-		$home_url = elgg_get_site_url();
-	}
-	$item = new ElggMenuItem('home', "<span class='elgg-icon elgg-icon-home'></span>", $home_url);
-	elgg_register_menu_item('site', $item);
-
-	// Add a couple footer items
-	$item = new ElggMenuItem('1termsofuse', elgg_echo("tgstheme:label:terms"), elgg_get_site_url() . 'legal/spot_terms_of_use');
-	elgg_register_menu_item('footer', $item);
-
-	$item = new ElggMenuItem('2privacypolicysupplement', elgg_echo("tgstheme:label:policysupplement"), elgg_get_site_url() . 'legal/privacy_supplement');
-	elgg_register_menu_item('footer', $item);
 	
 	// Register share by email item
 	if (elgg_is_logged_in()) {
@@ -383,6 +368,38 @@ function ping_page_handler($page) {
 	return FALSE;
 }
 
+/**
+ * Customize menus
+ *
+ * @return void
+ * @access private
+ */
+function tgstheme_pagesetup() {
+	// Add 'home' navigation item
+	if (elgg_is_logged_in()) {
+		$home_url = 'home';
+	} else {
+		$home_url = elgg_get_site_url();
+	}
+	
+	$item = new ElggMenuItem('home', elgg_view_icon('home') . elgg_echo('home'), $home_url);
+	//$item = new ElggMenuItem('home', "<span class='elgg-icon elgg-icon-home'></span>", $home_url);
+	elgg_register_menu_item('topbar', $item);
+
+	// Add a couple footer items
+	$item = new ElggMenuItem('1termsofuse', elgg_echo("tgstheme:label:terms"), elgg_get_site_url() . 'legal/spot_terms_of_use');
+	elgg_register_menu_item('footer', $item);
+
+	$item = new ElggMenuItem('2privacypolicysupplement', elgg_echo("tgstheme:label:policysupplement"), elgg_get_site_url() . 'legal/privacy_supplement');
+	elgg_register_menu_item('footer', $item);
+
+	// Remove administration menu item
+	elgg_unregister_menu_item('topbar', 'administration');
+
+	// Remve settings, register to it's own sub menu
+	elgg_unregister_menu_item('topbar', 'logout');
+}
+
 // Hook into bookmakrs routing to provide extra content
 function tgstheme_route_bookmarks_handler($hook, $type, $return, $params) {
 	if (is_array($return['segments']) && $return['segments'][0] == 'add') {
@@ -545,14 +562,36 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 
 		if ($item->getName() == 'profile') {
 			$text = $item->getText();
-			$user = elgg_get_logged_in_user_entity();
-			$name_text = "<span style='margin-left: 10px; float: right'>" . $user->name . "</span>";
-			$item->setText($text . $name_text);
+			//$user = elgg_get_logged_in_user_entity();
+			//$name_text = "<span style='margin-left: 10px; float: right'>" . $user->name . "</span>";
+			//$item->setText($text . $name_text);
+
+			// move to alt section while we're at it
+			$item->setSection('alt');
 		}
 
 		if ($item->getName() == 'messages') {
 			$text = $item->getText();
-			$item->setText($text);
+			$item->setText($text . "&nbsp;" . elgg_echo('tgstheme:label:mymessages'));
+		}
+
+		// Add a 'down arrow' to settings menu
+		if ($item->getName() == 'usersettings') {
+			// $text = $item->getText();
+			// $text .= "&nbsp;&#9660;";
+			// $item->setText($text); 
+
+			$child_item = ElggMenuItem::factory(array(
+				'name' => 'logout',
+				'href' => "action/logout",
+				'text' => elgg_echo('logout'),
+				'is_action' => TRUE,
+				'priority' => 1000,
+				'section' => 'alt',
+			));
+
+			$child_item->setParent($item);
+			$item->addChild($child_item);
 		}
 	}
 	return $items;
