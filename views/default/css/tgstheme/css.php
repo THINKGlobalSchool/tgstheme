@@ -211,12 +211,6 @@ table#stats-table td.stat {
 	border-radius: 6px;
 }
 
-/* Remove icon padding for home menu */
-
-.elgg-menu-item-home .elgg-icon {
-	margin-right: 0px;
-}
-
 /* PROFILE TWEAK */
 
 #profile-owner-block ul.elgg-menu {
@@ -532,6 +526,79 @@ span.actions-text {
 .home-small {
 	font-size: 85% !important; 
 }
+
+/** Topbar settings menu **/
+.elgg-menu-item-usersettings {
+	height: 31px;
+}
+
+.elgg-menu-item-usersettings .elgg-child-menu {
+	display: none;
+	position: absolute;
+	left: -1px;
+	top: 32px;
+	width: auto;
+	z-index: 1;
+	min-width: 150px;
+	border: 1px solid #999;
+	border-top: 0;
+	
+	-webkit-border-radius: 0 0 4px 4px;
+	-moz-border-radius: 0 0 4px 4px;
+	border-radius: 0 0 4px 4px;
+	
+	-webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.elgg-menu-item-usersettings:hover > .elgg-child-menu {
+	display: block;
+}
+
+.elgg-menu-item-usersettings .elgg-child-menu > li > a {
+	background: white;
+	color: #555;
+	height:24px;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+.elgg-menu-item-usersettings .elgg-child-menu > li > a:hover {
+	background: #2D3F46;
+	color: white;
+}
+.elgg-menu-item-usersettings .elgg-child-menu > li:last-child > a,
+.elgg-menu-item-usersettings .elgg-child-menu > li:last-child > a:hover {
+	-webkit-border-radius: 0 0 4px 4px;
+	-moz-border-radius: 0 0 4px 4px;
+	border-radius: 0 0 4px 4px;
+}
+
+.elgg-menu-item-usersettings .elgg-child-menu > li > a {
+    font-family: 'Shanti',sans-serif;
+    font-size: 1em;
+    font-weight: normal;
+    height: 30px;
+    padding: 6px 10px 0;
+    text-transform: uppercase;
+}
+.elgg-menu-item-usersettings .elgg-child-menu > li > a:hover {
+    text-decoration: none;
+}
+
+.elgg-menu-item-usersettings > a:after {
+	content: "▼";
+	font-size: 8px;
+	margin-left: 4px;
+	position: relative;
+	bottom: 2px;
+}
+
 
 /** Messages Topbar **/
 .elgg-menu-item-messages a {
