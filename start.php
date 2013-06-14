@@ -195,9 +195,9 @@ function tgstheme_init() {
 	// Add a hook handler for HTMLawed allowed styles
 	elgg_register_plugin_hook_handler('allowed_styles', 'htmlawed', 'tgstheme_allowed_styles_handler');
 
-//	elgg_unregister_page_handler('activity');
+	elgg_unregister_page_handler('activity');
 
-//	elgg_register_page_handler('activity', 'tgstheme_river_page_handler');
+	elgg_register_page_handler('activity', 'tgstheme_river_page_handler');
 
 	// Whitelist ajax views
 	elgg_register_ajax_view('thewire/composer');
@@ -426,13 +426,9 @@ function tgstheme_river_page_handler($page) {
 	}
 	set_input('page_type', $page_type);
 
-	// content filter code here
-	$entity_type = '';
-	$entity_subtype = '';
-
 	$path = elgg_get_plugins_path() . "tgstheme/pages/river.php";
-
 	require_once($path);
+	return true;
 }
 
 function home_redirect($hook, $entity_type, $returnvalue, $params) {
