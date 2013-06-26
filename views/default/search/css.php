@@ -21,13 +21,12 @@ Search plugin
 	margin-right: 0px;
 }
 
-.elgg-search input[type=text] {
-	width: 230px;
-}
 .elgg-search input[type=submit] {
 	display: none;
 }
 .elgg-search input[type=text] {
+	width: 230px;
+	margin-top: 2px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
