@@ -35,7 +35,6 @@
 	float: left;
 	width: 400px;
 	margin: 0 0 10px 0;
-	background:url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/logo-bottom.png") no-repeat;
 }
 
 .elgg-layout-one-sidebar-right {
@@ -219,7 +218,6 @@ table#stats-table td.stat {
 
 /* Parentportal */
 .parentportal-header-two-column {
-	background:url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/logo-bottom.png") no-repeat;
 	padding-top: 10px;
 }
 
