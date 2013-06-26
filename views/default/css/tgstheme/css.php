@@ -584,12 +584,6 @@ span.actions-text {
 	display: none;
 }
 
-/** Search Topbar **/
-.tgstheme-search-topbar {
-	top: 3px;
-	position: relative;
-}
-
 .parentportal-header .elgg-search-header {
 	right: 15px;
 }
