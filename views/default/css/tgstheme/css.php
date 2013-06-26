@@ -223,6 +223,10 @@ table#stats-table td.stat {
 	padding-top: 10px;
 }
 
+.elgg-menu-site .elgg-menu-item-home .elgg-icon {
+	margin-right: 0px;
+}
+
 /* Spot Logo */
 .spot-logo {
 	position: absolute;
@@ -446,59 +450,6 @@ span.actions-text {
 	color: #999999;
 }
 
-/* Help Link */
-
-.help-link-wrapper{
-	float:right;
-	min-width: 50px;
-	margin: -2px 36px 0 0;
-}
-
-.help-link-wrapper .tgstheme-module {
-	-webkit-box-shadow: 1px 1px 3px 1px #000000;
-	-moz-box-shadow: 1px 1px 3px 1px #000000;
-	box-shadow: 1px 1px 3px 1px #000000;
-}
-
-.help-link-wrapper h3 {
-	position: relative;
-	top: 10px;
-	margin-left: 2px;
-	margin-right: 3px;
-}
-
-.help-link-module {
-    border: 1px solid #162024;
-    border-radius: 0px 0px 6px 6px;
-	-webkit-border-radius: 0px 0px 6px 6px;
-	-moz-border-radius: 0px 0px 6px 6px;
-    margin-bottom: 20px;
-    overflow: hidden;
-	height: 50px;
-}
-
-.help-link-module > .elgg-head {
-	background-color: #162024;
-	padding: 3px 5px 5px 5px;
-	height: 100%;
-}
-
-.help-link-module > .elgg-head * {
-    color: white;
-    font-family: 'Shanti',sans-serif;
-    font-size: 1em;
-    text-transform: uppercase;
-}
-
-.help-link-wrapper .help-icon {
-	/*background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/question-white.png) no-repeat left;*/
-	width: 16px;
-	height: 16px;
-	margin: 0 2px 0 0;
-	position: relative;
-	top: 3px;
-}
-
 /* Fancybox Overrides */
 
 #fancybox-wrap {
@@ -527,19 +478,36 @@ span.actions-text {
 	font-size: 85% !important; 
 }
 
-/** Topbar settings menu **/
-.elgg-menu-item-usersettings {
-	height: 31px;
+/** General topbar tweaks **/
+
+.tgstheme-topbar-dropdown:after {
+	content: "▼";
+	font-size: 8px;
+	margin-left: 4px;
+	position: relative;
+	bottom: 2px;
 }
 
-.elgg-menu-item-usersettings .elgg-child-menu {
+/** User name topbar style **/
+.tgstheme-topbar-username {
+	margin-left: 10px;
+	float: right;
+}
+
+
+/** Topbar settings menu **/
+.elgg-menu-item-profile {
+	height: 35px;
+}
+
+.elgg-menu-item-profile .elgg-child-menu {
 	display: none;
 	position: absolute;
-	left: -1px;
+	right: -1px;
 	top: 32px;
 	width: auto;
 	z-index: 1;
-	min-width: 150px;
+	min-width: 180px;
 	border: 1px solid #999;
 	border-top: 0;
 	
@@ -552,11 +520,20 @@ span.actions-text {
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
 }
 
-.elgg-menu-item-usersettings:hover > .elgg-child-menu {
+.elgg-menu-item-profile:hover > .elgg-child-menu {
 	display: block;
 }
 
-.elgg-menu-item-usersettings .elgg-child-menu > li > a {
+.elgg-menu-item-profile .elgg-child-menu > li > a {
+	border-bottom: 1px dotted #CCCCCC;
+}
+
+.elgg-menu-item-profile .elgg-child-menu > li:last-child > a {
+	border-bottom: none;
+}
+
+
+.elgg-menu-item-profile .elgg-child-menu > li > a {
 	background: white;
 	color: #555;
 	height:24px;
@@ -568,18 +545,24 @@ span.actions-text {
 	-moz-box-shadow: none;
 	box-shadow: none;
 }
-.elgg-menu-item-usersettings .elgg-child-menu > li > a:hover {
+.elgg-menu-item-profile .elgg-child-menu > li > a:hover {
 	background: #2D3F46;
 	color: white;
 }
-.elgg-menu-item-usersettings .elgg-child-menu > li:last-child > a,
-.elgg-menu-item-usersettings .elgg-child-menu > li:last-child > a:hover {
+
+/** Tweaks for topbar settings icons **/
+.elgg-menu-item-profile .elgg-child-menu .elgg-icon-settings {
+	background-position: 0 -738px;
+}
+
+.elgg-menu-item-profile .elgg-child-menu > li:last-child > a,
+.elgg-menu-item-profile .elgg-child-menu > li:last-child > a:hover {
 	-webkit-border-radius: 0 0 4px 4px;
 	-moz-border-radius: 0 0 4px 4px;
 	border-radius: 0 0 4px 4px;
 }
 
-.elgg-menu-item-usersettings .elgg-child-menu > li > a {
+.elgg-menu-item-profile .elgg-child-menu > li > a {
     font-family: 'Shanti',sans-serif;
     font-size: 1em;
     font-weight: normal;
@@ -587,18 +570,9 @@ span.actions-text {
     padding: 6px 10px 0;
     text-transform: uppercase;
 }
-.elgg-menu-item-usersettings .elgg-child-menu > li > a:hover {
+.elgg-menu-item-profile .elgg-child-menu > li > a:hover {
     text-decoration: none;
 }
-
-.elgg-menu-item-usersettings > a:after {
-	content: "▼";
-	font-size: 8px;
-	margin-left: 4px;
-	position: relative;
-	bottom: 2px;
-}
-
 
 /** Messages Topbar **/
 .elgg-menu-item-messages a {
@@ -608,6 +582,20 @@ span.actions-text {
 /** Ajax topbar **/
 .elgg-page-topbar > .elgg-inner {
 	display: none;
+}
+
+/** Search Topbar **/
+.tgstheme-search-topbar {
+	top: 3px;
+	position: relative;
+}
+
+.parentportal-header .elgg-search-header {
+	right: 15px;
+}
+
+.elgg-search.tgstheme-search-topbar .elgg-icon-search {
+	top: 0px;
 }
 
 /** Tidypics **/
