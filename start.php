@@ -138,7 +138,7 @@ function tgstheme_init() {
 	
 	// Extend search/searchbox
 	if (elgg_get_plugin_setting('help_group', 'tgstheme') && elgg_is_logged_in()) {
-		elgg_extend_view('search/search_box', 'tgstheme/help_link');
+		// @todo extra topbar link
 	}
 
 	// Extend activity sidebar
@@ -159,7 +159,7 @@ function tgstheme_init() {
 	elgg_register_plugin_hook_handler('register', 'menu:composer', 'tgstheme_composer_menu_handler');
 
 	// Topbar menu hook
-	elgg_register_plugin_hook_handler('register', 'menu:topbar', 'tgstheme_topbar_menu_handler');
+	elgg_register_plugin_hook_handler('register', 'menu:topbar', 'tgstheme_topbar_menu_handler', 9999);
 	
 	// Entity menu hook, used to reorganize the entity menu
 	elgg_register_plugin_hook_handler('register', 'menu:entity', 'tgstheme_entity_menu_handler', 9999);
@@ -183,6 +183,12 @@ function tgstheme_init() {
 //	elgg_unregister_page_handler('activity');
 
 //	elgg_register_page_handler('activity', 'tgstheme_river_page_handler');
+
+	// Search hacks
+	if (elgg_is_logged_in()) {
+		// Unextend header if user is logged in, this will be on the topbar
+		elgg_unextend_view('page/elements/header', 'search/header');
+	}
 
 	// Whitelist ajax views
 	elgg_register_ajax_view('thewire/composer');
@@ -381,9 +387,9 @@ function tgstheme_pagesetup() {
 	} else {
 		$home_url = elgg_get_site_url();
 	}
-	
+		
+	// Topbar 'home' item
 	$item = new ElggMenuItem('home', elgg_view_icon('home') . elgg_echo('home'), $home_url);
-	//$item = new ElggMenuItem('home', "<span class='elgg-icon elgg-icon-home'></span>", $home_url);
 	elgg_register_menu_item('topbar', $item);
 
 	// Add a couple footer items
@@ -392,12 +398,6 @@ function tgstheme_pagesetup() {
 
 	$item = new ElggMenuItem('2privacypolicysupplement', elgg_echo("tgstheme:label:policysupplement"), elgg_get_site_url() . 'legal/privacy_supplement');
 	elgg_register_menu_item('footer', $item);
-
-	// Remove administration menu item
-	elgg_unregister_menu_item('topbar', 'administration');
-
-	// Remve settings, register to it's own sub menu
-	elgg_unregister_menu_item('topbar', 'logout');
 }
 
 // Hook into bookmakrs routing to provide extra content
@@ -551,49 +551,124 @@ function tgstheme_composer_menu_handler($hook, $type, $items, $params) {
  * Hook to remove the elgg logo from the topbar menu
  */
 function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
-	foreach($items as $idx => $item) {
-		if ($item->getName() == 'elgg_logo') {
-			unset($items[$idx]);
-		}
-
-		if ($item->getName() == 'friends') {
-			unset($items[$idx]);
-		}
-
-		if ($item->getName() == 'profile') {
-			$text = $item->getText();
-			//$user = elgg_get_logged_in_user_entity();
-			//$name_text = "<span style='margin-left: 10px; float: right'>" . $user->name . "</span>";
-			//$item->setText($text . $name_text);
-
-			// move to alt section while we're at it
-			$item->setSection('alt');
-		}
-
-		if ($item->getName() == 'messages') {
-			$text = $item->getText();
-			$item->setText($text . "&nbsp;" . elgg_echo('tgstheme:label:mymessages'));
-		}
-
-		// Add a 'down arrow' to settings menu
-		if ($item->getName() == 'usersettings') {
-			// $text = $item->getText();
-			// $text .= "&nbsp;&#9660;";
-			// $item->setText($text); 
-
-			$child_item = ElggMenuItem::factory(array(
-				'name' => 'logout',
-				'href' => "action/logout",
-				'text' => elgg_echo('logout'),
-				'is_action' => TRUE,
-				'priority' => 1000,
-				'section' => 'alt',
-			));
-
-			$child_item->setParent($item);
-			$item->addChild($child_item);
+	// Grab settings, admin, logout item and remove them from the menu
+	foreach ($items as $idx => $item) {
+		switch ($item->getName()) {
+			case 'logout':
+				$logout_item = $item;
+				$logout_item->setText("<span class='elgg-icon elgg-icon-arrow-right'></span>" . $logout_item->getText());
+				$logout_item->setPriority(500);
+				unset($items[$idx]);
+				break;
+			case 'administration':
+				$administration_item = $item;
+				unset($items[$idx]);
+				$administration_item->setPriority(400);
+				break;
+			case 'usersettings':
+				$settings_item = $item;
+				unset($items[$idx]);
+				$settings_item->setPriority(400);
+				break;
 		}
 	}
+
+	foreach ($items as $idx => $item) {
+		switch ($item->getName()) {
+			case 'elgg_logo':
+				/* Remove Elgg Logo */
+				unset($items[$idx]);
+				break;
+			case 'friends':
+				/* Remove Friends */
+				unset($items[$idx]);
+				break;
+			case 'profile':
+				/* Modify Profile Menu */
+				$text = $item->getText();
+				$user = elgg_get_logged_in_user_entity();
+				$name_text = "<span class='tgstheme-topbar-username tgstheme-topbar-dropdown'>" . $user->name . "</span>";
+				$item->setText($text . $name_text);
+				$item->setSection('alt');
+				$item->setPriority('1000');
+
+				// Set logout/settings/admin parent
+				$logout_item->setParent($item);
+				
+				$settings_item->setParent($item);
+
+				// Create new view profile item
+				$view_profile_item = ElggMenuItem::factory(array(
+					'name' => 'view_profile',
+					'href' => $item->getHref(),
+					'text' => "<span class='elgg-icon elgg-icon-arrow-left'></span>" . elgg_echo('tgstheme:label:viewprofile'),
+					'priority' => 100,
+				));
+				$view_profile_item->setParent($item);
+
+				// Create new edit profile item
+				$edit_profile_item = ElggMenuItem::factory(array(
+					'name' => 'edit_profile',
+					'href' => elgg_normalize_url("profile/{$user->username}/edit"),
+					'text' => "<span class='elgg-icon elgg-icon-settings'></span>" . elgg_echo('profile:edit'),
+					'priority' => 200,
+				));
+
+				$edit_profile_item->setParent($item);
+
+
+				// Create new edit profile item
+				$edit_avatar_item = ElggMenuItem::factory(array(
+					'name' => 'edit_avatar',
+					'href' => elgg_normalize_url("avatar/edit/{$user->username}"),
+					'text' => "<span class='elgg-icon elgg-icon-settings'></span>" . elgg_echo('avatar:edit'),
+					'priority' => 300,
+				));
+
+				$edit_avatar_item->setParent($item);
+
+				// Add all child elements
+				$item->addChild($logout_item);
+				$item->addChild($settings_item);
+				$item->addChild($view_profile_item);
+				$item->addChild($edit_profile_item);
+				$item->addChild($edit_avatar_item);
+
+				// If there's an admin item, add it to the user dropdown
+				if ($administration_item) {
+					$administration_item->setParent($item);
+					$item->addChild($administration_item);
+				}
+
+				break;
+			case 'messages':
+				/* Add 'messages' text to messages icon */
+				$text = $item->getText();
+				$item->setText($text . "&nbsp;" . elgg_echo('messages'));
+				break;
+			case 'todo':
+				/* Add dropdown class to todo menu */
+				$item->addLinkClass('tgstheme-topbar-dropdown');
+				break;
+			case 'groups_topbar_hover_menu':
+				/* Add dropdown class to groups menu */
+				$item->addLinkClass('tgstheme-topbar-dropdown');
+				break;
+		}
+	}
+
+	// Add search item
+	$search_item = ElggMenuItem::factory(array(
+		'name' => 'search',
+		'href' => false,
+		'text' => elgg_view('search/search_box', array('class' => 'tgstheme-search-topbar')),
+		'priority' => 100,
+	));
+
+	$search_item->setSection('alt');
+
+	$items[] = $search_item;
+
 	return $items;
 }
 

@@ -3,20 +3,20 @@
 *************************************** */
 #login-dropdown {
 	position: absolute;
-	top:52px;
 	right:25px;
 	z-index: 100;
+	top: 8px;
 }
 #login-dropdown .elgg-button-dropdown{
-	-webkit-border-radius:0px 0px 4px 4px;
-	-moz-border-radius:0px 0px 4px 4px;
-	border-radius:0px 0px 4px 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
 }
 
 #login-dropdown .elgg-button-dropdown.elgg-state-active {
-	-webkit-border-radius:0;
-	-moz-border-radius:0;
-	border-radius:0;
+	-webkit-border-radius: 4px 4px 0 0;
+	-moz-border-radius: 4px 4px 0 0;
+	border-radius: 4px 4px 0 0;
 }
 
 /* ***************************************
