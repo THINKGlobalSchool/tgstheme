@@ -57,13 +57,12 @@ $lang = get_current_language();
 			<?php echo $quickbar ?>
 		</div>
 	</div>
+	<?php } ?>
 	<div class="elgg-page-topbar">
 		<div class="elgg-inner">
 			<?php echo $topbar; ?>
 		</div>
 	</div>
-	<?php } ?>
-	
 	<div class="elgg-page-header">
 		<div class="elgg-inner">
 			<?php echo $header; ?>

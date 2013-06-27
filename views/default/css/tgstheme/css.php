@@ -492,6 +492,10 @@ span.actions-text {
 	float: right;
 }
 
+/** Search tweaks **/
+.elgg-menu-item-search {
+	padding-right: 10px;
+}
 
 /** Topbar settings menu **/
 .elgg-menu-item-profile {

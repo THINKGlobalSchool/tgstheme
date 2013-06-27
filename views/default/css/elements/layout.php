@@ -74,11 +74,11 @@
 .elgg-page-topbar {
 	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/back-top.jpg) repeat-x top left;
 	position: relative;
-	height: 41px;
+	height: 40px;
 	z-index: 9000;
 }
 .elgg-page-topbar > .elgg-inner {
-	padding: 10px 10px;
+	padding: 9px 10px;
 	width: 990px;
 	margin:auto;
 }

@@ -2,22 +2,32 @@
 	MISC
 *************************************** */
 #login-dropdown {
-	position: absolute;
-	right:25px;
-	z-index: 100;
-	top: 8px;
+
 }
-#login-dropdown .elgg-button-dropdown{
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
+
+#login-dropdown .elgg-button-dropdown {
+	font-weight: normal;
+	font-size: 1em;
+	background: none;
+	border: none;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+}
+
+#login-dropdown .elgg-button-dropdown:hover {
+	color: #CCCCCC
 }
 
 #login-dropdown .elgg-button-dropdown.elgg-state-active {
-	-webkit-border-radius: 4px 4px 0 0;
-	-moz-border-radius: 4px 4px 0 0;
-	border-radius: 4px 4px 0 0;
+	color: white;
 }
+
+#login-dropdown-box {
+	border: 4px solid #85161D;
+	background: #EEEEEE;
+}
+
 
 /* ***************************************
 	AVATAR UPLOADING & CROPPING

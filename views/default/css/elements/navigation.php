@@ -187,7 +187,7 @@ position: relative;
 
 .elgg-menu-quickbar {
 	float: right;
-	padding-right: 15px;
+	padding-right: 10px;
 }
 
 .elgg-inner.elgg-menu-quickbar > ul {
@@ -206,8 +206,12 @@ position: relative;
 	background: none;
 }
 
+.elgg-menu-quickbar > li:last-child {
+	padding-right: 0px;
+}
+
 .elgg-menu-quickbar > li > a {
-	color: #FFFFFF;
+	color: #EDEDED;
 	margin-top: 0px;	
 }
 
@@ -228,7 +232,7 @@ position: relative;
 }
 
 .elgg-menu-topbar > li > a {
-	padding: 2px 15px 0;
+	padding: 2px 10px 0;
 	color: #FFFFFF;
 	margin-top: 1px;	
 }
@@ -242,6 +246,9 @@ position: relative;
 .elgg-menu-item-friends > a { border-right:1px solid #DB1730; }
 .elgg-menu-item-messages > a { border-right:1px solid #DB1730; }
 /*.elgg-menu-item-profile > a { border-right:1px solid #DB1730; }*/
+.elgg-menu-item-search {border-right:1px solid #DB1730;}
+.elgg-menu-item-home {border-right:1px solid #DB1730;}
+.elgg-menu-item-home:last-child {border-right:none;}
 
 /****************************************/
 
