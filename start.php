@@ -13,6 +13,7 @@
  *   * css/elements/*
  *   * css/typeaheadtags/css
  * 	 * messages/css
+ *   * page/default (Override default page shell)
  *   * page/elements/header_logo
  *   * page/elements/owner_block
  *   * page/elements/shortcut_icon
@@ -135,11 +136,6 @@ function tgstheme_init() {
 	
 	// Extend Fullcalendar CSS
 	elgg_extend_view('css/fullcalendar', 'css/tgstheme/fullcalendar');
-	
-	// Extend search/searchbox
-	if (elgg_get_plugin_setting('help_group', 'tgstheme') && elgg_is_logged_in()) {
-		// @todo extra topbar link
-	}
 
 	// Extend activity sidebar
 	if (elgg_is_logged_in() && elgg_get_context() == 'activity') {
@@ -387,6 +383,24 @@ function tgstheme_pagesetup() {
 	} else {
 		$home_url = elgg_get_site_url();
 	}
+
+	/** Quickbar items **/
+
+	// Help link (from admin)
+	if (($group_guid = elgg_get_plugin_setting('help_group', 'tgstheme')) && elgg_is_logged_in()) {
+		$group = get_entity($group_guid);
+		$item = new ElggMenuItem('help_group', elgg_get_plugin_setting('help_label', 'tgstheme'), $group->getURL());
+		elgg_register_menu_item('quickbar', $item);
+	}
+
+
+	// Library link (from admin)
+	if (($group_guid = elgg_get_plugin_setting('library_group', 'tgstheme')) && elgg_is_logged_in()) {
+		$group = get_entity($group_guid);
+		$item = new ElggMenuItem('library_group', elgg_get_plugin_setting('library_label', 'tgstheme'), $group->getURL());
+		elgg_register_menu_item('quickbar', $item);
+	}
+
 		
 	// Topbar 'home' item
 	$item = new ElggMenuItem('home', elgg_view_icon('home') . elgg_echo('home'), $home_url);

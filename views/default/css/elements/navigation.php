@@ -182,6 +182,37 @@ position: relative;
 }
 
 /* ***************************************
+	QUICKBAR MENU
+*************************************** */
+
+.elgg-menu-quickbar {
+	float: right;
+	padding-right: 15px;
+}
+
+.elgg-inner.elgg-menu-quickbar > ul {
+	margin-top: 1px;
+}
+
+.elgg-menu-quickbar > li {
+	float: left;
+	font-size: 11px;
+	padding-left: 6px;
+	padding-right: 6px;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/quickbar-divider.png) no-repeat scroll 0 0 transparent
+}
+
+.elgg-menu-quickbar > li:first-child {
+	background: none;
+}
+
+.elgg-menu-quickbar > li > a {
+	color: #FFFFFF;
+	margin-top: 0px;	
+}
+
+
+/* ***************************************
 	TOPBAR MENU
 *************************************** */
 .elgg-menu-topbar {
