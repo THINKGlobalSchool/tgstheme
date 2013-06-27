@@ -41,6 +41,35 @@
 .elgg-page-footer:after {
 	content:none;
 }
+
+/***** QUICKBAR *****/
+
+.elgg-page-quickbar {
+	/* Firefox v3.6+ */
+	background-image:-moz-linear-gradient(50% 0% -180deg,rgb(55,72,79) 0%,rgb(29,40,45) 100%); 
+	/* safari v4.0+ and by Chrome v3.0+ */
+	background-image:-webkit-gradient(linear,50% 0%,50% 167%,color-stop(0, rgb(55,72,79)),color-stop(1, rgb(29,40,45)));
+	/* Chrome v10.0+ and by safari nightly build*/
+	background-image:-webkit-linear-gradient(-180deg,rgb(55,72,79) 0%,rgb(29,40,45) 100%);
+	/* Opera v11.10+ */
+	background-image:-o-linear-gradient(-180deg,rgb(55,72,79) 0%,rgb(29,40,45) 100%);
+	/* IE v10+ */
+	background-image:-ms-linear-gradient(-180deg,rgb(55,72,79) 0%,rgb(29,40,45) 100%);
+	background-image:linear-gradient(-180deg,rgb(55,72,79) 0%,rgb(29,40,45) 100%);
+	height:18px;
+	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff37484f,endColorstr=#ff1d282d,GradientType=0)";
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff37484f,endColorstr=#ff1d282d,GradientType=0);
+
+	position: relative;
+	height: 18px;
+	z-index: 9001;
+}
+.elgg-page-quickbar > .elgg-inner {
+	padding: 0 2px;
+	width: 990px;
+	margin:auto;
+}
+
 /***** TOPBAR ******/
 .elgg-page-topbar {
 	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/back-top.jpg) repeat-x top left;

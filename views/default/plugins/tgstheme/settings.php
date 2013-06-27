@@ -16,21 +16,13 @@ $help_link_input = elgg_view('input/text', array(
 	'value' => $vars['entity']->help_label)
 );
 
-$groups_label = elgg_echo('tgstheme:label:helpgroup');
+$help_groups_label = elgg_echo('tgstheme:label:helpgroup');
 
 $groups = elgg_get_entities(array(
 	'types' => 'group', 
 	'limit' => 0
 ));
 		
-if (elgg_is_active_plugin('shared_access')) {
-	$channels = elgg_get_entities(array('types' => 'object',
-		'subtypes' => 'shared_access',
-		'limit' => 0
- 	));
-	$groups = array_merge($groups, $channels);
-}
-
 $dropdown = array();
 $dropdown[0] = 'Select..';
 
@@ -38,11 +30,27 @@ foreach ($groups as $group) {
 	$dropdown[$group->getGUID()] = "Group: " . $group->name;
 }
 
-$groups_input = elgg_view('input/dropdown', array(
+$help_groups_input = elgg_view('input/dropdown', array(
 	'id' => 'group_picker',
 	'name' => 'params[help_group]',
 	'options_values' => $dropdown,
 	'value' => $vars['entity']->help_group,
+));
+
+$library_link_label = elgg_echo('tgstheme:label:librarylink');
+
+$library_link_input = elgg_view('input/text', array(
+	'name' => 'params[library_label]', 
+	'value' => $vars['entity']->library_label)
+);
+
+$library_groups_label = elgg_echo('tgstheme:label:librarygroup');
+
+$library_groups_input = elgg_view('input/dropdown', array(
+	'id' => 'group_picker',
+	'name' => 'params[library_group]',
+	'options_values' => $dropdown,
+	'value' => $vars['entity']->library_group,
 ));
 
 $analytics_label = elgg_echo('tgstheme:label:analytics_enable');
@@ -98,8 +106,16 @@ $content = <<<HTML
 		$help_link_input
 	</div>
 	<div>
-		<label>$groups_label</label><br />
-		$groups_input
+		<label>$help_groups_label</label><br />
+		$help_groups_input
+	</div>
+	<div>
+		<label>$library_link_label</label><br />
+		$library_link_input
+	</div>
+	<div>
+		<label>$library_groups_label</label><br />
+		$library_groups_input
 	</div>
 	<div>
 		<label>$analytics_label</label><br />
