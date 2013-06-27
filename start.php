@@ -14,6 +14,7 @@
  *   * css/typeaheadtags/css
  * 	 * messages/css
  *   * page/default (Override default page shell)
+ *   * page/elements/header
  *   * page/elements/header_logo
  *   * page/elements/owner_block
  *   * page/elements/shortcut_icon
@@ -180,12 +181,9 @@ function tgstheme_init() {
 
 //	elgg_register_page_handler('activity', 'tgstheme_river_page_handler');
 
-	// Search hacks
-	if (elgg_is_logged_in()) {
-		// Unextend header if user is logged in, this will be on the topbar
-		elgg_unextend_view('page/elements/header', 'search/header');
-	}
-
+	// Unextend header if user is logged in, this will be on the topbar
+	elgg_unextend_view('page/elements/header', 'search/header');
+	
 	// Whitelist ajax views
 	elgg_register_ajax_view('thewire/composer');
 	elgg_register_ajax_view('messageboard/composer');
@@ -678,6 +676,18 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 		'text' => elgg_view('search/search_box', array('class' => 'tgstheme-search-topbar')),
 		'priority' => 100,
 	));
+
+	// Add login item to nav bar
+	if (!elgg_is_logged_in()) {
+		$login_item = ElggMenuItem::factory(array(
+			'name' => 'login',
+			'href' => false,
+			'text' => elgg_view('core/account/login_dropdown'),
+			'priority' => 200,
+		));
+		$login_item->setSection('alt');
+		$items[] = $login_item;
+	}
 
 	$search_item->setSection('alt');
 
