@@ -36,6 +36,29 @@ elgg.tgstheme.init = function() {
 			parent.append(iframe);
 		}
 	});
+
+	// Init publish module
+	elgg.tgstheme.initPublish();
+}
+
+elgg.tgstheme.initPublish = function() {
+	// Init publish links
+	$('.tgstheme-publish-item').live('click', function() {
+		window.open($(this).data('href'), "_blank");
+	});
+
+	// Init 'more' toggle
+	$('.elgg-module-publish .publish-more').live('click', function() {
+		if ($(this).hasClass('publish-more-closed')) {
+			$(this).removeClass('publish-more-closed');
+			$(this).addClass('publish-more-open');
+		} else {
+			$(this).removeClass('publish-more-open');
+			$(this).addClass('publish-more-closed');
+		}
+
+		$('.tgstheme-publish-more-menu').slideToggle('fast');
+	});
 }
 
 elgg.register_hook_handler('init', 'system', elgg.tgstheme.init);

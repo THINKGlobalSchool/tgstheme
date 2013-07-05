@@ -153,7 +153,7 @@ function tgstheme_init() {
 	}
 
 	// Composer menu hook
-	elgg_register_plugin_hook_handler('register', 'menu:composer', 'tgstheme_composer_menu_handler');
+	//elgg_register_plugin_hook_handler('register', 'menu:composer', 'tgstheme_composer_menu_handler');
 
 	// Topbar menu hook
 	elgg_register_plugin_hook_handler('register', 'menu:topbar', 'tgstheme_topbar_menu_handler', 9999);
@@ -234,27 +234,30 @@ function home_page_handler($page) {
 	// Extendable content view
 	$params['content'] = elgg_view('tgstheme/home/content_top');
 
-	// Non-ajaxy composer
-	//$composer = elgg_view('page/elements/composer', array('entity_guid' => elgg_get_logged_in_user_guid()));
+	/* COMPOSER */	
+	// elgg_load_js('autosuggest');
+	// elgg_load_css('autosuggest');
+	// elgg_load_js('elgg.typeaheadtags');
+	// elgg_load_library('elgg:blog');
+	// elgg_load_library('elgg:bookmarks');
+	// elgg_load_library('elgg:file');
+	// elgg_load_js('elgg.fileextender');
+	// elgg_load_js('jQuery-File-Upload');
+	// elgg_load_css('elgg.fileextender');
+	// elgg_load_css('elgg.webvideos');
+	// elgg_load_js('elgg.webvideos');
 
-	elgg_load_js('autosuggest');
-	elgg_load_css('autosuggest');
-	elgg_load_js('elgg.typeaheadtags');
-	elgg_load_library('elgg:blog');
-	elgg_load_library('elgg:bookmarks');
-	elgg_load_library('elgg:file');
-	elgg_load_js('elgg.fileextender');
-	elgg_load_js('jQuery-File-Upload');
-	elgg_load_css('elgg.fileextender');
-	elgg_load_css('elgg.webvideos');
-	elgg_load_js('elgg.webvideos');
+	// $composer_module .= elgg_view('modules/genericmodule', array(
+	// 	'view' => 'page/elements/composer',
+	// 	'view_vars' => array('entity_guid' => elgg_get_logged_in_user_guid()), 
+	// ));
 
-	$composer_module .= elgg_view('modules/genericmodule', array(
-		'view' => 'page/elements/composer',
-		'view_vars' => array('entity_guid' => elgg_get_logged_in_user_guid()), 
-	));
+	// $params['content'] .= elgg_view_module('info', elgg_echo("wire-extender:label:thewire:doing"), $composer_module);
+	/* END COMPOSER */
 
-	$params['content'] .= elgg_view_module('info', elgg_echo("wire-extender:label:thewire:doing"), $composer_module);
+	// 'Publish' box
+	$params['content'] = elgg_view('tgstheme/modules/publish');
+
 	// Announcements
 	if (elgg_is_active_plugin('announcements')) {
 		$params['content'] .= elgg_view('announcements/announcement_list');
