@@ -301,7 +301,7 @@ function home_page_handler($page) {
 		'module_type' => 'featured',
 	));
 
-	$body = elgg_view_layout('one_sidebar_right', $params);
+	$body = elgg_view_layout('one_sidebar_home', $params);
 	echo elgg_view_page(elgg_echo('tgstheme:title:home'), $body);
 }
 

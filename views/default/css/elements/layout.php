@@ -119,18 +119,27 @@
 	min-height: 360px;
 }
 .elgg-layout-one-sidebar {
-	background: transparent url(<?php echo elgg_get_site_url(); ?>_graphics/sidebar_background.gif) repeat-y right top;
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sidebar_background_left.gif) repeat-y right top;
 }
 .elgg-layout-two-sidebar {
 	background: transparent url(<?php echo elgg_get_site_url(); ?>_graphics/two_sidebar_background.gif) repeat-y right top;
 }
-.elgg-sidebar {
+/*.elgg-sidebar {
 	position: relative;
 	padding: 20px 10px;
 	float: right;
 	width: 210px;
 	margin: 0 0 0 10px;
+}*/
+
+.elgg-sidebar {
+	position: relative;
+	padding: 20px 10px;
+	float: left;
+	width: 210px;
+	margin: 10px 0 0 0;
 }
+
 .elgg-sidebar-alt {
 	position: relative;
 	padding: 20px 10px;
