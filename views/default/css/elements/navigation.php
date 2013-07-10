@@ -450,8 +450,6 @@ li:hover > .elgg-menu-site-more {
 	border-top: 1px solid #BBBBBB;
 }
 
-
-
 .elgg-menu-page li a {
 	/*background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-med-grey.png) repeat-x bottom left #F8F8F8;	*/
 	background: #CCCCCC;
