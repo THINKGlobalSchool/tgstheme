@@ -161,6 +161,7 @@
 
 .elgg-home-right{
 	background:none;
+	border-right: 0px;
 }
 
 /***** PAGE FOOTER ******/
