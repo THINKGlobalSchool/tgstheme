@@ -4,7 +4,8 @@
  *
  * OVERRIDE:
  * - Added extras menu
- *
+ * - Conditional sidebar (will remove sidebar if empty)
+ * 
  * @package Elgg
  * @subpackage Core
  *
@@ -15,7 +16,15 @@
  * @uses $vars['nav']     HTML of the page nav (override) (default: breadcrumbs)
  */
 
-$class = 'elgg-layout elgg-layout-one-sidebar clearfix';
+$sidebar = elgg_view('page/elements/sidebar', $vars);
+
+// Switch class if sidebar is empty
+if ($sidebar) {
+	$class = 'elgg-layout elgg-layout-one-sidebar clearfix';
+} else {
+	$class = 'elgg-layout elgg-layout-one-column clearfix';
+}
+
 if (isset($vars['class'])) {
 	$class = "$class {$vars['class']}";
 }
@@ -31,12 +40,17 @@ $extras = elgg_view_menu('extras', array(
 ?>
 
 <div class="<?php echo $class; ?>">
+	<?php 
+		if ($sidebar) {
+	?>
 	<div class="elgg-sidebar">
 		<?php
-			echo elgg_view('page/elements/sidebar', $vars);
+			echo $sidebar;
 		?>
 	</div>
-
+	<?php
+		}
+	?>
 	<div class="elgg-main elgg-body">
 		<?php
 			echo $nav;

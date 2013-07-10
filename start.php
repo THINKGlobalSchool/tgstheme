@@ -19,7 +19,9 @@
  *   * page/elements/owner_block
  *   * page/elements/shortcut_icon
  *   * page/elements/sidebar
+ *   * page/elements/tagcloud_block
  *   * page/layouts/one_sidebar
+ *   * page/layouts/one_column
  *   * search/css
  *   * search/search_box
  *   * js/tinymce
@@ -140,11 +142,6 @@ function tgstheme_init() {
 	// Extend Fullcalendar CSS
 	elgg_extend_view('css/fullcalendar', 'css/tgstheme/fullcalendar');
 
-	// Extend activity sidebar
-	if (elgg_is_logged_in() && elgg_get_context() == 'activity') {
-		elgg_extend_view('page/elements/sidebar', 'tgstheme/main_stats');
-	}
-
 	if (!elgg_is_logged_in() && elgg_get_plugin_setting('analytics_enable', 'tgstheme')) {
 		elgg_extend_view('page/elements/head', 'tgstheme/analytics');
 	}
@@ -178,10 +175,6 @@ function tgstheme_init() {
 	
 	// Add a hook handler for HTMLawed allowed styles
 	elgg_register_plugin_hook_handler('allowed_styles', 'htmlawed', 'tgstheme_allowed_styles_handler');
-
-//	elgg_unregister_page_handler('activity');
-
-//	elgg_register_page_handler('activity', 'tgstheme_river_page_handler');
 
 	// Unextend header if user is logged in, this will be on the topbar
 	elgg_unextend_view('page/elements/header', 'search/header');
@@ -416,8 +409,8 @@ function tgstheme_pagesetup() {
 	$item = new ElggMenuItem('2privacypolicysupplement', elgg_echo("tgstheme:label:policysupplement"), elgg_get_site_url() . 'legal/privacy_supplement');
 	elgg_register_menu_item('footer', $item);
 
-	/* Fix some page owners that shouldn't be set */
-	if (elgg_in_context('activity')) {
+	/** Set null page owners on required pages **/
+	if (elgg_get_context() == 'activity') {
 		elgg_set_page_owner_guid(1);
 	}
 }
@@ -448,32 +441,14 @@ function tgstheme_route_bookmarks_handler($hook, $type, $return, $params) {
 }
 
 /**
- * Custom page handler for activiy
+ * Home redirect
  *
- * @param array $page
+ * @param unknown_type $hook
+ * @param unknown_type $entity_type
+ * @param unknown_type $returnvalue
+ * @param unknown_type $params
+ * @return unknown
  */
-function tgstheme_river_page_handler($page) {
-	global $CONFIG;
-
-	elgg_set_page_owner_guid(elgg_get_logged_in_user_guid());
-
-	// make a URL segment available in page handler script
-	$page_type = elgg_extract(0, $page, 'all');
-	$page_type = preg_replace('[\W]', '', $page_type);
-	if ($page_type == 'owner') {
-		$page_type = 'mine';
-	}
-	set_input('page_type', $page_type);
-
-	// content filter code here
-	$entity_type = '';
-	$entity_subtype = '';
-
-	$path = elgg_get_plugins_path() . "tgstheme/pages/river.php";
-
-	require_once($path);
-}
-
 function home_redirect($hook, $entity_type, $returnvalue, $params) {
 	forward('home');
 }
