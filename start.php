@@ -18,6 +18,8 @@
  *   * page/elements/header_logo
  *   * page/elements/owner_block
  *   * page/elements/shortcut_icon
+ *   * page/elements/sidebar
+ *   * page/layouts/one_sidebar
  *   * search/css
  *   * search/search_box
  *   * js/tinymce
@@ -140,7 +142,7 @@ function tgstheme_init() {
 
 	// Extend activity sidebar
 	if (elgg_is_logged_in() && elgg_get_context() == 'activity') {
-		elgg_extend_view('page/elements/sidebar', 'tgstheme/main_stats', 499);
+		elgg_extend_view('page/elements/sidebar', 'tgstheme/main_stats');
 	}
 
 	if (!elgg_is_logged_in() && elgg_get_plugin_setting('analytics_enable', 'tgstheme')) {
@@ -413,6 +415,11 @@ function tgstheme_pagesetup() {
 
 	$item = new ElggMenuItem('2privacypolicysupplement', elgg_echo("tgstheme:label:policysupplement"), elgg_get_site_url() . 'legal/privacy_supplement');
 	elgg_register_menu_item('footer', $item);
+
+	/* Fix some page owners that shouldn't be set */
+	if (elgg_in_context('activity')) {
+		elgg_set_page_owner_guid(1);
+	}
 }
 
 // Hook into bookmakrs routing to provide extra content

@@ -134,7 +134,7 @@
 
 .elgg-sidebar {
 	position: relative;
-	padding: 20px 10px;
+	padding: 10px;
 	float: left;
 	width: 210px;
 	margin: 10px 0 0 0;
@@ -151,6 +151,7 @@
 	position: relative;
 	min-height: 360px;
 	padding: 20px 10px 10px 10px;
+	border-right: 1px solid #DEDEDE;
 }
 .elgg-main > .elgg-head {
 	padding-bottom: 3px;
