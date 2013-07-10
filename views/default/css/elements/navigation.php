@@ -659,5 +659,6 @@ li:hover > .elgg-menu-site-more {
 	SIDEBAR EXTRAS (rss, bookmark, etc)
 *************************************** */
 .elgg-menu-extras {
-	margin-bottom: 15px;
+	float: right;
+	padding: 4px 0 4px 11px;
 }
