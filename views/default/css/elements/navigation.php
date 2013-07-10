@@ -420,7 +420,7 @@ li:hover > .elgg-menu-site-more {
 
 /* ------ NEW BUTTONS ------ */
 
-.elgg-menu-page a {
+/*.elgg-menu-page a {
 	display: block;
 	
 	-webkit-border-radius: 4px;
@@ -435,8 +435,46 @@ li:hover > .elgg-menu-site-more {
     font-family: 'Shanti',sans-serif;
     font-size: 100%;
     text-transform: uppercase;
+}*/
+
+.elgg-menu-page li {
+	width: 229px;
+	right: 10px;
+	position: relative;
+	border-left: 1px solid #DEDEDE;
+	border-right: 1px solid #DEDEDE;
+	border-bottom: 1px solid #BBBBBB;
 }
-.elgg-menu-page a:hover {
+
+.elgg-menu-page li:first-child {
+	border-top: 1px solid #BBBBBB;
+}
+
+
+
+.elgg-menu-page li a {
+	/*background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-med-grey.png) repeat-x bottom left #F8F8F8;	*/
+	background: #CCCCCC;
+	display: block;
+	color: #2D3F46;
+	font-family: 'Shanti',sans-serif;
+	font-size: 100%;
+	text-transform: uppercase;
+	padding: 3px 4px 3px 9px;
+}
+
+.elgg-menu-page li a:hover {
+	color: #FFFFFF;
+	background: #222E33;
+	text-decoration: none;
+}
+
+.elgg-menu-page li.elgg-state-selected > a {
+	background: #A8070F;
+	color: #FFFFFF;	
+}
+
+/*.elgg-menu-page li a:hover {
 	color: #FFFFFF;
 	border: 1px solid #2D3F46;
 	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
@@ -447,7 +485,7 @@ li:hover > .elgg-menu-site-more {
 	border:1px solid #85161D;
 	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #E72139;
 	color: #FFFFFF;	
-}
+}*/
 
 /* --------------------------- */
 
