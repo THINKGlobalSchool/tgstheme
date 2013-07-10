@@ -151,7 +151,6 @@
 	position: relative;
 	min-height: 360px;
 	padding: 20px 10px 10px 10px;
-	border-right: 1px solid #DEDEDE;
 }
 .elgg-main > .elgg-head {
 	padding-bottom: 3px;
@@ -161,7 +160,6 @@
 
 .elgg-home-right{
 	background:none;
-	border-right: 0px;
 }
 
 /***** PAGE FOOTER ******/
