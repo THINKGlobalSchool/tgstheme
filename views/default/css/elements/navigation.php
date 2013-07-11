@@ -461,10 +461,25 @@ li:hover > .elgg-menu-site-more {
 	padding: 3px 4px 3px 9px;
 }
 
-.elgg-menu-page li a:hover {
+.elgg-menu-page li:first-child:hover {
+	border-top: 1px solid #222E33;
+}
+
+.elgg-menu-page li:hover {
+	border-bottom: 1px solid #222E33;
+	border-left: 1px solid #222E33;
+	border-right: 1px solid #222E33;
+}
+
+.elgg-menu-page li:hover a {
 	color: #FFFFFF;
 	background: #222E33;
 	text-decoration: none;
+}
+
+.elgg-menu-page li.elgg-state-selected {
+	/*border: 1px solid #81040A;*/
+	border: 1px solid #A8070F;
 }
 
 .elgg-menu-page li.elgg-state-selected > a {
