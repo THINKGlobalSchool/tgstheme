@@ -577,6 +577,10 @@ span.actions-text {
 .elgg-module-publish .publish-more {
 	color: #555555;
 	cursor: pointer;
+	text-transform: uppercase;
+	display: block;
+	float: right;
+	padding: 8px;
 }
 
 .elgg-module-publish .publish-more-closed:after {

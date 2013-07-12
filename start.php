@@ -91,6 +91,9 @@ function tgstheme_init() {
 	// Register 'legal' page handler
 	elgg_register_page_handler('legal','legal_page_handler');
 
+	// Register a generic iframe handler
+	elgg_register_page_handler('iframe', 'iframe_page_handler');
+
 	// Extend bookmarks page handler
 	elgg_register_plugin_hook_handler('route', 'bookmarks', 'tgstheme_route_bookmarks_handler');
 
@@ -204,6 +207,16 @@ function tgstheme_init() {
 function home_page_handler($page) {
 	// Logged in users only
 	gatekeeper();
+
+	/** Tidypics Required Libs **/
+
+	// Load jquery-file-upload libs
+	elgg_load_js('jquery.ui.widget');
+	elgg_load_js('jquery-file-upload');
+	elgg_load_js('jquery.iframe-transport');
+
+	elgg_load_js('tidypics');
+	elgg_load_js('tidypics:upload');
 
 	// Forward parents to parentportal home, not the dashboard
 	if (elgg_is_active_plugin('parentportal')) {
@@ -438,6 +451,60 @@ function tgstheme_route_bookmarks_handler($hook, $type, $return, $params) {
 		}
 	}
 	return $return;
+}
+
+/**
+ * IFRAME page handler
+ *
+ * @param array $page From the page_handler function
+ * @return true|false Depending on success
+ *
+ */
+function iframe_page_handler($page) {
+	switch ($page[0]) {
+		case 'blog':
+			elgg_load_library('elgg:blog');
+			$params = blog_get_page_content_edit($page_type, $page[1]);
+			$title = $params['title'];
+			$content = $params['content'];
+			break;
+		case 'photo':
+			// Load tidypics related JS
+			elgg_load_js('tidypics');
+			elgg_load_js('tidypics:upload');
+			break;
+		case 'file':
+			elgg_load_library('elgg:file');
+			$title = elgg_echo('file:add');
+			$form_vars = array('enctype' => 'multipart/form-data');
+			$body_vars = file_prepare_form_vars();
+			$content = elgg_view_form('file/upload', $form_vars, $body_vars);
+			break;
+		case 'bookmark':
+			elgg_load_library('elgg:bookmarks');
+			$page_owner = elgg_get_page_owner_entity();
+			$title = elgg_echo('bookmarks:add');
+			$vars = bookmarks_prepare_form_vars();
+			$content = elgg_view_form('bookmarks/save', array(), $vars);
+			break;
+		case 'video':
+			$page_owner = elgg_get_page_owner_entity();
+			$title = elgg_echo('videos:add');
+			$vars = simplekaltura_prepare_form_vars();
+			$content = elgg_view_form('simplekaltura/save', array(), $vars);
+			break;
+		default:
+			return FALSE;
+	}
+
+	$content = elgg_view('tgstheme/iframe', array(
+		'title' => $title,
+		'content' => $content,
+	));
+
+	echo elgg_view_page($title, $content, 'bookmarklet');
+
+	return TRUE;
 }
 
 /**
