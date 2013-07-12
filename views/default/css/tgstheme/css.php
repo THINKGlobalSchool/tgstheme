@@ -525,16 +525,13 @@ span.actions-text {
 }
 
 .elgg-module-publish .tgstheme-publish-more-menu > ul > li {
-
-}
-
-.elgg-module-publish .tgstheme-publish-more-menu > ul > li > a {
 	border-left: 2px solid #CCCCCC;
 	color: #555555;
 	display: block;
 	font-weight: bold;
 	padding-left: 8px;
 	width: 30%;
+	cursor: pointer;
 }
 
 .elgg-module-publish .tgstheme-publish-more-menu > ul > li > a:hover {
@@ -722,13 +719,15 @@ div.tidypics-upload-image-element .tidypics-upload-image-progress .tidypics-uplo
 	background: darkred !important;
 }
 
-/** Bookmarklet **/
-body#elgg-bookmarklet-body {
+/** Bookmarklet/iframe **/
+body#elgg-bookmarklet-body,
+body#elgg-iframe-body {
 	background-color: transparent;
 	overflow: hidden;
 }
 
-div#elgg-bookmarklet-wrapper {
+div#elgg-bookmarklet-wrapper,
+div#elgg-iframe-wrapper  {
 	width: 400px;
 }
 
@@ -742,4 +741,23 @@ span.message.warning {
 	display: inline-block;
 	font-weight: bold;
 	margin-bottom: 7px;
+}
+
+/** Bookmarklet/iframe tweaks **/
+body#elgg-iframe-body .ui-widget-overlay {
+	background: none !important;
+}
+
+body#elgg-iframe-body .ui-dialog.ui-widget {
+	z-index: 9010 !important;
+}
+
+/* Fix for simplekaltura flash object */
+body#elgg-iframe-body object#simplekaltura-uploader {
+	width: 100%;
+	height: 33px;
+}
+
+body#elgg-iframe-body #googleapps-docs-container {
+	min-height: 450px;
 }

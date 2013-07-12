@@ -43,7 +43,7 @@ elgg.tgstheme.init = function() {
 
 elgg.tgstheme.initPublish = function() {
 	// Init publish links
-	$('.tgstheme-publish-item.clickable').live('click', elgg.tgstheme.publishItemClick);
+	$('.tgstheme-publish-item.clickable, .tgstheme-publish-more-menu li.clickable').live('click', elgg.tgstheme.publishItemClick);
 
 	// Init 'more' toggle
 	$('.elgg-module-publish .publish-more').live('click', function() {
@@ -67,7 +67,7 @@ elgg.tgstheme.publishItemClick = function(event) {
 		var n=e.document;
 		setTimeout(function() {
 			function a(e) {
-				if(e.data==="destroy_bookmarklet") {
+				if(e.data==="destroy_iframe") {
 					var r=n.getElementById(t);
 					if(r) {
 						n.body.removeChild(r);
@@ -75,7 +75,7 @@ elgg.tgstheme.publishItemClick = function(event) {
 					}
 				}
 			}
-			var t="elgg-bookmarklet-iframe",r=n.getElementById(t);
+			var t="elgg-publish-iframe",r=n.getElementById(t);
 			if(r){
 				return
 			}

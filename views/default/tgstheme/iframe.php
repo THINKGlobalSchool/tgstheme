@@ -19,23 +19,23 @@ if (elgg_is_logged_in()) {
 }
 
 echo <<<HTML
-	<div id='elgg-bookmarklet-wrapper'>
+	<div id='elgg-iframe-wrapper'>
 		<div style='display: none;'>
-			<div id='elgg-bookmarklet-content' style='min-width: 590px'>
+			<div id='elgg-iframe-content' style='min-width: 590px'>
 				$header<br />
 				$content
 			</div>
 		</div>
 	</div>
-	<a href='#elgg-bookmarklet-content' class='bookmarklet-lightbox'></a>
+	<a href='#elgg-iframe-content' class='iframe-lightbox'></a>
 HTML;
 
 echo <<<JAVASCRIPT
 	<script type='text/javascript'>
 		$(document).ready(function() {
-			// Close the bookmarklet
+			// Close the iframe
 			var destroy = function() {
-				window.parent.postMessage("destroy_bookmarklet","*");
+				window.parent.postMessage("destroy_iframe","*");
 			};
 
 			var resizeFancyBox = function() {
@@ -43,7 +43,7 @@ echo <<<JAVASCRIPT
 			}
 
 			// Init bookmarklet lightbox, and trigger immediately
-			$(".bookmarklet-lightbox").fancybox({
+			$(".iframe-lightbox").fancybox({
 				scrolling: 'no',
 				onStart: function() {
 					//$(window).bind('resize', resizeFancyBox);
@@ -54,49 +54,34 @@ echo <<<JAVASCRIPT
 				}
 			}).trigger('click');
 
-			// Ajax submit the bookmark form
-			$('form.elgg-form-bookmarks-save').submit(function(event) {
-				event.preventDefault();
-
-				// Make sure we grab tinymce content
-				if (typeof(tinyMCE) != 'undefined') {
-					tinyMCE.triggerSave();
-				}
-
-				$('#elgg-bookmarklet-content').addClass('elgg-ajax-loader');
-
-				elgg.action($(this).attr('action'), {
-					data: $(this).serialize(),
-					success: function(json) {
-						$('#fancybox-close').hide();
-						$('#elgg-bookmarklet-content').removeClass('elgg-ajax-loader');
-						$('#elgg-bookmarklet-content').html("<h2 style='text-align: center;'>" + elgg.echo('bookmarklet:saved') + "</h2>");
-						setTimeout(function() {
-							$.fancybox.close();
-							destroy();
-						}, 1500);
-					}
-				});
-			});
-
 			// Grab bookmarklet element
-			bookmarklet = $('#elgg-bookmarklet-content');
+			iframe = $('#elgg-iframe-content');
 
 			// Get the initial, full height
-			initial_height = bookmarklet.height();
+			initial_height = iframe.height();
 
 			// Force the lightbox to resize
 			setInterval(function(){
 				// Move lightbox
 				$.fancybox.resize();
 
-				
+				// Get new window height
+				window_height = $(window).height();
+
+				// Shrink bookmarklet div and set overflow
+				if (iframe.height() > (window_height - 60)) {
+					iframe.height(window_height - 50);
+					iframe.css('overflow-y', 'scroll');
+				} else { // Reset iframe height, unset overflow
+					iframe.height(initial_height + 50);
+					iframe.css('overflow-y', 'hidden');
+				}	
 
 			},300);
 
 			// Open any other links in login form in a new tab
 			$('form.elgg-form-login a').click(function(event) {
-				destroy(); // Kill the bookmarklet first
+				destroy(); // Kill the iframe first
 				$(this).attr('target', '_blank');
 			});
 		});
