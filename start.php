@@ -461,6 +461,7 @@ function tgstheme_route_bookmarks_handler($hook, $type, $return, $params) {
  *
  */
 function iframe_page_handler($page) {
+	gatekeeper();
 	switch ($page[0]) {
 		case 'blog':
 			elgg_load_library('elgg:blog');
@@ -493,7 +494,24 @@ function iframe_page_handler($page) {
 			$vars = simplekaltura_prepare_form_vars();
 			$content = elgg_view_form('simplekaltura/save', array(), $vars);
 			break;
+		case 'page':
+			elgg_load_library('elgg:pages');
+			$parent_guid = 0;
+			$page_owner = elgg_get_page_owner_entity();
+			$title = elgg_echo('pages:add');
+			$vars = pages_prepare_form_vars(null, $parent_guid);
+			$content = elgg_view_form('pages/edit', array(), $vars);
+			break;
+		case 'googledoc':
+			elgg_load_js('elgg.googledocbrowser');
+			elgg_load_css('googleapps-jquery-ui');
+			$params = googleapps_get_page_content_docs_share();
+			$title = $params['title'];
+			$content = $params['content'];
+			break;
 		default:
+			// Invalid item
+			forward();
 			return FALSE;
 	}
 
@@ -502,7 +520,7 @@ function iframe_page_handler($page) {
 		'content' => $content,
 	));
 
-	echo elgg_view_page($title, $content, 'bookmarklet');
+	echo elgg_view_page($title, $content, 'iframe');
 
 	return TRUE;
 }

@@ -27,13 +27,6 @@ $google_doc_add_url = elgg_normalize_url("googapps/docs/add/{$user_guid}");
 
 $publish_header = "Add New";
 
-$publish_more_menu = <<<HTML
-	<ul>
-		<li><a target="_blank" href="$page_add_url">Page</a></li>
-		<li><a target="_blank" href="$google_doc_add_url">Google Doc</a></li>
-	</ul>
-HTML;
-
 $publish_content = <<<HTML
 	<div class="tgstheme-publish-item clickable" data-type='blog'>
 		<img src="$img_path/blog-icon.png">
@@ -59,7 +52,10 @@ $publish_content = <<<HTML
 	<span class='publish-more publish-more-closed'>more</span>
 	<div class='clearfix'></div>
 	<div class="tgstheme-publish-more-menu">
-		$publish_more_menu
+		<ul>
+			<li class='clickable' data-type='page'>Page</li>
+			<li class='clickable' data-type='googledoc'>Google Doc</li>
+		</ul>
 	</div>
 HTML;
 
