@@ -1,6 +1,6 @@
 <?php
 /**
- * Barebones pageshell for bookmarklet
+ * Barebones pageshell for bookmarklet/iframes
  *
  * @package TGSTheme2
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2

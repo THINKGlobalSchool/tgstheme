@@ -43,22 +43,62 @@ elgg.tgstheme.init = function() {
 
 elgg.tgstheme.initPublish = function() {
 	// Init publish links
-	$('.tgstheme-publish-item').live('click', function() {
-		window.open($(this).data('href'), "_blank");
-	});
+	$('.tgstheme-publish-item.clickable').live('click', elgg.tgstheme.publishItemClick);
 
 	// Init 'more' toggle
 	$('.elgg-module-publish .publish-more').live('click', function() {
 		if ($(this).hasClass('publish-more-closed')) {
+			$(this).html('less');
 			$(this).removeClass('publish-more-closed');
 			$(this).addClass('publish-more-open');
 		} else {
+			$(this).html('more');
 			$(this).removeClass('publish-more-open');
 			$(this).addClass('publish-more-closed');
 		}
 
 		$('.tgstheme-publish-more-menu').slideToggle('fast');
 	});
+}
+
+elgg.tgstheme.publishItemClick = function(event) {
+	var url = elgg.get_site_url() + "iframe/" + $(this).data('type');
+	(function(e,t) {
+		var n=e.document;
+		setTimeout(function() {
+			function a(e) {
+				if(e.data==="destroy_bookmarklet") {
+					var r=n.getElementById(t);
+					if(r) {
+						n.body.removeChild(r);
+						r=null;
+					}
+				}
+			}
+			var t="elgg-bookmarklet-iframe",r=n.getElementById(t);
+			if(r){
+				return
+			}
+			var i = url, s = n.createElement("iframe");
+			s.id=t;
+			s.src=i;
+			s.style.position="fixed";
+			s.style.top = "0";
+			s.style.left = "0";
+			s.style.height = "100%";
+			s.style.width = "100%";
+			s.style.zIndex = "16777270";
+			s.style.border = "none";
+			s.style.visibility = "hidden";
+			s.onload = function() {
+				this.style.visibility="visible";
+			};
+			n.body.appendChild(s);
+			var o=e.addEventListener?"addEventListener":"attachEvent";
+			var u=o=="attachEvent"?"onmessage":"message";
+			e[o](u,a,false);
+		},1);
+	})(window);
 }
 
 elgg.register_hook_handler('init', 'system', elgg.tgstheme.init);
