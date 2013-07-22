@@ -710,6 +710,36 @@ span.actions-text {
 	top: 0px;
 }
 
+/** Experimental Topbar Layout **/
+.elgg-page-topbar > .elgg-inner {
+	padding: 16px 10px;
+}
+
+.elgg-menu-topbar > li > a.spot-topbar-logo {
+	height: 40px;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	top: -6px;
+}
+
+.elgg-page-topbar {
+	/* Firefox v3.6+ */
+	background-image:-moz-linear-gradient(50% 0% -90deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%); 
+	/* safari v4.0+ and by Chrome v3.0+ */
+	background-image:-webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(171,51,45)),color-stop(1, rgb(127,19,25)));
+	/* Chrome v10.0+ and by safari nightly build*/
+	background-image:-webkit-linear-gradient(-90deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%);
+	/* Opera v11.10+ */
+	background-image:-o-linear-gradient(-90deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%);
+	/* IE v10+ */
+	background-image:-ms-linear-gradient(-90deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%);
+	background-image:linear-gradient(-90deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%);
+	height: 60px;
+	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffab332d,endColorstr=#ff7f1319,GradientType=0)";
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffab332d,endColorstr=#ff7f1319,GradientType=0);
+}
+
 /** Tidypics **/
 .elgg-menu-item-tagging {
 	background-position: 0 -1044px !important;

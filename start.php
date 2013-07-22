@@ -763,6 +763,18 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 
 	$items[] = $search_item;
 
+	// Add spot logo item
+	$spot_logo_url = elgg_get_site_url() . "mod/tgstheme/_graphics/topbar_logo.png";
+	$spot_logo_item = ElggMenuItem::factory(array(
+		'name' => 'elgg_logo',
+		'href' => elgg_get_site_url(),
+		'text' => "<img src=\"$spot_logo_url\" alt=\"THINK Spot\" />",
+		'priority' => 1,
+		'link_class' => 'spot-topbar-logo',
+	));
+
+	$items[] = $spot_logo_item;
+
 	return $items;
 }
 
