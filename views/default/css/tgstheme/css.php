@@ -735,6 +735,11 @@ div#elgg-bookmarklet-form {
 	padding: 10px;
 }
 
+div#elgg-iframe-content {
+	padding: 5px; 
+	width: 590px
+}
+
 /** Fix for: https://github.com/Elgg/Elgg/issues/5336 **/
 span.message.warning {
 	color: #777777;
