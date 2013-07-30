@@ -43,7 +43,23 @@ elgg.tgstheme.init = function() {
 
 elgg.tgstheme.initPublish = function() {
 	// Init publish links
-	$('.tgstheme-publish-item.clickable, .tgstheme-publish-more-menu li.clickable').live('click', elgg.tgstheme.publishItemClick);
+	$('.tgstheme-publish-item.clickable, .tgstheme-publish-more-menu li.clickable').each(function(){
+		// Get iframe url	
+		var href = elgg.get_site_url() + "iframe/" + $(this).data('type');
+		$(this).fancybox({
+			'href': href,
+			'type': 'iframe',
+			'scrolling': 'auto',
+			'autoSize': true,
+			'width': 600,
+			'onComplete' : function(){
+				$('#fancybox-content').addClass('elgg-ajax-loader');
+				$('#fancybox-frame').load(function(){
+					$('#fancybox-content').removeClass('elgg-ajax-loader');
+				});
+        	}
+		});
+	});
 
 	// Init 'more' toggle
 	$('.elgg-module-publish .publish-more').live('click', function() {
@@ -59,46 +75,14 @@ elgg.tgstheme.initPublish = function() {
 
 		$('.tgstheme-publish-more-menu').slideToggle('fast');
 	});
-}
 
-elgg.tgstheme.publishItemClick = function(event) {
-	var url = elgg.get_site_url() + "iframe/" + $(this).data('type');
-	(function(e,t) {
-		var n=e.document;
-		setTimeout(function() {
-			function a(e) {
-				if(e.data==="destroy_iframe") {
-					var r=n.getElementById(t);
-					if(r) {
-						n.body.removeChild(r);
-						r=null;
-					}
-				}
-			}
-			var t="elgg-publish-iframe",r=n.getElementById(t);
-			if(r){
-				return
-			}
-			var i = url, s = n.createElement("iframe");
-			s.id=t;
-			s.src=i;
-			s.style.position="fixed";
-			s.style.top = "0";
-			s.style.left = "0";
-			s.style.height = "100%";
-			s.style.width = "100%";
-			s.style.zIndex = "16777270";
-			s.style.border = "none";
-			s.style.visibility = "hidden";
-			s.onload = function() {
-				this.style.visibility="visible";
-			};
-			n.body.appendChild(s);
-			var o=e.addEventListener?"addEventListener":"attachEvent";
-			var u=o=="attachEvent"?"onmessage":"message";
-			e[o](u,a,false);
-		},1);
-	})(window);
+	// Hack dialog links in the iframe, need them to target the parent window
+	$('#elgg-iframe-body .ui-dialog-content a').live('click', function() {
+		if ($(this).attr('href').length) {
+			window.parent.location = $(this).attr('href');
+			return false;
+		};
+	})
 }
 
 elgg.register_hook_handler('init', 'system', elgg.tgstheme.init);
