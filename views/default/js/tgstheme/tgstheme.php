@@ -85,4 +85,25 @@ elgg.tgstheme.initPublish = function() {
 	})
 }
 
+/**
+ * Repositions the login popup
+ *
+ * @param {String} hook    'getOptions'
+ * @param {String} type    'ui.popup'
+ * @param {Object} params  An array of info about the target and source.
+ * @param {Object} options Options to pass to
+ *
+ * @return {Object}
+ */
+elgg.tgstheme.loginHandler = function(hook, type, params, options) {
+	if (params.target.attr('id') == 'login-dropdown-box') {
+		options.my = 'right top';
+		options.at = 'right bottom';
+		options.offset = '12px';
+		return options;
+	}
+	return null;
+};
+
 elgg.register_hook_handler('init', 'system', elgg.tgstheme.init);
+elgg.register_hook_handler('getOptions', 'ui.popup', elgg.tgstheme.loginHandler, 999);
