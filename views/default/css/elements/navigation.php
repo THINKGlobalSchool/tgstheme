@@ -305,7 +305,7 @@ position: relative;
 .elgg-menu-site-default {
 	position: absolute;
 	bottom: 0;
-	left: 360px;
+	right: 140px;
 	height: 40px;
 }
 
