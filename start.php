@@ -179,6 +179,9 @@ function tgstheme_init() {
 	// Add a hook handler for HTMLawed allowed styles
 	elgg_register_plugin_hook_handler('allowed_styles', 'htmlawed', 'tgstheme_allowed_styles_handler');
 
+	// Hook into forward for iframe submits
+	elgg_register_plugin_hook_handler('forward', 'all', 'tgstheme_iframe_forward_handler', 0);
+
 	// Unextend header if user is logged in, this will be on the topbar
 	elgg_unextend_view('page/elements/header', 'search/header');
 	
@@ -462,6 +465,7 @@ function tgstheme_route_bookmarks_handler($hook, $type, $return, $params) {
  */
 function iframe_page_handler($page) {
 	gatekeeper();
+	$title = $content = '';
 	switch ($page[0]) {
 		case 'blog':
 			elgg_load_library('elgg:blog');
@@ -508,6 +512,10 @@ function iframe_page_handler($page) {
 			$params = googleapps_get_page_content_docs_share();
 			$title = $params['title'];
 			$content = $params['content'];
+			break;
+		case 'forward': // Special forward endpoint
+			echo elgg_view_page('', '', 'iframe_forward');	
+			return TRUE;
 			break;
 		default:
 			// Invalid item
@@ -922,5 +930,23 @@ function tgstheme_liked_profile_tab_hander($hook, $type, $value, $params) {
  */
 function tgstheme_allowed_styles_handler($hook, $type, $value, $params) {
 	$value[] = 'display';
+	return $value;
+}
+
+/**
+ * Handler for iframe forwards
+ */
+function tgstheme_iframe_forward_handler($hook, $type, $value, $params) {
+	// Check if the referer was an iframe
+	$referer = preg_replace('/\?.*/', '', $_SERVER['HTTP_REFERER']);
+	$forward_url = preg_replace('/\?.*/', '', $params['forward_url']);
+	if (strpos($referer, 'iframe')) {
+		if ($forward_url == $referer) {
+			return $params['forward_url'];
+		} else {
+			$forward_url = $params['forward_url'];
+			return elgg_normalize_url("iframe/forward?forward_to={$forward_url}");
+		}
+	}
 	return $value;
 }
