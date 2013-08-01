@@ -172,6 +172,9 @@ function tgstheme_init() {
 	// Entity menu hook, used to reorganize the entity menu
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'tgstheme_ownerblock_menu_handler', 9999);
 
+	// Modify the 'site' menu to get return just the browse menu
+	//elgg_register_plugin_hook_handler('prepare', 'menu:site', 'elgg_site_menu_setup');
+
 	// Add a new tab to the tabbed profile
 	elgg_register_plugin_hook_handler('tabs', 'profile', 'tgstheme_twitter_profile_tab_hander');
 	elgg_register_plugin_hook_handler('tabs', 'profile', 'tgstheme_liked_profile_tab_hander');
@@ -677,10 +680,11 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 				/* Modify Profile Menu */
 				$text = $item->getText();
 				$user = elgg_get_logged_in_user_entity();
-				$name_text = "<span class='tgstheme-topbar-username tgstheme-topbar-dropdown'>" . $user->name . "</span>";
-				$item->setText($text . $name_text);
+				// $name_text = "<span class='tgstheme-topbar-username tgstheme-topbar-dropdown'>" . $user->name . "</span>";
+				// $item->setText($text . $name_text);
 				$item->setSection('alt');
 				$item->setPriority('1000');
+				$item->addLinkClass('tgstheme-topbar-dropdown');
 
 				// Set logout/settings/admin parent
 				$logout_item->setParent($item);
@@ -782,6 +786,30 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 	));
 
 	$items[] = $spot_logo_item;
+
+	// Add 'more/browse' items
+	global $CONFIG;
+
+	$site_menu = $CONFIG->menus['site'];
+
+	sort($site_menu);
+
+	$more = elgg_echo('browse');
+	$more_link = "<a href=\"#\" class='tgstheme-topbar-dropdown'>$more</a>";
+
+	$more_item = ElggMenuItem::factory(array(
+		'name' => 'more',
+		'href' => false,
+		'text' => $more_link . elgg_view('navigation/menu/elements/section', array(
+			'class' => 'elgg-menu elgg-menu-site elgg-menu-site-more', 
+			'items' => $site_menu,
+		)), 
+		'priority' => 99999,
+	));
+
+	$more_item->setSection('default');
+
+	$items[] = $more_item;
 
 	return $items;
 }

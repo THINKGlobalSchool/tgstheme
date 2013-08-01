@@ -602,6 +602,11 @@ span.actions-text {
 	bottom: 2px;
 }
 
+.elgg-topbar-avatar.tgstheme-topbar-dropdown:after {
+	bottom: 6px;
+	font-size: 10px;
+}
+
 /** User name topbar style **/
 .tgstheme-topbar-username {
 	margin-left: 10px;
@@ -712,7 +717,18 @@ span.actions-text {
 
 /** Experimental Topbar Layout **/
 .elgg-page-topbar > .elgg-inner {
-	padding: 16px 10px;
+	height: 60px;
+	padding: 0px;
+}
+
+.elgg-page-topbar > .elgg-inner > ul,
+.elgg-page-topbar > .elgg-inner > ul > li {
+	height: 60px;
+	top: 16px;
+}
+
+.elgg-menu-topbar > li {
+	height: 40px;
 }
 
 .elgg-menu-topbar > li > a.spot-topbar-logo {
@@ -723,22 +739,152 @@ span.actions-text {
 	top: -6px;
 }
 
+.elgg-menu-topbar .elgg-menu-site-more {
+	position: absolute;
+}
+
+/* Wrangle in all the topbar menus */
+.elgg-menu-topbar > li > ul.elgg-menu-site-more,
+.elgg-menu-topbar > li > ul.elgg-child-menu,
+.elgg-menu-topbar > li #todo-topbar-hover,
+.elgg-menu-topbar > li #groups-topbar-hover {
+	top: 40px;
+	border: 2px solid #999;
+	/*display: block !important;*/
+/*	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;*/
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	-webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+/* Start notch */
+.elgg-menu-topbar > li > ul.elgg-menu-site-more:after,
+.elgg-menu-topbar > li > ul.elgg-child-menu:after,
+.elgg-menu-topbar > li #todo-topbar-hover:after,
+.elgg-menu-topbar > li #groups-topbar-hover:after,
+.elgg-menu-topbar > li > ul.elgg-menu-site-more:before,
+.elgg-menu-topbar > li > ul.elgg-child-menu:before,
+.elgg-menu-topbar > li #todo-topbar-hover:before,
+.elgg-menu-topbar > li #groups-topbar-hover:before {
+	bottom: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.elgg-menu-topbar > li > ul.elgg-menu-site-more:after,
+.elgg-menu-topbar > li > ul.elgg-child-menu:after,
+.elgg-menu-topbar > li #todo-topbar-hover:after,
+.elgg-menu-topbar > li #groups-topbar-hover:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-bottom-color: #FFF;
+	border-width: 15px;
+	left: 50%;
+	margin-left: 51px;
+}
+.elgg-menu-topbar > li > ul.elgg-menu-site-more:before,
+.elgg-menu-topbar > li > ul.elgg-child-menu:before,
+.elgg-menu-topbar > li #todo-topbar-hover:before,
+.elgg-menu-topbar > li #groups-topbar-hover:before {
+	border-color: rgba(153, 153, 153, 0);
+	border-bottom-color: #999;
+	border-width: 18px;
+}
+
+/* Profile notch */
+.elgg-menu-topbar > li.elgg-menu-item-profile > ul.elgg-child-menu:before {
+	left: 50%;
+	margin-left: 45px;
+}
+.elgg-menu-topbar > li.elgg-menu-item-profile > ul.elgg-child-menu:after {
+	left: 50%;
+	margin-left: 48px;
+}
+
+/* Groups notch */
+.elgg-menu-topbar > li #groups-topbar-hover:before {
+	left: 0;
+	margin-left: 47px;
+}
+.elgg-menu-topbar > li #groups-topbar-hover:after {
+	left: 0;
+	margin-left: 50px;
+}
+
+/* Todo notch */
+.elgg-menu-topbar > li #todo-topbar-hover:before {
+	left: 0;
+	margin-left: 40px;
+}
+.elgg-menu-topbar > li #todo-topbar-hover:after {
+	left: 0;
+	margin-left: 43px;
+}
+
+/* Browse notch */
+.elgg-menu-topbar > li > ul.elgg-menu-site-more:before {
+	left: 0;
+	margin-left: 20px;
+}
+.elgg-menu-topbar > li > ul.elgg-menu-site-more:after {
+	left: 0;
+	margin-left: 23px;
+}
+
+
+/* End notch */
+
+.elgg-menu-topbar > li > ul.elgg-child-menu li:last-child > a,
+.elgg-menu-topbar > li > ul.elgg-child-menu > li:last-child > a:hover,
+.elgg-menu-topbar > li > ul.elgg-menu-site-more > li:last-child > a,
+.elgg-menu-topbar > li > ul.elgg-menu-site-more > li:last-child > a:hover,
+.elgg-menu-topbar > li #groups-topbar-hover ul li:last-child {
+	border-radius: 0px;
+}
+
+/* Reset borders on menu items */
+.elgg-menu-topbar > li > a,
+.elgg-menu-item-search,
+.elgg-menu-item-home {
+	border-left: none;
+	border-right: none;
+}
+
+/* Set border right on topbar li's */
+.elgg-menu-topbar > li {
+	/*border-right: 1px solid #DB1730;*/
+}
+
+.elgg-menu-topbar > li:last-child {
+	border-right: none;
+}
+
 .elgg-page-topbar {
 	/* Firefox v3.6+ */
-	background-image:-moz-linear-gradient(50% 0% -90deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%); 
+	background-image:-moz-linear-gradient(50% 0% -180deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%); 
 	/* safari v4.0+ and by Chrome v3.0+ */
 	background-image:-webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(171,51,45)),color-stop(1, rgb(127,19,25)));
 	/* Chrome v10.0+ and by safari nightly build*/
 	background-image:-webkit-linear-gradient(-90deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%);
 	/* Opera v11.10+ */
-	background-image:-o-linear-gradient(-90deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%);
+	background-image:-o-linear-gradient(-180deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%);
 	/* IE v10+ */
-	background-image:-ms-linear-gradient(-90deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%);
-	background-image:linear-gradient(-90deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%);
+	background-image:-ms-linear-gradient(-180deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%);
+	background-image:linear-gradient(-180deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%);
 	height: 60px;
 	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffab332d,endColorstr=#ff7f1319,GradientType=0)";
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffab332d,endColorstr=#ff7f1319,GradientType=0);
 }
+
+/** END Experimental Topbar Layout **/
 
 /** Tidypics **/
 .elgg-menu-item-tagging {
