@@ -60,3 +60,13 @@ $publish_content = <<<HTML
 HTML;
 
 echo elgg_view_module('publish', $publish_header, $publish_content);
+
+echo <<<CSS
+	<style type='text/css'>
+		#fancybox-wrap {
+			position: absolute;
+			top: 100px !important;
+		}
+	</style>
+CSS;
+?>
