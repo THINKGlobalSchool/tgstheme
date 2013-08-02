@@ -59,7 +59,7 @@ $publish_content = <<<HTML
 	</div>
 HTML;
 
-echo elgg_view_module('publish', $publish_header, $publish_content);
+echo elgg_view_module('publish', '', $publish_content);
 
 echo <<<CSS
 	<style type='text/css'>

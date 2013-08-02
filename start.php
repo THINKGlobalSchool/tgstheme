@@ -234,6 +234,9 @@ function home_page_handler($page) {
 	// Extendable sidebar view
 	$params['sidebar'] = elgg_view('tgstheme/home/sidebar_top');
 
+	// 'Publish' box
+	// $params['sidebar'] .= elgg_view('tgstheme/modules/publish');
+
 	// Show profile module
 	$params['sidebar'] .= elgg_view('tgstheme/modules/profile');
 
@@ -268,9 +271,6 @@ function home_page_handler($page) {
 
 	// $params['content'] .= elgg_view_module('info', elgg_echo("wire-extender:label:thewire:doing"), $composer_module);
 	/* END COMPOSER */
-
-	// 'Publish' box
-	$params['content'] = elgg_view('tgstheme/modules/publish');
 
 	// Announcements
 	if (elgg_is_active_plugin('announcements')) {
