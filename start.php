@@ -418,8 +418,8 @@ function tgstheme_pagesetup() {
 
 		
 	// Topbar 'home' item
-	$item = new ElggMenuItem('home', elgg_view_icon('home') . elgg_echo('home'), $home_url);
-	elgg_register_menu_item('topbar', $item);
+	// $item = new ElggMenuItem('home', elgg_view_icon('home') . elgg_echo('home'), $home_url);
+	// elgg_register_menu_item('topbar', $item);
 
 	// Add a couple footer items
 	$item = new ElggMenuItem('1termsofuse', elgg_echo("tgstheme:label:terms"), elgg_get_site_url() . 'legal/spot_terms_of_use');
@@ -794,7 +794,7 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 
 	sort($site_menu);
 
-	$more = elgg_echo('browse');
+	$more = elgg_echo('tgstheme:label:explore');
 	$more_link = "<a href=\"#\" class='tgstheme-topbar-dropdown'>$more</a>";
 
 	$more_item = ElggMenuItem::factory(array(
