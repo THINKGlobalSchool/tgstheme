@@ -199,7 +199,7 @@ function tgstheme_init() {
 	elgg_register_ajax_view('tgstheme/modules/liked');
 	elgg_register_ajax_view('page/elements/composer');
 	elgg_register_ajax_view('page/elements/topbar_ajax');
-	
+
 	return true;
 }
 
@@ -778,7 +778,7 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 	// Add spot logo item
 	$spot_logo_url = elgg_get_site_url() . "mod/tgstheme/_graphics/topbar_logo.png";
 	$spot_logo_item = ElggMenuItem::factory(array(
-		'name' => 'elgg_logo',
+		'name' => 'spot_logo',
 		'href' => elgg_get_site_url(),
 		'text' => "<img src=\"$spot_logo_url\" alt=\"THINK Spot\" />",
 		'priority' => 1,
@@ -792,7 +792,9 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 
 	$site_menu = $CONFIG->menus['site'];
 
-	sort($site_menu);
+	// Use ElggMenuBuilder to sort menu alphabetically
+	$builder = new ElggMenuBuilder($site_menu);
+	$site_menu = $builder->getMenu('text');
 
 	$more = elgg_echo('tgstheme:label:explore');
 	$more_link = "<a href=\"#\" class='tgstheme-topbar-dropdown'>$more</a>";
@@ -802,7 +804,7 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 		'href' => false,
 		'text' => $more_link . elgg_view('navigation/menu/elements/section', array(
 			'class' => 'elgg-menu elgg-menu-site elgg-menu-site-more', 
-			'items' => $site_menu,
+			'items' => $site_menu['default'],
 		)), 
 		'priority' => 99999,
 	));
