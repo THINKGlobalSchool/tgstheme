@@ -750,9 +750,12 @@ span.actions-text {
 	padding: 0px;
 }
 
-.elgg-page-topbar > .elgg-inner > ul,
-.elgg-page-topbar > .elgg-inner > ul > li {
+.elgg-page-topbar > .elgg-inner > ul {
 	height: 60px;
+}
+
+.elgg-page-topbar > .elgg-inner > ul > li {
+	height: 44px;
 	top: 16px;
 }
 
@@ -770,6 +773,10 @@ span.actions-text {
 
 .elgg-menu-topbar .elgg-menu-site-more {
 	position: absolute;
+}
+
+.elgg-menu-item-spot-logo {
+	margin-right: 12px;
 }
 
 /* Wrangle in all the topbar menus */
