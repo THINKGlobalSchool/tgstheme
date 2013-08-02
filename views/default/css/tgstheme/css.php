@@ -776,7 +776,8 @@ span.actions-text {
 .elgg-menu-topbar > li > ul.elgg-menu-site-more,
 .elgg-menu-topbar > li > ul.elgg-child-menu,
 .elgg-menu-topbar > li #todo-topbar-hover,
-.elgg-menu-topbar > li #groups-topbar-hover {
+.elgg-menu-topbar > li #groups-topbar-hover,
+#login-dropdown-box {
 	top: 40px;
 	border: 2px solid #999;
 	/*display: block !important;*/
@@ -796,10 +797,12 @@ span.actions-text {
 .elgg-menu-topbar > li > ul.elgg-child-menu:after,
 .elgg-menu-topbar > li #todo-topbar-hover:after,
 .elgg-menu-topbar > li #groups-topbar-hover:after,
+#login-dropdown-box:after,
 .elgg-menu-topbar > li > ul.elgg-menu-site-more:before,
 .elgg-menu-topbar > li > ul.elgg-child-menu:before,
 .elgg-menu-topbar > li #todo-topbar-hover:before,
-.elgg-menu-topbar > li #groups-topbar-hover:before {
+.elgg-menu-topbar > li #groups-topbar-hover:before,
+#login-dropdown-box:before {
 	bottom: 100%;
 	border: solid transparent;
 	content: " ";
@@ -812,7 +815,8 @@ span.actions-text {
 .elgg-menu-topbar > li > ul.elgg-menu-site-more:after,
 .elgg-menu-topbar > li > ul.elgg-child-menu:after,
 .elgg-menu-topbar > li #todo-topbar-hover:after,
-.elgg-menu-topbar > li #groups-topbar-hover:after {
+.elgg-menu-topbar > li #groups-topbar-hover:after,
+#login-dropdown-box:after {
 	border-color: rgba(255, 255, 255, 0);
 	border-bottom-color: #FFF;
 	border-width: 15px;
@@ -822,7 +826,8 @@ span.actions-text {
 .elgg-menu-topbar > li > ul.elgg-menu-site-more:before,
 .elgg-menu-topbar > li > ul.elgg-child-menu:before,
 .elgg-menu-topbar > li #todo-topbar-hover:before,
-.elgg-menu-topbar > li #groups-topbar-hover:before {
+.elgg-menu-topbar > li #groups-topbar-hover:before,
+#login-dropdown-box:before {
 	border-color: rgba(153, 153, 153, 0);
 	border-bottom-color: #999;
 	border-width: 18px;
@@ -868,6 +873,19 @@ span.actions-text {
 	margin-left: 23px;
 }
 
+/* Login notch */
+#login-dropdown-box:before {
+	left: 50%;
+	margin-left: 48px;
+}
+#login-dropdown-box:after {
+	left: 50%;
+	margin-left: 51px;
+}
+#login-dropdown-box {
+	overflow: visible;
+	z-index: 9001;
+}
 
 /* End notch */
 

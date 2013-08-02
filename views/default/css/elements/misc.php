@@ -25,7 +25,6 @@
 
 #login-dropdown-box {
 	border: 4px solid #85161D;
-	background: #EEEEEE;
 }
 
 

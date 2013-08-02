@@ -50,6 +50,7 @@ $english = array(
 	'tgstheme:label:whatisthis' => 'What is this?',
 	'tgstheme:label:thingsliked' => 'Things %s Liked',
 	'tgstheme:label:noresults' => 'No results',
+	'tgstheme:label:explore' => 'Explore',
 	
 	'tgstheme:stats:blog' => 'Blog Posts',
 	'tgstheme:stats:photo' => 'Photos',
