@@ -22,6 +22,7 @@
  *   * page/elements/tagcloud_block
  *   * page/layouts/one_sidebar
  *   * page/layouts/one_column
+ *   * navigation/breadcrumbs
  *   * search/css
  *   * search/search_box
  *   * js/tinymce
