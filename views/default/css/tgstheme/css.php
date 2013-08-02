@@ -51,6 +51,10 @@
 
 table.tgstheme-profile {
 	width: 100%;
+	-moz-box-shadow: 0 0 2px #000;
+	-webkit-box-shadow: 0 0 2px #000;
+	box-shadow: 0 0 2px #000;
+	margin-bottom: 5px;
 }
 
 table.tgstheme-profile .profile-left {
@@ -58,15 +62,11 @@ table.tgstheme-profile .profile-left {
 }
 
 table.tgstheme-profile .profile-right {
-	padding-left: 10px;
+	
 }
 
 .tgstheme-profile-icon {
-	margin-bottom: 5px;
 	border: 5px solid #FFF;
-	-moz-box-shadow: 0 0 4px #000;
-	-webkit-box-shadow: 0 0 4px #000;
-	box-shadow: 0 0 4px #000;
 }
 
 .tgstheme-profile-links {
@@ -79,6 +79,9 @@ table.tgstheme-profile .profile-right {
 	background: #FFF;
 }
 
+.tgstheme-profile-module .elgg-body {
+	padding: 0px;
+}
 
 
 .tgstheme-group-listing {
@@ -105,6 +108,23 @@ table.tgstheme-profile .profile-right {
 .tgstheme-group-updated .time-updated {
 	font-weight: bold;
 	color: #888;
+}
+
+table#tgstheme-profile-stats {
+	height: 111px;
+	border-top: none;
+}
+
+table#tgstheme-profile-stats tbody tr:first-child td {
+	border-top: none;
+}
+
+table#tgstheme-profile-stats tbody tr:last-child td {
+	border-bottom: none;
+}
+
+table#tgstheme-profile-stats tbody tr td:last-child {
+	border-right: none;
 }
 
 table#tgstheme-profile-stats td {
@@ -500,6 +520,8 @@ span.actions-text {
 	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffffff,endColorstr=#ffebebeb,GradientType=0)";
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffffff,endColorstr=#ffebebeb,GradientType=0);
 
+	margin-bottom: 0px;
+	margin-top: 4px;
 }
 
 .elgg-module-publish > .elgg-head {
@@ -525,7 +547,7 @@ span.actions-text {
 }
 
 .elgg-module-publish .tgstheme-publish-more-menu > ul > li {
-	border-left: 2px solid #CCCCCC;
+/*	border-left: 2px solid #CCCCCC;*/
 	color: #555555;
 	display: block;
 	font-weight: bold;
@@ -534,18 +556,20 @@ span.actions-text {
 	cursor: pointer;
 }
 
-.elgg-module-publish .tgstheme-publish-more-menu > ul > li > a:hover {
-	border-left: 2px solid #888;
-	background: #CCCCCC;
+.elgg-module-publish .tgstheme-publish-more-menu > ul > li:hover {
+/*	border-left: 2px solid #888;*/
+	background: #999;
 	text-decoration: none;
+	color: #FFF;
 }
 
 .elgg-module-publish .tgstheme-publish-item {
 	float: left;
 	padding: 0 15px 5px;
 	cursor: pointer;
-	margin-top: 3px;
+	/*margin-top: 3px;*/
 	margin-bottom: 3px;
+	text-align: center;
 
 	/** Fade effect **/
 	opacity: 0.8;
@@ -554,10 +578,15 @@ span.actions-text {
 	-webkit-transition: opacity .25s ease-in-out;
 }
 
+.elgg-module-publish .tgstheme-publish-item img {
+	width: 45px;
+	height: 45px;
+}
+
 .elgg-module-publish .tgstheme-publish-item:hover {
 	opacity: 1;
-	border-top: 3px solid #888;
-/*	border-bottom: 3px solid #888;*/
+/*	border-top: 3px solid #888;*/
+	border-bottom: 3px solid #888;
 	margin: 0;
 }
 
