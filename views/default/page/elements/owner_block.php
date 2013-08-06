@@ -16,8 +16,18 @@ elgg_push_context('owner_block');
 // groups and other users get owner block
 $owner = elgg_get_page_owner_entity();
 if ($owner instanceof ElggGroup || $owner instanceof ElggUser) {
+	
+	$class = 'elgg-owner-block';
 
-	$header = elgg_view_entity($owner, array('full_view' => false));
+	if (elgg_in_context('profile') || elgg_in_context('groups')) {
+		$size = 'large';
+		$class .= ' elgg-owner-block-profile';
+	}
+
+	$header = elgg_view_entity($owner, array(
+		'full_view' => false,
+		'size' => $size,
+	));
 
 	$body = elgg_view_menu('owner_block', array('entity' => $owner));
 
@@ -27,7 +37,7 @@ if ($owner instanceof ElggGroup || $owner instanceof ElggUser) {
 		'header' => $header,
 		'body' => $body,
 		'id' => 'badge',
-		'class' => 'elgg-owner-block',
+		'class' => $class
 	));
 }
 

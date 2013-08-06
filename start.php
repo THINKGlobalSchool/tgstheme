@@ -9,13 +9,13 @@
  * @link http://www.thinkglobalschool.com/
  *
  * VIEW OVERRIDES:
- *   * navigation/menu/site - use text string 'Browse' instead of 'More'
+ *   * navigation/menu/site - (Might not need this anymore)
  *   * css/elements/*
  *   * css/typeaheadtags/css
  * 	 * messages/css
  *   * page/default (Override default page shell)
  *   * page/elements/header
- *   * page/elements/header_logo
+ *   * page/elements/header_logo (Won't need this is we lose the header)
  *   * page/elements/owner_block
  *   * page/elements/shortcut_icon
  *   * page/elements/sidebar
@@ -28,6 +28,10 @@
  *   * js/tinymce
  *   * bookmarks/bookmarklet
  *   * river/elements/image
+ *   * profile/layout
+ *   * profile/header
+ *   * group/default (set view location)
+ *   * groups/profile/summary
  *
  * Composer code borrowed from Evan Winslow's Elgg Facebook Theme:
  * https://github.com/ewinslow/elgg-facebook_theme
@@ -98,6 +102,9 @@ function tgstheme_init() {
 	// Extend bookmarks page handler
 	elgg_register_plugin_hook_handler('route', 'bookmarks', 'tgstheme_route_bookmarks_handler');
 
+	// Extend profile page handler
+	elgg_register_plugin_hook_handler('route', 'profile', 'tgstheme_route_profile_handler');
+
 	// Register activity ping page handler
 	elgg_register_page_handler('activity_ping', 'ping_page_handler');
 
@@ -135,6 +142,9 @@ function tgstheme_init() {
 
 	// Extend topbar
 	elgg_extend_view('page/elements/topbar', 'tgstheme/topbar');
+
+	// Extend owner_block for groups
+	elgg_extend_view('group/elements/summary', 'tgstheme/group_summary');
 	
 	// Extend admin CSS
 	elgg_extend_view('css/admin', 'css/tgstheme/admin');
@@ -145,6 +155,9 @@ function tgstheme_init() {
 	
 	// Extend Fullcalendar CSS
 	elgg_extend_view('css/fullcalendar', 'css/tgstheme/fullcalendar');
+
+	// Hacky set view location.. group-tools strikes again
+	elgg_set_view_location('group/default', elgg_get_plugins_path() . "tgstheme/overrides/");
 
 	if (!elgg_is_logged_in() && elgg_get_plugin_setting('analytics_enable', 'tgstheme')) {
 		elgg_extend_view('page/elements/head', 'tgstheme/analytics');
@@ -453,6 +466,43 @@ function tgstheme_route_bookmarks_handler($hook, $type, $return, $params) {
 		} else if ($address && $title) {
 			elgg_extend_view('forms/bookmarks/save', 'tgstheme/oldbookmarklet', 0);
 		}
+	}
+	return $return;
+}
+
+// Hook into profile routing to override profile contents
+function tgstheme_route_profile_handler($hook, $type, $return, $params) {
+	if (is_array($return['segments']) && $return['segments'][1] != 'edit') {
+		if (isset($return['segments'][0])) {
+			$username = $return['segments'][0];
+			$user = get_user_by_username($username);
+			elgg_set_page_owner_guid($user->guid);
+		}
+
+		// Push a top level breadcrumb
+		elgg_push_breadcrumb($user->name, $user->getURL());
+
+		// short circuit if invalid or banned username
+		if (!$user || ($user->isBanned() && !elgg_is_admin_logged_in())) {
+			register_error(elgg_echo('profile:notfound'));
+			forward();
+		}
+
+		if (isset($return['segments'][1])) {
+			$section = $return['segments'][1];
+		} else {
+			$section = 'activity';
+		}
+
+		elgg_push_breadcrumb(elgg_echo("profile:{$section}"));
+
+		$content = tabbed_profile_layout_page($user, $section);
+		$body = elgg_view_layout('one_sidebar', array(
+			'content' => $content,
+			'class' => 'tabbed-profile',
+		));
+		echo elgg_view_page($user->name, $body);
+		return false;
 	}
 	return $return;
 }
