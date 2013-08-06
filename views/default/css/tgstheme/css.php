@@ -795,3 +795,13 @@ body#elgg-iframe-body object#simplekaltura-uploader {
 body#elgg-iframe-body #googleapps-docs-container {
 	min-height: 450px;
 }
+
+/** Tabbed profile tweaks **/
+.tabbed-profile .elgg-tabs {
+	padding-left: 0px;
+}
+
+.profile-tab {
+	width: auto;
+	float: none;
+}
