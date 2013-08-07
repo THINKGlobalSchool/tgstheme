@@ -780,14 +780,29 @@ span.actions-text {
 	-moz-column-count: 2;
 	column-count: 2;
 
-	-webkit-column-gap: 0px;
-	-moz-column-gap: 0px;
-	column-gap: 0px;
+	-webkit-column-gap: 1px;
+	-moz-column-gap: 1px;
+	column-gap: 1px;
+
+	-webkit-column-rule: 1px solid #DDD;
+	-moz-column-rule: 0px; /* Firefox is fubar.. */
+	column-rule: 1px solid #DDD;
 }
 
 .elgg-menu-topbar .elgg-menu-site-more li {
 	display: inline-block;
-	width: 100%;
+	width: 140px;
+	margin-left: -1px;
+}
+
+/** Crazy firefox hack **/
+@-moz-document url-prefix() {
+	.elgg-menu-topbar .elgg-menu-site-more li {
+		border-right: 1px solid #DDD;
+		left: -1px;
+		margin-left: 1px;
+		width: 100%;
+	}
 }
 
 .elgg-menu-topbar .elgg-menu-site-more li:first-child {
