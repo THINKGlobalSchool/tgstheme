@@ -773,6 +773,25 @@ span.actions-text {
 
 .elgg-menu-topbar .elgg-menu-site-more {
 	position: absolute;
+	min-width: 280px;
+	background: #FFF;
+
+	-webkit-column-count: 2;
+	-moz-column-count: 2;
+	column-count: 2;
+
+	-webkit-column-gap: 0px;
+	-moz-column-gap: 0px;
+	column-gap: 0px;
+}
+
+.elgg-menu-topbar .elgg-menu-site-more li {
+	display: inline-block;
+	width: 100%;
+}
+
+.elgg-menu-topbar .elgg-menu-site-more li:first-child {
+	border-top: none;
 }
 
 .elgg-menu-item-spot-logo {
