@@ -102,8 +102,8 @@ elgg.tgstheme.loginHandler = function(hook, type, params, options) {
 		options.offset = '15px';
 		return options;
 	}
-	return null;
+	return options;
 };
 
 elgg.register_hook_handler('init', 'system', elgg.tgstheme.init);
-elgg.register_hook_handler('getOptions', 'ui.popup', elgg.tgstheme.loginHandler, 999);
+elgg.register_hook_handler('getOptions', 'ui.popup', elgg.tgstheme.loginHandler);
