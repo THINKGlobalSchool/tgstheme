@@ -805,3 +805,18 @@ body#elgg-iframe-body #googleapps-docs-container {
 	width: auto;
 	float: none;
 }
+
+/** Custom 'filter dropdown' input **/
+.tgstheme-filter-dropdown {
+	display: inline-block;
+	margin-left: 8px;
+}
+
+.tgstheme-filter-dropdown label {
+	margin-right: 5px;
+	text-transform: uppercase;
+	font-size: 0.9em;
+	color: #333;
+}
+
+.tgstheme-filter-dropdown .elgg-input-dropdown {}
