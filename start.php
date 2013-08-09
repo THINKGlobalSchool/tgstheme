@@ -9,29 +9,24 @@
  * @link http://www.thinkglobalschool.com/
  *
  * VIEW OVERRIDES:
- *   * navigation/menu/site - (Might not need this anymore)
+ *   * navigation/menu/site - use text string 'Browse' instead of 'More'
  *   * css/elements/*
  *   * css/typeaheadtags/css
  * 	 * messages/css
  *   * page/default (Override default page shell)
  *   * page/elements/header
- *   * page/elements/header_logo (Won't need this is we lose the header)
+ *   * page/elements/header_logo
  *   * page/elements/owner_block
  *   * page/elements/shortcut_icon
  *   * page/elements/sidebar
  *   * page/elements/tagcloud_block
  *   * page/layouts/one_sidebar
  *   * page/layouts/one_column
- *   * navigation/breadcrumbs
  *   * search/css
  *   * search/search_box
  *   * js/tinymce
  *   * bookmarks/bookmarklet
  *   * river/elements/image
- *   * profile/layout
- *   * profile/header
- *   * group/default (set view location)
- *   * groups/profile/summary
  *
  * Composer code borrowed from Evan Winslow's Elgg Facebook Theme:
  * https://github.com/ewinslow/elgg-facebook_theme
@@ -102,9 +97,6 @@ function tgstheme_init() {
 	// Extend bookmarks page handler
 	elgg_register_plugin_hook_handler('route', 'bookmarks', 'tgstheme_route_bookmarks_handler');
 
-	// Extend profile page handler
-	elgg_register_plugin_hook_handler('route', 'profile', 'tgstheme_route_profile_handler');
-
 	// Register activity ping page handler
 	elgg_register_page_handler('activity_ping', 'ping_page_handler');
 
@@ -142,9 +134,6 @@ function tgstheme_init() {
 
 	// Extend topbar
 	elgg_extend_view('page/elements/topbar', 'tgstheme/topbar');
-
-	// Extend owner_block for groups
-	elgg_extend_view('group/elements/summary', 'tgstheme/group_summary');
 	
 	// Extend admin CSS
 	elgg_extend_view('css/admin', 'css/tgstheme/admin');
@@ -155,9 +144,6 @@ function tgstheme_init() {
 	
 	// Extend Fullcalendar CSS
 	elgg_extend_view('css/fullcalendar', 'css/tgstheme/fullcalendar');
-
-	// Hacky set view location.. group-tools strikes again
-	elgg_set_view_location('group/default', elgg_get_plugins_path() . "tgstheme/overrides/");
 
 	if (!elgg_is_logged_in() && elgg_get_plugin_setting('analytics_enable', 'tgstheme')) {
 		elgg_extend_view('page/elements/head', 'tgstheme/analytics');
@@ -186,9 +172,6 @@ function tgstheme_init() {
 	// Entity menu hook, used to reorganize the entity menu
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'tgstheme_ownerblock_menu_handler', 9999);
 
-	// Modify the 'site' menu to get return just the browse menu
-	//elgg_register_plugin_hook_handler('prepare', 'menu:site', 'elgg_site_menu_setup');
-
 	// Add a new tab to the tabbed profile
 	elgg_register_plugin_hook_handler('tabs', 'profile', 'tgstheme_twitter_profile_tab_hander');
 	elgg_register_plugin_hook_handler('tabs', 'profile', 'tgstheme_liked_profile_tab_hander');
@@ -213,7 +196,7 @@ function tgstheme_init() {
 	elgg_register_ajax_view('tgstheme/modules/liked');
 	elgg_register_ajax_view('page/elements/composer');
 	elgg_register_ajax_view('page/elements/topbar_ajax');
-
+	
 	return true;
 }
 
@@ -432,8 +415,8 @@ function tgstheme_pagesetup() {
 
 		
 	// Topbar 'home' item
-	// $item = new ElggMenuItem('home', elgg_view_icon('home') . elgg_echo('home'), $home_url);
-	// elgg_register_menu_item('topbar', $item);
+	$item = new ElggMenuItem('home', elgg_view_icon('home') . elgg_echo('home'), $home_url);
+	elgg_register_menu_item('topbar', $item);
 
 	// Add a couple footer items
 	$item = new ElggMenuItem('1termsofuse', elgg_echo("tgstheme:label:terms"), elgg_get_site_url() . 'legal/spot_terms_of_use');
@@ -469,43 +452,6 @@ function tgstheme_route_bookmarks_handler($hook, $type, $return, $params) {
 		} else if ($address && $title) {
 			elgg_extend_view('forms/bookmarks/save', 'tgstheme/oldbookmarklet', 0);
 		}
-	}
-	return $return;
-}
-
-// Hook into profile routing to override profile contents
-function tgstheme_route_profile_handler($hook, $type, $return, $params) {
-	if (is_array($return['segments']) && $return['segments'][1] != 'edit') {
-		if (isset($return['segments'][0])) {
-			$username = $return['segments'][0];
-			$user = get_user_by_username($username);
-			elgg_set_page_owner_guid($user->guid);
-		}
-
-		// Push a top level breadcrumb
-		elgg_push_breadcrumb($user->name, $user->getURL());
-
-		// short circuit if invalid or banned username
-		if (!$user || ($user->isBanned() && !elgg_is_admin_logged_in())) {
-			register_error(elgg_echo('profile:notfound'));
-			forward();
-		}
-
-		if (isset($return['segments'][1])) {
-			$section = $return['segments'][1];
-		} else {
-			$section = 'activity';
-		}
-
-		elgg_push_breadcrumb(elgg_echo("profile:{$section}"));
-
-		$content = tabbed_profile_layout_page($user, $section);
-		$body = elgg_view_layout('one_sidebar', array(
-			'content' => $content,
-			'class' => 'tabbed-profile',
-		));
-		echo elgg_view_page($user->name, $body);
-		return false;
 	}
 	return $return;
 }
@@ -731,11 +677,10 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 				/* Modify Profile Menu */
 				$text = $item->getText();
 				$user = elgg_get_logged_in_user_entity();
-				// $name_text = "<span class='tgstheme-topbar-username tgstheme-topbar-dropdown'>" . $user->name . "</span>";
-				// $item->setText($text . $name_text);
+				$name_text = "<span class='tgstheme-topbar-username tgstheme-topbar-dropdown'>" . $user->name . "</span>";
+				$item->setText($text . $name_text);
 				$item->setSection('alt');
 				$item->setPriority('1000');
-				$item->addLinkClass('tgstheme-topbar-dropdown');
 
 				// Set logout/settings/admin parent
 				$logout_item->setParent($item);
@@ -825,44 +770,6 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 	$search_item->setSection('alt');
 
 	$items[] = $search_item;
-
-	// Add spot logo item
-	$spot_logo_url = elgg_get_site_url() . "mod/tgstheme/_graphics/topbar_logo.png";
-	$spot_logo_item = ElggMenuItem::factory(array(
-		'name' => 'spot_logo',
-		'href' => elgg_get_site_url(),
-		'text' => "<img src=\"$spot_logo_url\" alt=\"THINK Spot\" />",
-		'priority' => 1,
-		'link_class' => 'spot-topbar-logo',
-	));
-
-	$items[] = $spot_logo_item;
-
-	// Add 'more/browse' items
-	global $CONFIG;
-
-	$site_menu = $CONFIG->menus['site'];
-
-	// Use ElggMenuBuilder to sort menu alphabetically
-	$builder = new ElggMenuBuilder($site_menu);
-	$site_menu = $builder->getMenu('text');
-
-	$more = elgg_echo('tgstheme:label:explore');
-	$more_link = "<a href=\"#\" class='tgstheme-topbar-dropdown'>$more</a>";
-
-	$more_item = ElggMenuItem::factory(array(
-		'name' => 'more',
-		'href' => false,
-		'text' => $more_link . elgg_view('navigation/menu/elements/section', array(
-			'class' => 'elgg-menu elgg-menu-site elgg-menu-site-more', 
-			'items' => $site_menu['default'],
-		)), 
-		'priority' => 99999,
-	));
-
-	$more_item->setSection('default');
-
-	$items[] = $more_item;
 
 	return $items;
 }

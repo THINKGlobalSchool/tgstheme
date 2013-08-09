@@ -151,7 +151,7 @@ position: relative;
 /* ***************************************
 	BREADCRUMBS
 *************************************** */
-/*.elgg-breadcrumbs {
+.elgg-breadcrumbs {
 	font-size: 80%;
 	font-weight: bold;
 	line-height: 1.2em;
@@ -173,111 +173,12 @@ position: relative;
 .elgg-breadcrumbs > li > a:hover {
 	color: #91131E;
 	text-decoration: underline;
-}*/
-
-/** CSS3 BREADCRUMBS: adapted from: http://www.red-team-design.com/css3-breadcrumbs **/
+}
 
 .elgg-main .elgg-breadcrumbs {
 	position: relative;
 	top: -6px;
 	left: 0;
-}
-
-.elgg-breadcrumbs{
-	overflow: hidden;
-	width: 100%;
-	font-size: 80%;
-	font-weight: bold;
-	line-height: 1.2em;
-	color: #666;
-	text-transform: uppercase;
-}
-
-.elgg-breadcrumbs li {
-	float: left;
-	margin: 0 .5em 0 1em;
-}
-
-.elgg-breadcrumbs a,
-.elgg-breadcrumbs li:last-child {
-	padding: 0.3em 0.6em;
-	float: left;
-	text-decoration: none;
-	text-shadow: 0 1px 0 rgba(255,255,255,.5); 
-	position: relative;
-}
-
-.elgg-breadcrumbs a {
-	background: #ddd;
-	color: #333;
-}
-
-.elgg-breadcrumbs li:last-child {
-	background: #efefef;
-	color: #666;
-}
-
-.elgg-breadcrumbs li:last-child::after {
-	display: inline-block;
-}
-
-.elgg-breadcrumbs a:hover{
-	background: #2D3F46;
-	color: #FFFFFF;
-}
-
-.elgg-breadcrumbs a::before, 
-.elgg-breadcrumbs li:last-child::before{
-	content: "";
-	position: absolute;
-	top: 50%; 
-	margin-top: -1.5em;   
-	border-width: 1.5em 0 1.5em 1.1em;
-	border-style: solid;
-	left: -1em;
-	-webkit-transform: rotate(0.05deg);
-	-o-transform: rotate(0.05deg); /* Didn't check Opera yet */
-	transform: rotate(0.05deg);
-	-moz-transform: scale(1.05);
-}
-
-.elgg-breadcrumbs a::before {
-	border-color: #ddd #ddd #ddd transparent;
-}
-
-.elgg-breadcrumbs li:last-child::before{ 
-	border-color: #efefef #efefef #efefef transparent;
-}
-
-.elgg-breadcrumbs a:hover::before{
-	border-color: #2D3F46 #2D3F46 #2D3F46 transparent;
-}
-
-.elgg-breadcrumbs a:after,
-.elgg-breadcrumbs li:last-child::after {
-	content: "";
-	position: absolute;
-	top: 50%; 
-	margin-top: -1.5em;   
-	border-top: 1.5em solid transparent;
-	border-bottom: 1.5em solid transparent;
-	right: -1em;
-	-webkit-transform: rotate(0.05deg);
-	-o-transform: rotate(0.05deg); /* Didn't check Opera yet */
-	transform: rotate(0.05deg);
-	-moz-transform: scale(1.05);
-}
-
-.elgg-breadcrumbs a:after {
-	border-left: 1.1em solid #ddd;
-}
-
-.elgg-breadcrumbs li:last-child::after {
-	border-left: 1.1em solid #efefef;
-}
-
-.elgg-breadcrumbs a:hover::after{
-	border-left-color: #2D3F46;
 }
 
 /* ***************************************
