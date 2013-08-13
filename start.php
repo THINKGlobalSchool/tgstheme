@@ -838,7 +838,7 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 
 	$items[] = $spot_logo_item;
 
-	// Add 'more/browse' items
+	// Add 'explore' items
 	global $CONFIG;
 
 	$site_menu = $CONFIG->menus['site'];
@@ -851,10 +851,10 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 	$more_link = "<a href=\"#\" class='tgstheme-topbar-dropdown'>$more</a>";
 
 	$more_item = ElggMenuItem::factory(array(
-		'name' => 'more',
+		'name' => 'explore',
 		'href' => false,
 		'text' => $more_link . elgg_view('navigation/menu/elements/section', array(
-			'class' => 'elgg-menu elgg-menu-site elgg-menu-site-more', 
+			'class' => 'elgg-menu elgg-menu-topbar-dropdown', 
 			'items' => $site_menu['default'],
 		)), 
 		'priority' => 99999,
