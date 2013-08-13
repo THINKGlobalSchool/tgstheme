@@ -767,14 +767,12 @@ span.actions-text {
 	top: -6px;
 }
 
-li:hover  > .elgg-menu-topbar-dropdown {
-	display: block; /* Shows the dropdown */
-}
-
-li:hover  > .dropdown-wrapper,
-li:hover  .elgg-menu-topbar-dropdown {
+.elgg-menu-topbar li:hover  > .dropdown-wrapper,
+.elgg-menu-topbar li:hover > .elgg-menu-topbar-dropdown {
 	display: block;
 }
+
+
 
 /*.elgg-menu-topbar li > .elgg-menu-topbar-dropdown {
 	position: absolute;
@@ -870,9 +868,9 @@ li:hover  .elgg-menu-topbar-dropdown {
 	margin-right: 4px;
 }
 
-.elgg-menu-item-my-groups .elgg-menu-topbar-dropdown li a span {
-	/*white-space: nowrap;
-	display: table-cell;*/
+.elgg-menu-item-my-groups > .elgg-menu-topbar-dropdown li a span {
+	white-space: nowrap;
+	display: table-cell;
 }
 
 /** Crazy firefox hack **/
