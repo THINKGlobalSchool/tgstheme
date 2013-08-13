@@ -243,10 +243,6 @@ table#stats-table td.stat {
 	padding-top: 10px;
 }
 
-.elgg-menu-site .elgg-menu-item-home .elgg-icon {
-	margin-right: 0px;
-}
-
 /* Spot Logo */
 .spot-logo {
 	position: absolute;
@@ -771,9 +767,23 @@ span.actions-text {
 	top: -6px;
 }
 
-.elgg-menu-topbar .elgg-menu-site-more {
+li:hover  > .elgg-menu-topbar-dropdown {
+	display: block; /* Shows the dropdown */
+}
+
+li:hover  > .dropdown-wrapper,
+li:hover  .elgg-menu-topbar-dropdown {
+	display: block;
+}
+
+/*.elgg-menu-topbar li > .elgg-menu-topbar-dropdown {
 	position: absolute;
+	display: none;
+	display: block;
+	z-index: 1;
+	left: -1px;
 	min-width: 280px;
+	width: 100%;
 	background: #FFF;
 
 	-webkit-column-count: 2;
@@ -785,27 +795,97 @@ span.actions-text {
 	column-gap: 1px;
 
 	-webkit-column-rule: 1px solid #DDD;
-	-moz-column-rule: 0px; /* Firefox is fubar.. */
+	-moz-column-rule: 0px;
 	column-rule: 1px solid #DDD;
+}*/
+
+/* Multi column general styles */
+.elgg-menu-topbar .dropdown-wrapper .dropdown-split {
+	width: 50%;
+	float: left;
 }
 
-.elgg-menu-topbar .elgg-menu-site-more li {
+/* Multi column style for explore item */
+.elgg-menu-topbar .elgg-menu-item-explore .dropdown-wrapper {
+	width: 280px;
+}
+
+/* Multi column style for my groups item */
+.elgg-menu-topbar .elgg-menu-item-my-groups .dropdown-wrapper {
+	width: 500px;
+}
+
+.elgg-menu-topbar .dropdown-wrapper .dropdown-split.split-first li {
+	border-right: 1px solid #ccc;
+}
+
+.elgg-menu-topbar li > .elgg-menu-topbar-dropdown,
+.elgg-menu-topbar .dropdown-wrapper {
+	position: absolute;
+	display: none;
+	z-index: 1;
+	left: -1px;
+	background: #FFF;
+}
+
+.elgg-menu-topbar .elgg-menu-topbar-dropdown > li > a {
+	font-weight: normal;
+	padding: 6px 10px;
+	font-family: 'Shanti', sans-serif;
+	text-transform:uppercase;
+	font-size:1em;	
+	
+	background: white;
+	color: #555;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+.elgg-menu-topbar .elgg-menu-topbar-dropdown > li > a:hover {
+	text-decoration: none;
+	background: #2D3F46;
+	color: white;
+}
+
+
+/*
+.elgg-menu-topbar li > .elgg-menu-topbar-dropdown li {
 	display: inline-block;
 	width: 140px;
 	margin-left: -1px;
+}*/
+
+.elgg-menu-item-my-groups .elgg-menu-topbar-dropdown li a div {
+	display: table;
+}
+
+.elgg-menu-item-my-groups .elgg-menu-topbar-dropdown li a img {
+	vertical-align: middle;
+	display: inline-table;
+	margin-right: 4px;
+}
+
+.elgg-menu-item-my-groups .elgg-menu-topbar-dropdown li a span {
+	/*white-space: nowrap;
+	display: table-cell;*/
 }
 
 /** Crazy firefox hack **/
-@-moz-document url-prefix() {
-	.elgg-menu-topbar .elgg-menu-site-more li {
+/*@-moz-document url-prefix() {
+	.elgg-menu-topbar li > .elgg-menu-topbar-dropdown li {
 		border-right: 1px solid #DDD;
 		left: -1px;
 		margin-left: 1px;
 		width: 100%;
 	}
-}
+}*/
 
-.elgg-menu-topbar .elgg-menu-site-more li:first-child {
+.elgg-menu-topbar li > .elgg-menu-topbar-dropdown li:first-child {
 	border-top: none;
 }
 
@@ -814,10 +894,11 @@ span.actions-text {
 }
 
 /* Wrangle in all the topbar menus */
-.elgg-menu-topbar > li > ul.elgg-menu-site-more,
+.elgg-menu-topbar > li > ul.elgg-menu-topbar-dropdown,
 .elgg-menu-topbar > li > ul.elgg-child-menu,
 .elgg-menu-topbar > li #todo-topbar-hover,
 .elgg-menu-topbar > li #groups-topbar-hover,
+.elgg-menu-topbar > li .dropdown-wrapper,
 #login-dropdown-box {
 	top: 40px;
 	border: 2px solid #999;
@@ -834,15 +915,17 @@ span.actions-text {
 }
 
 /* Start notch */
-.elgg-menu-topbar > li > ul.elgg-menu-site-more:after,
+.elgg-menu-topbar > li > ul.elgg-menu-topbar-dropdown:after,
 .elgg-menu-topbar > li > ul.elgg-child-menu:after,
 .elgg-menu-topbar > li #todo-topbar-hover:after,
 .elgg-menu-topbar > li #groups-topbar-hover:after,
+.elgg-menu-topbar > li .dropdown-wrapper:after,
 #login-dropdown-box:after,
-.elgg-menu-topbar > li > ul.elgg-menu-site-more:before,
+.elgg-menu-topbar > li > ul.elgg-menu-topbar-dropdown:before,
 .elgg-menu-topbar > li > ul.elgg-child-menu:before,
 .elgg-menu-topbar > li #todo-topbar-hover:before,
 .elgg-menu-topbar > li #groups-topbar-hover:before,
+.elgg-menu-topbar > li .dropdown-wrapper:before,
 #login-dropdown-box:before {
 	bottom: 100%;
 	border: solid transparent;
@@ -853,10 +936,11 @@ span.actions-text {
 	pointer-events: none;
 }
 
-.elgg-menu-topbar > li > ul.elgg-menu-site-more:after,
+.elgg-menu-topbar > li > ul.elgg-menu-topbar-dropdown:after,
 .elgg-menu-topbar > li > ul.elgg-child-menu:after,
 .elgg-menu-topbar > li #todo-topbar-hover:after,
 .elgg-menu-topbar > li #groups-topbar-hover:after,
+.elgg-menu-topbar > li .dropdown-wrapper:after,
 #login-dropdown-box:after {
 	border-color: rgba(255, 255, 255, 0);
 	border-bottom-color: #FFF;
@@ -864,10 +948,11 @@ span.actions-text {
 	left: 50%;
 	margin-left: 51px;
 }
-.elgg-menu-topbar > li > ul.elgg-menu-site-more:before,
+.elgg-menu-topbar > li > ul.elgg-menu-topbar-dropdown:before,
 .elgg-menu-topbar > li > ul.elgg-child-menu:before,
 .elgg-menu-topbar > li #todo-topbar-hover:before,
 .elgg-menu-topbar > li #groups-topbar-hover:before,
+.elgg-menu-topbar > li .dropdown-wrapper:before,
 #login-dropdown-box:before {
 	border-color: rgba(153, 153, 153, 0);
 	border-bottom-color: #999;
@@ -905,11 +990,13 @@ span.actions-text {
 }
 
 /* Browse notch */
-.elgg-menu-topbar > li > ul.elgg-menu-site-more:before {
+.elgg-menu-topbar > li > ul.elgg-menu-topbar-dropdown:before,
+.elgg-menu-topbar > li > div.dropdown-wrapper:before {
 	left: 0;
 	margin-left: 20px;
 }
-.elgg-menu-topbar > li > ul.elgg-menu-site-more:after {
+.elgg-menu-topbar > li > ul.elgg-menu-topbar-dropdown:after,
+.elgg-menu-topbar > li > div.dropdown-wrapper:after {
 	left: 0;
 	margin-left: 23px;
 }
@@ -932,8 +1019,8 @@ span.actions-text {
 
 .elgg-menu-topbar > li > ul.elgg-child-menu li:last-child > a,
 .elgg-menu-topbar > li > ul.elgg-child-menu > li:last-child > a:hover,
-.elgg-menu-topbar > li > ul.elgg-menu-site-more > li:last-child > a,
-.elgg-menu-topbar > li > ul.elgg-menu-site-more > li:last-child > a:hover,
+.elgg-menu-topbar > li > ul.elgg-menu-topbar-dropdown > li:last-child > a,
+.elgg-menu-topbar > li > ul.elgg-menu-topbar-dropdown > li:last-child > a:hover,
 .elgg-menu-topbar > li #groups-topbar-hover ul li:last-child {
 	border-radius: 0px;
 }
