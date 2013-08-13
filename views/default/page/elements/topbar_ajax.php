@@ -13,6 +13,11 @@ echo <<<JAVASCRIPT
 			$(".elgg-menu-topbar .elgg-menu-topbar-dropdown").each(function() {
 				var parent = $(this).parent();
 
+				// Only split menus if there are more than 6 items
+				if ($(this).children().length <= 6) {
+					return true;
+				}
+
 				var split = Math.ceil($(this).children().length / 2) - 1;
 
 				$(this).wrap($("<div>").attr("class", "dropdown-split split-first"));
