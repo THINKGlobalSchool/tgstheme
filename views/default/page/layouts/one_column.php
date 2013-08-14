@@ -32,8 +32,8 @@ $extras = elgg_view_menu('extras', array(
 		echo $nav;
 		echo $extras;
 
-		if (isset($vars['title'])) {
-			echo elgg_view_title($vars['title']);
+		if ($vars['title']) {
+			echo elgg_view_title($vars['title'], array('class' => 'elgg-heading-main'));
 		}
 
 		echo $vars['content'];
