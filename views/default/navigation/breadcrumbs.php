@@ -43,7 +43,7 @@ if (is_array($breadcrumbs) && count($breadcrumbs) > 0) {
 				'is_trusted' => true,
 			));
 		} else {
-			$crumb = $breadcrumb['title'];
+			$crumb = "<span>" . $breadcrumb['title'] . "</span>";
 		}
 		echo "<li>$crumb</li>";
 	}
