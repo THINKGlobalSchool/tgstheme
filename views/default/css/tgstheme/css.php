@@ -561,11 +561,12 @@ span.actions-text {
 
 .elgg-module-publish .tgstheme-publish-item {
 	float: left;
-	padding: 0 15px 5px;
+	/*padding: 0 15px 5px;*/
 	cursor: pointer;
 	/*margin-top: 3px;*/
 	margin-bottom: 3px;
 	text-align: center;
+	width: 66.3px;
 
 	/** Fade effect **/
 	opacity: 0.8;
@@ -575,8 +576,8 @@ span.actions-text {
 }
 
 .elgg-module-publish .tgstheme-publish-item img {
-	width: 45px;
-	height: 45px;
+	width: 40px;
+	height: 40px;
 }
 
 .elgg-module-publish .tgstheme-publish-item:hover {
@@ -590,6 +591,7 @@ span.actions-text {
 	display: block;
 	font-weight: bold;
 	text-align: center;
+	font-size: 12px;
 }
 
 .elgg-module-publish .tgstheme-publish-item:hover > span {
@@ -617,79 +619,7 @@ span.actions-text {
 
 /** End Publish Module **/
 
-/** Wire post in publish module **/
 
-.elgg-module-publish .tgstheme-publish-wire {
-
-}
-
-.elgg-module-publish .tgstheme-publish-wire > .elgg-head {
-	margin-bottom: 0px;
-}
-
-.elgg-module-publish .tgstheme-publish-wire > .elgg-head h3 {
-	font-size: 1em;
-}
-
-.elgg-module-publish .tgstheme-publish-wire > .elgg-body textarea {
-	display: block;
-    margin: 0;
-    border-bottom: 1px solid #CCC;
-}
-
-.elgg-module-publish .tgstheme-publish-wire > .elgg-body .mts {
-	background: none repeat scroll 0 0 #DDDDDD;
-	border-bottom: 1px solid #CCCCCC;
-    margin-top: 0;
-    padding: 3px;
-    text-align: right;
-}
-
-.elgg-module-publish .tgstheme-publish-wire > .elgg-body .mts input {
-	padding: 0 8px;
-	font-size: 12px;
-}	
-
-.elgg-module-publish .tgstheme-publish-wire > .elgg-body .mts select {
-	position: relative;
-	top: -1px;
-}
-
-.elgg-module-publish .tgstheme-publish-wire > .elgg-body .mts > label {
-	display: none;
-}
-
-.elgg-module-publish .tgstheme-publish-wire > .elgg-body .mts > .elgg-subtext {
-	color: #555555;
-	margin-bottom: 4px;
-	text-align: left;
-}
-
-.elgg-module-publish .tgstheme-publish-wire > .elgg-head,
-.elgg-module-publish .tgstheme-publish-wire textarea {
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	border-radius: 0;
-}
-
-.elgg-module-publish .tgstheme-publish-wire textarea {
-	border-left: medium none;
-	border-right: medium none;
-}
-
-/* experimental overrides */
-table.tgstheme-profile {
-    border-bottom: 1px solid #BBBBBB;
-    box-shadow: none;
-    margin-bottom: 0px;
-    width: 100%;
-}
-
-.elgg-module-publish {
-	margin-top: 0px;
-}
-
-/** End wire post in publish module **/
 
 /** General topbar tweaks **/
 
@@ -1161,6 +1091,13 @@ div#elgg-bookmarklet-form {
 div#elgg-iframe-content {
 	padding: 5px; 
 	width: 590px
+}
+
+div#elgg-iframe-content hr {
+	background: none repeat scroll 0 0 #CCC;
+	border: medium none;
+	color: #CCC;
+	height: 1px;	
 }
 
 /** Fix for: https://github.com/Elgg/Elgg/issues/5336 **/

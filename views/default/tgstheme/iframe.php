@@ -19,7 +19,8 @@ if (elgg_is_logged_in()) {
 }
 
 echo "<div id='elgg-iframe-content'>
-	$header<br />
+	$header
+	<hr />
 	$content
 </div>";
 
