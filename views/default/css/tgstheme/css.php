@@ -655,7 +655,7 @@ span.actions-text {
 	top: -1px;
 }
 
-.elgg-module-publish .tgstheme-publish-wire > .elgg-body .mts label {
+.elgg-module-publish .tgstheme-publish-wire > .elgg-body .mts > label {
 	display: none;
 }
 
