@@ -522,6 +522,11 @@ function iframe_page_handler($page) {
 	$title = $content = '';
 	switch ($page[0]) {
 		case 'thewire':
+			// register the wire's JavaScript
+			$thewire_js = elgg_get_simplecache_url('js', 'thewire');
+			elgg_register_simplecache_view('js/thewire');
+			elgg_register_js('elgg.thewire', $thewire_js);
+			elgg_load_js('elgg.thewire');
 			$title = "Mini Post";
 			$content = elgg_view_form('thewire/add');
 			break;
