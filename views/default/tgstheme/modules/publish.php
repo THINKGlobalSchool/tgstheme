@@ -14,20 +14,19 @@ $img_path = elgg_normalize_url('mod/tgstheme/_graphics/publish_icons');
 
 $user_guid = elgg_get_logged_in_user_guid();
 
-// Primary items
-// $blog_add_url = elgg_normalize_url("blog/add/{$user_guid}");
-// $photo_add_url = elgg_normalize_url("photos/all");
-// $file_add_url = elgg_normalize_url("file/add/{$user_guid}");
-// $bookmark_add_url = elgg_normalize_url("bookmarks/add/{$user_guid}");
-// $video_add_url = elgg_normalize_url("video/add/{$user_guid}");
-
 // Secondary items
 $page_add_url = elgg_normalize_url("pages/add/{$user_guid}");
 $google_doc_add_url = elgg_normalize_url("googapps/docs/add/{$user_guid}");
 
 $publish_header = "Add New";
 
+$wire_form = elgg_view_form('thewire/add');
+$wire_module = elgg_view_module('info', elgg_echo("wire-extender:label:thewire:doing"), $wire_form, array(
+	'class' => 'tgstheme-publish-wire'
+));
+
 $publish_content = <<<HTML
+	$wire_module
 	<div class="tgstheme-publish-item clickable" data-type='blog'>
 		<img src="$img_path/blog-icon.png">
 		<span>Blog</span>

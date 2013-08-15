@@ -203,15 +203,15 @@ function tgstheme_init() {
 	elgg_unextend_view('page/elements/header', 'search/header');
 	
 	// Whitelist ajax views
-	elgg_register_ajax_view('thewire/composer');
-	elgg_register_ajax_view('messageboard/composer');
-	elgg_register_ajax_view('bookmarks/composer');
-	elgg_register_ajax_view('blog/composer');
-	elgg_register_ajax_view('file/composer');
-	elgg_register_ajax_view('webvideos/composer');
+	// elgg_register_ajax_view('thewire/composer');
+	// elgg_register_ajax_view('messageboard/composer');
+	// elgg_register_ajax_view('bookmarks/composer');
+	// elgg_register_ajax_view('blog/composer');
+	// elgg_register_ajax_view('file/composer');
+	// elgg_register_ajax_view('webvideos/composer');
+	// elgg_register_ajax_view('page/elements/composer');
 	elgg_register_ajax_view('tgstheme/email_share');
 	elgg_register_ajax_view('tgstheme/modules/liked');
-	elgg_register_ajax_view('page/elements/composer');
 	elgg_register_ajax_view('page/elements/topbar_ajax');
 
 	return true;
