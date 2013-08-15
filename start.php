@@ -521,6 +521,10 @@ function iframe_page_handler($page) {
 	gatekeeper();
 	$title = $content = '';
 	switch ($page[0]) {
+		case 'thewire':
+			$title = "Mini Post";
+			$content = elgg_view_form('thewire/add');
+			break;
 		case 'blog':
 			elgg_load_library('elgg:blog');
 			$params = blog_get_page_content_edit($page_type, $page[1]);
@@ -1023,11 +1027,17 @@ function tgstheme_iframe_forward_handler($hook, $type, $value, $params) {
 	$forward_url = preg_replace('/\?.*/', '', $params['forward_url']);
 	if (strpos($referer, 'iframe')) {
 		if ($forward_url == $referer) {
-			return $params['forward_url'];
-		} else {
-			$forward_url = $params['forward_url'];
-			return elgg_normalize_url("iframe/forward?forward_to={$forward_url}");
+			if (!strpos($forward_url, 'thewire')) {				
+				return $params['forward_url'];
+			} else {
+				// @todo this should probably be a plugin hook
+				$params['forward_url'] = elgg_normalize_url('home');
+			}
 		}
+
+		$forward_url = $params['forward_url'];
+		return elgg_normalize_url("iframe/forward?forward_to={$forward_url}");
+		
 	}
 	return $value;
 }

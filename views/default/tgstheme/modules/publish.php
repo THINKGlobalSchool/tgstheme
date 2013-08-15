@@ -20,13 +20,11 @@ $google_doc_add_url = elgg_normalize_url("googapps/docs/add/{$user_guid}");
 
 $publish_header = "Add New";
 
-$wire_form = elgg_view_form('thewire/add');
-$wire_module = elgg_view_module('info', elgg_echo("wire-extender:label:thewire:doing"), $wire_form, array(
-	'class' => 'tgstheme-publish-wire'
-));
-
 $publish_content = <<<HTML
-	$wire_module
+	<div class="tgstheme-publish-item clickable" data-type='thewire'>
+		<img src="$img_path/wire-icon.png">
+		<span>Mini Post</span>
+	</div>
 	<div class="tgstheme-publish-item clickable" data-type='blog'>
 		<img src="$img_path/blog-icon.png">
 		<span>Blog</span>
