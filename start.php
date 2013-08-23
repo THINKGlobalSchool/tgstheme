@@ -83,6 +83,18 @@ function tgstheme_init() {
 	elgg_register_js('elgg.tgsmenus', $m_js);
 	elgg_load_js('elgg.tgsmenus');
 
+	// Register chosen.js library
+	$c_js = elgg_get_simplecache_url('js', 'chosen');
+	elgg_register_simplecache_view('js/chosen');
+	elgg_register_js('chosen.js', $c_js);
+	elgg_load_js('chosen.js');
+
+	// Register chosen.js css library
+	$c_css = elgg_get_simplecache_url('css', 'chosen');
+	elgg_register_simplecache_view('css/chosen');
+	elgg_register_css('chosen.js', $c_css);
+	elgg_load_css('chosen.js');
+
 	if (elgg_get_context() == 'activity') {
 		elgg_load_js('elgg.activityping');
 	}
