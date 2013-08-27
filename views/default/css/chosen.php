@@ -22,6 +22,10 @@
 	box-sizing: inherit;
 }
 
+.chosen-container.chosen-container-multi {
+    display: block;
+}
+
 /* @group Base */
 .chosen-container {
   position: relative;
@@ -221,7 +225,7 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: 2px 4px 1px 0;
   width: 100%;
   height: auto !important;
   height: 1%;
@@ -235,7 +239,7 @@
   cursor: text;
 }
 .chosen-container-multi .chosen-choices li {
-  float: left;
+  /*float: left;*/
   list-style: none;
 }
 .chosen-container-multi .chosen-choices li.search-field {
