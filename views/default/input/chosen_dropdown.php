@@ -29,24 +29,43 @@ echo elgg_view('input/dropdown', $vars);
 echo <<<JAVASCRIPT
 	<script type="text/javascript">
 		$(document).ready(function() {
-			// elgg.register_hook_handler('init', 'chosen.js', function(a, b, c, d) {
-			// 	return {'width': '100%'};
-			// });	
-
-			var id = "$id";
+			// Get element, id and multiple attr
+			var id = "$id",x
+			    element = $("#" + "$id"), 
+			    multi = element.attr('multiple');
 
 			// Default options
 			var options = {
 				'placeholder_text_multiple': 'Select items..'
 			};
 
+			// Pass in a width if we're dealing with a multi select
+			if (typeof multi !== 'undefined' && multi !== false) {
+				options["width"] = "50%";
+			}
+
 			// Trigger a hook for options
 			var options = elgg.trigger_hook('init', 'chosen.js', {'id' : "$id"}, options);
 
+			// Default change function (does nothing)
+			var onChange = function() {}
+
 			// Init dropdown
-			$("#$id").chosen(options).change(function() {
-				
-			});
+			$("#$id").chosen(options).change(elgg.trigger_hook('change', 'chosen.js', {'id' : "$id"}, onChange));
+
+
+			/** ------------ HOOK EXAMPLES ------------ **/
+			/** Init hook example **/
+			// elgg.register_hook_handler('init', 'chosen.js', function(a, b, c, d) {
+			// 	return {'width': '100%'};
+			// });	
+
+			/** Change hook example **/
+			// elgg.register_hook_handler('change', 'chosen.js', function(a, b, c, d) {
+			// 	return function() {
+			// 		console.log('test');
+			// 	}
+			// });	
 		});
 	</script>
 JAVASCRIPT;
