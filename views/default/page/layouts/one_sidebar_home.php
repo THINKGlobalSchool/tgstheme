@@ -16,7 +16,7 @@
  * @uses $vars['nav']     HTML of the page nav (override) (default: breadcrumbs)
  */
 
-$class = 'elgg-layout elgg-layout-one-sidebar-right clearfix';
+$class = 'elgg-layout elgg-layout-one-sidebar-home clearfix';
 if (isset($vars['class'])) {
 	$class = "$class {$vars['class']}";
 }
@@ -27,7 +27,7 @@ $nav = elgg_extract('nav', $vars, elgg_view('navigation/breadcrumbs'));
 ?>
 
 <div class="<?php echo $class; ?>">
-	<div class="elgg-right-sidebar">
+	<div class="elgg-home-sidebar">
 		<?php
 			echo elgg_view('page/elements/right_sidebar', $vars);
 		?>

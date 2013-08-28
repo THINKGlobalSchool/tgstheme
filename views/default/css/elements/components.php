@@ -92,9 +92,14 @@
 	margin: 0 0 2px 3px;
 	padding:1px 0 0 1px;
 	background:#FFFFFF;
-	width: 201px;
-	height: 201px;
+	width: 181px;
+	height: 181px;
 	float: none;
+}
+
+#badge.elgg-owner-block-profile .elgg-image-block .elgg-image .elgg-avatar img {
+	width: 180px !important;
+	height: 180px !important;
 }
 
 #badge.elgg-owner-block-profile .elgg-image-block > .elgg-body {

@@ -29,7 +29,8 @@
 	text-decoration: none;
 }
 
-.elgg-right-sidebar {
+/** Custom sidebars **/
+.elgg-home-sidebar {
 	position: relative;
 	padding: 20px 10px 10px 10px;
 	float: left;
@@ -37,9 +38,19 @@
 	margin: 0 0 10px 0;
 }
 
-.elgg-layout-one-sidebar-right {
+.elgg-layout-one-sidebar-home {
 	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sidebar_background.gif) repeat-y left top;
 }
+
+.elgg-layout-one-sidebar-home {
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sidebar_background.gif) repeat-y left top;
+}
+
+.elgg-layout-one-sidebar-alt {
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sidebar_background_right.gif) repeat-y left top;
+}
+
+/** End custom sidebars **/
 
 .tgs-footer {
 	background: #aaa;
