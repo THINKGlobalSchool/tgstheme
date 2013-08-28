@@ -1151,3 +1151,8 @@ body#elgg-iframe-body #googleapps-docs-container {
 }
 
 .tgstheme-filter-dropdown .elgg-input-dropdown {}
+
+/** Custom title menu link **/
+.tgstheme-custom-title-link {
+	padding: 3px;
+}

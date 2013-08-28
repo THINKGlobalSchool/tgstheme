@@ -211,6 +211,9 @@ function tgstheme_init() {
 	// Hook into forward for iframe submits
 	elgg_register_plugin_hook_handler('forward', 'all', 'tgstheme_iframe_forward_handler', 0);
 
+	// Unregister bookmarks page menu handler
+	elgg_unregister_plugin_hook_handler('register', 'menu:page', 'bookmarks_page_menu');
+
 	// Unextend header if user is logged in, this will be on the topbar
 	elgg_unextend_view('page/elements/header', 'search/header');
 	
@@ -457,6 +460,28 @@ function tgstheme_pagesetup() {
 	/** Set null page owners on required pages **/
 	if (elgg_get_context() == 'activity') {
 		elgg_set_page_owner_guid(1);
+	}
+
+	/** Add bookmarklet title button **/
+	if (elgg_in_context('bookmarks')) {
+		$page_owner = elgg_get_page_owner_entity();
+		if (!$page_owner) {
+			$page_owner = elgg_get_logged_in_user_entity();
+		}
+		
+		if ($page_owner instanceof ElggGroup) {
+			$title = elgg_echo('bookmarks:bookmarklet:group');
+		} else {
+			$title = elgg_echo('bookmarks:bookmarklet');
+		}
+
+		elgg_register_menu_item('title', array(
+			'name' => 'bookmarklet',
+			'href' => 'bookmarks/bookmarklet/' . $page_owner->getGUID(),
+			'text' => $title,
+			'link_class' => 'tgstheme-custom-title-link',
+			// 'priority' => 2
+		));
 	}
 }
 
