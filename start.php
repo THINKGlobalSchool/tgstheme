@@ -22,6 +22,7 @@
  *   * page/elements/tagcloud_block
  *   * page/layouts/one_sidebar
  *   * page/layouts/one_column
+ *   * page/layouts/content
  *   * navigation/breadcrumbs
  *   * search/css
  *   * search/search_box
@@ -210,6 +211,9 @@ function tgstheme_init() {
 
 	// Hook into forward for iframe submits
 	elgg_register_plugin_hook_handler('forward', 'all', 'tgstheme_iframe_forward_handler', 0);
+
+	// Hook into output:before/layout to hack some core sidebars
+	elgg_register_plugin_hook_handler('output:before', 'layout', 'tgstheme_layout_output_handler');	
 
 	// Unregister bookmarks page menu handler
 	elgg_unregister_plugin_hook_handler('register', 'menu:page', 'bookmarks_page_menu');
@@ -1080,5 +1084,54 @@ function tgstheme_iframe_forward_handler($hook, $type, $value, $params) {
 		return elgg_normalize_url("iframe/forward?forward_to={$forward_url}");
 		
 	}
+	return $value;
+}
+
+/**
+ * Handler for layout output
+ */
+function tgstheme_layout_output_handler($hook, $type, $value, $params) {
+	if (get_input('conditional_sidebars_core_overrides')) {
+		set_input('conditional_sidebars_core_overrides', false);
+		switch (elgg_get_context()) {
+			case 'pages':
+				// This is so bloody gross..
+				$location = str_replace(elgg_get_site_url() . 'pages', '', current_page_url());
+				if (strpos($location, "/all") === 0) {
+					$value['sidebar_alt'] = $value['sidebar'];
+					$value['sidebar'] = null;
+				} else if (strpos($location, "/owner") === 0) {
+					$value['sidebar_alt'] = elgg_view('pages/sidebar');
+					$value['sidebar'] = elgg_view('pages/sidebar/navigation');
+				}
+				break;
+			// wtf pages..? lets push a widgets context globally..
+			case 'widgets':
+				$location = str_replace(elgg_get_site_url() . 'pages', '', current_page_url());
+				if (strpos($location, "/revision") === 0) {
+					$value['sidebar'] = null;
+					$id = get_input('id');
+					$annotation = elgg_get_annotation_from_id($id);
+					if (!$annotation) {
+						forward();
+					}
+					$page = get_entity($annotation->entity_guid);
+					if (!$page) {
+						forward();
+					}
+					$value['sidebar_alt'] = elgg_view('pages/sidebar/history', array('page' => $page));
+				}
+				break;
+			case 'blog':
+			case 'bookmarks':
+			case 'file':
+				$value['sidebar_alt'] = $value['sidebar'];
+				$value['sidebar'] = null;
+				break;
+			default: 
+				break;
+		}
+	}
+
 	return $value;
 }

@@ -1,10 +1,9 @@
 <?php
 /**
- * Layout for main column with one sidebar
+ * Layout for main column with one alt sidebar
+ * - Almost identical to the one_sidebar layout, except the bar is in the 'alt'
+ * position
  * 
- * OVERRIDE
- * - Includes extras menu
- *
  * @package Elgg
  * @subpackage Core
  *
@@ -15,7 +14,7 @@
  * @uses $vars['nav']     HTML of the page nav (override) (default: breadcrumbs)
  */
 
-$class = 'elgg-layout elgg-layout-one-sidebar clearfix';
+$class = 'elgg-layout elgg-layout-one-sidebar-alt clearfix';
 if (isset($vars['class'])) {
 	$class = "$class {$vars['class']}";
 }
@@ -31,9 +30,9 @@ $extras = elgg_view_menu('extras', array(
 ?>
 
 <div class="<?php echo $class; ?>">
-	<div class="elgg-sidebar">
+	<div class="elgg-sidebar-alt">
 		<?php
-			echo elgg_view('page/elements/sidebar', $vars);
+			echo elgg_view('page/elements/sidebar_alt', $vars);
 		?>
 	</div>
 

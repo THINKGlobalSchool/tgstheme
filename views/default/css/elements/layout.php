@@ -122,9 +122,11 @@
 	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sidebar_background_left.gif) repeat-y right top;
 }
 .elgg-layout-two-sidebar {
-	background: transparent url(<?php echo elgg_get_site_url(); ?>_graphics/two_sidebar_background.gif) repeat-y right top;
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/two_sidebar_background.gif) repeat-y right top;
 }
-/*.elgg-sidebar {
+
+/** OLD SIDEBARS **/
+/*.elgg-sidebar { 
 	position: relative;
 	padding: 20px 10px;
 	float: right;
@@ -132,21 +134,32 @@
 	margin: 0 0 0 10px;
 }*/
 
+
+/*.elgg-sidebar-alt {
+	position: relative;
+	padding: 20px 10px;
+	float: left;
+	width: 160px;
+	margin: 0 10px 0 0;
+}*/
+/** END OLD SIDEBARS **/
+
 .elgg-sidebar {
 	position: relative;
 	padding: 10px;
 	float: left;
-	width: 210px;
+	width: 190px;
 	margin: 10px 0 0 0;
 }
 
 .elgg-sidebar-alt {
 	position: relative;
 	padding: 20px 10px;
-	float: left;
-	width: 160px;
-	margin: 0 10px 0 0;
+	float: right;
+	width: 190px;
+	margin: 0 0 0 10px;
 }
+
 .elgg-main {
 	position: relative;
 	min-height: 360px;
