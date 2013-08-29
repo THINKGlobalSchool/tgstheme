@@ -169,6 +169,9 @@ function tgstheme_init() {
 	// Extend Fullcalendar CSS
 	elgg_extend_view('css/fullcalendar', 'css/tgstheme/fullcalendar');
 
+ 	// Hacky set view location.. group-tools strikes again
+    elgg_set_view_location('group/default', elgg_get_plugins_path() . "tgstheme/overrides/");
+
 	if (!elgg_is_logged_in() && elgg_get_plugin_setting('analytics_enable', 'tgstheme')) {
 		elgg_extend_view('page/elements/head', 'tgstheme/analytics');
 	}
