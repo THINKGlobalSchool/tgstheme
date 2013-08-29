@@ -1122,6 +1122,7 @@ function tgstheme_layout_output_handler($hook, $type, $value, $params) {
 			case 'blog':
 			case 'bookmarks':
 			case 'file':
+			case 'podcasts':
 				$value['sidebar_alt'] = $value['sidebar'];
 				$value['sidebar'] = null;
 				break;
