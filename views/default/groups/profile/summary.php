@@ -31,6 +31,15 @@ if (!$owner) {
 		?>
 	</div>
 </div>
+<!-- Hide the group title in full view -->
+<style type='text/css'>
+	.elgg-head > h2.elgg-heading-main {
+		display: none;
+	}
+	.elgg-head > .elgg-menu-title {
+		float: left;
+	}
+</style>
 <?php
 ?>
 
