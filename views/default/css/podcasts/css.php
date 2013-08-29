@@ -76,7 +76,7 @@ $images_url = elgg_get_site_url() . 'mod/tgstheme/_graphics/podcasts/';
 	cursor: grab;
 	float: left;
 	height: 14px;
-	width: 540px;
+	width: 570px;
 	position: relative;
 	margin: 25px 0;
 }
@@ -111,7 +111,7 @@ $images_url = elgg_get_site_url() . 'mod/tgstheme/_graphics/podcasts/';
 .elgg-podcast-player .elgg-podcast-player-timing-container {
 	margin: 20px 0;
 	position: absolute;
-	right: 5px;
+	left: 650px;
 	width: 100px;
 }
 
