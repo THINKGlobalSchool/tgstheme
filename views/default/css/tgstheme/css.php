@@ -698,8 +698,7 @@ span.actions-text {
 	font-family: 'Shanti',sans-serif;
 	font-size: 1em;
 	font-weight: normal;
-	height: 25px;
-	padding: 6px 10px 0;
+	padding: 6px 10px;
 	text-transform: uppercase;
 
 	-webkit-border-radius: 0;
@@ -710,9 +709,22 @@ span.actions-text {
 	-moz-box-shadow: none;
 	box-shadow: none;
 }
+
 .elgg-menu-item-profile .elgg-child-menu > li > a:hover {
 	background: #2D3F46;
 	color: white;
+}
+
+.elgg-menu-item-profile .elgg-child-menu > li > a > span.elgg-icon {
+	vertical-align: top;
+	margin-top: 0;
+}
+
+@-moz-document url-prefix() {
+    .elgg-menu-item-profile .elgg-child-menu > li > a > span.elgg-icon {
+       vertical-align: middle;
+       margin-top: -2px;
+    }
 }
 
 /** Tweaks for topbar settings icons **/
