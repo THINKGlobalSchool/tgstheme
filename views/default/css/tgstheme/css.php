@@ -687,23 +687,25 @@ span.actions-text {
 	display: block;
 }
 
-.elgg-menu-item-profile .elgg-child-menu > li > a {
-	border-bottom: 1px dotted #CCCCCC;
-}
-
 .elgg-menu-item-profile .elgg-child-menu > li:last-child > a {
 	border-bottom: none;
 }
 
-
 .elgg-menu-item-profile .elgg-child-menu > li > a {
+	border-bottom: 1px dotted #CCCCCC;
 	background: white;
 	color: #555;
-	height:24px;
+	font-family: 'Shanti',sans-serif;
+	font-size: 1em;
+	font-weight: normal;
+	height: 25px;
+	padding: 6px 10px 0;
+	text-transform: uppercase;
+
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	border-radius: 0;
-	
+
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
@@ -725,14 +727,6 @@ span.actions-text {
 	border-radius: 0 0 4px 4px;
 }
 
-.elgg-menu-item-profile .elgg-child-menu > li > a {
-    font-family: 'Shanti',sans-serif;
-    font-size: 1em;
-    font-weight: normal;
-    height: 30px;
-    padding: 6px 10px 0;
-    text-transform: uppercase;
-}
 .elgg-menu-item-profile .elgg-child-menu > li > a:hover {
     text-decoration: none;
 }
