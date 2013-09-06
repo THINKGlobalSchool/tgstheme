@@ -20,14 +20,16 @@ $help_groups_label = elgg_echo('tgstheme:label:helpgroup');
 
 $groups = elgg_get_entities(array(
 	'types' => 'group', 
-	'limit' => 0
+	'limit' => 0,
+	'joins' => array("JOIN " . elgg_get_config("dbprefix") . "groups_entity ge ON e.guid = ge.guid"),
+	'order_by' => 'ge.name ASC',
 ));
 		
 $dropdown = array();
 $dropdown[0] = 'Select..';
 
 foreach ($groups as $group) {
-	$dropdown[$group->getGUID()] = "Group: " . $group->name;
+	$dropdown[$group->getGUID()] = $group->name;
 }
 
 $help_groups_input = elgg_view('input/dropdown', array(
