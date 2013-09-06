@@ -73,6 +73,8 @@ $english = array(
 	'tgstheme:label:helpgroup' => 'Help Link Group:',
 	'tgstheme:label:librarylink' => 'Library Link Title',
 	'tgstheme:label:librarygroup' => 'Library Link Group:',
+	'tgstheme:label:wexplorelink' => 'weXplore Link Title',
+	'tgstheme:label:wexploregroup' => 'weXplore Link Group:',
 	
 	// Email message
 	'tgstheme:email:subject' => '%s wants to share a link with you!',
