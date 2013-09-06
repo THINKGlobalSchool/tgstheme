@@ -441,7 +441,6 @@ function tgstheme_pagesetup() {
 		elgg_register_menu_item('quickbar', $item);
 	}
 
-
 	// Library link (from admin)
 	if (($group_guid = elgg_get_plugin_setting('library_group', 'tgstheme')) && elgg_is_logged_in()) {
 		$group = get_entity($group_guid);
@@ -449,7 +448,13 @@ function tgstheme_pagesetup() {
 		elgg_register_menu_item('quickbar', $item);
 	}
 
-		
+	// weXplore link (from admin)
+	if (($group_guid = elgg_get_plugin_setting('wexplore_group', 'tgstheme')) && elgg_is_logged_in()) {
+		$group = get_entity($group_guid);
+		$item = new ElggMenuItem('wexplore_group', elgg_get_plugin_setting('wexplore_label', 'tgstheme'), $group->getURL());
+		elgg_register_menu_item('quickbar', $item);
+	}
+
 	// Topbar 'home' item
 	// $item = new ElggMenuItem('home', elgg_view_icon('home') . elgg_echo('home'), $home_url);
 	// elgg_register_menu_item('topbar', $item);

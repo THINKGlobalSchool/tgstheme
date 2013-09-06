@@ -53,6 +53,22 @@ $library_groups_input = elgg_view('input/dropdown', array(
 	'value' => $vars['entity']->library_group,
 ));
 
+$wexplore_link_label = elgg_echo('tgstheme:label:wexplorelink');
+
+$wexplore_link_input = elgg_view('input/text', array(
+	'name' => 'params[wexplore_label]', 
+	'value' => $vars['entity']->wexplore_label)
+);
+
+$wexplore_groups_label = elgg_echo('tgstheme:label:wexploregroup');
+
+$wexplore_groups_input = elgg_view('input/dropdown', array(
+	'id' => 'group_picker',
+	'name' => 'params[wexplore_group]',
+	'options_values' => $dropdown,
+	'value' => $vars['entity']->wexplore_group,
+));
+
 $analytics_label = elgg_echo('tgstheme:label:analytics_enable');
 
 $analytics_input = elgg_view('input/dropdown', array(
@@ -116,6 +132,14 @@ $content = <<<HTML
 	<div>
 		<label>$library_groups_label</label><br />
 		$library_groups_input
+	</div>
+	<div>
+		<label>$wexplore_link_label</label><br />
+		$wexplore_link_input
+	</div>
+	<div>
+		<label>$wexplore_groups_label</label><br />
+		$wexplore_groups_input
 	</div>
 	<div>
 		<label>$analytics_label</label><br />
