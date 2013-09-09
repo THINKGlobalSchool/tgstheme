@@ -1132,6 +1132,7 @@ function tgstheme_layout_output_handler($hook, $type, $value, $params) {
 			case 'file':
 			case 'podcasts':
 			case 'simplekaltura':
+			case 'groups':
 				$value['sidebar_alt'] = $value['sidebar'];
 				$value['sidebar'] = null;
 				break;

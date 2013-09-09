@@ -98,8 +98,14 @@
 }
 
 #badge.elgg-owner-block-profile .elgg-image-block .elgg-image .elgg-avatar img {
-	width: 180px !important;
-	height: 180px !important;
+/*	width: 180px !important;
+	height: 180px !important;*/
+	background-size: auto 180px !important;
+}
+
+#badge.elgg-owner-block-profile .elgg-image-block .elgg-image .elgg-avatar-large img {
+	height: 180px;
+	width: 180px;
 }
 
 #badge.elgg-owner-block-profile .elgg-image-block > .elgg-body {
