@@ -51,7 +51,7 @@ elgg.tgstheme.initPublish = function() {
 			'type': 'iframe',
 			'scrolling': 'auto',
 			'autoSize': true,
-			'width': 600,
+			'width': 760,
 			'onComplete' : function(){
 				$('#fancybox-content').addClass('elgg-ajax-loader');
 				$('#fancybox-frame').load(function(){
@@ -76,13 +76,19 @@ elgg.tgstheme.initPublish = function() {
 		$('.tgstheme-publish-more-menu').slideToggle('fast');
 	});
 
-	// Hack dialog links in the iframe, need them to target the parent window
-	$('#elgg-iframe-body .ui-dialog-content a').live('click', function() {
-		if ($(this).attr('href').length) {
-			window.parent.location = $(this).attr('href');
-			return false;
-		};
-	})
+	// Hack links in the iframe, need them to target the parent window
+	$('#elgg-iframe-body .ui-dialog-content a').live('click', elgg.tgstheme.parentLocation);
+	$('#elgg-iframe-body .tidypics-lightbox').live('click', elgg.tgstheme.parentLocation);
+}
+
+/**
+ * Helper function to redirect links to a parent window
+ */
+elgg.tgstheme.parentLocation = function(event) {
+	if ($(this).attr('href').length) {
+		window.parent.location = $(this).attr('href');
+		return false;
+	};
 }
 
 /**

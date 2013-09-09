@@ -29,7 +29,12 @@ echo <<<JAVASCRIPT
 		$(document).ready(function() {
 			// Force the lightbox to resize
 			setInterval(function(){
-				var new_h = $("#elgg-iframe-content").get(0).scrollHeight;
+				// Check if this iframe spawned a fancybox
+				if ($('#fancybox-wrap').is(':visible')) {
+					var new_h = $('#fancybox-wrap').get(0).scrollHeight + 200;
+				} else {
+					var new_h = $("#elgg-iframe-content").get(0).scrollHeight;
+				}
 				parent.$('#fancybox-content').css('height', new_h - 1);
 				parent.$.fancybox.center();
 			}, 300);
