@@ -31,5 +31,12 @@ $messages = elgg_view('page/elements/messages', array('object' => $vars['sysmess
 	</div>
 	<?php echo $content; ?>
 </div>
+<?php 
+$js = elgg_get_loaded_js('footer');
+foreach ($js as $script) { ?>
+	<script type="text/javascript" src="<?php echo $script; ?>"></script>
+<?php
+}
+?>
 </body>
 </html>

@@ -581,11 +581,6 @@ function iframe_page_handler($page) {
 			$title = $params['title'];
 			$content = $params['content'];
 			break;
-		case 'photo':
-			// Load tidypics related JS
-			elgg_load_js('tidypics');
-			elgg_load_js('tidypics:upload');
-			break;
 		case 'file':
 			elgg_load_library('elgg:file');
 			$title = elgg_echo('file:add');
@@ -618,6 +613,57 @@ function iframe_page_handler($page) {
 			elgg_load_js('elgg.googledocbrowser');
 			elgg_load_css('googleapps-jquery-ui');
 			$params = googleapps_get_page_content_docs_share();
+			$title = $params['title'];
+			$content = $params['content'];
+			break;
+		case 'book':
+			elgg_load_library('elgg:readinglist');
+			elgg_load_css('elgg.readinglist');
+			elgg_load_js('elgg.readinglist');
+
+			// Load google libs
+			elgg_load_library('gapc:apiClient');       // Main client
+		 	elgg_load_library('gapc:apiBooksService'); // Books service
+
+			elgg_load_css('lightbox');
+			elgg_load_js('lightbox');
+			$params = readinglist_get_page_content_edit('add', null);
+			$title = $params['title'];
+			$content = $params['content'];
+			break;
+		case 'podcast':
+			elgg_load_library('elgg:podcasts');
+			elgg_load_js('elgg.podcasts');
+			elgg_load_js('soundmanager2');
+			elgg_load_css('elgg.podcasts');
+			$params = podcasts_get_page_content_edit($page_type, null);
+			$title = $params['title'];
+			$content = $params['content'];
+			break;
+		case 'poll':
+			$vars = polls_prepare_form_vars();
+			$content = elgg_view_form('polls/save', array(), $vars);
+			$title = elgg_echo('polls:add');
+			break;
+		case 'rss':
+			$params = rss_get_page_content_edit('add', null);
+			$title = $params['title'];
+			$content = $params['content'];
+			break;
+		case 'tagdashboard':
+			// Load CSS
+			elgg_load_css('elgg.tagdashboards');
+			elgg_load_css('jquery.ui.smoothness');
+					
+			// Load JS
+			elgg_load_js('elgg.tagdashboards');
+
+			$params = tagdashboards_get_page_content_edit('add', null);
+			$title = $params['title'];
+			$content = $params['content'];
+			break;
+		case 'webvideo':
+			$params = webvideos_get_page_content_edit('add', null);
 			$title = $params['title'];
 			$content = $params['content'];
 			break;
@@ -1075,7 +1121,13 @@ function tgstheme_iframe_forward_handler($hook, $type, $value, $params) {
 	// Check if the referer was an iframe
 	$referer = preg_replace('/\?.*/', '', $_SERVER['HTTP_REFERER']);
 	$forward_url = preg_replace('/\?.*/', '', $params['forward_url']);
+
 	if (strpos($referer, 'iframe')) {
+		// Don't mess around with photo forwards
+		if (strpos($forward_url, 'photos')) {
+			return $value;
+		}
+
 		if ($forward_url == $referer) {
 			if (!strpos($forward_url, 'thewire')) {				
 				return $params['forward_url'];

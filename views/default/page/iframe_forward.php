@@ -15,13 +15,15 @@ $lang = get_current_language();
 $forward_url = get_input('forward_to');
 
 // Re-register system messages
-foreach($vars['sysmessages'] as $type => $messages) {
-	foreach ($messages as $message) {
-		if ($type == 'success') {
-			system_message($message);
-		} else if ($type == 'error') {
-			// Shouldn't be any errors.. but check anyway
-			register_error($message);
+if ($vars['sysmessages']) {
+	foreach($vars['sysmessages'] as $type => $messages) {
+		foreach ($messages as $message) {
+			if ($type == 'success') {
+				system_message($message);
+			} else if ($type == 'error') {
+				// Shouldn't be any errors.. but check anyway
+				register_error($message);
+			}
 		}
 	}
 }
@@ -45,8 +47,8 @@ foreach($vars['sysmessages'] as $type => $messages) {
 		}
 	</style>
 	<script type='text/javascript'>
-		// Forward parent!
-		setInterval(function() {
+		// Forward to parent!
+		setTimeout(function() {
 			window.parent.location = "<?php echo $forward_url; ?>";
 		}, 300);
 	</script>

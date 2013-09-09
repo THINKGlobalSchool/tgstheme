@@ -1107,7 +1107,7 @@ div#elgg-bookmarklet-form {
 
 div#elgg-iframe-content {
 	padding: 5px; 
-	width: 590px
+	width: 750px
 }
 
 div#elgg-iframe-content hr {
