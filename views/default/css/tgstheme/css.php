@@ -152,68 +152,6 @@ table#tgstheme-profile-stats td.stat {
 	color: #91131E;
 }
 
-/* ***************************************
-    COMPOSER
-*************************************** */
-
-/* These menus always make room for icons: */
-.elgg-menu-composer li > a > .elgg-icon {
-	margin-left: -20px;
-	margin-right: 4px;
-	vertial-align: middle;
-}
-
-.elgg-menu-composer {
-	display:inline-block;
-	height: 22px;
-	font-family: 'Shanti', sans-serif;
-	text-transform:uppercase;
-	font-size:1em;
-	font-weight:normal;
-}
-
-.elgg-menu-composer > li {
-	font-weight:normal;
-	margin-left: 10px;
-}
-
-.elgg-menu-composer > li > a {
-	line-height: 16px;
-	padding-left: 20px;
-}
-
-.elgg-menu-composer > li > a:hover {
-	text-decoration: underline;
-}
-
-.elgg-menu-composer > li.ui-state-active > a {
-	cursor: default;
-	color: black;
-	text-decoration: none;
-}
-
-.elgg-menu-composer > .ui-state-active > a:before,
-.elgg-menu-composer > .ui-state-active > a:after {
-	position: absolute;
-	display: block;
-	border-width: 8px;
-	border-style: solid;
-	content: " ";
-	height: 0;
-	width: 0;
-	left: 0;
-}
-
-.elgg-menu-composer > .ui-state-active > a:before {
-	top: 11px;
-	border-color: transparent transparent #B4BBCD transparent;
-}
-
-.elgg-menu-composer > .ui-state-active > a:after {
-	top: 12px;
-	border-color: transparent transparent white transparent;
-}
-
 /* STATS */
 
 table#stats-table td.label {
@@ -223,24 +161,6 @@ table#stats-table td.label {
 table#stats-table td.stat {
 	font-weight: bold;
 	color: #800518;
-}
-
-/* NEW PAGE COMPONENT: COMPOSER */
-
-.ui-tabs-hide {
-	display:none;
-}
-
-.elgg-composer {
-}
-
-.elgg-composer > .ui-tabs-panel {
-	margin-top: 5px;
-	border: 1px solid #B4BBCD;
-	padding: 10px;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	border-radius: 6px;
 }
 
 /* PROFILE TWEAK */

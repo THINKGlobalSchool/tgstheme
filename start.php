@@ -33,9 +33,6 @@
  *   * profile/header
  *   * group/default (set view location)
  *   * groups/profile/summary
- *
- * Composer code borrowed from Evan Winslow's Elgg Facebook Theme:
- * https://github.com/ewinslow/elgg-facebook_theme
  */
 
 elgg_register_event_handler('init', 'system', 'tgstheme_init');
@@ -181,9 +178,6 @@ function tgstheme_init() {
 		elgg_register_plugin_hook_handler('index', 'system', 'home_redirect', 600);
 	}
 
-	// Composer menu hook
-	//elgg_register_plugin_hook_handler('register', 'menu:composer', 'tgstheme_composer_menu_handler');
-
 	// Topbar menu hook
 	elgg_register_plugin_hook_handler('register', 'menu:topbar', 'tgstheme_topbar_menu_handler', 9999);
 	
@@ -222,13 +216,6 @@ function tgstheme_init() {
 	elgg_unextend_view('page/elements/header', 'search/header');
 	
 	// Whitelist ajax views
-	// elgg_register_ajax_view('thewire/composer');
-	// elgg_register_ajax_view('messageboard/composer');
-	// elgg_register_ajax_view('bookmarks/composer');
-	// elgg_register_ajax_view('blog/composer');
-	// elgg_register_ajax_view('file/composer');
-	// elgg_register_ajax_view('webvideos/composer');
-	// elgg_register_ajax_view('page/elements/composer');
 	elgg_register_ajax_view('tgstheme/email_share');
 	elgg_register_ajax_view('tgstheme/modules/liked');
 	elgg_register_ajax_view('page/elements/topbar_ajax');
@@ -284,27 +271,6 @@ function home_page_handler($page) {
 	// Extendable content view
 	$params['content'] = elgg_view('tgstheme/home/content_top');
 
-	/* COMPOSER */	
-	// elgg_load_js('autosuggest');
-	// elgg_load_css('autosuggest');
-	// elgg_load_js('elgg.typeaheadtags');
-	// elgg_load_library('elgg:blog');
-	// elgg_load_library('elgg:bookmarks');
-	// elgg_load_library('elgg:file');
-	// elgg_load_js('elgg.fileextender');
-	// elgg_load_js('jQuery-File-Upload');
-	// elgg_load_css('elgg.fileextender');
-	// elgg_load_css('elgg.webvideos');
-	// elgg_load_js('elgg.webvideos');
-
-	// $composer_module .= elgg_view('modules/genericmodule', array(
-	// 	'view' => 'page/elements/composer',
-	// 	'view_vars' => array('entity_guid' => elgg_get_logged_in_user_guid()), 
-	// ));
-
-	// $params['content'] .= elgg_view_module('info', elgg_echo("wire-extender:label:thewire:doing"), $composer_module);
-	/* END COMPOSER */
-
 	// Announcements
 	if (elgg_is_active_plugin('announcements')) {
 		$params['content'] .= elgg_view('announcements/announcement_list');
@@ -339,7 +305,7 @@ function home_page_handler($page) {
 	$river_title .= elgg_view('output/url', array(
 		'text' => elgg_echo('link:view:all'),
 		'href' => elgg_get_site_url() . 'activity',
-		'class' => 'right'
+		'class' => 'home-small right'
 	));
 
 	$params['content'] .= elgg_view('modules/riverajaxmodule', array(
@@ -714,81 +680,6 @@ function tgstheme_mentions_get_views_handler($hook, $entity_type, $returnvalue, 
 	$returnvalue[] = 'river/elements/body';
 	$returnvalue[] = 'object/elements/summary';
 	return $returnvalue;
-}
-
-/**
- * Adds menu items to the "composer". Need to also add
- * the forms that these items point to.
- *
- * @todo Get the composer concept integrated into core
- */
-function tgstheme_composer_menu_handler($hook, $type, $items, $params) {
-	$entity = $params['entity'];
-
-	if (elgg_is_active_plugin('thewire')) {
-		$items[] = ElggMenuItem::factory(array(
-			'name' => 'thewire',
-			'href' => "/ajax/view/thewire/composer?container_guid=$entity->guid",
-			'text' => elgg_view_icon('share') . elgg_echo("composer:object:thewire"),
-			'priority' => 100,
-		));
-
-		//trigger any javascript loads that we might need
-		elgg_view('thewire/composer');
-	}
-
-	if (elgg_is_active_plugin('bookmarks')) {
-		$items[] = ElggMenuItem::factory(array(
-			'name' => 'bookmarks',
-			'href' => "/ajax/view/bookmarks/composer?container_guid=$entity->guid",
-			'text' => elgg_view_icon('push-pin') . elgg_echo("composer:object:bookmarks"),
-			'priority' => 300,
-		));
-
-		//trigger any javascript loads that we might need
-		elgg_view('bookmarks/composer');
-	}
-
-	if (elgg_is_active_plugin('blog')) {
-		$items[] = ElggMenuItem::factory(array(
-			'name' => 'blog',
-			'href' => "/ajax/view/blog/composer?container_guid=$entity->guid",
-			'text' => elgg_view_icon('speech-bubble') . elgg_echo("composer:object:blog"),
-			'priority' => 600,
-		));
-
-		//trigger any javascript loads that we might need
-		elgg_view('blog/composer');
-	}
-
-	if (elgg_is_active_plugin('file')) {
-		$items[] = ElggMenuItem::factory(array(
-			'name' => 'file',
-			'href' => "/ajax/view/file/composer?container_guid=$entity->guid",
-			'text' => elgg_view_icon('clip') . elgg_echo("composer:object:file"),
-			'priority' => 700,
-		));
-
-		//trigger any javascript loads that we might need
-		elgg_view('file/composer');
-	}
-
-	if (elgg_is_active_plugin('webvideos')) {
-		
-		$icon = "<span class=\"elgg-icon elgg-icon-video\"></span>";
-		
-		$items[] = ElggMenuItem::factory(array(
-			'name' => 'webvideos',
-			'href' => "/ajax/view/webvideos/composer?container_guid=$entity->guid",
-			'text' => $icon . elgg_echo("composer:object:webvideo"),
-			'priority' => 800,
-		));
-
-		//trigger any javascript loads that we might need
-		elgg_view('webvideos/composer');
-	}
-
-	return $items;
 }
 
 /**
