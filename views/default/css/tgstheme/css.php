@@ -538,19 +538,19 @@ span.actions-text {
 }
 
 .elgg-module-publish .tgstheme-publish-more-menu {
-	padding: 12px;
 	border-top: 2px solid #DDD;
 	display: none;
-	width: 550px;
+	width: 398px;
 }
 
 .elgg-module-publish .tgstheme-publish-more-menu ul {
-/*	column-count: 2;
+	padding: 12px;
+	column-count: 2;
 	-moz-column-count: 2;
 	-webkit-column-count: 2;
 	column-gap: 0px;
 	-moz-column-gap: 0px;
-	-webkit-column-gap: 0px;*/
+	-webkit-column-gap: 0px;
 }
 
 .elgg-module-publish .tgstheme-publish-more-menu > ul > li {
@@ -559,7 +559,6 @@ span.actions-text {
 	display: block;
 	font-weight: bold;
 	padding-left: 8px;
-	width: 30%;
 	cursor: pointer;
 }
 
