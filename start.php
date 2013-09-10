@@ -493,14 +493,14 @@ function tgstheme_route_profile_handler($hook, $type, $return, $params) {
 			elgg_set_page_owner_guid($user->guid);
 		}
 
-		// Push a top level breadcrumb
-		elgg_push_breadcrumb($user->name, $user->getURL());
-
 		// short circuit if invalid or banned username
 		if (!$user || ($user->isBanned() && !elgg_is_admin_logged_in())) {
 			register_error(elgg_echo('profile:notfound'));
 			forward();
 		}
+
+		// Push a top level breadcrumb
+		elgg_push_breadcrumb($user->name, $user->getURL());
 
 		if (isset($return['segments'][1])) {
 			$section = $return['segments'][1];
