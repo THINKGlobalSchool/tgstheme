@@ -438,7 +438,7 @@ function tgstheme_pagesetup() {
 	}
 
 	/** Add bookmarklet title button **/
-	if (elgg_in_context('bookmarks') && !strpos(current_page_url(), 'bookmarklet')) {
+	if (elgg_is_logged_in() && elgg_in_context('bookmarks') && !strpos(current_page_url(), 'bookmarklet')) {
 		$page_owner = elgg_get_page_owner_entity();
 		if (!$page_owner) {
 			$page_owner = elgg_get_logged_in_user_entity();
@@ -452,7 +452,7 @@ function tgstheme_pagesetup() {
 
 		elgg_register_menu_item('title', array(
 			'name' => 'bookmarklet',
-			'href' => 'bookmarks/bookmarklet/' . $page_owner->getGUID(),
+			'href' => 'bookmarks/bookmarklet/' . $page_owner->guid,
 			'text' => $title,
 			'link_class' => 'tgstheme-custom-title-link',
 		));
