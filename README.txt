@@ -1,3 +1,1 @@
-Composer code borrowed from Evan Winslow's Elgg Facebook Theme: 
-
-https://github.com/ewinslow/elgg-facebook_theme
+TGSTheme for Elgg 1.8.x - Version 2

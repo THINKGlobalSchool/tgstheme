@@ -36,6 +36,80 @@ elgg.tgstheme.init = function() {
 			parent.append(iframe);
 		}
 	});
+
+	// Init publish module
+	elgg.tgstheme.initPublish();
 }
 
+elgg.tgstheme.initPublish = function() {
+	// Init publish links
+	$('.tgstheme-publish-item.clickable, .tgstheme-publish-more-menu li.clickable').each(function(){
+		// Get iframe url	
+		var href = elgg.get_site_url() + "iframe/" + $(this).data('type');
+		$(this).fancybox({
+			'href': href,
+			'type': 'iframe',
+			'scrolling': 'auto',
+			'autoSize': true,
+			'width': 760,
+			'onComplete' : function(){
+				$('#fancybox-content').addClass('elgg-ajax-loader');
+				$('#fancybox-frame').load(function(){
+					$('#fancybox-content').removeClass('elgg-ajax-loader');
+				});
+        	}
+		});
+	});
+
+	// Init 'more' toggle
+	$('.elgg-module-publish .publish-more').live('click', function() {
+		if ($(this).hasClass('publish-more-closed')) {
+			$(this).html('less');
+			$(this).removeClass('publish-more-closed');
+			$(this).addClass('publish-more-open');
+		} else {
+			$(this).html('more');
+			$(this).removeClass('publish-more-open');
+			$(this).addClass('publish-more-closed');
+		}
+
+		$('.tgstheme-publish-more-menu').slideToggle('fast');
+	});
+
+	// Hack links in the iframe, need them to target the parent window
+	$('#elgg-iframe-body .ui-dialog-content a').live('click', elgg.tgstheme.parentLocation);
+	$('#elgg-iframe-body .tidypics-lightbox').live('click', elgg.tgstheme.parentLocation);
+}
+
+/**
+ * Helper function to redirect links to a parent window
+ */
+elgg.tgstheme.parentLocation = function(event) {
+	if ($(this).attr('href').length) {
+		window.parent.location = $(this).attr('href');
+		return false;
+	};
+}
+
+/**
+ * Repositions the login popup
+ *
+ * @param {String} hook    'getOptions'
+ * @param {String} type    'ui.popup'
+ * @param {Object} params  An array of info about the target and source.
+ * @param {Object} options Options to pass to
+ *
+ * @return {Object}
+ */
+elgg.tgstheme.loginHandler = function(hook, type, params, options) {
+	if (params.target.attr('id') == 'login-dropdown-box') {
+		options.my = 'right top';
+		options.at = 'right bottom';
+		options.offset = '15px';
+		return options;
+	}
+	return options;
+};
+
 elgg.register_hook_handler('init', 'system', elgg.tgstheme.init);
+elgg.register_hook_handler('getOptions', 'ui.popup', elgg.tgstheme.loginHandler);

@@ -66,11 +66,12 @@
 .elgg-icon-facebook {
 	background-position: 0 -270px;
 }
+/*
 .elgg-icon-home:hover {
-	background-position: 0 -288px;
-}
+	background-position: 0 -290px;
+}*/
 .elgg-icon-home {
-	background-position: 0 -306px;
+	background-position: 0 -308px;
 }
 .elgg-icon-hover-menu:hover {
 	background-position: 0 -324px;

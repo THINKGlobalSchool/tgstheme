@@ -1,13 +1,12 @@
 <?php
 /**
- * TGS Theme 2
- * Custom Layout for main column with one sidebar on the right
+ * Layout for main column with one sidebar
+ * 
+ * OVERRIDE
+ * - Includes extras menu
  *
- * @package TGSTheme2
- * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
- * @author Jeff Tilson
- * @copyright THINK Global School 2010
- * @link http://www.thinkglobalschool.com/
+ * @package Elgg
+ * @subpackage Core
  *
  * @uses $vars['content'] Content HTML for the main column
  * @uses $vars['sidebar'] Optional content that is displayed in the sidebar
@@ -16,7 +15,7 @@
  * @uses $vars['nav']     HTML of the page nav (override) (default: breadcrumbs)
  */
 
-$class = 'elgg-layout elgg-layout-one-sidebar-right clearfix';
+$class = 'elgg-layout elgg-layout-one-sidebar clearfix';
 if (isset($vars['class'])) {
 	$class = "$class {$vars['class']}";
 }
@@ -24,21 +23,31 @@ if (isset($vars['class'])) {
 // navigation defaults to breadcrumbs
 $nav = elgg_extract('nav', $vars, elgg_view('navigation/breadcrumbs'));
 
+$extras = elgg_view_menu('extras', array(
+	'sort_by' => 'priority',
+	'class' => 'elgg-menu-hz',
+));
+
 ?>
 
 <div class="<?php echo $class; ?>">
-	<div class="elgg-right-sidebar">
+	<div class="elgg-sidebar">
 		<?php
-			echo elgg_view('page/elements/right_sidebar', $vars);
+			echo elgg_view('page/elements/sidebar', $vars);
 		?>
 	</div>
 
-	<div class="elgg-main elgg-body elgg-home-right">
+	<div class="elgg-main elgg-body">
 		<?php
 			echo $nav;
+			echo $extras;
 			
 			if (isset($vars['title'])) {
 				echo elgg_view_title($vars['title']);
+			}
+			// @todo deprecated so remove in Elgg 2.0
+			if (isset($vars['area1'])) {
+				echo $vars['area1'];
 			}
 			if (isset($vars['content'])) {
 				echo $vars['content'];
