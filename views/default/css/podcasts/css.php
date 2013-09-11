@@ -22,7 +22,7 @@ $images_url = elgg_get_site_url() . 'mod/tgstheme/_graphics/podcasts/';
 
 .elgg-podcast-title, 
 .elgg-podcast-summary-title {
-	text-transform: none;
+/*	text-transform: none;*/
 }
 
 .elgg-podcast-episode-description {
