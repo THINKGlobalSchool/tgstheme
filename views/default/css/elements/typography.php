@@ -104,6 +104,7 @@ h6 { font-size: 0.8em; }
 	float: left;
 	max-width: 530px;
 	margin-right: 10px;
+	margin-left: 6px;
 	font-family: 'Shanti', sans-serif;
 	text-transform:uppercase;
 	color:#2D3F46;

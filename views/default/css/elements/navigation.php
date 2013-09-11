@@ -151,7 +151,7 @@ position: relative;
 /* ***************************************
 	BREADCRUMBS
 *************************************** */
-.elgg-breadcrumbs {
+/*.elgg-breadcrumbs {
 	font-size: 80%;
 	font-weight: bold;
 	line-height: 1.2em;
@@ -173,13 +173,147 @@ position: relative;
 .elgg-breadcrumbs > li > a:hover {
 	color: #91131E;
 	text-decoration: underline;
-}
+}*/
+
+/** CSS3 BREADCRUMBS: adapted from: http://www.red-team-design.com/css3-breadcrumbs **/
 
 .elgg-main .elgg-breadcrumbs {
 	position: relative;
 	top: -6px;
 	left: 0;
 }
+
+.elgg-breadcrumbs{
+	overflow: hidden;
+	width: 100%;
+	font-size: 80%;
+	font-weight: bold;
+	line-height: 1.2em;
+	color: #666;
+	text-transform: uppercase;
+}
+
+.elgg-breadcrumbs li {
+	float: left;
+	margin: 0 .5em 0 1em;
+}
+
+.elgg-breadcrumbs a,
+.elgg-breadcrumbs span {
+	padding: 0.3em 0.6em;
+	float: left;
+	text-decoration: none;
+	text-shadow: 0 1px 0 rgba(255,255,255,.5); 
+	position: relative;
+}
+
+.elgg-breadcrumbs a {
+	background: #ddd;
+	color: #333;
+}
+
+.elgg-breadcrumbs span {
+	background: #efefef;
+	color: #666;
+}
+
+.elgg-breadcrumbs span::after {
+	display: inline-block;
+}
+
+.elgg-breadcrumbs a:hover{
+	background: #2D3F46;
+	color: #FFFFFF;
+}
+
+.elgg-breadcrumbs a::before, 
+.elgg-breadcrumbs span::before{
+	content: "";
+	position: absolute;
+	top: 50%; 
+	margin-top: -1.5em;   
+	border-width: 1.5em 0 1.5em 1.1em;
+	border-style: solid;
+	left: -1em;
+	-webkit-transform: rotate(0.05deg);
+	-o-transform: rotate(0.05deg); /* Didn't check Opera yet */
+	transform: rotate(0.05deg);
+	-moz-transform: scale(1.05);
+}
+
+.elgg-breadcrumbs a::before {
+	border-color: #ddd #ddd #ddd transparent;
+}
+
+.elgg-breadcrumbs span::before{ 
+	border-color: #efefef #efefef #efefef transparent;
+}
+
+.elgg-breadcrumbs a:hover::before{
+	border-color: #2D3F46 #2D3F46 #2D3F46 transparent;
+}
+
+.elgg-breadcrumbs a:after,
+.elgg-breadcrumbs span::after {
+	content: "";
+	position: absolute;
+	top: 50%; 
+	margin-top: -1.5em;   
+	border-top: 1.5em solid transparent;
+	border-bottom: 1.5em solid transparent;
+	right: -1em;
+	-webkit-transform: rotate(0.05deg);
+	-o-transform: rotate(0.05deg); /* Didn't check Opera yet */
+	transform: rotate(0.05deg);
+	-moz-transform: scale(1.05);
+}
+
+.elgg-breadcrumbs a:after {
+	border-left: 1.1em solid #ddd;
+}
+
+.elgg-breadcrumbs span::after {
+	border-left: 1.1em solid #efefef;
+}
+
+.elgg-breadcrumbs a:hover::after{
+	border-left-color: #2D3F46;
+}
+
+/* ***************************************
+	QUICKBAR MENU
+*************************************** */
+
+.elgg-menu-quickbar {
+	float: right;
+	padding-right: 10px;
+}
+
+.elgg-inner.elgg-menu-quickbar > ul {
+	margin-top: 1px;
+}
+
+.elgg-menu-quickbar > li {
+	float: left;
+	font-size: 11px;
+	padding-left: 6px;
+	padding-right: 6px;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/quickbar-divider.png) no-repeat scroll 0 0 transparent
+}
+
+.elgg-menu-quickbar > li:first-child {
+	background: none;
+}
+
+.elgg-menu-quickbar > li:last-child {
+	padding-right: 0px;
+}
+
+.elgg-menu-quickbar > li > a {
+	color: #EDEDED;
+	margin-top: 0px;	
+}
+
 
 /* ***************************************
 	TOPBAR MENU
@@ -197,7 +331,7 @@ position: relative;
 }
 
 .elgg-menu-topbar > li > a {
-	padding: 2px 15px 0;
+	padding: 2px 10px 0;
 	color: #FFFFFF;
 	margin-top: 1px;	
 }
@@ -206,11 +340,14 @@ position: relative;
 	TOPBAR BORDERS 
 *************************************** */
 
-.elgg-menu-item-administration > a { border-right:1px solid #DB1730; }
-.elgg-menu-item-usersettings > a { border-right:1px solid #DB1730; }
+/*.elgg-menu-item-administration > a { border-right:1px solid #DB1730; }*/
+/*.elgg-menu-item-usersettings > a { border-right:1px solid #DB1730; }*/
 .elgg-menu-item-friends > a { border-right:1px solid #DB1730; }
 .elgg-menu-item-messages > a { border-right:1px solid #DB1730; }
-.elgg-menu-item-profile > a { border-right:1px solid #DB1730; }
+/*.elgg-menu-item-profile > a { border-right:1px solid #DB1730; }*/
+.elgg-menu-item-search {border-right:1px solid #DB1730;}
+.elgg-menu-item-home {border-right:1px solid #DB1730;}
+.elgg-menu-item-home:last-child {border-right:none;}
 
 /****************************************/
 
@@ -267,7 +404,7 @@ position: relative;
 .elgg-menu-site-default {
 	position: absolute;
 	bottom: 0;
-	left: 360px;
+	right: 140px;
 	height: 40px;
 }
 
@@ -398,7 +535,8 @@ li:hover > .elgg-menu-site-more {
     font-size: 100%;
     text-transform: uppercase;
 }
-.elgg-menu-page a:hover {
+
+.elgg-menu-page li a:hover {
 	color: #FFFFFF;
 	border: 1px solid #2D3F46;
 	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
@@ -410,6 +548,56 @@ li:hover > .elgg-menu-site-more {
 	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-red.png) repeat-x bottom left #E72139;
 	color: #FFFFFF;	
 }
+
+/** NEW FLAT STYLE **/
+/*.elgg-menu-page li {
+	width: 229px;
+	right: 10px;
+	position: relative;
+	border-left: 1px solid #DEDEDE;
+	border-right: 1px solid #DEDEDE;
+	border-bottom: 1px solid #BBBBBB;
+}
+
+.elgg-menu-page li:first-child {
+	border-top: 1px solid #BBBBBB;
+}
+
+.elgg-menu-page li a {
+	background: #CCCCCC;
+	display: block;
+	color: #2D3F46;
+	font-family: 'Shanti',sans-serif;
+	font-size: 100%;
+	text-transform: uppercase;
+	padding: 3px 4px 3px 9px;
+}
+
+.elgg-menu-page li:first-child:hover {
+	border-top: 1px solid #222E33;
+}
+
+.elgg-menu-page li:hover {
+	border-bottom: 1px solid #222E33;
+	border-left: 1px solid #222E33;
+	border-right: 1px solid #222E33;
+}
+
+.elgg-menu-page li:hover a {
+	color: #FFFFFF;
+	background: #222E33;
+	text-decoration: none;
+}
+
+.elgg-menu-page li.elgg-state-selected {
+	border: 1px solid #A8070F;
+}
+
+.elgg-menu-page li.elgg-state-selected > a {
+	background: #A8070F;
+	color: #FFFFFF;	
+}*/
+/** END NEW FLAT STYLE **/
 
 /* --------------------------- */
 
@@ -621,5 +809,6 @@ li:hover > .elgg-menu-site-more {
 	SIDEBAR EXTRAS (rss, bookmark, etc)
 *************************************** */
 .elgg-menu-extras {
-	margin-bottom: 15px;
+	float: right;
+	padding: 4px 0 4px 11px;
 }

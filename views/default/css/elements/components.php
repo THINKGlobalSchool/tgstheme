@@ -60,6 +60,21 @@
 	padding-right: 4px;
 }
 
+#badge.elgg-owner-block-profile .elgg-image-block {
+	padding: 4px 0;
+}
+
+#badge.elgg-owner-block-profile .elgg-subtext > a {
+	color: #FFF;
+}
+
+#badge.elgg-owner-block-profile hr {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: medium none;
+	color: #FFFFFF;
+	height: 1px;
+}
+
 #badge .elgg-image-block  h3 a{	
 	color:#FFFFFF;
 }
@@ -71,7 +86,30 @@
 	background:#FFFFFF;
 	width:26px;
 	height:26px;
-	border:2px solid #85161D;
+}
+
+#badge.elgg-owner-block-profile .elgg-image-block .elgg-image {
+	margin: 0 0 2px 3px;
+	padding:1px 0 0 1px;
+	background:#FFFFFF;
+	width: 181px;
+	height: 181px;
+	float: none;
+}
+
+#badge.elgg-owner-block-profile .elgg-image-block .elgg-image .elgg-avatar img {
+/*	width: 180px !important;
+	height: 180px !important;*/
+	background-size: auto 180px !important;
+}
+
+#badge.elgg-owner-block-profile .elgg-image-block .elgg-image .elgg-avatar-large img {
+	height: 180px;
+	width: 180px;
+}
+
+#badge.elgg-owner-block-profile .elgg-image-block > .elgg-body {
+	padding: 3px 4px 2px;
 }
 
 #badge .elgg-subtext {

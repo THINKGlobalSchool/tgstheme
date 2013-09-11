@@ -22,8 +22,8 @@
 .elgg-page-default .elgg-page-header > .elgg-inner {
 	width: 990px;
 	margin: 0 auto;
-	height:126px;
-	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/back-header-full.png) no-repeat;
+	height: 75px;
+	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/back-header-full.jpg) no-repeat;
 	
 }
 .elgg-page-default .elgg-page-body > .elgg-inner {
@@ -41,15 +41,44 @@
 .elgg-page-footer:after {
 	content:none;
 }
+
+/***** QUICKBAR *****/
+
+.elgg-page-quickbar {
+	/* Firefox v3.6+ */
+	background-image:-moz-linear-gradient(50% 0% -180deg,rgb(55,72,79) 0%,rgb(29,40,45) 100%); 
+	/* safari v4.0+ and by Chrome v3.0+ */
+	background-image:-webkit-gradient(linear,50% 0%,50% 167%,color-stop(0, rgb(55,72,79)),color-stop(1, rgb(29,40,45)));
+	/* Chrome v10.0+ and by safari nightly build*/
+	background-image:-webkit-linear-gradient(-180deg,rgb(55,72,79) 0%,rgb(29,40,45) 100%);
+	/* Opera v11.10+ */
+	background-image:-o-linear-gradient(-180deg,rgb(55,72,79) 0%,rgb(29,40,45) 100%);
+	/* IE v10+ */
+	background-image:-ms-linear-gradient(-180deg,rgb(55,72,79) 0%,rgb(29,40,45) 100%);
+	background-image:linear-gradient(-180deg,rgb(55,72,79) 0%,rgb(29,40,45) 100%);
+	height:18px;
+	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff37484f,endColorstr=#ff1d282d,GradientType=0)";
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff37484f,endColorstr=#ff1d282d,GradientType=0);
+
+	position: relative;
+	height: 18px;
+	z-index: 9001;
+}
+.elgg-page-quickbar > .elgg-inner {
+	padding: 0 2px;
+	width: 990px;
+	margin:auto;
+}
+
 /***** TOPBAR ******/
 .elgg-page-topbar {
 	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/back-top.jpg) repeat-x top left;
 	position: relative;
-	height: 41px;
+	height: 40px;
 	z-index: 9000;
 }
 .elgg-page-topbar > .elgg-inner {
-	padding: 10px 10px;
+	padding: 9px 10px;
 	width: 990px;
 	margin:auto;
 }
@@ -73,7 +102,7 @@
 .elgg-page-header {
 	position: relative;
 	background:url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/back-header.jpg) repeat-x;
-	height:126px;
+	height: 75px;
 }
 .elgg-page-header > .elgg-inner {
 	position: relative;	
@@ -90,30 +119,60 @@
 	min-height: 360px;
 }
 .elgg-layout-one-sidebar {
-	background: transparent url(<?php echo elgg_get_site_url(); ?>_graphics/sidebar_background.gif) repeat-y right top;
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sidebar_background_left.gif) repeat-y right top;
 }
 .elgg-layout-two-sidebar {
-	background: transparent url(<?php echo elgg_get_site_url(); ?>_graphics/two_sidebar_background.gif) repeat-y right top;
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/two_sidebar_background.gif) repeat-y right top;
 }
-.elgg-sidebar {
+
+/* Fix tinyMCE toolbar in two-sidebar layout */
+.elgg-layout-two-sidebar .mceToolbar * {
+    white-space: normal !important;
+}
+.elgg-layout-two-sidebar .mceToolbar tr,
+.elgg-layout-two-sidebar .mceToolbar td {
+    float:left !important;
+}
+
+/** OLD SIDEBARS **/
+/*.elgg-sidebar { 
 	position: relative;
 	padding: 20px 10px;
 	float: right;
 	width: 210px;
 	margin: 0 0 0 10px;
-}
-.elgg-sidebar-alt {
+}*/
+
+
+/*.elgg-sidebar-alt {
 	position: relative;
 	padding: 20px 10px;
 	float: left;
 	width: 160px;
 	margin: 0 10px 0 0;
+}*/
+/** END OLD SIDEBARS **/
+
+.elgg-sidebar {
+	position: relative;
+	padding: 10px;
+	float: left;
+	width: 190px;
+	margin: 10px 0 0 0;
 }
+
+.elgg-sidebar-alt {
+	position: relative;
+	padding: 20px 10px;
+	float: right;
+	width: 190px;
+	margin: 0 0 0 10px;
+}
+
 .elgg-main {
 	position: relative;
 	min-height: 360px;
 	padding: 20px 10px 10px 10px;
-	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/logo-bottom.png) no-repeat;
 }
 .elgg-main > .elgg-head {
 	padding-bottom: 3px;

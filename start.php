@@ -9,24 +9,34 @@
  * @link http://www.thinkglobalschool.com/
  *
  * VIEW OVERRIDES:
- *   * navigation/menu/site - use text string 'Browse' instead of 'More'
+ *   * navigation/menu/site - (Might not need this anymore)
  *   * css/elements/*
  *   * css/typeaheadtags/css
  * 	 * messages/css
- *   * page/elements/header_logo
+ *   * page/default (Override default page shell)
+ *   * page/elements/header
+ *   * page/elements/header_logo (Won't need this is we lose the header)
  *   * page/elements/owner_block
  *   * page/elements/shortcut_icon
+ *   * page/elements/sidebar
+ *   * page/elements/tagcloud_block
+ *   * page/layouts/one_sidebar
+ *   * page/layouts/one_column
+ *   * page/layouts/content
+ *   * navigation/breadcrumbs
  *   * search/css
  *   * search/search_box
  *   * js/tinymce
  *   * bookmarks/bookmarklet
  *   * river/elements/image
- *
- * Composer code borrowed from Evan Winslow's Elgg Facebook Theme:
- * https://github.com/ewinslow/elgg-facebook_theme
+ *   * profile/layout
+ *   * profile/header
+ *   * group/default (set view location)
+ *   * groups/profile/summary
  */
 
 elgg_register_event_handler('init', 'system', 'tgstheme_init');
+elgg_register_event_handler('pagesetup', 'system', 'tgstheme_pagesetup', 501);
 
 function tgstheme_init() {
 	// Set a bookmarklet version
@@ -71,6 +81,18 @@ function tgstheme_init() {
 	elgg_register_js('elgg.tgsmenus', $m_js);
 	elgg_load_js('elgg.tgsmenus');
 
+	// Register chosen.js library
+	$c_js = elgg_get_simplecache_url('js', 'chosen');
+	elgg_register_simplecache_view('js/chosen');
+	elgg_register_js('chosen.js', $c_js);
+	elgg_load_js('chosen.js');
+
+	// Register chosen.js css library
+	$c_css = elgg_get_simplecache_url('css', 'chosen');
+	elgg_register_simplecache_view('css/chosen');
+	elgg_register_css('chosen.js', $c_css);
+	elgg_load_css('chosen.js');
+
 	if (elgg_get_context() == 'activity') {
 		elgg_load_js('elgg.activityping');
 	}
@@ -84,30 +106,20 @@ function tgstheme_init() {
 	// Register 'legal' page handler
 	elgg_register_page_handler('legal','legal_page_handler');
 
+	// Register a generic iframe handler
+	elgg_register_page_handler('iframe', 'iframe_page_handler');
+
 	// Extend bookmarks page handler
 	elgg_register_plugin_hook_handler('route', 'bookmarks', 'tgstheme_route_bookmarks_handler');
+
+	// Extend profile page handler
+	elgg_register_plugin_hook_handler('route', 'profile', 'tgstheme_route_profile_handler');
 
 	// Register activity ping page handler
 	elgg_register_page_handler('activity_ping', 'ping_page_handler');
 
 	// Hook into mentions get views
 	elgg_register_plugin_hook_handler('get_views', 'mentions', 'tgstheme_mentions_get_views_handler');
-
-	// Add 'home' navigation item
-	if (elgg_is_logged_in()) {
-		$home_url = 'home';
-	} else {
-		$home_url = elgg_get_site_url();
-	}
-	$item = new ElggMenuItem('home', "<span class='elgg-icon elgg-icon-home'></span>", $home_url);
-	elgg_register_menu_item('site', $item);
-
-	// Add a couple footer items
-	$item = new ElggMenuItem('1termsofuse', elgg_echo("tgstheme:label:terms"), elgg_get_site_url() . 'legal/spot_terms_of_use');
-	elgg_register_menu_item('footer', $item);
-
-	$item = new ElggMenuItem('2privacypolicysupplement', elgg_echo("tgstheme:label:policysupplement"), elgg_get_site_url() . 'legal/privacy_supplement');
-	elgg_register_menu_item('footer', $item);
 	
 	// Register share by email item
 	if (elgg_is_logged_in()) {
@@ -140,6 +152,9 @@ function tgstheme_init() {
 
 	// Extend topbar
 	elgg_extend_view('page/elements/topbar', 'tgstheme/topbar');
+
+	// Extend owner_block for groups
+	elgg_extend_view('group/elements/summary', 'tgstheme/group_summary');
 	
 	// Extend admin CSS
 	elgg_extend_view('css/admin', 'css/tgstheme/admin');
@@ -150,16 +165,9 @@ function tgstheme_init() {
 	
 	// Extend Fullcalendar CSS
 	elgg_extend_view('css/fullcalendar', 'css/tgstheme/fullcalendar');
-	
-	// Extend search/searchbox
-	if (elgg_get_plugin_setting('help_group', 'tgstheme') && elgg_is_logged_in()) {
-		elgg_extend_view('search/search_box', 'tgstheme/help_link');
-	}
 
-	// Extend activity sidebar
-	if (elgg_is_logged_in() && elgg_get_context() == 'activity') {
-		elgg_extend_view('page/elements/sidebar', 'tgstheme/main_stats', 499);
-	}
+ 	// Hacky set view location.. group-tools strikes again
+    elgg_set_view_location('group/default', elgg_get_plugins_path() . "tgstheme/overrides/");
 
 	if (!elgg_is_logged_in() && elgg_get_plugin_setting('analytics_enable', 'tgstheme')) {
 		elgg_extend_view('page/elements/head', 'tgstheme/analytics');
@@ -170,11 +178,8 @@ function tgstheme_init() {
 		elgg_register_plugin_hook_handler('index', 'system', 'home_redirect', 600);
 	}
 
-	// Composer menu hook
-	elgg_register_plugin_hook_handler('register', 'menu:composer', 'tgstheme_composer_menu_handler');
-
 	// Topbar menu hook
-	elgg_register_plugin_hook_handler('register', 'menu:topbar', 'tgstheme_topbar_menu_handler');
+	elgg_register_plugin_hook_handler('register', 'menu:topbar', 'tgstheme_topbar_menu_handler', 9999);
 	
 	// Entity menu hook, used to reorganize the entity menu
 	elgg_register_plugin_hook_handler('register', 'menu:entity', 'tgstheme_entity_menu_handler', 9999);
@@ -188,6 +193,9 @@ function tgstheme_init() {
 	// Entity menu hook, used to reorganize the entity menu
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'tgstheme_ownerblock_menu_handler', 9999);
 
+	// Modify the 'site' menu to get return just the browse menu
+	//elgg_register_plugin_hook_handler('prepare', 'menu:site', 'elgg_site_menu_setup');
+
 	// Add a new tab to the tabbed profile
 	elgg_register_plugin_hook_handler('tabs', 'profile', 'tgstheme_twitter_profile_tab_hander');
 	elgg_register_plugin_hook_handler('tabs', 'profile', 'tgstheme_liked_profile_tab_hander');
@@ -195,22 +203,23 @@ function tgstheme_init() {
 	// Add a hook handler for HTMLawed allowed styles
 	elgg_register_plugin_hook_handler('allowed_styles', 'htmlawed', 'tgstheme_allowed_styles_handler');
 
-	elgg_unregister_page_handler('activity');
+	// Hook into forward for iframe submits
+	elgg_register_plugin_hook_handler('forward', 'all', 'tgstheme_iframe_forward_handler', 0);
 
-	elgg_register_page_handler('activity', 'tgstheme_river_page_handler');
+	// Hook into output:before/layout to hack some core sidebars
+	elgg_register_plugin_hook_handler('output:before', 'layout', 'tgstheme_layout_output_handler');	
 
+	// Unregister bookmarks page menu handler
+	elgg_unregister_plugin_hook_handler('register', 'menu:page', 'bookmarks_page_menu');
+
+	// Unextend header if user is logged in, this will be on the topbar
+	elgg_unextend_view('page/elements/header', 'search/header');
+	
 	// Whitelist ajax views
-	elgg_register_ajax_view('thewire/composer');
-	elgg_register_ajax_view('messageboard/composer');
-	elgg_register_ajax_view('bookmarks/composer');
-	elgg_register_ajax_view('blog/composer');
-	elgg_register_ajax_view('file/composer');
-	elgg_register_ajax_view('webvideos/composer');
 	elgg_register_ajax_view('tgstheme/email_share');
 	elgg_register_ajax_view('tgstheme/modules/liked');
-	elgg_register_ajax_view('page/elements/composer');
 	elgg_register_ajax_view('page/elements/topbar_ajax');
-	
+
 	return true;
 }
 
@@ -225,6 +234,16 @@ function home_page_handler($page) {
 	// Logged in users only
 	gatekeeper();
 
+	/** Tidypics Required Libs **/
+
+	// Load jquery-file-upload libs
+	elgg_load_js('jquery.ui.widget');
+	elgg_load_js('jquery-file-upload');
+	elgg_load_js('jquery.iframe-transport');
+
+	elgg_load_js('tidypics');
+	elgg_load_js('tidypics:upload');
+
 	// Forward parents to parentportal home, not the dashboard
 	if (elgg_is_active_plugin('parentportal')) {
 		if (parentportal_is_user_parent(elgg_get_logged_in_user_entity())) {
@@ -234,6 +253,9 @@ function home_page_handler($page) {
 
 	// Extendable sidebar view
 	$params['sidebar'] = elgg_view('tgstheme/home/sidebar_top');
+
+	// 'Publish' box
+	// $params['sidebar'] .= elgg_view('tgstheme/modules/publish');
 
 	// Show profile module
 	$params['sidebar'] .= elgg_view('tgstheme/modules/profile');
@@ -249,27 +271,6 @@ function home_page_handler($page) {
 	// Extendable content view
 	$params['content'] = elgg_view('tgstheme/home/content_top');
 
-	// Non-ajaxy composer
-	//$composer = elgg_view('page/elements/composer', array('entity_guid' => elgg_get_logged_in_user_guid()));
-
-	elgg_load_js('autosuggest');
-	elgg_load_css('autosuggest');
-	elgg_load_js('elgg.typeaheadtags');
-	elgg_load_library('elgg:blog');
-	elgg_load_library('elgg:bookmarks');
-	elgg_load_library('elgg:file');
-	elgg_load_js('elgg.fileextender');
-	elgg_load_js('jQuery-File-Upload');
-	elgg_load_css('elgg.fileextender');
-	elgg_load_css('elgg.webvideos');
-	elgg_load_js('elgg.webvideos');
-
-	$composer_module .= elgg_view('modules/genericmodule', array(
-		'view' => 'page/elements/composer',
-		'view_vars' => array('entity_guid' => elgg_get_logged_in_user_guid()), 
-	));
-
-	$params['content'] .= elgg_view_module('info', elgg_echo("wire-extender:label:thewire:doing"), $composer_module);
 	// Announcements
 	if (elgg_is_active_plugin('announcements')) {
 		$params['content'] .= elgg_view('announcements/announcement_list');
@@ -304,7 +305,7 @@ function home_page_handler($page) {
 	$river_title .= elgg_view('output/url', array(
 		'text' => elgg_echo('link:view:all'),
 		'href' => elgg_get_site_url() . 'activity',
-		'class' => 'right'
+		'class' => 'home-small right'
 	));
 
 	$params['content'] .= elgg_view('modules/riverajaxmodule', array(
@@ -313,7 +314,7 @@ function home_page_handler($page) {
 		'module_type' => 'featured',
 	));
 
-	$body = elgg_view_layout('one_sidebar_right', $params);
+	$body = elgg_view_layout('one_sidebar_home', $params);
 	echo elgg_view_page(elgg_echo('tgstheme:title:home'), $body);
 }
 
@@ -383,6 +384,81 @@ function ping_page_handler($page) {
 	return FALSE;
 }
 
+/**
+ * Customize menus
+ *
+ * @return void
+ * @access private
+ */
+function tgstheme_pagesetup() {
+	// Add 'home' navigation item
+	if (elgg_is_logged_in()) {
+		$home_url = 'home';
+	} else {
+		$home_url = elgg_get_site_url();
+	}
+
+	/** Quickbar items **/
+
+	// Help link (from admin)
+	if (($group_guid = elgg_get_plugin_setting('help_group', 'tgstheme')) && elgg_is_logged_in()) {
+		$group = get_entity($group_guid);
+		$item = new ElggMenuItem('help_group', elgg_get_plugin_setting('help_label', 'tgstheme'), $group->getURL());
+		elgg_register_menu_item('quickbar', $item);
+	}
+
+	// Library link (from admin)
+	if (($group_guid = elgg_get_plugin_setting('library_group', 'tgstheme')) && elgg_is_logged_in()) {
+		$group = get_entity($group_guid);
+		$item = new ElggMenuItem('library_group', elgg_get_plugin_setting('library_label', 'tgstheme'), $group->getURL());
+		elgg_register_menu_item('quickbar', $item);
+	}
+
+	// weXplore link (from admin)
+	if (($group_guid = elgg_get_plugin_setting('wexplore_group', 'tgstheme')) && elgg_is_logged_in()) {
+		$group = get_entity($group_guid);
+		$item = new ElggMenuItem('wexplore_group', elgg_get_plugin_setting('wexplore_label', 'tgstheme'), $group->getURL());
+		elgg_register_menu_item('quickbar', $item);
+	}
+
+	// Topbar 'home' item
+	// $item = new ElggMenuItem('home', elgg_view_icon('home') . elgg_echo('home'), $home_url);
+	// elgg_register_menu_item('topbar', $item);
+
+	// Add a couple footer items
+	$item = new ElggMenuItem('1termsofuse', elgg_echo("tgstheme:label:terms"), elgg_get_site_url() . 'legal/spot_terms_of_use');
+	elgg_register_menu_item('footer', $item);
+
+	$item = new ElggMenuItem('2privacypolicysupplement', elgg_echo("tgstheme:label:policysupplement"), elgg_get_site_url() . 'legal/privacy_supplement');
+	elgg_register_menu_item('footer', $item);
+
+	/** Set null page owners on required pages **/
+	if (elgg_get_context() == 'activity') {
+		elgg_set_page_owner_guid(1);
+	}
+
+	/** Add bookmarklet title button **/
+	if (elgg_is_logged_in() && elgg_in_context('bookmarks') && !strpos(current_page_url(), 'bookmarklet')) {
+		$page_owner = elgg_get_page_owner_entity();
+		if (!$page_owner) {
+			$page_owner = elgg_get_logged_in_user_entity();
+		}
+		
+		if ($page_owner instanceof ElggGroup) {
+			$title = elgg_echo('bookmarks:bookmarklet:group');
+		} else {
+			$title = elgg_echo('bookmarks:bookmarklet');
+		}
+
+		elgg_register_menu_item('title', array(
+			'name' => 'bookmarklet',
+			'href' => 'bookmarks/bookmarklet/' . $page_owner->guid,
+			'text' => $title,
+			'link_class' => 'tgstheme-custom-title-link',
+		));
+	}
+}
+
 // Hook into bookmakrs routing to provide extra content
 function tgstheme_route_bookmarks_handler($hook, $type, $return, $params) {
 	if (is_array($return['segments']) && $return['segments'][0] == 'add') {
@@ -408,29 +484,184 @@ function tgstheme_route_bookmarks_handler($hook, $type, $return, $params) {
 	return $return;
 }
 
-/**
- * Custom page handler for activiy
- *
- * @param array $page
- */
-function tgstheme_river_page_handler($page) {
-	global $CONFIG;
+// Hook into profile routing to override profile contents
+function tgstheme_route_profile_handler($hook, $type, $return, $params) {
+	if (is_array($return['segments']) && $return['segments'][1] != 'edit') {
+		if (isset($return['segments'][0])) {
+			$username = $return['segments'][0];
+			$user = get_user_by_username($username);
+			elgg_set_page_owner_guid($user->guid);
+		}
 
-	elgg_set_page_owner_guid(elgg_get_logged_in_user_guid());
+		// short circuit if invalid or banned username
+		if (!$user || ($user->isBanned() && !elgg_is_admin_logged_in())) {
+			register_error(elgg_echo('profile:notfound'));
+			forward();
+		}
 
-	// make a URL segment available in page handler script
-	$page_type = elgg_extract(0, $page, 'all');
-	$page_type = preg_replace('[\W]', '', $page_type);
-	if ($page_type == 'owner') {
-		$page_type = 'mine';
+		// Push a top level breadcrumb
+		elgg_push_breadcrumb($user->name, $user->getURL());
+
+		if (isset($return['segments'][1])) {
+			$section = $return['segments'][1];
+		} else {
+			$section = 'activity';
+		}
+
+		elgg_push_breadcrumb(elgg_echo("profile:{$section}"));
+
+		$content = tabbed_profile_layout_page($user, $section);
+		$body = elgg_view_layout('one_sidebar', array(
+			'content' => $content,
+			'class' => 'tabbed-profile',
+		));
+		echo elgg_view_page($user->name, $body);
+		return false;
 	}
-	set_input('page_type', $page_type);
-
-	$path = elgg_get_plugins_path() . "tgstheme/pages/river.php";
-	require_once($path);
-	return true;
+	return $return;
 }
 
+/**
+ * IFRAME page handler
+ *
+ * @param array $page From the page_handler function
+ * @return true|false Depending on success
+ *
+ */
+function iframe_page_handler($page) {
+	gatekeeper();
+	$title = $content = '';
+	switch ($page[0]) {
+		case 'thewire':
+			// register the wire's JavaScript
+			$thewire_js = elgg_get_simplecache_url('js', 'thewire');
+			elgg_register_simplecache_view('js/thewire');
+			elgg_register_js('elgg.thewire', $thewire_js);
+			elgg_load_js('elgg.thewire');
+			$title = "Mini Post";
+			$content = elgg_view_form('thewire/add');
+			break;
+		case 'blog':
+			elgg_load_library('elgg:blog');
+			$params = blog_get_page_content_edit($page_type, $page[1]);
+			$title = $params['title'];
+			$content = $params['content'];
+			break;
+		case 'file':
+			elgg_load_library('elgg:file');
+			$title = elgg_echo('file:add');
+			$form_vars = array('enctype' => 'multipart/form-data');
+			$body_vars = file_prepare_form_vars();
+			$content = elgg_view_form('file/upload', $form_vars, $body_vars);
+			break;
+		case 'bookmark':
+			elgg_load_library('elgg:bookmarks');
+			$page_owner = elgg_get_page_owner_entity();
+			$title = elgg_echo('bookmarks:add');
+			$vars = bookmarks_prepare_form_vars();
+			$content = elgg_view_form('bookmarks/save', array(), $vars);
+			break;
+		case 'video':
+			$page_owner = elgg_get_page_owner_entity();
+			$title = elgg_echo('videos:add');
+			$vars = simplekaltura_prepare_form_vars();
+			$content = elgg_view_form('simplekaltura/save', array(), $vars);
+			break;
+		case 'page':
+			elgg_load_library('elgg:pages');
+			$parent_guid = 0;
+			$page_owner = elgg_get_page_owner_entity();
+			$title = elgg_echo('pages:add');
+			$vars = pages_prepare_form_vars(null, $parent_guid);
+			$content = elgg_view_form('pages/edit', array(), $vars);
+			break;
+		case 'googledoc':
+			elgg_load_js('elgg.googledocbrowser');
+			elgg_load_css('googleapps-jquery-ui');
+			$params = googleapps_get_page_content_docs_share();
+			$title = $params['title'];
+			$content = $params['content'];
+			break;
+		case 'book':
+			elgg_load_library('elgg:readinglist');
+			elgg_load_css('elgg.readinglist');
+			elgg_load_js('elgg.readinglist');
+
+			// Load google libs
+			elgg_load_library('gapc:apiClient');       // Main client
+		 	elgg_load_library('gapc:apiBooksService'); // Books service
+
+			elgg_load_css('lightbox');
+			elgg_load_js('lightbox');
+			$params = readinglist_get_page_content_edit('add', null);
+			$title = $params['title'];
+			$content = $params['content'];
+			break;
+		case 'podcast':
+			elgg_load_library('elgg:podcasts');
+			elgg_load_js('elgg.podcasts');
+			elgg_load_js('soundmanager2');
+			elgg_load_css('elgg.podcasts');
+			$params = podcasts_get_page_content_edit($page_type, null);
+			$title = $params['title'];
+			$content = $params['content'];
+			break;
+		case 'poll':
+			$vars = polls_prepare_form_vars();
+			$content = elgg_view_form('polls/save', array(), $vars);
+			$title = elgg_echo('polls:add');
+			break;
+		case 'rss':
+			$params = rss_get_page_content_edit('add', null);
+			$title = $params['title'];
+			$content = $params['content'];
+			break;
+		case 'tagdashboard':
+			// Load CSS
+			elgg_load_css('elgg.tagdashboards');
+			elgg_load_css('jquery.ui.smoothness');
+					
+			// Load JS
+			elgg_load_js('elgg.tagdashboards');
+
+			$params = tagdashboards_get_page_content_edit('add', null);
+			$title = $params['title'];
+			$content = $params['content'];
+			break;
+		case 'webvideo':
+			$params = webvideos_get_page_content_edit('add', null);
+			$title = $params['title'];
+			$content = $params['content'];
+			break;
+		case 'forward': // Special forward endpoint
+			echo elgg_view_page('', '', 'iframe_forward');	
+			return TRUE;
+			break;
+		default:
+			// Invalid item
+			forward();
+			return FALSE;
+	}
+
+	$content = elgg_view('tgstheme/iframe', array(
+		'title' => $title,
+		'content' => $content,
+	));
+
+	echo elgg_view_page($title, $content, 'iframe');
+
+	return TRUE;
+}
+
+/**
+ * Home redirect
+ *
+ * @param unknown_type $hook
+ * @param unknown_type $entity_type
+ * @param unknown_type $returnvalue
+ * @param unknown_type $params
+ * @return unknown
+ */
 function home_redirect($hook, $entity_type, $returnvalue, $params) {
 	forward('home');
 }
@@ -452,105 +683,178 @@ function tgstheme_mentions_get_views_handler($hook, $entity_type, $returnvalue, 
 }
 
 /**
- * Adds menu items to the "composer". Need to also add
- * the forms that these items point to.
- *
- * @todo Get the composer concept integrated into core
- */
-function tgstheme_composer_menu_handler($hook, $type, $items, $params) {
-	$entity = $params['entity'];
-
-	if (elgg_is_active_plugin('thewire')) {
-		$items[] = ElggMenuItem::factory(array(
-			'name' => 'thewire',
-			'href' => "/ajax/view/thewire/composer?container_guid=$entity->guid",
-			'text' => elgg_view_icon('share') . elgg_echo("composer:object:thewire"),
-			'priority' => 100,
-		));
-
-		//trigger any javascript loads that we might need
-		elgg_view('thewire/composer');
-	}
-
-	if (elgg_is_active_plugin('bookmarks')) {
-		$items[] = ElggMenuItem::factory(array(
-			'name' => 'bookmarks',
-			'href' => "/ajax/view/bookmarks/composer?container_guid=$entity->guid",
-			'text' => elgg_view_icon('push-pin') . elgg_echo("composer:object:bookmarks"),
-			'priority' => 300,
-		));
-
-		//trigger any javascript loads that we might need
-		elgg_view('bookmarks/composer');
-	}
-
-	if (elgg_is_active_plugin('blog')) {
-		$items[] = ElggMenuItem::factory(array(
-			'name' => 'blog',
-			'href' => "/ajax/view/blog/composer?container_guid=$entity->guid",
-			'text' => elgg_view_icon('speech-bubble') . elgg_echo("composer:object:blog"),
-			'priority' => 600,
-		));
-
-		//trigger any javascript loads that we might need
-		elgg_view('blog/composer');
-	}
-
-	if (elgg_is_active_plugin('file')) {
-		$items[] = ElggMenuItem::factory(array(
-			'name' => 'file',
-			'href' => "/ajax/view/file/composer?container_guid=$entity->guid",
-			'text' => elgg_view_icon('clip') . elgg_echo("composer:object:file"),
-			'priority' => 700,
-		));
-
-		//trigger any javascript loads that we might need
-		elgg_view('file/composer');
-	}
-
-	if (elgg_is_active_plugin('webvideos')) {
-		
-		$icon = "<span class=\"elgg-icon elgg-icon-video\"></span>";
-		
-		$items[] = ElggMenuItem::factory(array(
-			'name' => 'webvideos',
-			'href' => "/ajax/view/webvideos/composer?container_guid=$entity->guid",
-			'text' => $icon . elgg_echo("composer:object:webvideo"),
-			'priority' => 800,
-		));
-
-		//trigger any javascript loads that we might need
-		elgg_view('webvideos/composer');
-	}
-
-	return $items;
-}
-
-/**
  * Hook to remove the elgg logo from the topbar menu
  */
 function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
-	foreach($items as $idx => $item) {
-		if ($item->getName() == 'elgg_logo') {
-			unset($items[$idx]);
-		}
-
-		if ($item->getName() == 'friends') {
-			unset($items[$idx]);
-		}
-
-		if ($item->getName() == 'profile') {
-			$text = $item->getText();
-			$user = elgg_get_logged_in_user_entity();
-			$name_text = "<span style='margin-left: 10px; float: right'>" . $user->name . "</span>";
-			$item->setText($text . $name_text);
-		}
-
-		if ($item->getName() == 'messages') {
-			$text = $item->getText();
-			$item->setText($text);
+	// Grab settings, admin, logout item and remove them from the menu
+	foreach ($items as $idx => $item) {
+		switch ($item->getName()) {
+			case 'logout':
+				$logout_item = $item;
+				$logout_item->setText("<span class='elgg-icon elgg-icon-arrow-right'></span>" . $logout_item->getText());
+				$logout_item->setPriority(500);
+				unset($items[$idx]);
+				break;
+			case 'administration':
+				$administration_item = $item;
+				unset($items[$idx]);
+				$administration_item->setPriority(400);
+				break;
+			case 'usersettings':
+				$settings_item = $item;
+				unset($items[$idx]);
+				$settings_item->setPriority(400);
+				break;
 		}
 	}
+
+	foreach ($items as $idx => $item) {
+		switch ($item->getName()) {
+			case 'elgg_logo':
+				/* Remove Elgg Logo */
+				unset($items[$idx]);
+				break;
+			case 'friends':
+				/* Remove Friends */
+				unset($items[$idx]);
+				break;
+			case 'profile':
+				/* Modify Profile Menu */
+				$text = $item->getText();
+				$user = elgg_get_logged_in_user_entity();
+				// $name_text = "<span class='tgstheme-topbar-username tgstheme-topbar-dropdown'>" . $user->name . "</span>";
+				// $item->setText($text . $name_text);
+				$item->setSection('alt');
+				$item->setPriority('1000');
+				$item->addLinkClass('tgstheme-topbar-dropdown');
+
+				// Set logout/settings/admin parent
+				$logout_item->setParent($item);
+				
+				$settings_item->setParent($item);
+
+				// Create new view profile item
+				$view_profile_item = ElggMenuItem::factory(array(
+					'name' => 'view_profile',
+					'href' => $item->getHref(),
+					'text' => "<span class='elgg-icon elgg-icon-arrow-left'></span>" . elgg_echo('tgstheme:label:viewprofile'),
+					'priority' => 100,
+				));
+				$view_profile_item->setParent($item);
+
+				// Create new edit profile item
+				$edit_profile_item = ElggMenuItem::factory(array(
+					'name' => 'edit_profile',
+					'href' => elgg_normalize_url("profile/{$user->username}/edit"),
+					'text' => "<span class='elgg-icon elgg-icon-settings'></span>" . elgg_echo('profile:edit'),
+					'priority' => 200,
+				));
+
+				$edit_profile_item->setParent($item);
+
+
+				// Create new edit profile item
+				$edit_avatar_item = ElggMenuItem::factory(array(
+					'name' => 'edit_avatar',
+					'href' => elgg_normalize_url("avatar/edit/{$user->username}"),
+					'text' => "<span class='elgg-icon elgg-icon-settings'></span>" . elgg_echo('avatar:edit'),
+					'priority' => 300,
+				));
+
+				$edit_avatar_item->setParent($item);
+
+				// Add all child elements
+				$item->addChild($logout_item);
+				$item->addChild($settings_item);
+				$item->addChild($view_profile_item);
+				$item->addChild($edit_profile_item);
+				$item->addChild($edit_avatar_item);
+
+				// If there's an admin item, add it to the user dropdown
+				if ($administration_item) {
+					$administration_item->setParent($item);
+					$item->addChild($administration_item);
+				}
+
+				break;
+			case 'messages':
+				/* Add 'messages' text to messages icon */
+				$text = $item->getText();
+				$item->setText($text . "&nbsp;" . elgg_echo('messages'));
+				break;
+			case 'todo':
+				/* Add dropdown class to todo menu */
+				$item->addLinkClass('tgstheme-topbar-dropdown');
+				break;
+			case 'groups_topbar_hover_menu':
+				/* Add dropdown class to groups menu */
+				$item->addLinkClass('tgstheme-topbar-dropdown');
+				break;
+		}
+	}
+
+	// Add search item
+	$search_item = ElggMenuItem::factory(array(
+		'name' => 'search',
+		'href' => false,
+		'text' => elgg_view('search/search_box', array('class' => 'tgstheme-search-topbar')),
+		'priority' => 100,
+	));
+
+	// Add login item to nav bar
+	if (!elgg_is_logged_in()) {
+		$login_item = ElggMenuItem::factory(array(
+			'name' => 'login',
+			'href' => false,
+			'text' => elgg_view('core/account/login_dropdown'),
+			'priority' => 200,
+		));
+		$login_item->setSection('alt');
+		$items[] = $login_item;
+	}
+
+	$search_item->setSection('alt');
+
+	$items[] = $search_item;
+
+	// Add spot logo item
+	$spot_logo_url = elgg_get_site_url() . "mod/tgstheme/_graphics/topbar_logo.png";
+	$spot_logo_item = ElggMenuItem::factory(array(
+		'name' => 'spot_logo',
+		'href' => elgg_get_site_url(),
+		'text' => "<img src=\"$spot_logo_url\" alt=\"THINK Spot\" />",
+		'priority' => 1,
+		'link_class' => 'spot-topbar-logo',
+	));
+
+	$items[] = $spot_logo_item;
+
+	// Add 'explore' items
+	global $CONFIG;
+
+	$site_menu = $CONFIG->menus['site'];
+
+	// Use ElggMenuBuilder to sort menu alphabetically
+	$builder = new ElggMenuBuilder($site_menu);
+	$site_menu = $builder->getMenu('text');
+
+	$more = elgg_echo('tgstheme:label:explore');
+	$more_link = "<a href=\"#\" class='tgstheme-topbar-dropdown'>$more</a>";
+
+	$more_item = ElggMenuItem::factory(array(
+		'name' => 'explore',
+		'href' => false,
+		'text' => $more_link . elgg_view('navigation/menu/elements/section', array(
+			'class' => 'elgg-menu elgg-menu-topbar-dropdown', 
+			'items' => $site_menu['default'],
+		)), 
+		'priority' => 99999,
+	));
+
+	$more_item->setSection('default');
+
+	$items[] = $more_item;
+
 	return $items;
 }
 
@@ -698,5 +1002,87 @@ function tgstheme_liked_profile_tab_hander($hook, $type, $value, $params) {
  */
 function tgstheme_allowed_styles_handler($hook, $type, $value, $params) {
 	$value[] = 'display';
+	return $value;
+}
+
+/**
+ * Handler for iframe forwards
+ */
+function tgstheme_iframe_forward_handler($hook, $type, $value, $params) {
+	// Check if the referer was an iframe
+	$referer = preg_replace('/\?.*/', '', $_SERVER['HTTP_REFERER']);
+	$forward_url = preg_replace('/\?.*/', '', $params['forward_url']);
+
+	if (strpos($referer, 'iframe')) {
+		// Don't mess around with photo forwards
+		if (strpos($forward_url, 'photos')) {
+			return $value;
+		}
+
+		if ($forward_url == $referer) {
+			if (!strpos($forward_url, 'thewire')) {				
+				return $params['forward_url'];
+			} else {
+				// @todo this should probably be a plugin hook
+				$params['forward_url'] = elgg_normalize_url('home');
+			}
+		}
+
+		$forward_url = $params['forward_url'];
+		return elgg_normalize_url("iframe/forward?forward_to={$forward_url}");
+		
+	}
+	return $value;
+}
+
+/**
+ * Handler for layout output
+ */
+function tgstheme_layout_output_handler($hook, $type, $value, $params) {
+	if (get_input('conditional_sidebars_core_overrides')) {
+		set_input('conditional_sidebars_core_overrides', false);
+		switch (elgg_get_context()) {
+			case 'pages':
+				// This is so bloody gross..
+				$location = str_replace(elgg_get_site_url() . 'pages', '', current_page_url());
+				if (strpos($location, "/all") === 0) {
+					$value['sidebar_alt'] = $value['sidebar'];
+					$value['sidebar'] = null;
+				} else if (strpos($location, "/owner") === 0) {
+					$value['sidebar_alt'] = elgg_view('pages/sidebar');
+					$value['sidebar'] = elgg_view('pages/sidebar/navigation');
+				}
+				break;
+			// wtf pages..? lets push a widgets context globally..
+			case 'widgets':
+				$location = str_replace(elgg_get_site_url() . 'pages', '', current_page_url());
+				if (strpos($location, "/revision") === 0) {
+					$value['sidebar'] = null;
+					$id = get_input('id');
+					$annotation = elgg_get_annotation_from_id($id);
+					if (!$annotation) {
+						forward();
+					}
+					$page = get_entity($annotation->entity_guid);
+					if (!$page) {
+						forward();
+					}
+					$value['sidebar_alt'] = elgg_view('pages/sidebar/history', array('page' => $page));
+				}
+				break;
+			case 'blog':
+			case 'bookmarks':
+			case 'file':
+			case 'podcasts':
+			case 'simplekaltura':
+			case 'groups':
+				$value['sidebar_alt'] = $value['sidebar'];
+				$value['sidebar'] = null;
+				break;
+			default: 
+				break;
+		}
+	}
+
 	return $value;
 }
