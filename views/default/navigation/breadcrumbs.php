@@ -35,15 +35,15 @@ if ($additional_class) {
 
 if (is_array($breadcrumbs) && count($breadcrumbs) > 0) {
 	echo "<ul class=\"$class\">";
-	foreach ($breadcrumbs as $breadcrumb) {
+	foreach ($breadcrumbs as $idx => $breadcrumb) {
 		if (!empty($breadcrumb['link'])) {
 			$crumb = elgg_view('output/url', array(
 				'href' => $breadcrumb['link'],
-				'text' => $breadcrumb['title'],
+				'text' => elgg_get_excerpt($breadcrumb['title'], 50),
 				'is_trusted' => true,
 			));
 		} else {
-			$crumb = "<span>" . $breadcrumb['title'] . "</span>";
+			$crumb = "<span>" . elgg_get_excerpt($breadcrumb['title'], 50) . "</span>";
 		}
 		echo "<li>$crumb</li>";
 	}
