@@ -120,6 +120,15 @@ $english = array(
 	'avatar:crop:success' => 'Cropping the profile picture succeeded',
 	'avatar:crop:fail' => 'Profile picture cropping failed',
 	'river:update:user:avatar' => '%s has a new profile picture',
+
+	// Widgets
+	'tgstheme:widget:profile_title' => 'Profile',
+	'tgstheme:widget:profile_desc' => 'TGS Theme Profile Widget',
+
+	'tgstheme:widget:groups_title' => 'Groups',
+	'tgstheme:widget:groups_desc' => 'TGS Theme User Groups Widget',
+
+	'tgstheme:widget:river_desc' => 'Display Latest Activity',
 );
 
 add_translation('en',$english);

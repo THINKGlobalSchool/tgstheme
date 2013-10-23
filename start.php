@@ -100,8 +100,22 @@ function tgstheme_init() {
 	// Register JS for jQuery HTML extension (fixes weird autocomplete when ajax loaded)
 	elgg_register_js('elgg.userpicker.html', 'mod/tgstheme/vendors/jquery.ui.autocomplete.html.js');
 
-	// Register 'home' page handler
-	//elgg_register_page_handler('home', 'home_page_handler');
+	// Register 'home' page handler if roles isn't enabled
+	if (!elgg_is_active_plugin('roles')) {
+		elgg_register_page_handler('home', 'home_page_handler');
+	} else {
+		$user = elgg_get_logged_in_user_entity();
+		
+		// Roles is enabled, register widgets
+		elgg_register_widget_type('tgstheme_profile', $user->name, elgg_echo('tgstheme:widget:profile_title'), 'rolewidget');
+		elgg_register_widget_type('tgstheme_groups', elgg_echo('tgstheme:widget:groups_title'), elgg_echo('tgstheme:widget:groups_desc'), 'rolewidget');
+		elgg_register_widget_type('tgstheme_river', elgg_echo('content:latest'), elgg_echo('tgstheme:widget:river_desc'), 'rolewidget');
+
+		if (elgg_get_plugin_setting('module_enable', 'tgstheme')) {
+			$extra_title = elgg_get_plugin_setting('module_tag', 'tgstheme');
+			elgg_register_widget_type('tgstheme_extra', $extra_title, $extra_title, 'rolewidget');
+		}
+	}
 
 	// Register 'legal' page handler
 	elgg_register_page_handler('legal','legal_page_handler');
@@ -266,7 +280,12 @@ function home_page_handler($page) {
 	}
 
 	// Show groups module
-	$params['sidebar'] .= elgg_view('tgstheme/modules/groups', array('limit' => 6));
+	$options = array(
+		'class' => 'tgstheme-module tgstheme-groups-module',
+	);
+	$content = elgg_view('tgstheme/modules/groups', array('limit' => 6));
+	$groups_module = elgg_view_module('featured', elgg_echo('groups'), $content, $options);
+	$params['sidebar'] .= $groups_module;
 
 	// Extendable content view
 	$params['content'] = elgg_view('tgstheme/home/content_top');

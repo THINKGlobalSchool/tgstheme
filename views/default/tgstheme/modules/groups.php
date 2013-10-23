@@ -80,8 +80,4 @@ if ($groups_count > $limit || $groups_count == 0) {
 	)) . "</span>";
 }
 
-$options = array(
-	'class' => 'tgstheme-module tgstheme-groups-module',
-);
-
-echo elgg_view_module('featured', elgg_echo('groups'), $content, $options);
+echo $content;
