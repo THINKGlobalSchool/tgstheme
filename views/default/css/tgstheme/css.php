@@ -38,7 +38,8 @@
 	margin: 0 0 10px 0;
 }
 
-.elgg-layout-one-sidebar-home {
+.elgg-layout-one-sidebar-home,
+.elgg-layout-one-sidebar-roles-home {
 	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sidebar_background.gif) repeat-y left top;
 }
 
@@ -51,6 +52,30 @@
 }
 
 /** End custom sidebars **/
+
+/** Style roles homepage **/
+
+.elgg-layout-one-sidebar-roles-home {
+	padding: 0;
+}
+.elgg-layout-one-sidebar-roles-home #elgg-widget-col-2 {
+	float: left;
+	width: 420px;
+	padding-top: 15px;
+}
+
+.elgg-layout-one-sidebar-roles-home #elgg-widget-col-1 {
+	width: 570px;
+	padding-top: 15px;
+}
+
+.elgg-layout-one-sidebar-roles-home .elgg-module-widget {
+	margin: 0 10px 15px;
+}
+
+
+
+/** End roles homepage styles **/
 
 .tgs-footer {
 	background: #aaa;

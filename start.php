@@ -101,7 +101,7 @@ function tgstheme_init() {
 	elgg_register_js('elgg.userpicker.html', 'mod/tgstheme/vendors/jquery.ui.autocomplete.html.js');
 
 	// Register 'home' page handler
-	elgg_register_page_handler('home', 'home_page_handler');
+	//elgg_register_page_handler('home', 'home_page_handler');
 
 	// Register 'legal' page handler
 	elgg_register_page_handler('legal','legal_page_handler');
