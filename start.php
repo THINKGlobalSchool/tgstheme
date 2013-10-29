@@ -1034,6 +1034,16 @@ function tgstheme_widget_menu_setup($hook, $type, $return, $params) {
 			);
 
 			$return[] = ElggMenuItem::factory($options);
+		} else if ($widget->handler == 'tgstheme_groups') {
+			$options = array(
+				'name' => 'groups_view_all',
+				'text' => elgg_echo('tgstheme:label:allmygroups'),
+				'title' => 'groups_view_all',
+				'href' => elgg_get_site_url() . 'groups/member/' . elgg_get_logged_in_user_entity()->username,
+				'class' => 'home-small'
+			);
+
+			$return[] = ElggMenuItem::factory($options);
 		}
 
 		return $return;
