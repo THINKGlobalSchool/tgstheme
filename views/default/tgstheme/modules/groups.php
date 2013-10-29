@@ -79,5 +79,6 @@ if ($groups_count > $limit || $groups_count == 0) {
 		'value' => elgg_get_site_url() . 'groups/member/' . elgg_get_logged_in_user_entity()->username,
 	)) . "</span>";
 }
-
+echo "<div class='tgstheme-groups-module'>";
 echo $content;
+echo "</div>";

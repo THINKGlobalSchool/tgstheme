@@ -91,6 +91,7 @@ table.tgstheme-profile {
 	-webkit-box-shadow: 0 0 2px #000;
 	box-shadow: 0 0 2px #000;
 	margin-bottom: 5px;
+	border: 1px solid #AAA;
 }
 
 table.tgstheme-profile .profile-left {
@@ -113,6 +114,23 @@ table.tgstheme-profile .profile-right {
 
 .tgstheme-module {
 	background: #FFF;
+}
+
+.elgg-module.tgstheme-module {
+	margin-bottom: 0;
+}
+
+.elgg-module .elgg-module {
+	margin-bottom: 0;
+}
+
+.tgstheme-profile-module {
+	border: 0;
+	border-radius: 0;
+}
+
+.tgstheme-groups-module {
+	padding-bottom: 15px;
 }
 
 .tgstheme-profile-module .elgg-body {
@@ -144,6 +162,26 @@ table.tgstheme-profile .profile-right {
 .tgstheme-group-updated .time-updated {
 	font-weight: bold;
 	color: #888;
+}
+
+/** Widget  menus **/
+.elgg-menu-widget > li.elgg-menu-item-extra-tooltip,
+.elgg-menu-widget > li.elgg-menu-item-river-view-all {
+	float: left;
+	position: relative;
+	right: 6px;
+	top: 2px;
+	width: auto;
+}
+
+.elgg-menu-widget > li.elgg-menu-item-extra-tooltip a,
+.elgg-menu-widget > li.elgg-menu-item-river-view-all a 	{
+	display: block;
+}
+
+.elgg-widget-instance-tgstheme_extra ul.elgg-menu-widget,
+.elgg-widget-instance-tgstheme_river ul.elgg-menu-widget {
+	float: right;
 }
 
 table#tgstheme-profile-stats {
@@ -452,26 +490,9 @@ span.actions-text {
 
 /** Publish module **/
 .elgg-module-publish {
-	border-radius: 6px;
+/*	border-radius: 6px;*/
 	height: auto;
 	overflow: visible;
-
-	/* Firefox v3.6+ */
-	background-image:-moz-linear-gradient(9% 0% -180deg,rgb(255,255,255) 0%,rgb(235,235,235) 99%,rgb(235,235,235) 100%); 
-	/* safari v4.0+ and by Chrome v3.0+ */
-	background-image:-webkit-gradient(linear,9% 0%,9% 50%,color-stop(0, rgb(255,255,255)),color-stop(0.99, rgb(235,235,235)),color-stop(1, rgb(235,235,235)));
-	/* Chrome v10.0+ and by safari nightly build*/
-	background-image:-webkit-linear-gradient(-180deg,rgb(255,255,255) 0%,rgb(235,235,235) 99%,rgb(235,235,235) 100%);
-	/* Opera v11.10+ */
-	background-image:-o-linear-gradient(-180deg,rgb(255,255,255) 0%,rgb(235,235,235) 99%,rgb(235,235,235) 100%);
-	/* IE v10+ */
-	background-image:-ms-linear-gradient(-180deg,rgb(255,255,255) 0%,rgb(235,235,235) 99%,rgb(235,235,235) 100%);
-	background-image:linear-gradient(-180deg,rgb(255,255,255) 0%,rgb(235,235,235) 99%,rgb(235,235,235) 100%);
-
-	/* Firefox v4.0+ , Safari v5.0+ , Chrome v4.0+ , Opera v10.5+  and by IE v9.0+ */
-	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffffff,endColorstr=#ffebebeb,GradientType=0)";
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffffff,endColorstr=#ffebebeb,GradientType=0);
-
 	margin-bottom: 0px;
 	margin-top: 4px;
 }
@@ -521,7 +542,7 @@ span.actions-text {
 	/*margin-top: 3px;*/
 	margin-bottom: 3px;
 	text-align: center;
-	width: 66.3px;
+	width: 16.5%;
 
 	/** Fade effect **/
 	opacity: 0.8;
@@ -531,8 +552,8 @@ span.actions-text {
 }
 
 .elgg-module-publish .tgstheme-publish-item img {
-	width: 40px;
-	height: 40px;
+	width: 70%;
+/*	height: 40px;*/
 }
 
 .elgg-module-publish .tgstheme-publish-item:hover {
@@ -544,9 +565,9 @@ span.actions-text {
 
 .elgg-module-publish .tgstheme-publish-item > span {
 	display: block;
-	font-weight: bold;
+/*	font-weight: bold;*/
 	text-align: center;
-	font-size: 12px;
+	font-size: 11.5px;
 }
 
 .elgg-module-publish .tgstheme-publish-item:hover > span {

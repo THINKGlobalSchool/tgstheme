@@ -207,6 +207,9 @@ function tgstheme_init() {
 	// Entity menu hook, used to reorganize the entity menu
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'tgstheme_ownerblock_menu_handler', 9999);
 
+	// Modify widget menu
+	elgg_register_plugin_hook_handler('register', 'menu:widget', 'tgstheme_widget_menu_setup', 501);
+
 	// Modify the 'site' menu to get return just the browse menu
 	//elgg_register_plugin_hook_handler('prepare', 'menu:site', 'elgg_site_menu_setup');
 
@@ -993,6 +996,48 @@ function tgstheme_ownerblock_menu_handler($hook, $type, $return, $params) {
 			$item->setText(substr($item->getText(), 6));
 		}
 	}	
+
+	return $return;
+}
+
+/**
+ * Modify widget menus for role widgets
+ */
+function tgstheme_widget_menu_setup($hook, $type, $return, $params) {
+	if (get_input('custom_widget_controls')) {
+		$widget = $params['entity'];
+
+		if ($widget->handler == 'tgstheme_extra') {
+
+			$popup_label = elgg_echo('tgstheme:label:whatisthis');
+			$popup_info = elgg_echo(elgg_get_plugin_setting('module_description', 'tgstheme'));
+			$popup_info = "<div id='info' class='home-popup' style='display: none;'>$popup_info</div>";
+
+
+			$options = array(
+				'name' => 'extra_tooltip',
+				'text' => $popup_label . $popup_info,
+				'title' => 'extra_tooltip',
+				'href' => '#info',
+				'rel' => 'popup',
+				'class' => 'home-small'
+			);
+
+			$return[] = ElggMenuItem::factory($options);
+		} else if ($widget->handler == 'tgstheme_river') {
+			$options = array(
+				'name' => 'river_view_all',
+				'text' => elgg_echo('link:view:all'),
+				'title' => 'river_view_all',
+				'href' => elgg_get_site_url() . 'activity',
+				'class' => 'home-small'
+			);
+
+			$return[] = ElggMenuItem::factory($options);
+		}
+
+		return $return;
+	}
 
 	return $return;
 }

@@ -9,12 +9,6 @@
  * @link http://www.thinkglobalschool.com/
  */
 
-echo elgg_view('output/url', array(
-	'text' => elgg_echo('link:view:all'),
-	'href' => elgg_get_site_url() . 'activity',
-	'class' => 'home-small right'
-));
-
 echo elgg_view('modules/riverajaxmodule', array(
 	'limit' => 10,
 ));
