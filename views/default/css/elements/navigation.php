@@ -21,10 +21,9 @@
 	text-align: center;
 }
 .elgg-pagination a, .elgg-pagination span {
-	-webkit-border-radius: 4px;
+/*	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
-	border-radius: 4px;
-	
+	border-radius: 4px;*/
 	padding: 2px 6px;
 	color: #FFFFFF;
 	border: 1px solid #2D3F46;
@@ -65,11 +64,10 @@
 	border: 1px solid #2D3F46;
 	border-bottom: 0;
 	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
-	margin: 6px 0 0 10px;	
-	
-	-webkit-border-radius: 5px 5px 0 0;
+	margin: 6px 0 0 10px;		
+/*	-webkit-border-radius: 5px 5px 0 0;
 	-moz-border-radius: 5px 5px 0 0;
-	border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;*/
 }
 .elgg-tabs a {
 	text-decoration: none;
@@ -117,10 +115,9 @@ position: relative;
 	border-bottom: 0;
 	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
 	margin: 6px 0 0 10px;
-	
-	-webkit-border-radius: 5px 5px 0 0;
+/*	-webkit-border-radius: 5px 5px 0 0;
 	-moz-border-radius: 5px 5px 0 0;
-	border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;*/
 }
 .elgg-menu-filter > li:hover {
 	background: #dedede;
