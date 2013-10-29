@@ -9,12 +9,7 @@
  * @link http://www.thinkglobalschool.com/
  */
 
-$popup_label = elgg_echo('tgstheme:label:whatisthis');
-$popup_info = elgg_echo(elgg_get_plugin_setting('module_description', 'tgstheme'));
-
 $title = elgg_get_plugin_setting('module_title', 'tgstheme');
-
-echo "<span class='home-small right'><a rel='popup' href='#info'>$popup_label</a><div id='info' class='home-popup' style='display: none;'>$popup_info</div>";
 
 echo elgg_view('modules/ajaxmodule', array(
 	'title' => $module_title,
