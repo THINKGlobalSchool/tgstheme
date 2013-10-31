@@ -77,7 +77,7 @@
 }
 
 /* Featured */
-.elgg-module-featured {
+/*.elgg-module-featured {
 	border: 1px solid #CCCCCC;
 	
 	-webkit-border-radius: 6px;
@@ -96,7 +96,34 @@
 }
 .elgg-module-featured > .elgg-body {
 	padding: 10px;
+}*/
+
+/* Featured (widget version) */
+.elgg-module-featured {
+	background-color: #dedede;
+	padding: 2px;
+	margin: 0 5px 15px;
+	position: relative;
 }
+/*.elgg-module-featured:hover {
+	background-color: #ccc;
+}*/
+.elgg-module-featured > .elgg-head {
+	background-color: #eeeeee;
+	padding: 5px 5px 5px 10px;
+}
+
+.elgg-module-featured > .elgg-head * {
+	font-family: 'Shanti', sans-serif;
+	text-transform:uppercase;
+	font-size:1em;
+}
+
+.elgg-module-featured > .elgg-body {
+	background-color: white;
+	padding: 10px;
+}
+
 
 /* ***************************************
 	Widgets
@@ -155,7 +182,7 @@
 }
 .elgg-module-widget > .elgg-head h3 {
 	float: left;
-	padding: 4px 45px 0 20px;
+	padding: 4px 45px 0 10px;
 	color: #666;
 }
 .elgg-module-widget.elgg-state-draggable .elgg-widget-handle {

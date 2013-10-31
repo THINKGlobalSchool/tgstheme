@@ -120,8 +120,17 @@ table.tgstheme-profile .profile-right {
 	margin-bottom: 0;
 }
 
-.elgg-module .elgg-module {
+/* By default, don't add a margin for modules within modules on homepage */
+.elgg-layout-one-sidebar-roles-home .elgg-module .elgg-module {
 	margin-bottom: 0;
+}
+
+.elgg-layout-one-sidebar-roles-home .elgg-module .elgg-module {
+	
+}
+
+.elgg-widget-instance-announcements.elgg-module .elgg-module {
+	margin-bottom: 5px;
 }
 
 .tgstheme-profile-module {
