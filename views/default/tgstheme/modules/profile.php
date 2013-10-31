@@ -41,5 +41,5 @@ $options = array(
 	'class' => 'tgstheme-module tgstheme-profile-module',
 );
 
-echo elgg_view_module('featured', '', $body, $options);
+echo elgg_view_module('', '', $body, $options);
 
