@@ -111,5 +111,34 @@ elgg.tgstheme.loginHandler = function(hook, type, params, options) {
 	return options;
 };
 
+// Default init function for chosen dropdowns - plugins can completely override
+elgg.tgstheme.defaultChosenInit = function(element) {
+	var multi = element.attr('multiple');
+
+	// Default options
+	var options = {
+		'placeholder_text_multiple': 'Select items..'
+	};
+
+	// Pass in a width if we're dealing with a multi select
+	if (typeof multi !== 'undefined' && multi !== false) {
+		options["width"] = "50%";
+	} 
+
+	// Trigger a hook for options
+	var options = elgg.trigger_hook('getOptions', 'chosen.js', {'id' : element.attr('id')}, options);
+
+	// Init and bind change
+	element.chosen(options).change(elgg.trigger_hook('change', 'chosen.js', {'id' : element.attr('id'), 'element' : element}, function(){}));
+
+	// Hacky fix for chosen containers truncating text
+	var sibling = element.siblings('.chosen-container-single');
+	sibling.css({
+		'min-width': sibling.width(),
+		'width' : ''
+	});
+
+}
+
 elgg.register_hook_handler('init', 'system', elgg.tgstheme.init);
 elgg.register_hook_handler('getOptions', 'ui.popup', elgg.tgstheme.loginHandler);
