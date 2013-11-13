@@ -1150,3 +1150,11 @@ body#elgg-iframe-body #googleapps-docs-container {
 .tgstheme-custom-title-link {
 	padding: 3px;
 }
+
+/** General sort menu **/
+.menu-sort {
+	font-size: 10px;
+	font-weight: bold;
+	color: #333;
+	text-transform: uppercase;
+}

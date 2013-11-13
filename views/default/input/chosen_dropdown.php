@@ -68,13 +68,15 @@ echo <<<JAVASCRIPT
 				// Pass in a width if we're dealing with a multi select
 				if (typeof multi !== 'undefined' && multi !== false) {
 					options["width"] = "50%";
+				} else {
+					options["width"] = "auto";
 				}
 
 				// Trigger a hook for options
 				var options = elgg.trigger_hook('getOptions', 'chosen.js', {'id' : "$id"}, options);
 
 				// Init and bind change
-				$("#$id").chosen(options).change(elgg.trigger_hook('change', 'chosen.js', {'id' : "$id"}, function(){}));
+				$("#$id").chosen(options).change(elgg.trigger_hook('change', 'chosen.js', {'id' : "$id", 'element' : element}, function(){}));
 
 			}
 
