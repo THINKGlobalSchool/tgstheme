@@ -54,39 +54,10 @@ echo <<<JAVASCRIPT
 
 			// Get element, id and multiple attr
 			var id = "$id",
-			    element = $("#" + "$id"), 
-			    multi = element.attr('multiple');
-
-			// Default init function - plugins can completely override
-			var defaultInit = function() {
-
-				// Default options
-				var options = {
-					'placeholder_text_multiple': 'Select items..'
-				};
-
-				// Pass in a width if we're dealing with a multi select
-				if (typeof multi !== 'undefined' && multi !== false) {
-					options["width"] = "50%";
-				} 
-
-				// Trigger a hook for options
-				var options = elgg.trigger_hook('getOptions', 'chosen.js', {'id' : "$id"}, options);
-
-				// Init and bind change
-				$("#$id").chosen(options).change(elgg.trigger_hook('change', 'chosen.js', {'id' : "$id", 'element' : element}, function(){}));
-
-				// Hacky fix for chosen containers truncating text
-				var sibling = $("#$id").siblings('.chosen-container-single');
-				sibling.css({
-					'min-width': sibling.width(),
-					'width' : ''
-				});
-
-			}
+			    element = $("#" + "$id");
 
 			// Init chosen dropdown
-			elgg.trigger_hook('init', 'chosen.js', {'id' : "$id"}, defaultInit).call();
+			elgg.trigger_hook('init', 'chosen.js', {'id' : "$id"}, elgg.tgstheme.defaultChosenInit).call(undefined, element);
 
 		});
 	</script>
