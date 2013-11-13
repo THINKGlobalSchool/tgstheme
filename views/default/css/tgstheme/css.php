@@ -1158,3 +1158,29 @@ body#elgg-iframe-body #googleapps-docs-container {
 	color: #333;
 	text-transform: uppercase;
 }
+
+/**	Forum modules **/
+.forum-topic .elgg-module-featured {
+	border: 1px solid #CCCCCC; 
+	
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 0px;
+	margin: 0;
+	padding: 0;
+}
+.forum-topic .elgg-module-featured > .elgg-head {
+	padding: 5px;
+}
+.forum-topic .elgg-module-featured > .elgg-head * {
+	color: white;
+	font-family: 'Shanti', sans-serif;
+}
+
+.forum-topic .elgg-module-featured > .elgg-head .forum-reply-subtext a {
+	font-style: normal;
+}
+
+.forum-topic .elgg-module-featured > .elgg-body {
+	padding: 10px;
+}
