@@ -39,10 +39,14 @@
   user-select: none;
 }
 .chosen-container .chosen-drop {
-  position: absolute;
+  /*position: absolute;
   top: 100%;
-  left: -9999px;
-  z-index: 1010;
+  left: -9999px;*/
+  /** See: https://github.com/tompaton/chosen/commit/3d9be332de23bfe69d53c7640e829e879e084983 **/
+  position: fixed;
+  display: none;
+  /** End hack **/
+  z-index: 9999;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -53,7 +57,8 @@
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
 }
 .chosen-container.chosen-with-drop .chosen-drop {
-  left: 0;
+  /*left: 0;*/
+  display: block;
 }
 .chosen-container a {
   cursor: pointer;
