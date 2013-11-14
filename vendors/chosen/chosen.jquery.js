@@ -606,10 +606,14 @@
       });
       /** HACK **/
       $(window).scroll(function(evt) {
-        _this.input_blur(evt);
-      });
-      this.container.closest(".ui-dialog-content").bind("dialogdragstart", function(evt) {
-        _this.input_blur(evt);
+        if(_this.dropdown.is(':visible')) {
+          _this.dropdown.position({
+            my: "left top",
+            at: "left bottom",
+            of: _this.container,
+            offset: '0 -1'
+          });
+        }
       });
       /** END HACK **/
       if (this.is_multiple) {
