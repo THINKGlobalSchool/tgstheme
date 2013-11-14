@@ -604,6 +604,14 @@
       this.search_field.bind('focus.chosen', function(evt) {
         _this.input_focus(evt);
       });
+      /** HACK **/
+      $(window).scroll(function(evt) {
+        _this.input_blur(evt);
+      });
+      this.container.closest(".ui-dialog-content").bind("dialogdragstart", function(evt) {
+        _this.input_blur(evt);
+      });
+      /** END HACK **/
       if (this.is_multiple) {
         return this.search_choices.bind('click.chosen', function(evt) {
           _this.choices_click(evt);
@@ -767,6 +775,9 @@
     };
 
     Chosen.prototype.results_show = function() {
+      /** HACK **/
+      var dd_top, offset, scroll_x, scroll_y;
+      /** END HACK **/
       if (this.is_multiple && this.max_selected_options <= this.choices_count()) {
         this.form_field_jq.trigger("chosen:maxselected", {
           chosen: this
@@ -777,6 +788,17 @@
       this.form_field_jq.trigger("chosen:showing_dropdown", {
         chosen: this
       });
+      /** HACK **/
+      scroll_x = $(window).scrollLeft();
+      scroll_y = $(window).scrollTop();
+      offset = this.container.offset();
+      dd_top = this.is_multiple ? this.container.height() : this.container.height() - 1;
+      this.dropdown.css({
+        "top": (offset.top + dd_top - scroll_y) + "px",
+        "left": (offset.left - scroll_x) + "px",
+        "width": this.container.width() + "px"
+      });
+      /** END HACK **/
       this.results_showing = true;
       this.search_field.focus();
       this.search_field.val(this.search_field.val());

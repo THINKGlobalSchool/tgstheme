@@ -10,6 +10,6 @@
  */
 
 $js_path = elgg_get_config('path');
-$js_path = "{$js_path}mod/tgstheme/vendors/chosen/chosen.jquery.min.js";
+$js_path = "{$js_path}mod/tgstheme/vendors/chosen/chosen.jquery.js";
 
 include $js_path;
