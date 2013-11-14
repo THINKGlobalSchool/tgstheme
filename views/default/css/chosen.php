@@ -23,7 +23,11 @@
 }
 
 .chosen-container.chosen-container-multi {
-    display: block;
+  display: block;
+}
+
+.chosen-container-single .chosen-single abbr {
+  right: 18px !important;
 }
 
 /* @group Base */
