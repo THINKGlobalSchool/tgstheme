@@ -15,7 +15,7 @@ $js = <<<JAVASCRIPT
 						page_context: "$context"
 					},
 					success: function(data) {
-						$('.elgg-page-topbar > .elgg-inner').prepend(data).fadeIn('fast');
+						$('.elgg-page-topbar > .elgg-inner').html(data).fadeIn('fast');
 						elgg.trigger_hook('loaded', 'topbar_ajax');
 					}, 
 					error: function(xhr, ajaxOptions, thrownError) {
