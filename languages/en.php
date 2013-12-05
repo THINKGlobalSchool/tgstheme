@@ -49,6 +49,12 @@ $english = array(
 	'tgstheme:label:thingsliked' => 'Things %s Liked',
 	'tgstheme:label:noresults' => 'No results',
 	'tgstheme:label:explore' => 'Explore',
+	'tgstheme:label:selecttype' => 'Select type(s)',
+	'tgstheme:label:startdate' => 'Start Date',
+	'tgstheme:label:enddate' => 'End Date',
+	'tgstheme:label:groupclass' => 'Group/Class',
+	'tgstheme:label:selectagroup' => 'Select a group',
+	'tgstheme:label:tag' => 'Tag',
 	
 	'tgstheme:stats:blog' => 'Blog Posts',
 	'tgstheme:stats:photo' => 'Photos',
@@ -129,6 +135,14 @@ $english = array(
 	'tgstheme:widget:groups_desc' => 'TGS Theme User Groups Widget',
 
 	'tgstheme:widget:river_desc' => 'Display Latest Activity',
+
+	// Filtrate strings
+	'filtrate:label:sortasc' => 'Ascending',
+	'filtrate:label:sortdesc' => 'Descending',
+	'filtrate:label:sortascarrow' => 'Ascending ▲',
+	'filtrate:label:sortdescarrow' => 'Descending ▼',
+	'filtrate:title:dashboard' => 'Some title',
+	'filtrate:error:content' => 'There was an error loading content',
 );
 
 add_translation('en',$english);

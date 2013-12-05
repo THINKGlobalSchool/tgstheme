@@ -1184,3 +1184,8 @@ body#elgg-iframe-body #googleapps-docs-container {
 .forum-topic .elgg-module-featured > .elgg-body {
 	padding: 10px;
 }
+
+/** Activity menu filters */
+#activity-type-filter {
+	min-width: 250px;
+}
