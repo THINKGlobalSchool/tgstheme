@@ -481,7 +481,7 @@ elgg.filtrate.initInifiniteScroll = function() {
 								$loader.fadeOut().remove();
 							}
 						});
-					}, 500);
+					}, 1000);
 
 				}
 			}
