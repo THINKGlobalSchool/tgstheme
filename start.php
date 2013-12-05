@@ -23,6 +23,7 @@
  *   * page/layouts/one_sidebar
  *   * page/layouts/one_column
  *   * page/layouts/content
+ *   * page/components/list
  *   * navigation/breadcrumbs
  *   * search/css
  *   * search/search_box
@@ -1131,19 +1132,21 @@ function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
 			switch ($type) {
 				case 'user':
 				case 'group':
-					$label = elgg_echo('river:select', array(elgg_echo("item:$type")));
+					$label = elgg_echo("item:$type");
 					$type_picker_options["$type"] = $label;
 					break;
 				case 'object':
 				default:
 					foreach($subtypes as $subtype) {
-						$label = elgg_echo('river:select', array(elgg_echo("item:$type:$subtype")));
+						$label = elgg_echo("item:$type:$subtype");
 						$type_picker_options["$subtype"] = $label;
 					}
 					break;
 			}
 		}
 	}
+
+	asort($type_picker_options);
 
 	// Submission required advanced filter
 	$type_input = elgg_view('input/chosen_dropdown', array(
@@ -1258,6 +1261,7 @@ function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
 		'class' => 'filtrate-clearable filtrate-filter',
 		'data-param' => 'user',
 		'data-match_on' => 'users',
+		'placeholder' => elgg_echo('tgstheme:label:typename'),
 		//'data-disables' => '["#todo-context-filter", "#hidden-page-owner"]'
 	));
 
@@ -1266,7 +1270,7 @@ function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
 		'label' => elgg_echo('user'),
 		'text' => $user_input,
 		'href' => false,
-		'section' => 'main',
+		'section' => 'advanced',
 		'priority' => 500,
 	);
 
