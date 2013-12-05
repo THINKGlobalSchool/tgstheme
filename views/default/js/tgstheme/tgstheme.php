@@ -39,6 +39,11 @@ elgg.tgstheme.init = function() {
 
 	// Init publish module
 	elgg.tgstheme.initPublish();
+
+	// Manually init the role dropdown on the activity filter
+	var role_filter = $('#activity-role-filter');
+	role_filter.find('option[value=0]').html('');
+	elgg.trigger_hook('init', 'chosen.js', {'id' : role_filter.attr('id')}, elgg.tgstheme.defaultChosenInit).call(undefined, role_filter);
 }
 
 elgg.tgstheme.initPublish = function() {
@@ -120,11 +125,6 @@ elgg.tgstheme.defaultChosenInit = function(element) {
 		'placeholder_text_multiple': 'Select items..'
 	};
 
-	// Pass in a width if we're dealing with a multi select
-	if (typeof multi !== 'undefined' && multi !== false) {
-		options["width"] = "50%";
-	} 
-
 	// Trigger a hook for options
 	var options = elgg.trigger_hook('getOptions', 'chosen.js', {'id' : element.attr('id')}, options);
 
@@ -140,5 +140,40 @@ elgg.tgstheme.defaultChosenInit = function(element) {
 
 }
 
+/**
+ * Chosen setup handler for todo dashboard inputs
+ */
+elgg.tgstheme.setupActivityInputs = function (hook, type, params, options) {
+	
+	// Set up the activity type filter
+	if (params.id == "activity-type-filter") {
+		//options.placeholder_text_multiple = 'hisadasd';
+	}
+
+	// // Disable search for these inputs
+	// var disable_search_ids = new Array(
+	// );
+
+	// // Disable search for above inputs
+	// if ($.inArray(params.id, disable_search_ids) != -1) {
+	// 	options.disable_search = true;
+	// }
+
+	// Allow deselect for these ids
+	var allow_deselect_ids = new Array(
+		'activity-group-filter',
+		'activity-role-filter'
+	);
+
+	// Set deselect for dashboard inputs
+	if ($.inArray(params.id, allow_deselect_ids) != -1) {
+		options.width = "135px";
+		options.allow_single_deselect = true;
+	}
+
+	return options;
+}
+
 elgg.register_hook_handler('init', 'system', elgg.tgstheme.init);
 elgg.register_hook_handler('getOptions', 'ui.popup', elgg.tgstheme.loginHandler);
+elgg.register_hook_handler('getOptions', 'chosen.js', elgg.tgstheme.setupActivityInputs);

@@ -5,7 +5,7 @@
  * @package TGSTheme2
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010
+ * @copyright THINK Global School 2010 - 2013
  * @link http://www.thinkglobalschool.com/
  *
  * VIEW OVERRIDES:
@@ -86,6 +86,25 @@ function tgstheme_init() {
 	elgg_register_simplecache_view('js/chosen');
 	elgg_register_js('chosen.js', $c_js);
 	elgg_load_js('chosen.js');
+
+	// Register filtrate js library
+	$f_js = elgg_get_simplecache_url('js', 'filtrate/filtrate');
+	elgg_register_simplecache_view('js/filtrate/filtrate');
+	elgg_register_js('elgg.filtrate', $f_js);
+	elgg_load_js('elgg.filtrate');
+
+	// Register filtrate js library
+	$f_css = elgg_get_simplecache_url('css', 'filtrate/filtrate');
+	elgg_register_simplecache_view('css/filtrate/filtrate');
+	elgg_register_css('elgg.filtrate', $f_css);
+	elgg_load_css('elgg.filtrate');
+
+	// Register filtrate utilities js library
+	$f_js = elgg_get_simplecache_url('js', 'filtrate/utilities');
+	elgg_register_simplecache_view('js/filtrate/utilities');
+	elgg_register_js('elgg.filtrate.utilities', $f_js);
+	elgg_load_js('elgg.filtrate.utilities');
+
 
 	// Register chosen.js css library
 	$c_css = elgg_get_simplecache_url('css', 'chosen');
@@ -210,6 +229,9 @@ function tgstheme_init() {
 	// Modify widget menu
 	elgg_register_plugin_hook_handler('register', 'menu:widget', 'tgstheme_widget_menu_setup', 501);
 
+	// Set up activity menu
+	elgg_register_plugin_hook_handler('register', 'menu:activity_filter', 'tgstheme_activity_menu_setup');
+
 	// Modify the 'site' menu to get return just the browse menu
 	//elgg_register_plugin_hook_handler('prepare', 'menu:site', 'elgg_site_menu_setup');
 
@@ -231,11 +253,18 @@ function tgstheme_init() {
 
 	// Unextend header if user is logged in, this will be on the topbar
 	elgg_unextend_view('page/elements/header', 'search/header');
+
+	// Unregister activity page handler
+	elgg_unregister_page_handler('activity');
+
+	// Register new page handler for activity
+	elgg_register_page_handler('activity', 'tgstheme_river_page_handler');
 	
 	// Whitelist ajax views
 	elgg_register_ajax_view('tgstheme/email_share');
 	elgg_register_ajax_view('tgstheme/modules/liked');
 	elgg_register_ajax_view('page/elements/topbar_ajax');
+	elgg_register_ajax_view('tgstheme/activity_list');
 
 	return true;
 }
@@ -404,6 +433,42 @@ function ping_page_handler($page) {
 		return TRUE;
 	}
 	return FALSE;
+}
+
+
+/**
+ * Page handler for activity
+ *
+ * @param array $page
+ * @return bool
+ */
+function tgstheme_river_page_handler($page) {
+	elgg_set_page_owner_guid(elgg_get_logged_in_user_guid());
+
+	$options = array();
+
+	$title = elgg_echo('river:all');
+	$page_filter = 'all';
+
+
+	// $activity = elgg_list_river($options);
+	// if (!$activity) {
+	// 	$activity = elgg_echo('river:none');
+	// }
+
+	$params = array(
+		'content' =>  elgg_view('filtrate/dashboard', array(
+			'menu_name' => 'activity_filter'
+		)),
+		'filter' => ' ',
+		'class' => '',
+	);
+
+	$body = elgg_view_layout('content', $params);
+
+	echo elgg_view_page($title, $body);
+
+	return true;
 }
 
 /**
@@ -1048,6 +1113,184 @@ function tgstheme_widget_menu_setup($hook, $type, $return, $params) {
 
 		return $return;
 	}
+
+	return $return;
+}
+
+/**
+ * Set up activity filter menu items
+ */
+function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
+
+	$type_picker_options = array();
+	$registered_entities = elgg_get_config('registered_entities');
+
+	// Build type picker options
+	if (!empty($registered_entities)) {
+		foreach ($registered_entities as $type => $subtypes) {
+			switch ($type) {
+				case 'user':
+				case 'group':
+					$label = elgg_echo('river:select', array(elgg_echo("item:$type")));
+					$type_picker_options["$type"] = $label;
+					break;
+				case 'object':
+				default:
+					foreach($subtypes as $subtype) {
+						$label = elgg_echo('river:select', array(elgg_echo("item:$type:$subtype")));
+						$type_picker_options["$subtype"] = $label;
+					}
+					break;
+			}
+		}
+	}
+
+	// Submission required advanced filter
+	$type_input = elgg_view('input/chosen_dropdown', array(
+		'id' => 'activity-type-filter',
+		'options_values' => $type_picker_options,
+		'value' => 0,
+		'class' => 'filtrate-filter',
+		'multiple' => 'MULTIPLE',
+		'data-param' => 'type',
+		'data-placeholder' => elgg_echo('tgstheme:label:selecttype'),
+	));
+
+	$options = array(
+		'name' => 'activity-type-filter',
+		'href' => false,
+		'label' => elgg_echo('Type'),
+		'text' => $type_input,
+		'encode_text' => false,
+		'section' => 'main',
+		'priority' => 100
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
+	$start_date_input = elgg_view('input/date', array(
+		'value' => $start_date,
+		'class' => 'filtrate-filter filtrate-clearable',
+		'data-param' => 'start_date',
+	));
+
+	$options = array(
+		'name' => 'activity-start-filter',
+		'href' => false,
+		'label' => elgg_echo('tgstheme:label:startdate'),
+		'text' => $start_date_input,
+		'encode_text' => false,
+		'section' => 'advanced',
+		'priority' => 200
+	);
+
+	$return[] = ElggMenuItem::factory($options);	
+
+	$end_date_input = elgg_view('input/date', array(
+		'value' => $end_date,
+		'class' => 'filtrate-filter filtrate-clearable',
+		'data-param' => 'end_date',
+	));
+
+	$options = array(
+		'name' => 'activity-end-filter',
+		'href' => false,
+		'label' => elgg_echo('tgstheme:label:enddate'),
+		'text' => $end_date_input,
+		'encode_text' => false,
+		'section' => 'advanced',
+		'priority' => 300
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
+	// Group picker
+	$group_options = array(
+		'type' => 'group',
+		'limit' => 0,
+		'joins' => array("JOIN " . elgg_get_config("dbprefix") . "groups_entity ge ON e.guid = ge.guid"),
+		'order_by' => 'ge.name ASC',
+		'relationship' => 'member',
+		'relationship_guid' => elgg_get_logged_in_user_entity()->guid
+	);
+
+
+	// Put together the group selector
+	$groups = elgg_get_entities_from_relationship($group_options);
+
+	$groups_array = array();
+
+	if (count($groups) >= 1) {
+		$groups_array[0] = '';
+
+		foreach ($groups as $group) {
+			$groups_array[$group->guid] = $group->name;
+		}
+	} else {
+		$groups_array[''] = elgg_echo('todo:label:nogroups');
+	}
+
+	$group_filter_input = elgg_view('input/chosen_dropdown', array(
+		'id' => 'activity-group-filter',
+		'options_values' => $groups_array,
+		'value' => $container_guid,
+		'class' => 'filtrate-filter',
+		'data-param' => 'container_guid',
+		'data-placeholder' => elgg_echo('tgstheme:label:selectagroup')
+	));
+
+	$options = array(
+		'name' => 'activity-group-filter',
+		'href' => false,
+		'label' => elgg_echo('tgstheme:label:groupclass'),
+		'text' => $group_filter_input,
+		'encode_text' => false,
+		'section' => 'advanced',
+		'priority' => 400
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
+	// User picker
+	$user_input = elgg_view('input/autocomplete', array(
+		'id' => 'activity-user-filter',
+		'name' => 'user',
+		'class' => 'filtrate-clearable filtrate-filter',
+		'data-param' => 'user',
+		'data-match_on' => 'users',
+		//'data-disables' => '["#todo-context-filter", "#hidden-page-owner"]'
+	));
+
+	$options = array(
+		'name' => 'user-filter',
+		'label' => elgg_echo('user'),
+		'text' => $user_input,
+		'href' => false,
+		'section' => 'main',
+		'priority' => 500,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
+	$tag_input = elgg_view('input/autocomplete', array(
+		'id' => 'activity-tag-filter',
+		'name' => 'tag',
+		'class' => 'filtrate-clearable filtrate-filter',
+		'data-param' => 'tag',
+		'data-match_on' => 'tags',
+	));
+
+	$options = array(
+		'name' => 'tag-filter',
+		'label' => elgg_echo('tgstheme:label:tag'),
+		'text' => $tag_input,
+		'href' => false,
+		'section' => 'main',
+		'priority' => 600,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
 
 	return $return;
 }

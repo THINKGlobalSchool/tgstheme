@@ -25,7 +25,7 @@ $vars['class'] = $vars['class'] . " tgstheme-chosen-select";
 
 echo elgg_view('input/dropdown', $vars);
 
-// Echoing js inline here to compatibility with ajax loads.. wish there was a better way
+// Echoing js inline here to allow compatibility with ajax loads.. wish there was a better way
 echo <<<JAVASCRIPT
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -58,7 +58,6 @@ echo <<<JAVASCRIPT
 
 			// Init chosen dropdown
 			elgg.trigger_hook('init', 'chosen.js', {'id' : "$id"}, elgg.tgstheme.defaultChosenInit).call(undefined, element);
-
 		});
 	</script>
 JAVASCRIPT;

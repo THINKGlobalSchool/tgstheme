@@ -23,7 +23,7 @@
 }
 
 .chosen-container.chosen-container-multi {
-  display: block;
+  display: inline-block;
 }
 
 .chosen-container-single .chosen-single abbr {
@@ -248,7 +248,7 @@
   cursor: text;
 }
 .chosen-container-multi .chosen-choices li {
-  /*float: left;*/
+  float: left;
   list-style: none;
 }
 .chosen-container-multi .chosen-choices li.search-field {
