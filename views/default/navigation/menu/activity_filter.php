@@ -20,6 +20,7 @@ $js = <<<JAVASCRIPT
 		elgg.filtrate.defaultParams	= $.param({
 			'type': 0,
 		});
+		elgg.filtrate.enableInfinite = true;
 	</script>
 JAVASCRIPT;
 

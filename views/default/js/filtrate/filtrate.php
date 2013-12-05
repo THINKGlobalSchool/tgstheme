@@ -15,6 +15,7 @@ elgg.provide('elgg.filtrate');
 // Define vars (need to be defined by menu views)
 elgg.filtrate.ajaxListUrl;
 elgg.filtrate.defaultParams;
+elgg.filtrate.enableInfinite;
 
 /**
  * Chosen init handler
@@ -52,6 +53,11 @@ elgg.filtrate.lateChosenInit = function(hook, type, params, options) {
  * Init dashboard filter/nav
  */
 elgg.filtrate.init = function() {
+	// If infinite scroll is enabled, init!
+	if (elgg.filtrate.enableInfinite) {
+		elgg.filtrate.initInifiniteScroll();
+	}
+
 	// Set up autocompletes
 	$('#filtrate-menu-container input.elgg-input-autocomplete').each(function(idx) {
 
@@ -406,10 +412,79 @@ elgg.filtrate.listHandler = function (doPushState) {
 		success: function(data) {
 			// Load data
 			$("#filtrate-content-container").html(data);
+
+			// If infinite scroll is enabled, hide the pagination
+			if (elgg.filtrate.enableInfinite) {
+				$('.elgg-pagination').hide();
+			}
 		},
 		error: function() {
 			// Show error on failure
 			$("#filtrate-content-container").html(elgg.echo('filtrate:error:content'));
+		}
+	});
+}
+
+/**
+ * Init Infinite Scroll
+ */
+elgg.filtrate.initInifiniteScroll = function() {
+	var loadingStarted = false;
+
+	// Set up infinite scroll
+	$(window).scroll(function(){
+		if  (($(window).scrollTop() + 100) >= ($(document).height() - 100) - $(window).height()){
+
+			// Get the last pagination item on the page
+			var $last_pagination = $('.elgg-pagination li').last();
+
+			// Hard code the container for now.. (the first ul)
+			var $container = $('#filtrate-content-container > ul:first-child');
+			if ($last_pagination.length && !$last_pagination.hasClass('elgg-state-disabled')) {
+			
+
+				if (!loadingStarted) {
+					loadingStarted = true;
+
+					setTimeout(function() {
+						var $loader = $(document.createElement('div')).addClass('elgg-ajax-loader').hide();
+						$container.append($loader);
+						$loader.fadeIn();
+
+						loadingStarted  = false;
+
+						// Load data
+						elgg.get($last_pagination.find('a').attr('href'), {
+							data: {},
+							success: function(data) {
+								$loader.fadeOut().remove();
+
+								$data = $(data);
+
+								$items = $data.filter('ul[class="' + $container.attr('class') + '"]')
+									.children('li').hide();
+
+								$pagination = $data.filter('.elgg-pagination');
+								
+								$container.parent().find('.elgg-pagination').replaceWith($pagination);
+
+								$container.append($items);
+
+								$items.fadeIn();
+
+			
+								$('.elgg-pagination').hide();
+							},
+							error: function() {
+								// Show error on failure
+								elgg.register_error(elgg.echo('filtrate:error:content'));
+								$loader.fadeOut().remove();
+							}
+						});
+					}, 500);
+
+				}
+			}
 		}
 	});
 }
