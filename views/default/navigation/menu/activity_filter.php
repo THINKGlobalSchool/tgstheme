@@ -8,20 +8,10 @@
  * @copyright THINK Global School 2010 - 2013
  * @link http://www.thinkglobalschool.com/
  *
- * @uses $vars Menu vars
+ * @uses $vars['infinite_scroll'] Enable infinite scrolling
+ * @uses $vars['list_url']        List endpoint URL
+ * @uses $vars['default_params']  Initial/default params
  */
 
 // Pass vars on to to filtrate
-$menu = elgg_view('navigation/menu/filtrate', $vars);
-
-$js = <<<JAVASCRIPT
-	<script type='text/javascript'>
-		elgg.filtrate.ajaxListUrl= elgg.get_site_url() + 'ajax/view/tgstheme/activity_list';
-		elgg.filtrate.defaultParams	= $.param({
-			'type': 0,
-		});
-		elgg.filtrate.enableInfinite = true;
-	</script>
-JAVASCRIPT;
-
-echo $js . $menu;
+echo elgg_view('navigation/menu/filtrate', $vars);
