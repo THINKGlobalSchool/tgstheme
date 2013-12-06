@@ -459,7 +459,12 @@ function tgstheme_river_page_handler($page) {
 
 	$params = array(
 		'content' =>  elgg_view('filtrate/dashboard', array(
-			'menu_name' => 'activity_filter'
+			'menu_name' => 'activity_filter',
+			'infinite_scroll' => true,
+			'default_params' => array(
+				'type' => 0
+			),
+			'list_url' => elgg_get_site_url() . 'ajax/view/tgstheme/activity_list'
 		)),
 		'filter' => ' ',
 		'class' => '',
