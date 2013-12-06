@@ -1189,3 +1189,7 @@ body#elgg-iframe-body #googleapps-docs-container {
 #activity-type-filter {
 	min-width: 250px;
 }
+
+#activity-tag-filter {
+	width: 125px !important;
+}
