@@ -9,18 +9,28 @@
  * @link http://www.thinkglobalschool.com/
  * 
  * @uses $vars['menu_name']
- * @uses $vars['infinite_scroll'] Enable infinite scrolling
- * @uses $vars['list_url']        List endpoint URL
- * @uses $vars['default_params']  Initial/default params
+ * @uses $vars['infinite_scroll']  Enable infinite scrolling
+ * @uses $vars['list_url']         List endpoint URL
+ * @uses $vars['default_params']   Initial/default params
+ * @uses $vars['disable_advanced'] Disable the advanced menu: true/false
+ * @uses $vars['disable_extras']   Disable the extras menu: true/false
+ * @uses $vars['disable_history']  Disable HTML5 history (push/popstate)
  */
 
+elgg_load_js('elgg.filtrate');
+elgg_load_js('elgg.filtrate.utilities');
 
 $infinite_scroll = elgg_extract('infinite_scroll', $vars);
 $list_url = elgg_extract('list_url', $vars);
 $default_params = json_encode(elgg_extract('default_params' , $vars));
+$disable_history = elgg_extract('disable_history', $vars);
 
 if (!$infinite_scroll) {
 	$infinite_scroll = 0;
+}
+
+if (!$disable_history) {
+	$disable_history = 0;
 }
 
 $js = <<<JAVASCRIPT
@@ -28,13 +38,14 @@ $js = <<<JAVASCRIPT
 		elgg.filtrate.defaultParams = $.param($.parseJSON('$default_params'));
 		elgg.filtrate.ajaxListUrl= '$list_url';
 		elgg.filtrate.enableInfinite = $infinite_scroll;
+		elgg.filtrate.disableHistory = $disable_history;
 	</script>
 JAVASCRIPT;
 
 echo $js;
 
-echo elgg_view_menu($vars['menu_name'], array(
-	'sort_by' => 'priority'
-));
+$vars['sort_by'] = 'priority';
+
+echo elgg_view_menu($vars['menu_name'], $vars);
 
 echo "<div id='filtrate-content-container'></div>";

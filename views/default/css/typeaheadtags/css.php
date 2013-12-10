@@ -37,6 +37,10 @@ div.typeaheadtags-help-container {
 	margin-top: 5px;
 	display: none;
 	background: #FFFFFF;
+	border: 1px solid #AAAs;
+	box-shadow: 1px 1px 2px #777;
+	max-width: 754px;
+	padding: 0;
 }
 
 table#typeaheadtags-tags-list {
@@ -50,7 +54,8 @@ div.typeaheadtags-module .elgg-body {
 
 div.typeaheadtags-module-standard {
 	float: left;
-	width: 45%;
+	width: 48%;
+	margin-right: 1%;
 }
 
 div.typeaheadtags-module-help {

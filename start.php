@@ -92,7 +92,7 @@ function tgstheme_init() {
 	$f_js = elgg_get_simplecache_url('js', 'filtrate/filtrate');
 	elgg_register_simplecache_view('js/filtrate/filtrate');
 	elgg_register_js('elgg.filtrate', $f_js);
-	elgg_load_js('elgg.filtrate');
+	
 
 	// Register filtrate js library
 	$f_css = elgg_get_simplecache_url('css', 'filtrate/filtrate');
@@ -104,8 +104,6 @@ function tgstheme_init() {
 	$f_js = elgg_get_simplecache_url('js', 'filtrate/utilities');
 	elgg_register_simplecache_view('js/filtrate/utilities');
 	elgg_register_js('elgg.filtrate.utilities', $f_js);
-	elgg_load_js('elgg.filtrate.utilities');
-
 
 	// Register chosen.js css library
 	$c_css = elgg_get_simplecache_url('css', 'chosen');
@@ -248,6 +246,9 @@ function tgstheme_init() {
 
 	// Hook into output:before/layout to hack some core sidebars
 	elgg_register_plugin_hook_handler('output:before', 'layout', 'tgstheme_layout_output_handler');	
+
+	// Register exception for typeaheadtags
+	elgg_register_plugin_hook_handler('get_exceptions', 'typeaheadtags', 'tgstheme_tags_exceptions_handler');
 
 	// Unregister bookmarks page menu handler
 	elgg_unregister_plugin_hook_handler('register', 'menu:page', 'bookmarks_page_menu');
@@ -450,12 +451,6 @@ function tgstheme_river_page_handler($page) {
 
 	$title = elgg_echo('river:all');
 	$page_filter = 'all';
-
-
-	// $activity = elgg_list_river($options);
-	// if (!$activity) {
-	// 	$activity = elgg_echo('river:none');
-	// }
 
 	$params = array(
 		'content' =>  elgg_view('filtrate/dashboard', array(
@@ -1131,6 +1126,8 @@ function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
 	$type_picker_options = array();
 	$registered_entities = elgg_get_config('registered_entities');
 
+	$tag = get_input('tag');
+
 	// Build type picker options
 	if (!empty($registered_entities)) {
 		foreach ($registered_entities as $type => $subtypes) {
@@ -1281,12 +1278,14 @@ function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
 
 	$return[] = ElggMenuItem::factory($options);
 
-	$tag_input = elgg_view('input/autocomplete', array(
+	$tag_input = elgg_view('input/tags', array(
 		'id' => 'activity-tag-filter',
-		'name' => 'tag',
-		'class' => 'filtrate-clearable filtrate-filter',
-		'data-param' => 'tag',
-		'data-match_on' => 'tags',
+		'name' => 'activity_tag_filter',
+		'class' => 'filtrate-filter',
+		//'data-param' => 'tag', // Don't set data param here, need to hack it in with JS
+		'value' => $tag,
+		'data-hoverHelp' => 1, // Set hoverHelp to true for floating hover box
+	//	'data-match_on' => 'tags',
 	));
 
 	$options = array(
@@ -1411,4 +1410,12 @@ function tgstheme_layout_output_handler($hook, $type, $value, $params) {
 	}
 
 	return $value;
+}
+
+/**
+ * Handler for typeahead tags 'default' tags exceptions
+ */
+function tgstheme_tags_exceptions_handler($hook, $type, $value, $params) {
+	$return[] = 'activity_tag_filter';
+	return $return;
 }

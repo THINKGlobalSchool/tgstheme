@@ -102,3 +102,44 @@ span.filtrate-clear-icon input {
 #filtrate-menu-container .chosen-disabled a {
 	color: #EEEEEE;
 }
+
+/** Fix for typeaheadtags **/
+#filtrate-menu-container .elgg-input-tags-parent {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#filtrate-menu-container .elgg-input-tags-parent .as-selections {
+	padding: 1px;
+}
+
+#filtrate-menu-container .elgg-input-tags {
+	height: 22px;
+}
+
+#filtrate-menu-container .elgg-input-tags-parent ul.as-selections li.as-selection-item.typeaheadtags-help-button {
+	height: 12px;
+	margin: 2px 4px 0 2px;
+	padding: 3px !important;
+	text-align: center;
+	width: 12px;
+	font-size: 10px;
+}
+
+#filtrate-menu-container .elgg-input-tags-parent ul.as-selections li.as-selection-item,
+#filtrate-menu-container .elgg-input-tags-parent ul.as-selections li.as-original input {
+	font-size: 11px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	line-height: 14px;
+}
+
+#filtrate-menu-container .typeaheadtags-help-container {
+	max-width: 550px;
+}
+
+/** Widget styles **/
+.elgg-widget-content #filtrate-menu-container {
+	background: #FFF;
+	padding: 0;
+}
