@@ -143,3 +143,12 @@ span.filtrate-clear-icon input {
 	background: #FFF;
 	padding: 0;
 }
+
+.elgg-widget-content #filtrate-menu-container > ul > li label {
+	display: inline-block;
+	min-width: 36px;
+}
+
+.elgg-widget-content #filtrate-menu-container > ul > li .chosen-container {
+	margin-right: 5px;
+}
