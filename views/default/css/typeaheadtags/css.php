@@ -37,7 +37,7 @@ div.typeaheadtags-help-container {
 	margin-top: 5px;
 	display: none;
 	background: #FFFFFF;
-	border: 1px solid #AAAs;
+	border: 1px solid #AAA;
 	box-shadow: 1px 1px 2px #777;
 	max-width: 754px;
 	padding: 0;
