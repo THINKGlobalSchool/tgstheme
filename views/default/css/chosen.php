@@ -233,8 +233,9 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  border-radius: 5px;
   margin: 0;
-  padding: 2px 4px 1px 0;
+  padding: 0px 4px 0px 0;
   width: 100%;
   height: auto !important;
   height: 1%;
@@ -276,7 +277,7 @@
 .chosen-container-multi .chosen-choices li.search-choice {
   position: relative;
   margin: 3px 0 3px 5px;
-  padding: 3px 20px 3px 5px;
+  padding: 2px 20px 2px 5px;
   border: 1px solid #aaa;
   border-radius: 3px;
   background-color: #e4e4e4;
@@ -357,6 +358,14 @@
 .chosen-container-active.chosen-with-drop .chosen-single div b {
   background-position: -18px 2px;
 }
+
+.chosen-container-active.chosen-with-drop.chosen-container-multi .chosen-choices {
+  -moz-border-radius-bottomright: 0;
+  border-bottom-right-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+  border-bottom-left-radius: 0;
+}
+
 .chosen-container-active .chosen-choices {
   border: 1px solid #B01922;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);

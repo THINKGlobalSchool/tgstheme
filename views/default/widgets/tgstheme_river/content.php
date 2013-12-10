@@ -9,6 +9,13 @@
  * @link http://www.thinkglobalschool.com/
  */
 
-echo elgg_view('modules/riverajaxmodule', array(
-	'limit' => 10,
+echo elgg_view('filtrate/dashboard', array(
+	'menu_name' => 'activity_filter',
+	'infinite_scroll' => false,
+	'default_params' => array(
+		'type' => 0
+	),
+	'list_url' => elgg_get_site_url() . 'ajax/view/tgstheme/activity_list',
+	'disable_advanced' => true,
+	'disable_history' => true
 ));

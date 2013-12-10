@@ -16,6 +16,7 @@ elgg.provide('elgg.filtrate');
 elgg.filtrate.ajaxListUrl;
 elgg.filtrate.defaultParams;
 elgg.filtrate.enableInfinite;
+elgg.filtrate.disableHistory;
 
 /**
  * Chosen init handler
@@ -137,6 +138,9 @@ elgg.filtrate.init = function() {
 		elgg.filtrate.listHandler(true);
 	}));
 
+	// Init typeahead tags inputs
+	$('.elgg-input-tags').parent().find('.as-values').attr('data-param', 'tag');
+
 	// Handle advanced click
 	$('.filtrate-show-advanced').live('click', function(event) {
 		$(this).toggleClass('advanced-off').toggleClass('advanced-on');
@@ -187,10 +191,13 @@ elgg.filtrate.init = function() {
 		elgg.filtrate.listHandler(false);
 	}
 
-	// Add popstate event listener
-	window.addEventListener("popstate", function(event) {
-	    elgg.filtrate.listHandler(false)
-	});
+	// If we're allowing history
+	if (!elgg.filtrate.disableHistory) {
+		// Add popstate event listener
+		window.addEventListener("popstate", function(event) {
+			elgg.filtrate.listHandler(false)
+		});
+	}
 }
 
 /**
@@ -305,9 +312,22 @@ elgg.filtrate.valuePopulatedHandler = function(hook, type, params, value) {
  */
 elgg.filtrate.valueAltHandler = function(hook, type, params, value) {
 	// Handle elements with a timestamp (ie date pickers)
-	if (params.element.data('timestamp')) {
+	if (params.element.is('.elgg-input-date') && params.element.data('timestamp')) {
+		//return params.element.data('timestamp');
 		return params.element.data('timestamp');
 	}
+
+	// Handle values for typeahead tags inputs
+	if (params.element.is('[data-param="tag"]')) {
+		// Get value
+		var tags = params.element.parent().find('.as-values').val();
+		
+		// Trim whitespace and trailing/leading commas (for purdyness)
+		tags = tags.replace(/(^\s*,)|(,\s*$)/g, '');
+
+		return tags;
+	}
+
 	return value;
 }
 
@@ -326,6 +346,9 @@ elgg.filtrate.valueAltHandler = function(hook, type, params, value) {
  * 
  * Elements can also supply data-disables, any matching elements/inputs will be disabled
  * upon change/selection
+ * 
+ * @TODO: doPushState is a bit confusing in scenarios where we're not actually pushing state
+ * ie: history is disabled, we're still updating content
  *
  * @param  bool doPushState  Wether or not to push a new state (pass false for popState)
  * @return void
@@ -380,22 +403,25 @@ elgg.filtrate.listHandler = function (doPushState) {
 			}
 		}); 
 	} else {
-		// We're pushing state
+		// We're pushing state (or updating)
 		$('[data-param]').each(function(idx) {
 			// If this element has a value, and is enabled (or an anchor element)
 			if ($(this).val() && ($(this).is(':enabled') || $(this).is('a'))) {
+				// Trigger a hook here to see if the element has an alternate value
 				var alt_params = {'element' : $(this)};
 				var value = elgg.trigger_hook('value_alt', 'filtrate', alt_params, $(this).val());
 				params[$(this).data('param')] = value;
-				//params[$(this).data('param')] = $(this).val();
 			} else {
 				// Clear it out
 				delete params[$(this).data('param')];
 			}
 		});
 
-		// Push it real good
-		history.pushState({}, elgg.echo('filtrate:title:dashboard'), base_url + "?" + $.param(params));
+		// If history isn't disabled
+		if (!elgg.filtrate.disableHistory) {
+			// Push that state
+			history.pushState({}, elgg.echo('filtrate:title:dashboard'), base_url + "?" + $.param(params));
+		}
 	}
 
 	// Include any hidden inputs (ie page owner)
@@ -489,6 +515,17 @@ elgg.filtrate.initInifiniteScroll = function() {
 	});
 }
 
+/**
+ * Typeahead tags add handler
+ */ 
+elgg.filtrate.typeaheadAdd = function(hook, type, params, value) {
+	elgg.filtrate.listHandler(true);
+}
+
+elgg.filtrate.typeaheadRemove = function(hook, type, params, value) {
+	elgg.filtrate.listHandler(true);
+}
+
 // Filtrate value hooks
 elgg.register_hook_handler('value_populated', 'filtrate', elgg.filtrate.valuePopulatedHandler);
 elgg.register_hook_handler('value_alt', 'filtrate', elgg.filtrate.valueAltHandler);
@@ -496,3 +533,7 @@ elgg.register_hook_handler('value_alt', 'filtrate', elgg.filtrate.valueAltHandle
 // Chosen hooks
 elgg.register_hook_handler('change', 'chosen.js', elgg.filtrate.handleChange);
 elgg.register_hook_handler('init', 'chosen.js', elgg.filtrate.chosenInterrupt);
+
+// Other hooks
+elgg.register_hook_handler('selection_added', 'typeaheadtags', elgg.filtrate.typeaheadAdd);
+elgg.register_hook_handler('selection_removed', 'typeaheadtags', elgg.filtrate.typeaheadRemove);

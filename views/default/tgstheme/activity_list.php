@@ -15,8 +15,7 @@ $params['start_date'] = get_input('start_date');
 $params['end_date'] = get_input('end_date');
 $params['container_guid'] = get_input('container_guid');
 $params['user'] = get_user_by_username(get_input('user'));
-$params['tag'] = get_input('tag');
-
+$params['tag'] = string_to_tag_array(get_input('tag'));
 
 $dbprefix = elgg_get_config('dbprefix');
 
@@ -64,11 +63,20 @@ if ($params['user'] && elgg_instanceof($params['user'], 'user')) {
 
 // Check for tag
 if ($params['tag']) {
-	// Meta values
+	// Set up metadata options/values
 	$meta = array(
-		'metadata_name' => 'tags',
-		'metadata_value' => $params['tag']
+		'metadata_name_value_pairs_operator' => 'AND',
 	);
+
+	// Handle multiple tags
+	foreach($params['tag'] as $tag) {
+		$meta['metadata_name_value_pairs'][] = array(	
+			'name' => 'tags', 
+			'value' => $tag, 
+			'operand' => '=',
+			'case_sensitive' => FALSE
+		);
+	}
 
 	// Let elgg create our metadata SQL
 	$meta_options = elgg_entities_get_metastrings_options('metadata', $meta);
