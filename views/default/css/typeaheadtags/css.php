@@ -43,6 +43,11 @@ div.typeaheadtags-help-container {
 	padding: 0;
 }
 
+.as-results {
+	position: relative;
+	z-index: 8001;
+}
+
 table#typeaheadtags-tags-list {
 	float: left;
 	width: 30%;
