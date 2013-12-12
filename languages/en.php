@@ -137,6 +137,9 @@ $english = array(
 
 	'tgstheme:widget:river_desc' => 'Display Latest Activity',
 
+	'tgstheme:widget:weekly_title' => 'TGS Weekly Widget',
+	'tgstheme:widget:weekly_desc' => 'Display TGS Weekly Tag Dashboards',
+
 	// Filtrate strings
 	'filtrate:label:sortasc' => 'Ascending',
 	'filtrate:label:sortdesc' => 'Descending',

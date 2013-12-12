@@ -128,6 +128,7 @@ function tgstheme_init() {
 		elgg_register_widget_type('tgstheme_profile', $user->name, elgg_echo('tgstheme:widget:profile_title'), 'rolewidget');
 		elgg_register_widget_type('tgstheme_groups', elgg_echo('tgstheme:widget:groups_title'), elgg_echo('tgstheme:widget:groups_desc'), 'rolewidget');
 		elgg_register_widget_type('tgstheme_river', elgg_echo('content:latest'), elgg_echo('tgstheme:widget:river_desc'), 'rolewidget');
+		elgg_register_widget_type('tgstheme_weekly', elgg_echo('tgstheme:widget:weekly_title'), elgg_echo('tgstheme:widget:weekly_desc'), 'rolewidget');
 
 		if (elgg_get_plugin_setting('module_enable', 'tgstheme')) {
 			$extra_title = elgg_get_plugin_setting('module_tag', 'tgstheme');
@@ -265,6 +266,7 @@ function tgstheme_init() {
 	// Whitelist ajax views
 	elgg_register_ajax_view('tgstheme/email_share');
 	elgg_register_ajax_view('tgstheme/modules/liked');
+	elgg_register_ajax_view('tgstheme/modules/weekly');
 	elgg_register_ajax_view('page/elements/topbar_ajax');
 	elgg_register_ajax_view('tgstheme/activity_list');
 
