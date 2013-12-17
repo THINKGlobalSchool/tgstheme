@@ -622,15 +622,21 @@ elgg.filtrate.isLocalStorage = function() {
 elgg.filtrate.getLocalParams = function() {
 	if (elgg.filtrate.isLocalStorage()) {
 		var params = localStorage.getItem("filtrate_params");
-		params = deParam(params);
+		
+		// Make sure we have a params array
+		if (params) {
+			params = deParam(params);
 
-		var current_timestamp = new Date().getTime();
+			var current_timestamp = new Date().getTime();
 
-		// Check timestamp, we'll consider the stored params expired after 5 minutes
-		if (current_timestamp > (parseFloat(params.timestamp) + (5 * 60000))) {
-			return false;
+			// Check timestamp, we'll consider the stored params expired after 5 minutes
+			if (current_timestamp > (parseFloat(params.timestamp) + (5 * 60000))) {
+				return false;
+			} else {
+				return params;
+			}
 		} else {
-			return params;
+			return false;
 		}
 	}
 	return false;
