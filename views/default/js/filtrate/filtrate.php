@@ -80,6 +80,7 @@ elgg.filtrate.init = function() {
 				elgg.filtrate.setEnabledState($(this), false);
 
 				// Populate, push state
+	
 				elgg.filtrate.listHandler(true);
 			},
 		});
@@ -106,6 +107,7 @@ elgg.filtrate.init = function() {
 				elgg.filtrate.setEnabledState($(this), false);
 
 				// Populate, push state
+	
 				elgg.filtrate.listHandler(true);
 
 				// Make sure change is triggered
@@ -214,7 +216,6 @@ elgg.filtrate.handleChange = function(hook, type, params, handler) {
 				// Disable elements as required
 				elgg.filtrate.setEnabledState(params.element, false);
 			}
-			
 			// Use the filtrate list handler
 			elgg.filtrate.listHandler(true);
 		}
@@ -332,6 +333,45 @@ elgg.filtrate.valueAltHandler = function(hook, type, params, value) {
 }
 
 /**
+ * Handle elements that get twisted by other jquery plugins (ie typeahead tags)
+ */
+elgg.filtrate.elementAltHandler = function(hook, type, params, value) {
+	if (params.param == 'tag' && $('[data-param="tag"]').length) {
+		// Clear the element value, will be reconstructed when adding tags back in below
+		params.element.val('');
+		
+		// Get tags
+		tags =  params.value.split(',');
+
+		// Clear tag elements (items) first
+		$('[data-param="tag"]').closest('.elgg-input-tags-parent').find('.as-selection-item:not(.typeaheadtags-help-button)').remove();
+
+		// Add items back to typeahead tag input
+		$.each(tags, function(idx, item) {
+			// Don't trigger the added hook for these items
+			$('[data-param="tag"]').data('ignoreAdded', true);
+			elgg.typeaheadtags.addTag(item, $('[data-param="tag"]'));
+		});
+	}
+}
+
+/**
+ * Handler element clearing for inputs twisted by other jquery plugins (typeahead tags)
+ */
+elgg.filtrate.elementAltClearHandler = function (hook, type, params, value) {
+	if (params.element.is('[data-param="tag"]')) {
+		params.element.closest('.elgg-input-tags-parent').find('.as-selection-item:not(.typeaheadtags-help-button)').remove();
+	}
+
+	// Make sure chosen inputs are cleared
+	if (params.element.is('.filtrate-filter[multiple="MULTIPLE"]')) {
+		params.element.val('').trigger('chosen:updated');
+	}
+
+	return value;
+}
+
+/**
  * Filtrate list handler, responsible for populating the dashboard with content
  * and pushing/popping state
  *
@@ -362,7 +402,12 @@ elgg.filtrate.listHandler = function (doPushState) {
 		var base_url = window.location.href.slice(0, query_index);
 	} else {
 		// Use defaults
-		var params = deParam(elgg.filtrate.defaultParams);
+		var localParams = elgg.filtrate.getLocalParams();
+		if (localParams && elgg.filtrate.disableHistory) {
+			var params = localParams;
+		} else {
+			var params = deParam(elgg.filtrate.defaultParams);
+		}
 		var base_url = window.location.href;
 	}
 
@@ -373,13 +418,16 @@ elgg.filtrate.listHandler = function (doPushState) {
 		// Loop over available params
 		$.each(params, function(idx, val) {
 			// Get elements matching this param
-			var $element = $(".filtrate-filter[data-param='" + idx + "']");
+			var $element = $("[data-param='" + idx + "']");
 
 			// Push updated element to bound params list
 			bound_params.push(idx);
 			
 			// Set elements value
 			$element.val(val);
+
+			// Trigger hook here to perform additional tasks when setting an element value
+			elgg.trigger_hook('element_alt', 'filtrate', {'param': idx, 'value': val, 'element': $element});
 
 			// Trigger a hook for populated value
 			elgg.trigger_hook('value_populated', 'filtrate', {'element' : $element});
@@ -392,14 +440,24 @@ elgg.filtrate.listHandler = function (doPushState) {
 		});
 
 		// Check for unbound params
-		$('.filtrate-filter[data-param]').each(function(idx) {
+		$('[data-param]').each(function(idx) {
+
+			var $_this = $(this);
+
 			// If not bound above
-			if ($.inArray($(this).data('param'), bound_params) == -1) {
-				// Clear the value
-				$(this).val('');
+			if ($.inArray($_this.data('param'), bound_params) == -1) {
+				var hook_params = {
+					'bound_params': bound_params,
+					'element': $_this
+				}
+
+				if (elgg.trigger_hook('element_alt_clear', 'filtrate', hook_params, true)) {
+					// Clear the value
+					$_this.val('');
+				}
 
 				// Re-enable if element previously disabled an element
-				elgg.filtrate.setEnabledState($(this), true);
+				elgg.filtrate.setEnabledState($_this, true);
 			}
 		}); 
 	} else {
@@ -421,6 +479,9 @@ elgg.filtrate.listHandler = function (doPushState) {
 		if (!elgg.filtrate.disableHistory) {
 			// Push that state
 			history.pushState({}, elgg.echo('filtrate:title:dashboard'), base_url + "?" + $.param(params));
+		} else {
+			// Set local params (if possible)
+			elgg.filtrate.setLocalParams(params);
 		}
 	}
 
@@ -516,14 +577,75 @@ elgg.filtrate.initInifiniteScroll = function() {
 }
 
 /**
- * Typeahead tags add handler
+ * Typeahead tags change handler
  */ 
-elgg.filtrate.typeaheadAdd = function(hook, type, params, value) {
-	elgg.filtrate.listHandler(true);
+elgg.filtrate.typeaheadChange = function(hook, type, params, value) {
+	// Check if we're adding an item and intending to skip reloading content
+	if (hook == "selection_added" && params.input.data('ignoreAdded')) {
+		params.input.data('ignoreAdded', false);
+		return;
+	}
+
+	if (hook == 'selection_removed') {
+		// Clone the value element to parse out the tag
+		var copy = $(value).clone();
+		copy.find('a').remove();
+
+		// Remove the tag from the input value
+		var new_val = params.input.val().replace(copy.html(), '').replace(/(^\s*,)|(,\s*$)/g, '');
+		params.input.val(new_val + ',');
+	}
+
+	// If we're setting a prefill value, don't push a state
+	if (value.data('isprefill')) {
+		elgg.filtrate.listHandler(false);
+		value.data('isprefill', false);
+	} else {
+		elgg.filtrate.listHandler(true);
+	}
 }
 
-elgg.filtrate.typeaheadRemove = function(hook, type, params, value) {
-	elgg.filtrate.listHandler(true);
+/**
+ * Check if html5 storage is supported
+ */
+elgg.filtrate.isLocalStorage = function() {
+	try {
+		return 'localStorage' in window && window['localStorage'] !== null;
+	} catch (e) {
+		return false;
+	}
+}
+
+/** 
+ * Helper function to grab local params
+ */
+elgg.filtrate.getLocalParams = function() {
+	if (elgg.filtrate.isLocalStorage()) {
+		var params = localStorage.getItem("filtrate_params");
+		params = deParam(params);
+
+		var current_timestamp = new Date().getTime();
+
+		// Check timestamp, we'll consider the stored params expired after 5 minutes
+		if (current_timestamp > (parseFloat(params.timestamp) + (5 * 60000))) {
+			return false;
+		} else {
+			return params;
+		}
+	}
+	return false;
+}
+
+/** 
+ * Helper function set local params
+ */
+elgg.filtrate.setLocalParams = function(params) {
+	if (elgg.filtrate.isLocalStorage()) {
+		params.timestamp = new Date().getTime();
+		localStorage.setItem("filtrate_params", $.param(params));
+		return true;
+	}
+	return false;
 }
 
 // Filtrate value hooks
@@ -535,5 +657,7 @@ elgg.register_hook_handler('change', 'chosen.js', elgg.filtrate.handleChange);
 elgg.register_hook_handler('init', 'chosen.js', elgg.filtrate.chosenInterrupt);
 
 // Other hooks
-elgg.register_hook_handler('selection_added', 'typeaheadtags', elgg.filtrate.typeaheadAdd);
-elgg.register_hook_handler('selection_removed', 'typeaheadtags', elgg.filtrate.typeaheadRemove);
+elgg.register_hook_handler('element_alt', 'filtrate', elgg.filtrate.elementAltHandler);
+elgg.register_hook_handler('element_alt_clear', 'filtrate', elgg.filtrate.elementAltClearHandler);
+elgg.register_hook_handler('selection_added', 'typeaheadtags', elgg.filtrate.typeaheadChange);
+elgg.register_hook_handler('selection_removed', 'typeaheadtags', elgg.filtrate.typeaheadChange);
