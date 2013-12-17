@@ -1128,8 +1128,6 @@ function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
 	$type_picker_options = array();
 	$registered_entities = elgg_get_config('registered_entities');
 
-	$tag = get_input('tag');
-
 	// Build type picker options
 	if (!empty($registered_entities)) {
 		foreach ($registered_entities as $type => $subtypes) {
@@ -1152,11 +1150,12 @@ function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
 
 	asort($type_picker_options);
 
+
 	// Submission required advanced filter
 	$type_input = elgg_view('input/chosen_dropdown', array(
 		'id' => 'activity-type-filter',
 		'options_values' => $type_picker_options,
-		'value' => 0,
+		'value' => get_input('type'),
 		'class' => 'filtrate-filter',
 		'multiple' => 'MULTIPLE',
 		'data-param' => 'type',
@@ -1285,7 +1284,7 @@ function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
 		'name' => 'activity_tag_filter',
 		'class' => 'filtrate-filter',
 		//'data-param' => 'tag', // Don't set data param here, need to hack it in with JS
-		'value' => $tag,
+		//'value' => get_input('tag'),
 		'data-hoverHelp' => 1, // Set hoverHelp to true for floating hover box
 	//	'data-match_on' => 'tags',
 	));
