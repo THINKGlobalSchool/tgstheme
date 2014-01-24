@@ -13,6 +13,7 @@
 if (elgg_is_logged_in()) {
 	$vars = bookmarks_prepare_form_vars();
 	$header = elgg_view_title(elgg_echo('bookmarklet:bookmarkthis', array(elgg_get_site_entity()->name)));
+	elgg_push_context('bookmarklet');
 	$content = elgg_view_form('bookmarks/save', array(), $vars);
 } else { // Show login form
 
