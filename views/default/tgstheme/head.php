@@ -11,4 +11,4 @@
  */
 ?>
 <!-- ADD STUFF TO HEAD HERE -->
-<link href='http://fonts.googleapis.com/css?family=Shanti' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Shanti' rel='stylesheet' type='text/css'>
