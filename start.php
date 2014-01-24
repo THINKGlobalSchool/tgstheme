@@ -198,7 +198,7 @@ function tgstheme_init() {
 	
 	// Extend Fullcalendar CSS
 	elgg_extend_view('css/fullcalendar', 'css/tgstheme/fullcalendar');
-
+	
  	// Hacky set view location.. group-tools strikes again
     elgg_set_view_location('group/default', elgg_get_plugins_path() . "tgstheme/overrides/");
 
