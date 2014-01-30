@@ -15,6 +15,7 @@
  * @uses $vars['disable_advanced'] Disable the advanced menu: true/false
  * @uses $vars['disable_extras']   Disable the extras menu: true/false
  * @uses $vars['disable_history']  Disable HTML5 history (push/popstate)
+ * @uses $vars['content_header']   Optional header content (between menu and output)
  */
 
 elgg_load_js('elgg.filtrate');
@@ -47,5 +48,9 @@ echo $js;
 $vars['sort_by'] = 'priority';
 
 echo elgg_view_menu($vars['menu_name'], $vars);
+
+if ($vars['content_header']) {
+	echo $vars['content_header'];
+}
 
 echo "<div id='filtrate-content-container'></div>";
