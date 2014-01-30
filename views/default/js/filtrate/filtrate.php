@@ -17,6 +17,7 @@ elgg.filtrate.ajaxListUrl;
 elgg.filtrate.defaultParams;
 elgg.filtrate.enableInfinite;
 elgg.filtrate.disableHistory;
+elgg.filtrate.lastURL;
 
 /**
  * Chosen init handler
@@ -197,7 +198,9 @@ elgg.filtrate.init = function() {
 	if (!elgg.filtrate.disableHistory) {
 		// Add popstate event listener
 		window.addEventListener("popstate", function(event) {
-			elgg.filtrate.listHandler(false)
+			if (elgg.trigger_hook('popstate', 'filtrate', event)) {
+				elgg.filtrate.listHandler(false);
+			}
 		});
 	}
 }
@@ -394,6 +397,7 @@ elgg.filtrate.elementAltClearHandler = function (hook, type, params, value) {
  * @return void
  */
 elgg.filtrate.listHandler = function (doPushState) {
+
 	// Get querystring, if available
 	var query_index = window.location.href.indexOf('?');
 
@@ -478,7 +482,8 @@ elgg.filtrate.listHandler = function (doPushState) {
 		// If history isn't disabled
 		if (!elgg.filtrate.disableHistory) {
 			// Push that state
-			history.pushState({}, elgg.echo('filtrate:title:dashboard'), base_url + "?" + $.param(params));
+			var stateUrl = base_url + "?" + $.param(params)
+			history.pushState({'url': stateUrl, 'type': 'filtrate_list_state'}, elgg.echo('filtrate:title:dashboard'), stateUrl);
 		} else {
 			// Set local params (if possible)
 			elgg.filtrate.setLocalParams(params);
@@ -510,6 +515,8 @@ elgg.filtrate.listHandler = function (doPushState) {
 			$("#filtrate-content-container").html(elgg.echo('filtrate:error:content'));
 		}
 	});
+
+	elgg.filtrate.lastURL = window.location.href;
 }
 
 /**
