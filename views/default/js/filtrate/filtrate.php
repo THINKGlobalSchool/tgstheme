@@ -505,6 +505,9 @@ elgg.filtrate.listHandler = function (doPushState) {
 			// Load data
 			$("#filtrate-content-container").html(data);
 
+			// Trigger a hook indicating that content has been loaded
+			elgg.trigger_hook('content_loaded', 'filtrate', {'data': data, 'container': $("#filtrate-content-container")});
+
 			// If infinite scroll is enabled, hide the pagination
 			if (elgg.filtrate.enableInfinite) {
 				$('.elgg-pagination').hide();
@@ -534,6 +537,10 @@ elgg.filtrate.initInifiniteScroll = function() {
 
 			// Hard code the container for now.. (the first ul)
 			var $container = $('#filtrate-content-container > ul:first-child');
+
+			// Get classes
+			var container_class = $container.attr('class');
+
 			if ($last_pagination.length && !$last_pagination.hasClass('elgg-state-disabled')) {
 			
 
@@ -555,8 +562,12 @@ elgg.filtrate.initInifiniteScroll = function() {
 
 								$data = $(data);
 
-								$items = $data.filter('ul[class="' + $container.attr('class') + '"]')
-									.children('li').hide();
+								//$items = $data.filter('ul[class*="' + $container.attr('class') + '"]').children('li').hide();
+
+								$items = $data.filter(function() {
+									var $_this = $(this);
+									return container_class.indexOf($_this.attr('class')) >= 0;
+								}).children('li').hide();
 
 								$pagination = $data.filter('.elgg-pagination');
 								
@@ -566,7 +577,9 @@ elgg.filtrate.initInifiniteScroll = function() {
 
 								$items.fadeIn();
 
-			
+								// Trigger a hook for further action after new items are loaded
+								elgg.trigger_hook('infinite_loaded', 'filtrate', {'items': $items, 'container': $container});
+
 								$('.elgg-pagination').hide();
 							},
 							error: function() {
