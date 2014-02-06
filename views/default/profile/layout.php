@@ -10,7 +10,6 @@
  */
 
 $selection = $vars['selection'];
-
 echo elgg_view('profile/header', $vars);
 
 echo "<div class=\"profile-tab profile-tab-$selection\">";
