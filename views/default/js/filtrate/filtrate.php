@@ -18,6 +18,7 @@ elgg.filtrate.defaultParams;
 elgg.filtrate.enableInfinite;
 elgg.filtrate.disableHistory;
 elgg.filtrate.lastURL;
+elgg.filtrate.context;
 
 /**
  * Chosen init handler
@@ -397,7 +398,6 @@ elgg.filtrate.elementAltClearHandler = function (hook, type, params, value) {
  * @return void
  */
 elgg.filtrate.listHandler = function (doPushState) {
-
 	// Get querystring, if available
 	var query_index = window.location.href.indexOf('?');
 
@@ -498,6 +498,10 @@ elgg.filtrate.listHandler = function (doPushState) {
 	// Show loader
 	$('#filtrate-content-container').html("<div class='elgg-ajax-loader'></div>");
 
+	if (elgg.filtrate.context) {
+		params['context'] = elgg.filtrate.context;
+	}
+
 	// Load data
 	elgg.get(elgg.filtrate.ajaxListUrl, {
 		data: params,
@@ -561,8 +565,6 @@ elgg.filtrate.initInifiniteScroll = function() {
 								$loader.fadeOut().remove();
 
 								$data = $(data);
-
-								//$items = $data.filter('ul[class*="' + $container.attr('class') + '"]').children('li').hide();
 
 								$items = $data.filter(function() {
 									var $_this = $(this);

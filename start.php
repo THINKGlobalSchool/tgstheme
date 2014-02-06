@@ -461,7 +461,7 @@ function tgstheme_river_page_handler($page) {
 			'default_params' => array(
 				'type' => 0
 			),
-			'list_url' => elgg_get_site_url() . 'ajax/view/tgstheme/activity_list'
+			'list_url' => elgg_get_site_url() . 'ajax/view/tgstheme/activity_list',
 		)),
 		'filter' => ' ',
 		'class' => '',
