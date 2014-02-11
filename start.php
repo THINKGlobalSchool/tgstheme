@@ -1417,6 +1417,6 @@ function tgstheme_layout_output_handler($hook, $type, $value, $params) {
  * Handler for typeahead tags 'default' tags exceptions
  */
 function tgstheme_tags_exceptions_handler($hook, $type, $value, $params) {
-	$return[] = 'activity_tag_filter';
-	return $return;
+	$value[] = 'activity_tag_filter';
+	return $value;
 }
