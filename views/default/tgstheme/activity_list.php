@@ -28,6 +28,10 @@ if ($params['type']) {
 				$options['types'][] = $type;
 				break;
 			default:
+				// Need to hack this for tidypics..
+				if ($type == 'image') {
+					$type = 'tidypics_batch';
+				}
 				$options['subtypes'][] = $type;
 				$include_object = TRUE;
 				break;
