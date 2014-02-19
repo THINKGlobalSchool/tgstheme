@@ -499,7 +499,7 @@ elgg.filtrate.listHandler = function (doPushState) {
 	$('#filtrate-content-container').html("<div class='elgg-ajax-loader'></div>");
 
 	if (elgg.filtrate.context) {
-		params['context'] = elgg.filtrate.context;
+		params['page_context'] = elgg.filtrate.context;
 	}
 
 	// Load data
