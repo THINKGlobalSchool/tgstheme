@@ -417,42 +417,47 @@ span.actions-text {
 	color: #FFFFFF !important;
 }
 
-/* Owner Block Improvements */
-#tgstheme-ownerblock-sidebar-menu {
+/* Group Owner Block Improvements */
+#tgstheme-collapsable-ownerblock {
 	min-height: 24px;
 }
 
-#tgstheme-ownerblock-sidebar-menu-full {
+#tgstheme-collapsable-ownerblock-full {
 	display: none;
 }
 
-.ownerblock-show-more, .ownerblock-show-less {
-	background: #666666;
-	color: white;
-	text-align: right;
-	font-size: 0.8em;
-	border-radius: 10px 0 0 0;
-	float: right;
-	margin-top: 2px;
+.ownerblock-browse-content-closed, .ownerblock-browse-content-open {
+	padding: 2px 4px 2px 8px;
+    display: block;
+    color: #FFFFFF;
+	border-top: 1px solid #2D3F46;
+	border-bottom: 1px solid #2D3F46;
+	margin-top: -2px;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
 }
 
-.ownerblock-show-more:after {
+.ownerblock-browse-content-closed:hover, .ownerblock-browse-content-open:hover {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.ownerblock-browse-content-closed:after {
 	font-size: smaller;
-	content: "\25BC";
+	content: " \25BC";
 }
 
-.ownerblock-show-less:after {
+.ownerblock-browse-content-open:after {
 	font-size: smaller;
-	content: "\25B2";
+	content: " \25B2";
 }
 
-.ownerblock-show-more:hover, .ownerblock-show-less:hover {
+/*.ownerblock-show-more:hover, .ownerblock-show-less:hover {
 	background: #444444 !important;
 	color: white !important;
 }
-
-#tgstheme-ownerblock-sidebar-menu ul li.elgg-menu-item-more-ownerblock,
-#tgstheme-ownerblock-sidebar-menu ul li.elgg-menu-item-less-ownerblock {
+*/
+#tgstheme-collapsable-ownerblock ul li.elgg-menu-item-more-ownerblock,
+#tgstheme-collapsable-ownerblock ul li.elgg-menu-item-less-ownerblock {
 	position: inherit;
 }
 

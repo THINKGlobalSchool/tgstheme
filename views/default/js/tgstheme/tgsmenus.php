@@ -19,10 +19,7 @@ elgg.tgsmenus.init = function() {
 	$(document).delegate('a.entity-action-toggler', 'click', elgg.tgsmenus.toggleClick);
 
 	// Owner block show more click handler
-	//$(document).delegate('a.ownerblock-show-more', 'click', elgg.tgsmenus.ownerblockShowMoreClick);
-
-	// Owner block show less click handler
-	//$(document).delegate('a.ownerblock-show-less', 'click', elgg.tgsmenus.ownerblockShowLessClick);
+	$(document).delegate('a.ownerblock-browse-content-closed, a.ownerblock-browse-content-open', 'click', elgg.tgsmenus.ownerblockShowMoreClick);
 }
 
 // Click handler for toggler
@@ -38,21 +35,10 @@ elgg.tgsmenus.toggleClick = function(event) {
 
 // Click handler for show more
 elgg.tgsmenus.ownerblockShowMoreClick = function(event) {
+	var $_this = $(this);
 	// Toggle more button off
-	$(this).parent().slideToggle(function(){
-		// Show full menu
-		$('#tgstheme-ownerblock-sidebar-menu-full').slideToggle();
-	});
-
-	event.preventDefault();
-}
-
-// Click handler for show less
-elgg.tgsmenus.ownerblockShowLessClick = function(event) {
-	// Hide full menu
-	$('#tgstheme-ownerblock-sidebar-menu-full').slideToggle(function() {
-		// Toggle more button back on
-		$('a.ownerblock-show-more').parent().slideToggle();
+	$('#tgstheme-collapsable-ownerblock-full').slideToggle(function() {
+		$_this.toggleClass('ownerblock-browse-content-closed').toggleClass('ownerblock-browse-content-open');
 	});
 
 	event.preventDefault();
