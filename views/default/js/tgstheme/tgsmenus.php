@@ -35,12 +35,9 @@ elgg.tgsmenus.toggleClick = function(event) {
 
 // Click handler for show more
 elgg.tgsmenus.ownerblockShowMoreClick = function(event) {
-	var $_this = $(this);
 	// Toggle more button off
-	$('#tgstheme-collapsable-ownerblock-full').slideToggle(function() {
-		$_this.toggleClass('ownerblock-browse-content-closed').toggleClass('ownerblock-browse-content-open');
-	});
-
+	$(this).toggleClass('ownerblock-browse-content-closed').toggleClass('ownerblock-browse-content-open');
+	$('#tgstheme-collapsable-ownerblock-full').slideToggle();
 	event.preventDefault();
 }
 
