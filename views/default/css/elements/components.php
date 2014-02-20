@@ -65,6 +65,10 @@
 	padding: 4px 0;
 }
 
+#badge.elgg-owner-block-profile .elgg-image-block.elgg-group-image-block {
+	padding: 0 4px 4px 0;
+}
+
 #badge.elgg-owner-block-profile .elgg-subtext > a {
 	color: #FFF;
 }
@@ -111,6 +115,10 @@
 
 #badge.elgg-owner-block-profile .elgg-image-block > .elgg-body {
 	padding: 3px 4px 2px;
+}
+
+#badge.elgg-owner-block-profile .elgg-image-block > .elgg-body > h3 {
+	padding-left: 2px;
 }
 
 #badge .elgg-subtext {

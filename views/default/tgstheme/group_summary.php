@@ -15,7 +15,6 @@ if (elgg_instanceof($page_owner, 'group') && elgg_in_context('groups')) {
 	$group_owner = $page_owner->getOwnerEntity();
 
 ?>
-	<hr />
 	<div class='elgg-subtext'>
 		<?php echo elgg_echo("groups:owner"); ?>:
 		<?php
@@ -25,11 +24,6 @@ if (elgg_instanceof($page_owner, 'group') && elgg_in_context('groups')) {
 				'is_trusted' => true,
 			));
 		?>
-	</div>
-	<div class='elgg-subtext'>
-	<?php
-		echo elgg_echo('groups:members') . ": " . $page_owner->getMembers(0, 0, TRUE);
-	?>
 	</div>
 <?php
 }
