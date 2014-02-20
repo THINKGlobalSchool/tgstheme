@@ -14,14 +14,13 @@ $entity = elgg_extract('entity', $vars);
 
 if (elgg_instanceof($entity, 'group')) {
 
+	// Create browse content link
 	$browse_content = elgg_view('output/url', array(
 		'text' => elgg_echo('tgstheme:label:browsecontent'),
 		'href' => '#',
 		'class' => 'ownerblock-browse-content-closed'
 	));
 
-
-	// Set long menu, and grab content
 	$menu = elgg_view("navigation/menu/default", $vars);
 
 	$content = <<<HTML
