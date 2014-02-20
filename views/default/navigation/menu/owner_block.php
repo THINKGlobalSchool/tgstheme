@@ -14,19 +14,29 @@ $entity = elgg_extract('entity', $vars);
 
 if (elgg_instanceof($entity, 'group')) {
 
+	$menu = elgg_view("navigation/menu/default", $vars);
+
+	$class = 'ownerblock-browse-content-closed';
+
+	foreach ($vars['menu']['default'] as $item) {
+		if ($item->getSelected()) {
+			$selected = 'style="display:block"';
+			$class = 'ownerblock-browse-content-open';
+			break;
+		}
+	}
+
 	// Create browse content link
 	$browse_content = elgg_view('output/url', array(
 		'text' => elgg_echo('tgstheme:label:browsecontent'),
 		'href' => '#',
-		'class' => 'ownerblock-browse-content-closed'
+		'class' => $class
 	));
-
-	$menu = elgg_view("navigation/menu/default", $vars);
 
 	$content = <<<HTML
 		<div id='tgstheme-collapsable-ownerblock' class='clearfix'>
 			$browse_content
-			<div id='tgstheme-collapsable-ownerblock-full'>
+			<div id='tgstheme-collapsable-ownerblock-full' $selected>
 				$menu
 			</div>
 		</div>

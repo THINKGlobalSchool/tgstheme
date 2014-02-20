@@ -33,6 +33,14 @@ if ($vars['full_view']) {
     );
     $params = $params + $vars;
     $list_body = elgg_view('group/elements/summary', $params);
-  
-    echo elgg_view_image_block($icon, $list_body, $vars);
+
+   if ($vars['size'] !== 'large') {
+        echo elgg_view_image_block($icon, $list_body, $vars);
+   } else {
+        $vars['header'] = $list_body;
+        $vars['image'] = $icon;
+        $vars['footer'] = elgg_view('tgstheme/group_summary');
+        echo elgg_view('page/components/group_image_block', $vars);
+   }
+
 }

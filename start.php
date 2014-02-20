@@ -187,7 +187,7 @@ function tgstheme_init() {
 	elgg_extend_view('page/elements/topbar', 'tgstheme/topbar');
 
 	// Extend owner_block for groups
-	elgg_extend_view('group/elements/summary', 'tgstheme/group_summary');
+	//elgg_extend_view('group/elements/summary', 'tgstheme/group_summary');
 	
 	// Extend admin CSS
 	elgg_extend_view('css/admin', 'css/tgstheme/admin');
