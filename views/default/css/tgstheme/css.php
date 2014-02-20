@@ -419,7 +419,6 @@ span.actions-text {
 
 /* Group Owner Block Improvements */
 #tgstheme-collapsable-ownerblock {
-	min-height: 24px;
 }
 
 #tgstheme-collapsable-ownerblock-full {
