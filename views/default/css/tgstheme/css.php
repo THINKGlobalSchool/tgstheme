@@ -425,18 +425,26 @@ span.actions-text {
 	display: none;
 }
 
+#tgstheme-collapsable-ownerblock-full .elgg-menu-owner-block li a {
+	padding: 2px 4px 2px 18px;
+}
+
 .ownerblock-browse-content-closed, .ownerblock-browse-content-open {
 	padding: 2px 4px 2px 8px;
     display: block;
-    color: #FFFFFF;
-	border-top: 1px solid #2D3F46;
-	border-bottom: 1px solid #2D3F46;
+    color: #91131E;
 	margin-top: -2px;
-	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
+	font-family: 'Shanti',sans-serif;
+	text-transform: uppercase;
+}
+
+.ownerblock-browse-content-open {
+	border-bottom: 1px dotted #BBB;
 }
 
 .ownerblock-browse-content-closed:hover, .ownerblock-browse-content-open:hover {
 	color: #FFFFFF;
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
 	text-decoration: none;
 }
 
