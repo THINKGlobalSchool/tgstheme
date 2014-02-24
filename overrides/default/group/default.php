@@ -9,7 +9,7 @@
   
 $group = $vars['entity'];
   
-$icon = elgg_view_entity_icon($group, elgg_extract('size', $vars, 'tiny'));
+$icon = elgg_view_entity_icon($group, 'large');
   
 $metadata = elgg_view_menu('entity', array(
     'entity' => $group,
@@ -29,18 +29,13 @@ if ($vars['full_view']) {
     $params = array(
         'entity' => $group,
         'metadata' => $metadata,
-        'subtitle' => $group->briefdescription,
+       // 'subtitle' => $group->briefdescription,
     );
     $params = $params + $vars;
     $list_body = elgg_view('group/elements/summary', $params);
 
-   if ($vars['size'] !== 'large') {
-        echo elgg_view_image_block($icon, $list_body, $vars);
-   } else {
-        $vars['header'] = $list_body;
-        $vars['image'] = $icon;
-        $vars['footer'] = elgg_view('tgstheme/group_summary');
-        echo elgg_view('page/components/group_image_block', $vars);
-   }
-
+    $vars['header'] = $list_body;
+    $vars['image'] = $icon;
+    //$vars['footer'] = elgg_view('tgstheme/group_summary');
+    echo elgg_view('page/components/group_image_block', $vars);
 }

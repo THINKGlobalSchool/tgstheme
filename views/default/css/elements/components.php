@@ -69,6 +69,12 @@
 	padding: 0 4px 4px 0;
 }
 
+#badge.elgg-owner-block-profile .elgg-image-block.elgg-group-image-block h3 {
+	font-size: 1.3em;
+	line-height: 1.1em;
+	margin-bottom: 2px;
+}
+
 #badge.elgg-owner-block-profile .elgg-subtext > a {
 	color: #FFF;
 }
