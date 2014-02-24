@@ -19,7 +19,7 @@ if (($owner instanceof ElggGroup || $owner instanceof ElggUser) && !get_input('o
 	
 	$class = 'elgg-owner-block';
 
-	if (elgg_in_context('profile') || elgg_in_context('groups')) {
+	if (elgg_in_context('profile') || elgg_in_context('groups') || $owner instanceof ElggGroup) {
 		$size = 'large';
 		$class .= ' elgg-owner-block-profile';
 	}

@@ -444,7 +444,7 @@ span.actions-text {
 
 .ownerblock-browse-content-closed:hover, .ownerblock-browse-content-open:hover {
 	color: #FFFFFF;
-	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/button-dark-grey.png) repeat-x bottom left #506B76;
+	background: #2D3F46;
 	text-decoration: none;
 }
 
@@ -1204,4 +1204,14 @@ body#elgg-iframe-body #googleapps-docs-container {
 
 #activity-tag-filter {
 	width: 125px !important;
+}
+
+/** Group tweaks **/
+.elgg-form-groups-search .elgg-input-search {
+	margin-right: 4px;
+    width: 75%;
+}
+
+.elgg-form-groups-search .elgg-button-submit {
+
 }
