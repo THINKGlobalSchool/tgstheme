@@ -831,3 +831,28 @@ li:hover > .elgg-menu-site-more {
 .elgg-menu-widget > .elgg-menu-item-settings {
 	right: 25px;
 }
+
+/** Group Nav **/
+.elgg-menu-groups-my-status li a,
+.elgg-menu-groups-admin li a {
+	display: block;
+
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+
+	background-color: white;
+	margin: 3px 0 5px 0;
+	padding: 2px 4px 2px 8px;
+}
+.elgg-menu-groups-my-status li a:hover,
+.elgg-menu-groups-admin li a:hover {
+	background-color: #2D3F46;
+	color: white;
+	text-decoration: none;
+}
+.elgg-menu-groups-my-status li.elgg-state-selected > a,
+.elgg-menu-groups-admin li.elgg-state-selected > a {
+	background: url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/badge-back.png) repeat-x bottom left #DD2036;
+	color: white;
+}
