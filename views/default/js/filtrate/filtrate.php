@@ -552,8 +552,8 @@ elgg.filtrate.initInifiniteScroll = function() {
 					loadingStarted = true;
 
 					setTimeout(function() {
-						var $loader = $(document.createElement('div')).addClass('elgg-ajax-loader').hide();
-						$container.append($loader);
+						var $loader = $(document.createElement('div')).attr('class', 'filtrate-infinite-loader elgg-ajax-loader').hide();
+						$container.closest('.elgg-body').append($loader);
 						$loader.fadeIn();
 
 						loadingStarted  = false;
