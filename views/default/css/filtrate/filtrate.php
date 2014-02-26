@@ -71,6 +71,10 @@ ul.filtrate-menu-extras > li.elgg-menu-item-sort {
 	text-decoration: none;
 }
 
+#filtrate-content-container {
+	margin-bottom: 40px;
+}
+
 #filtrate-content-container .elgg-ajax-loader {
 	margin-top: 20px;
 }
@@ -136,6 +140,14 @@ span.filtrate-clear-icon input {
 
 #filtrate-menu-container .typeaheadtags-help-container {
 	max-width: 550px;
+}
+
+.filtrate-infinite-loader {
+	bottom: 10px;
+    left: 50%;
+    position: absolute;
+    width: 100px;
+    margin-left: -50px;
 }
 
 /** Widget styles **/
