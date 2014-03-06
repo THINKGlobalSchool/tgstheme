@@ -17,13 +17,29 @@ elgg.provide('elgg.activityping');
 elgg.activityping.init = function() {
 	var updates = new elgg.activityping.activityUpdateChecker(10000);
 	updates.start();
+
+	// Reload activity 
+	$(document).delegate('a.activity-update-link', 'click', function(event) {
+		// If we've got filtrate, reload it!
+		if (elgg.filtrate != undefined) {
+			elgg.filtrate.listHandler(false);
+		} else {
+			window.location.reload();
+		}
+		$(this).remove();
+		// Reset the updater
+		updates.seconds_passed = 0;
+		updates.updateTitle('');
+		event.preventDefault();
+	});
 }
 
 elgg.activityping.activityUpdateChecker = function(interval) {
 	this.intervalID = null;
 	this.interval = interval;
-	this.url = '<?php echo elgg_get_site_url(); ?>activity_ping';
+	this.url = elgg.get_site_url() + 'activity_ping';
 	this.seconds_passed = 0;
+	var self = this;
 
 	this.start = function() {
 		// needed to complete closure scope.
@@ -44,18 +60,13 @@ elgg.activityping.activityUpdateChecker = function(interval) {
 				if (data) {
 					json_response = eval( "(" + data + ")" );
 
-					$('#activity-updates').html(json_response.link).slideDown();
+					elgg.trigger_hook('updates', 'activity', json_response);
 
-					var pageTitleSubstring;
-					var stringStartPosition = document.title.indexOf("]");
+					$('.filtrate-menu-main').find('a.activity-update-link').remove();
 
-					if (stringStartPosition == -1) { // we haven't already altered page title
-						pageTitleSubstring = document.title;
-					} else { // we previously prepended to page title, need to remove it first
-						pageTitleSubstring = document.title.substring( (stringStartPosition+2) );
-					}
+					$('.filtrate-menu-main').append(json_response.link).slideDown();
 
-					document.title = json_response.page_title + pageTitleSubstring;
+					self.updateTitle(json_response.page_title);
 				}
 			}
 		})
@@ -69,6 +80,19 @@ elgg.activityping.activityUpdateChecker = function(interval) {
 		this.stop();
 		this.interval = interval;
 		this.start();
+	}
+
+	this.updateTitle = function(title) {
+		var pageTitleSubstring;
+		var stringStartPosition = document.title.indexOf("]");
+
+		if (stringStartPosition == -1) { // we haven't already altered page title
+			pageTitleSubstring = document.title;
+		} else { // we previously prepended to page title, need to remove it first
+			pageTitleSubstring = document.title.substring( (stringStartPosition+2) );
+		}
+
+		document.title = title + pageTitleSubstring;
 	}
 }
 
