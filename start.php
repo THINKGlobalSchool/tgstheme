@@ -178,7 +178,7 @@ function tgstheme_init() {
 	elgg_register_action('share/email', "$action_path/email.php");
 
 	// also extend the core activity
-	elgg_extend_view('core/river/filter', 'tgstheme/update', -1);
+	elgg_extend_view('widgets/tgstheme_river/content', 'tgstheme/update', -1);
 
 	// Extend HEAD
 	elgg_extend_view('page/elements/head', 'tgstheme/head');
@@ -423,19 +423,37 @@ function ping_page_handler($page) {
 		if ($current_count > $last_count) {
 			$count = $current_count - $last_count;
 
+			// Get the latest river items
+			$latest_items = elgg_get_river(array(
+				'posted_time_lower' => $last_reload,
+			));
+
+			$latest_content = '';
+			foreach($latest_items as $item) {
+				$latest_content .= elgg_view_river_item($item, array());
+			}
+
 			$s = ($count == 1) ? '' : 's';
 
-			$link = "<a href='' onClick=\"window.location.reload();\" class='update_link'>$count update$s!</a>";
+			$link = "<a href='#' class='activity-update-link'>$count update$s!</a>";
 			$page_title = "[$count update$s] ";
 
 			echo json_encode(array(
 				'count' => $count,
 				'link' => $link,
 				'page_title' => $page_title,
+				'items' => $latest_content
 			));
 		}
 		return TRUE;
 	}
+
+	/** ACTIVITY TESTING REMOVE ME!!!!!!! **/
+	$blog = get_entity(144030);
+	add_to_river('river/object/blog/create', 'create', $blog->owner_guid, $blog->getGUID());
+	add_to_river('river/object/blog/create', 'create', $blog->owner_guid, $blog->getGUID());
+	add_to_river('river/object/blog/create', 'create', $blog->owner_guid, $blog->getGUID());
+
 	return FALSE;
 }
 

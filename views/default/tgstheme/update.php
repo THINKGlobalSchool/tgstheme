@@ -9,5 +9,4 @@
  * @link http://www.thinkglobalschool.com/
  *
  */
-?>
-<div id='activity-updates'></div>
+elgg_load_js('elgg.activityping');
