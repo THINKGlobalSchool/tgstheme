@@ -11,7 +11,7 @@
  */
 ?>
 
-#activity-updates a.update_link {
+a.activity-update-link {
 	display: inline-block;
 	color:white;
 	font-weight: bold;
@@ -22,9 +22,17 @@
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
+	float: right;
+	position: relative;
+	bottom: 5px;
+	right: 15px;
 }
-#activity-updates a.update_link:hover {
-	background: #4690D6 url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/refresh.png") no-repeat 5px -22px;
+
+.elgg-widget-content #filtrate-menu-container a.activity-update-link {
+	right: 40px;
+}
+
+a.activity-update-link:hover {
 	color:white;
 	text-decoration: none;
 }

@@ -13,3 +13,4 @@
 
 // Pass vars on to to filtrate
 echo elgg_view('navigation/menu/filtrate', $vars);
+?>
