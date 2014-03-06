@@ -448,12 +448,6 @@ function ping_page_handler($page) {
 		return TRUE;
 	}
 
-	/** ACTIVITY TESTING REMOVE ME!!!!!!! **/
-	$blog = get_entity(144030);
-	add_to_river('river/object/blog/create', 'create', $blog->owner_guid, $blog->getGUID());
-	add_to_river('river/object/blog/create', 'create', $blog->owner_guid, $blog->getGUID());
-	add_to_river('river/object/blog/create', 'create', $blog->owner_guid, $blog->getGUID());
-
 	return FALSE;
 }
 
