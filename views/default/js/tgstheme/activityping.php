@@ -22,7 +22,15 @@ elgg.activityping.init = function() {
 	$(document).delegate('a.activity-update-link', 'click', function(event) {
 		// If we've got filtrate, reload it!
 		if (elgg.filtrate != undefined) {
+			if (elgg.filtrate.disableHistory) {
+				elgg.filtrate.setLocalParams({});
+			} else {
+				var url = window.location.href.substring(0, window.location.href.indexOf('?'));
+				history.pushState({}, '',url);
+			}
+
 			elgg.filtrate.listHandler(false);
+
 		} else {
 			window.location.reload();
 		}
