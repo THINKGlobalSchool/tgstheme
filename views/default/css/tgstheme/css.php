@@ -1223,3 +1223,43 @@ body#elgg-iframe-body #googleapps-docs-container {
 .elgg-form-groups-search .elgg-button-submit {
 
 }
+
+/** Mentions tweaks **/
+.mentions-user-icon {
+	display: inline;
+	padding: 0;
+	margin: 0 5px 2px 0;
+	vertical-align: middle !important;
+}
+
+.mentions-user-link:hover {
+	text-decoration: none;
+}
+
+.mentions-user-link {
+	display: inline;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.mentions-user-link span {
+
+}
+
+.mentions-user-link span:before {
+	content: "@";
+}
+
+.mentions-user-link:hover,
+.elgg-output a.mentions-user-link:hover {
+	color: white;
+	background-color: #999;
+}
+
+.elgg-output a.mentions-user-link {
+	border-bottom: 1px solid #ccc;
+	font-weight: normal;
+}
