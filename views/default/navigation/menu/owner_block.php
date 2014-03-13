@@ -16,7 +16,14 @@ if (elgg_instanceof($entity, 'group')) {
 
 	$menu = elgg_view("navigation/menu/default", $vars);
 
-	$class = 'ownerblock-browse-content-closed';
+	if ($entity->new_layout) {
+		$class = 'ownerblock-browse-content-closed';	
+	} else {
+		$class = 'ownerblock-browse-content-open';
+		$open = 'style="display: block;"';
+	}
+
+	
 
 	foreach ($vars['menu']['default'] as $item) {
 		if ($item->getSelected()) {
@@ -36,7 +43,7 @@ if (elgg_instanceof($entity, 'group')) {
 	$content = <<<HTML
 		<div id='tgstheme-collapsable-ownerblock' class='clearfix'>
 			$browse_content
-			<div id='tgstheme-collapsable-ownerblock-full' $selected>
+			<div id='tgstheme-collapsable-ownerblock-full' $open>
 				$menu
 			</div>
 		</div>
