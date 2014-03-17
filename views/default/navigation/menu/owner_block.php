@@ -25,7 +25,7 @@ if (elgg_instanceof($entity, 'group')) {
 
 	foreach ($vars['menu']['default'] as $item) {
 		if ($item->getSelected()) {
-			$selected = 'style="display:block"';
+			$open = 'style="display:block"';
 			$class = 'ownerblock-browse-content-open';
 			break;
 		}
