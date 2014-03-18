@@ -30,6 +30,9 @@
 .elgg-icon-calendar {
 	background-position: 0 -54px;
 }
+.elgg-icon-calendar-dark {
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/elgg-icon-calendar-dark.png) no-repeat left;
+}
 .elgg-icon-checkmark:hover {
 	background-position: 0 -72px;
 }
