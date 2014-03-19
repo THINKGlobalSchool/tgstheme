@@ -1237,7 +1237,7 @@ body#elgg-iframe-body #googleapps-docs-container {
 }
 
 .mentions-user-link {
-	display: inline;
+	display: inline-block;
 	padding: 5px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
