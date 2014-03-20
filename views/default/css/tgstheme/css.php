@@ -28,7 +28,7 @@ a.activity-update-link {
 	right: 15px;
 }
 
-.elgg-widget-content #filtrate-menu-container a.activity-update-link {
+.elgg-widget-content .filtrate-menu-container a.activity-update-link {
 	right: 40px;
 }
 

@@ -19,7 +19,7 @@ $disable_advanced = elgg_extract('disable_advanced', $vars);
 $disable_extras = elgg_extract('disable_extras', $vars);
 $item_class = elgg_extract('item_class', $vars, '');
 
-$content = "<div id='filtrate-menu-container'>";
+$content = "<div class='filtrate-menu-container'>";
 
 // Main section
 $content .= elgg_view('navigation/menu/elements/filtrate_section', array(
@@ -66,14 +66,3 @@ if (count($vars['menu']['extras']) && !$disable_extras) {
 }
 
 echo $content . "</div>";
-
-$script = <<<JAVASCRIPT
-	<script type='text/javascript'>
-		$(document).ready(function(event) {
-			// Register filtrate init on system init
-			elgg.register_hook_handler('init', 'system', elgg.filtrate.init);
-		});
-	</script>
-JAVASCRIPT;
-
-echo $script;
