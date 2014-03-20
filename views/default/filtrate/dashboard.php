@@ -17,6 +17,7 @@
  * @uses $vars['disable_history']  Disable HTML5 history (push/popstate)
  * @uses $vars['content_header']   Optional header content (between menu and output)
  * @uses $vars['page_context']     Page context
+ * @uses $vars['id']               Optional unique id for this menu (will be generated otherwise)
  */
 
 elgg_load_js('elgg.filtrate');
@@ -27,6 +28,7 @@ $list_url = elgg_extract('list_url', $vars);
 $default_params = json_encode(elgg_extract('default_params' , $vars));
 $disable_history = elgg_extract('disable_history', $vars);
 $context = elgg_extract('page_context', $vars, elgg_get_context());
+$id = elgg_extract('id', $vars, uniqid());
 
 if (!$infinite_scroll) {
 	$infinite_scroll = 0;
@@ -38,11 +40,25 @@ if (!$disable_history) {
 
 $js = <<<JAVASCRIPT
 	<script type='text/javascript'>
-		elgg.filtrate.defaultParams = $.param($.parseJSON('$default_params'));
-		elgg.filtrate.ajaxListUrl= '$list_url';
-		elgg.filtrate.enableInfinite = $infinite_scroll;
-		elgg.filtrate.disableHistory = $disable_history;
-		elgg.filtrate.context = '$context';
+		$(document).ready(function() {
+			if (elgg.filtrate != undefined) {
+				// Init filtrate on system init
+				elgg.register_hook_handler('init', 'system', function(){
+					// Go go gadget filtrate
+					$('#$id').filtrate({
+						defaultParams: $.param($.parseJSON('$default_params')),
+						ajaxListUrl: '$list_url',
+						enableInfinite: $infinite_scroll,
+						disableHistory: $disable_history,
+						context: '$context'
+					});
+				});
+
+			} else {
+				// AMD sure would be fantastic wouldn't it?
+				console.log('WARNING: FILTRATE IS NOT LOADED');
+			}
+		});
 	</script>
 JAVASCRIPT;
 
@@ -50,10 +66,20 @@ echo $js;
 
 $vars['sort_by'] = 'priority';
 
-echo elgg_view_menu($vars['menu_name'], $vars);
+$menu = elgg_view_menu($vars['menu_name'], $vars);
 
 if ($vars['content_header']) {
-	echo $vars['content_header'];
+	$content_header = $vars['content_header'];
 }
 
-echo "<div id='filtrate-content-container'></div>";
+$content_container = "<div class='filtrate-content-container'></div>";
+
+$filtrate = <<<HTML
+	<div id='$id'>
+		$menu
+		$content_header
+		$content_container
+	</div>
+HTML;
+
+echo $filtrate;

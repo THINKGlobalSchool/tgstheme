@@ -10,30 +10,30 @@
  */
 ?>
 
-#filtrate-menu-container {
+.filtrate-menu-container {
 	background: none repeat scroll 0 0 #EEEEEE;
     padding: 11px;
     width: auto;
 }
 
-#filtrate-menu-container > ul > li label { 
+.filtrate-menu-container > ul > li label { 
 	margin-right: 7px;
 }
 
-#filtrate-menu-container > ul > li {
+.filtrate-menu-container > ul > li {
 	display: inline-block;
 	margin-right: 10px;
 	margin-bottom: 4px;
 }
 
-#filtrate-menu-container  li input {
+.filtrate-menu-container  li input {
 	font-size: 90%;
 	height: 24px;
 	width: 92px;
 	border: 1px solid #AAAAAA;
 }
 
-#filtrate-menu-container .chosen-container.chosen-container-multi > ul > li input{
+.filtrate-menu-container .chosen-container.chosen-container-multi > ul > li input{
 	height: auto;
 	font-size: 100%;
 }
@@ -71,11 +71,11 @@ ul.filtrate-menu-extras > li.elgg-menu-item-sort {
 	text-decoration: none;
 }
 
-#filtrate-content-container {
+.filtrate-content-container {
 	margin-bottom: 40px;
 }
 
-#filtrate-content-container .elgg-ajax-loader {
+.filtrate-content-container .elgg-ajax-loader {
 	margin-top: 20px;
 }
 
@@ -103,25 +103,25 @@ span.filtrate-clear-icon input {
 	padding-right: 16px;
 }
 
-#filtrate-menu-container .chosen-disabled a {
+.filtrate-menu-container .chosen-disabled a {
 	color: #EEEEEE;
 }
 
 /** Fix for typeaheadtags **/
-#filtrate-menu-container .elgg-input-tags-parent {
+.filtrate-menu-container .elgg-input-tags-parent {
 	display: inline-block;
 	vertical-align: middle;
 }
 
-#filtrate-menu-container .elgg-input-tags-parent .as-selections {
+.filtrate-menu-container .elgg-input-tags-parent .as-selections {
 	padding: 1px;
 }
 
-#filtrate-menu-container .elgg-input-tags {
+.filtrate-menu-container .elgg-input-tags {
 	height: 22px;
 }
 
-#filtrate-menu-container .elgg-input-tags-parent ul.as-selections li.as-selection-item.typeaheadtags-help-button {
+.filtrate-menu-container .elgg-input-tags-parent ul.as-selections li.as-selection-item.typeaheadtags-help-button {
 	height: 12px;
 	margin: 2px 4px 0 2px;
 	padding: 3px !important;
@@ -130,15 +130,15 @@ span.filtrate-clear-icon input {
 	font-size: 10px;
 }
 
-#filtrate-menu-container .elgg-input-tags-parent ul.as-selections li.as-selection-item,
-#filtrate-menu-container .elgg-input-tags-parent ul.as-selections li.as-original input {
+.filtrate-menu-container .elgg-input-tags-parent ul.as-selections li.as-selection-item,
+.filtrate-menu-container .elgg-input-tags-parent ul.as-selections li.as-original input {
 	font-size: 11px;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	line-height: 14px;
 }
 
-#filtrate-menu-container .typeaheadtags-help-container {
+.filtrate-menu-container .typeaheadtags-help-container {
 	max-width: 550px;
 }
 
@@ -151,16 +151,16 @@ span.filtrate-clear-icon input {
 }
 
 /** Widget styles **/
-.elgg-widget-content #filtrate-menu-container {
+.elgg-widget-content .filtrate-menu-container {
 	background: #FFF;
 	padding: 0;
 }
 
-.elgg-widget-content #filtrate-menu-container > ul > li label {
+.elgg-widget-content .filtrate-menu-container > ul > li label {
 	display: inline-block;
 	min-width: 36px;
 }
 
-.elgg-widget-content #filtrate-menu-container > ul > li .chosen-container {
+.elgg-widget-content .filtrate-menu-container > ul > li .chosen-container {
 	margin-right: 5px;
 }

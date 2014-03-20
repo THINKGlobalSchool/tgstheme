@@ -39,11 +39,6 @@ elgg.tgstheme.init = function() {
 
 	// Init publish module
 	elgg.tgstheme.initPublish();
-
-	// Manually init the role dropdown on the activity filter
-	var role_filter = $('#activity-role-filter');
-	role_filter.find('option[value=0]').html('');
-	elgg.trigger_hook('init', 'chosen.js', {'id' : role_filter.attr('id')}, elgg.tgstheme.defaultChosenInit).call(undefined, role_filter);
 }
 
 elgg.tgstheme.initPublish = function() {
@@ -129,7 +124,7 @@ elgg.tgstheme.defaultChosenInit = function(element) {
 	var options = elgg.trigger_hook('getOptions', 'chosen.js', {'id' : element.attr('id')}, options);
 
 	// Init and bind change
-	element.chosen(options).change(elgg.trigger_hook('change', 'chosen.js', {'id' : element.attr('id'), 'element' : element}, function(){}));
+	element.chosen(options).change(elgg.trigger_hook('change', 'chosen.js', {'id' : element.attr('id'), 'element' : element}, function(){return;}));
 
 	// Hacky fix for chosen containers truncating text
 	var sibling = element.siblings('.chosen-container-single');
@@ -137,7 +132,6 @@ elgg.tgstheme.defaultChosenInit = function(element) {
 		'min-width': sibling.width(),
 		'width' : ''
 	});
-
 }
 
 /**

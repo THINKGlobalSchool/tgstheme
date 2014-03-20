@@ -56,8 +56,11 @@ echo <<<JAVASCRIPT
 			var id = "$id",
 			    element = $("#" + "$id");
 
-			// Init chosen dropdown
-			elgg.trigger_hook('init', 'chosen.js', {'id' : "$id"}, elgg.tgstheme.defaultChosenInit).call(undefined, element);
+			elgg.register_hook_handler('init', 'system', function() {
+				// Init chosen dropdown
+				elgg.trigger_hook('init', 'chosen.js', {'id' : "$id"}, elgg.tgstheme.defaultChosenInit).call(undefined, element);
+			});
+
 		});
 	</script>
 JAVASCRIPT;
