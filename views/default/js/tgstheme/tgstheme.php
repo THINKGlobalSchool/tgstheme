@@ -168,6 +168,17 @@ elgg.tgstheme.setupActivityInputs = function (hook, type, params, options) {
 	return options;
 }
 
+/**
+ * Extra tasks after filtrate content is loaded
+ */
+elgg.tgstheme.filtrateLoaded = function(hook, type, params, options) {
+	if (elgg.ui != undefined && elgg.ui.lightbox_init != undefined) {
+		elgg.ui.lightbox_init();
+	}
+}
+
 elgg.register_hook_handler('init', 'system', elgg.tgstheme.init);
 elgg.register_hook_handler('getOptions', 'ui.popup', elgg.tgstheme.loginHandler);
 elgg.register_hook_handler('getOptions', 'chosen.js', elgg.tgstheme.setupActivityInputs);
+elgg.register_hook_handler('content_loaded', 'filtrate', elgg.tgstheme.filtrateLoaded);
+elgg.register_hook_handler('infinite_loaded', 'filtrate', elgg.tgstheme.filtrateLoaded);
