@@ -1167,7 +1167,8 @@ body#elgg-iframe-body #googleapps-docs-container {
 .tgstheme-filter-dropdown .elgg-input-dropdown {}
 
 /** Custom title menu link **/
-.tgstheme-custom-title-link {
+.tgstheme-custom-title-link,
+.bookmarks-extender-bookmarklet-title {
 	padding: 3px;
 }
 
