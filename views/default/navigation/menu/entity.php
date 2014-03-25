@@ -28,8 +28,6 @@ $entity_menu = $vars['menu'];
 
 $uid = uniqid();
 
-//elgg_dump($entity_menu);
-
 // Count actions and other menu items
 $count = (int)(count($entity_menu['core']) + count($entity_menu['buttons']) + count($entity_menu['actions']) + count($entity_menu['other']));
 

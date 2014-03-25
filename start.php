@@ -28,7 +28,6 @@
  *   * search/css
  *   * search/search_box
  *   * js/tinymce
- *   * bookmarks/bookmarklet
  *   * river/elements/image
  *   * profile/layout
  *   * profile/header
@@ -40,8 +39,6 @@ elgg_register_event_handler('init', 'system', 'tgstheme_init');
 elgg_register_event_handler('pagesetup', 'system', 'tgstheme_pagesetup', 501);
 
 function tgstheme_init() {
-	// Set a bookmarklet version
-	define('BOOKMARKLET_VERSION', '1');
 
 	// Register Global CSS
 	$t_css = elgg_get_simplecache_url('css', 'tgstheme/css');
@@ -141,9 +138,6 @@ function tgstheme_init() {
 
 	// Register a generic iframe handler
 	elgg_register_page_handler('iframe', 'iframe_page_handler');
-
-	// Extend bookmarks page handler
-	elgg_register_plugin_hook_handler('route', 'bookmarks', 'tgstheme_route_bookmarks_handler');
 
 	// Extend profile page handler
 	elgg_register_plugin_hook_handler('route', 'profile', 'tgstheme_route_profile_handler');
@@ -537,27 +531,6 @@ function tgstheme_pagesetup() {
 	/** Set null page owners on required pages **/
 	if (elgg_get_context() == 'activity') {
 		elgg_set_page_owner_guid(1);
-	}
-
-	/** Add bookmarklet title button **/
-	if (elgg_is_logged_in() && elgg_in_context('bookmarks') && !strpos(current_page_url(), 'bookmarklet')) {
-		$page_owner = elgg_get_page_owner_entity();
-		if (!$page_owner) {
-			$page_owner = elgg_get_logged_in_user_entity();
-		}
-		
-		if ($page_owner instanceof ElggGroup) {
-			$title = elgg_echo('bookmarks:bookmarklet:group');
-		} else {
-			$title = elgg_echo('bookmarks:bookmarklet');
-		}
-
-		elgg_register_menu_item('title', array(
-			'name' => 'bookmarklet',
-			'href' => 'bookmarks/bookmarklet/' . $page_owner->guid,
-			'text' => $title,
-			'link_class' => 'tgstheme-custom-title-link',
-		));
 	}
 }
 
