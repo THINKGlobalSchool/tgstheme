@@ -17,5 +17,6 @@ echo elgg_view('filtrate/dashboard', array(
 	),
 	'list_url' => elgg_get_site_url() . 'ajax/view/tgstheme/activity_list',
 	'disable_advanced' => true,
-	'disable_history' => true
+	'disable_history' => true,
+	'id' => 'activity-filtrate'
 ));
