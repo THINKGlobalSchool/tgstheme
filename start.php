@@ -473,6 +473,7 @@ function tgstheme_river_page_handler($page) {
 				'type' => 0
 			),
 			'list_url' => elgg_get_site_url() . 'ajax/view/tgstheme/activity_list',
+			'id' => 'activity-filtrate'
 		)),
 		'filter' => ' ',
 		'class' => '',
