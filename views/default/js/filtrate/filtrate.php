@@ -724,5 +724,4 @@ elgg.provide('elgg.filtrate');
 		this.init();
 		return this;
 	};
-
 }(jQuery));

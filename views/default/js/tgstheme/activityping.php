@@ -19,17 +19,18 @@ elgg.activityping.init = function() {
 	updates.start();
 
 	// Reload activity 
-	$(document).delegate('a.activity-update-link', 'click', function(event) {
+	$(document).delegate('#activity-filtrate a.activity-update-link', 'click', function(event) {
 		// If we've got filtrate, reload it!
 		if (elgg.filtrate != undefined) {
-			if (elgg.filtrate.disableHistory) {
-				elgg.filtrate.setLocalParams({});
-			} else {
-				var url = window.location.href.substring(0, window.location.href.indexOf('?'));
-				history.pushState({}, '',url);
-			}
-
-			elgg.filtrate.listHandler(false);
+			// Re-init here.. kind of gross :(
+			$('#activity-filtrate').find('.filtrate-content-container').html('');
+			$('#activity-filtrate').filtrate({
+				defaultParams: $.param({'type': 0}),
+				ajaxListUrl: elgg.get_site_url() + 'ajax/view/tgstheme/activity_list',
+				enableInfinite: false,
+				disableHistory: true,
+				context: '$context'
+			});
 
 		} else {
 			window.location.reload();
@@ -70,9 +71,9 @@ elgg.activityping.activityUpdateChecker = function(interval) {
 
 					elgg.trigger_hook('updates', 'activity', json_response);
 
-					$('.filtrate-menu-main').find('a.activity-update-link').remove();
+					$('#activity-filtrate .filtrate-menu-main').find('a.activity-update-link').remove();
 
-					$('.filtrate-menu-main').append(json_response.link).slideDown();
+					$('#activity-filtrate .filtrate-menu-main').append(json_response.link).slideDown();
 
 					self.updateTitle(json_response.page_title);
 				}
