@@ -184,7 +184,8 @@ table.tgstheme-profile .profile-right {
 /** Widget  menus **/
 .elgg-menu-widget > li.elgg-menu-item-extra-tooltip,
 .elgg-menu-widget > li.elgg-menu-item-river-view-all,
-.elgg-menu-widget > li.elgg-menu-item-groups-view-all {
+.elgg-menu-widget > li.elgg-menu-item-groups-view-all,
+.elgg-menu-widget > li.elgg-menu-item-todo-view-all {
 	float: left;
 	position: relative;
 	right: 6px;
@@ -194,13 +195,15 @@ table.tgstheme-profile .profile-right {
 
 .elgg-menu-widget > li.elgg-menu-item-extra-tooltip a,
 .elgg-menu-widget > li.elgg-menu-item-river-view-all a,
-.elgg-menu-widget > li.elgg-menu-item-groups-view-all a	{
+.elgg-menu-widget > li.elgg-menu-item-groups-view-all a,
+.elgg-menu-widget > li.elgg-menu-item-groups-view-all a {
 	display: block;
 }
 
 .elgg-widget-instance-tgstheme_extra ul.elgg-menu-widget,
 .elgg-widget-instance-tgstheme_river ul.elgg-menu-widget,
-.elgg-widget-instance-tgstheme_groups ul.elgg-menu-widget {
+.elgg-widget-instance-tgstheme_groups ul.elgg-menu-widget,
+.elgg-widget-instance-todo ul.elgg-menu-widget {
 	float: right;
 }
 
