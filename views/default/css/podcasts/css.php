@@ -97,6 +97,18 @@ $images_url = elgg_get_site_url() . 'mod/tgstheme/_graphics/podcasts/';
 	left: 605px;
 }
 
+.elgg-layout-two-sidebar .elgg-item .elgg-podcast-player .elgg-podcast-player-statusbar {
+	width: 365px;
+}
+
+.elgg-layout-two-sidebar .elgg-item .elgg-podcast-player .elgg-podcast-player-background-bar {
+	width: 525px;
+}
+
+.elgg-layout-two-sidebar .elgg-item .elgg-podcast-player .elgg-podcast-player-timing-container {
+	left: 445px;
+}
+
 .elgg-podcast-player .elgg-podcast-player-background-bar {
 	margin: 20px 10px 10px;
     width: 706px;
