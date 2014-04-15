@@ -85,6 +85,18 @@ $images_url = elgg_get_site_url() . 'mod/tgstheme/_graphics/podcasts/';
 	margin: 25px 0;
 }
 
+.elgg-list-annotation .elgg-podcast-player .elgg-podcast-player-statusbar {
+	width: 525px;
+}
+
+.elgg-list-annotation .elgg-podcast-player .elgg-podcast-player-background-bar {
+	 width: 606px;
+}
+
+.elgg-list-annotation .elgg-podcast-player .elgg-podcast-player-timing-container {
+	left: 605px;
+}
+
 .elgg-podcast-player .elgg-podcast-player-background-bar {
 	margin: 20px 10px 10px;
     width: 706px;
@@ -141,6 +153,7 @@ $images_url = elgg_get_site_url() . 'mod/tgstheme/_graphics/podcasts/';
 	height: 68px;
 	display: inline-block;
 	cursor: pointer;
+	border-bottom: none;
 	background: transparent url(<?php echo $images_url; ?>spot_button_sprites.png) no-repeat left;
 }
 
