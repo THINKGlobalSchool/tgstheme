@@ -56,7 +56,7 @@ $ui_img_path = $theme_img_path . 'jqueryui/';
 ----------------------------------*/
 
 /* Overlays */
-.ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 9004 !important;}
 
 
 /*
@@ -453,7 +453,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
  *
  * http://docs.jquery.com/UI/Dialog#theming
  */
-.ui-dialog { position: absolute; width: 300px; overflow: hidden; }
+.ui-dialog { position: absolute; width: 300px; overflow: hidden; z-index: 9005 !important;}
 .ui-dialog .ui-dialog-titlebar { text-transform: uppercase; font-family: 'Shanti',sans-serif; padding: .4em 1em; position: relative;  }
 .ui-dialog .ui-dialog-title { float: left; margin: .1em 16px .1em 0; } 
 .ui-dialog .ui-dialog-titlebar-close { position: absolute; right: .3em; top: 50%; width: 19px; margin: -10px 0 0 0; padding: 1px; height: 18px; }
