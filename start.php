@@ -165,7 +165,7 @@ function tgstheme_init() {
 	
 		elgg_register_menu_item('extras', array(
 			'name' => 'email_share',
-			'text' => elgg_view_icon('mail-red'),
+			'text' => elgg_view_icon('mail-alt-solid'),
 			'href' => "ajax/view/tgstheme/email_share?address=$address",
 			'link_class' => 'elgg-lightbox',
 			'rel' => 'nofollow',
@@ -230,6 +230,9 @@ function tgstheme_init() {
 
 	// Set up activity menu
 	elgg_register_plugin_hook_handler('register', 'menu:activity_filter', 'tgstheme_activity_menu_setup');
+
+	// Modify footer menu
+	elgg_register_plugin_hook_handler('register', 'menu:footer', 'tgstheme_footer_menu_setup');
 
 	// Modify the 'site' menu to get return just the browse menu
 	//elgg_register_plugin_hook_handler('prepare', 'menu:site', 'elgg_site_menu_setup');
@@ -523,21 +526,34 @@ function tgstheme_pagesetup() {
 		elgg_register_menu_item('quickbar', $item);
 	}
 
-	// Topbar 'home' item
-	// $item = new ElggMenuItem('home', elgg_view_icon('home') . elgg_echo('home'), $home_url);
-	// elgg_register_menu_item('topbar', $item);
-
-	// Add a couple footer items
-	$item = new ElggMenuItem('1termsofuse', elgg_echo("tgstheme:label:terms"), elgg_get_site_url() . 'legal/spot_terms_of_use');
-	elgg_register_menu_item('footer', $item);
-
-	$item = new ElggMenuItem('2privacypolicysupplement', elgg_echo("tgstheme:label:policysupplement"), elgg_get_site_url() . 'legal/privacy_supplement');
-	elgg_register_menu_item('footer', $item);
-
 	/** Set null page owners on required pages **/
 	if (elgg_get_context() == 'activity') {
 		elgg_set_page_owner_guid(1);
 	}
+
+
+	// Add terms of use footer item
+	$options = array(
+		'name' => 'termsofuse',
+		'href' => elgg_get_site_url() . 'legal/spot_terms_of_use',
+		'text' => elgg_echo("tgstheme:label:terms"),
+		//'section' => 'meta',
+		'priority' => 100,
+	);
+	
+	elgg_register_menu_item('footer', ElggMenuItem::factory($options));
+
+	// Add privacy footer item
+	$options = array(
+		'name' => 'privacypolicysupplement',
+		'href' => elgg_get_site_url() . 'legal/privacy_supplement',
+		'text' => elgg_echo("tgstheme:label:policysupplement"),
+		//'section' => 'meta',
+		'priority' => 200,
+	);
+
+	elgg_register_menu_item('footer', ElggMenuItem::factory($options));
+
 }
 
 // Hook into bookmakrs routing to provide extra content
@@ -772,7 +788,7 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 		switch ($item->getName()) {
 			case 'logout':
 				$logout_item = $item;
-				$logout_item->setText("<span class='elgg-icon elgg-icon-arrow-right'></span>" . $logout_item->getText());
+				$logout_item->setText(elgg_view_icon('arrow-right') . $logout_item->getText());
 				$logout_item->setPriority(500);
 				unset($items[$idx]);
 				break;
@@ -818,7 +834,7 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 				$view_profile_item = ElggMenuItem::factory(array(
 					'name' => 'view_profile',
 					'href' => $item->getHref(),
-					'text' => "<span class='elgg-icon elgg-icon-arrow-left'></span>" . elgg_echo('tgstheme:label:viewprofile'),
+					'text' => elgg_view_icon('arrow-left') . elgg_echo('tgstheme:label:viewprofile'),
 					'priority' => 100,
 				));
 				$view_profile_item->setParent($item);
@@ -827,7 +843,7 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 				$edit_profile_item = ElggMenuItem::factory(array(
 					'name' => 'edit_profile',
 					'href' => elgg_normalize_url("profile/{$user->username}/edit"),
-					'text' => "<span class='elgg-icon elgg-icon-settings'></span>" . elgg_echo('profile:edit'),
+					'text' => elgg_view_icon('settings-alt') . elgg_echo('profile:edit'),
 					'priority' => 200,
 				));
 
@@ -838,7 +854,7 @@ function tgstheme_topbar_menu_handler($hook, $type, $items, $params) {
 				$edit_avatar_item = ElggMenuItem::factory(array(
 					'name' => 'edit_avatar',
 					'href' => elgg_normalize_url("avatar/edit/{$user->username}"),
-					'text' => "<span class='elgg-icon elgg-icon-settings'></span>" . elgg_echo('avatar:edit'),
+					'text' => elgg_view_icon('settings-alt') . elgg_echo('avatar:edit'),
 					'priority' => 300,
 				));
 
@@ -1291,6 +1307,20 @@ function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
 
 	$return[] = ElggMenuItem::factory($options);
 
+
+	return $return;
+}
+
+/**
+ * Modify the elgg footer menu
+ */
+function tgstheme_footer_menu_setup($hook, $type, $return, $params) {
+	// Remove 'powered by', we'll include this later
+	foreach ($return as $idx => $item) {
+		if ($item->getName() == 'powered') {
+			unset($return[$idx]);
+		}
+	}
 
 	return $return;
 }

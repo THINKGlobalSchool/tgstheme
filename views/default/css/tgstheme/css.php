@@ -5,12 +5,12 @@
  * @package TGSTheme2
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010
+ * @copyright THINK Global School 2010 - 2014
  * @link http://www.thinkglobalschool.com/
  *
  */
 ?>
-
+/* <style> /**/
 a.activity-update-link {
 	display: inline-block;
 	color:white;
@@ -303,7 +303,7 @@ table#stats-table td.stat {
 	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/elgg_sprites.png) no-repeat left;
 	width: 16px;
 	height: 16px;
-	background-position: 0 -738px;
+	background-position: 0 -972px;
 	float: right;
 	margin-left: 5px;
 }
@@ -347,13 +347,13 @@ table#stats-table td.stat {
 
 .elgg-menu-entity-actions li {
 	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/elgg_sprites.png) no-repeat left;
-	background-position: 0 -1008px;
+	background-position: 0 -1224px;
 	height: 16px;
 	margin-top: 5px;
 }
 
 .elgg-menu-entity-actions li:hover {
-	background-position: 0 -990px;
+	background-position: 0 -1206px;
 }
 
 .elgg-menu-entity-actions li a {
@@ -729,7 +729,7 @@ span.actions-text {
 
 /** Tweaks for topbar settings icons **/
 .elgg-menu-item-profile .elgg-child-menu .elgg-icon-settings {
-	background-position: 0 -738px;
+	background-position: 0 -972px;
 }
 
 .elgg-menu-item-profile .elgg-child-menu > li:last-child > a,
@@ -1082,7 +1082,7 @@ span.actions-text {
 
 /** Tidypics **/
 .elgg-menu-item-tagging {
-	background-position: 0 -1044px !important;
+	background-position: 0 -1260px !important;
 }
 
 div.tidypics-upload-image-element .tidypics-upload-image-progress .tidypics-upload-image-progress-bar {

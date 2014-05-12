@@ -6,6 +6,7 @@
  * @subpackage UI
  */
 ?>
+/* <style> /**/
 
 /* ***************************************
 	Typography
@@ -134,7 +135,8 @@ h6 { font-size: 0.8em; }
 }
 
 .elgg-loud {
-	color: #0054A7;
+	color: #91131E;
+	font-weight: bold;
 }
 
 /* ***************************************
