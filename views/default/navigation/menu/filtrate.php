@@ -44,7 +44,7 @@ if (count($vars['menu']['advanced']) && !$disable_advanced) {
 	$options = array(
 		'name' => 'advanced',
 		'href' => '#',
-		'text' => elgg_echo('todo:label:showadvanced'),
+		'text' => elgg_echo('tgstheme:label:showadvanced'),
 		'link_class' => 'menu-sort filtrate-show-advanced advanced-off',
 		'encode_text' => false,
 		'section' => 'extras',

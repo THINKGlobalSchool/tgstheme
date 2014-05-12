@@ -55,6 +55,8 @@ $english = array(
 	'tgstheme:label:selectagroup' => 'Select a group',
 	'tgstheme:label:tag' => 'Tag',
 	'tgstheme:label:typename' => 'Type a name',
+	'tgstheme:label:showadvanced' => 'Advanced Options',
+	'tgstheme:label:nogroups' => 'No Groups',
 	
 	'tgstheme:stats:blog' => 'Blog Posts',
 	'tgstheme:stats:photo' => 'Photos',
