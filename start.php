@@ -112,6 +112,7 @@ function tgstheme_init() {
 	$css = elgg_get_simplecache_url('css', 'jquery.ui');
 	elgg_register_simplecache_view('css/jquery.ui');
 	elgg_register_css('elgg.jquery.ui', $css);
+	elgg_load_css('elgg.jquery.ui');
 
 	if (elgg_get_context() == 'activity') {
 		elgg_load_js('elgg.activityping');
@@ -1240,7 +1241,7 @@ function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
 			$groups_array[$group->guid] = $group->name;
 		}
 	} else {
-		$groups_array[''] = elgg_echo('todo:label:nogroups');
+		$groups_array[''] = elgg_echo('tgstheme:label:nogroups');
 	}
 
 	$group_filter_input = elgg_view('input/chosen_dropdown', array(
