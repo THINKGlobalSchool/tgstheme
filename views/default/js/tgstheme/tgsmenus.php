@@ -55,8 +55,7 @@ elgg.tgsmenus.entityMenuHandler = function(hook, type, params, options) {
 	// Interesting way to check if string starts with (see below)
 	if (params.target.attr('id') && params.target.attr('id').lastIndexOf("entity-actions-", 0) === 0) {
 		options.my = 'right top';
-		options.at = 'right bottom';
-		options.offset = "0 15";
+		options.at = 'right bottom+15';
 		return options;
 	}
 	return null;

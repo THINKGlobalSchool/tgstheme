@@ -103,9 +103,6 @@ $content = <<<HTML
 	<div class='elgg-foot'>
 		$submit_input
 	</div>
-	<script type='text/javascript'>
-		elgg.userpicker.init();
-	</script>
 HTML;
 
 echo $content;

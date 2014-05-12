@@ -20,9 +20,6 @@
  * @uses $vars['id']               Optional unique id for this menu (will be generated otherwise)
  */
 
-elgg_load_js('elgg.filtrate');
-elgg_load_js('elgg.filtrate.utilities');
-
 $infinite_scroll = elgg_extract('infinite_scroll', $vars);
 $list_url = elgg_extract('list_url', $vars);
 $default_params = json_encode(elgg_extract('default_params' , $vars));
@@ -40,24 +37,18 @@ if (!$disable_history) {
 
 $js = <<<JAVASCRIPT
 	<script type='text/javascript'>
-		$(document).ready(function() {
-			if (elgg.filtrate != undefined) {
-				// Init filtrate on system init
-				elgg.register_hook_handler('init', 'system', function(){
-					// Go go gadget filtrate
-					$('#$id').filtrate({
-						defaultParams: $.param($.parseJSON('$default_params')),
-						ajaxListUrl: '$list_url',
-						enableInfinite: $infinite_scroll,
-						disableHistory: $disable_history,
-						context: '$context'
-					});
+		require(['filtrate/Filtrate'], function (Filtrate) {
+			elgg.register_hook_handler('init', 'system', function(){
+				// Go go gadget filtrate
+				$('#$id').Filtrate({
+					defaultParams: $.param($.parseJSON('$default_params')),
+					ajaxListUrl: '$list_url',
+					enableInfinite: $infinite_scroll,
+					disableHistory: $disable_history,
+					context: '$context'
 				});
+			});
 
-			} else {
-				// AMD sure would be fantastic wouldn't it?
-				console.log('WARNING: FILTRATE IS NOT LOADED');
-			}
 		});
 	</script>
 JAVASCRIPT;

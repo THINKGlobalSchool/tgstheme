@@ -27,12 +27,14 @@
  *   * navigation/breadcrumbs
  *   * search/css
  *   * search/search_box
- *   * js/tinymce
  *   * river/elements/image
  *   * profile/layout
  *   * profile/header
  *   * group/default (set view location)
  *   * groups/profile/summary
+ *
+ * 1.9 UPDATE TODOS
+ *   * Re-work chosen/main theme JS libs (use AMD)
  */
 
 elgg_register_event_handler('init', 'system', 'tgstheme_init');
@@ -40,18 +42,12 @@ elgg_register_event_handler('pagesetup', 'system', 'tgstheme_pagesetup', 501);
 
 function tgstheme_init() {
 
-	// Register Global CSS
-	$t_css = elgg_get_simplecache_url('css', 'tgstheme/css');
-	elgg_register_simplecache_view('css/tgstheme/css');
-	elgg_register_css('elgg.tgstheme', $t_css);
-	elgg_load_css('elgg.tgstheme');
+	// Extend global CSS
+	elgg_extend_view('css/elgg', 'css/tgstheme/css');
+	elgg_extend_view('css/elgg', 'css/filtrate/filtrate');
+	elgg_extend_view('css/elgg', 'css/chosen');
+	elgg_extend_view('css/elgg', 'css/jquery.ui');
 	
-	// Register TinyMCE CSS
-	$tm_css = elgg_get_simplecache_url('css', 'tgstheme/tinymce');
-	elgg_register_simplecache_view('css/tgstheme/tinymce');
-	elgg_register_css('elgg.tgstheme.tinymce', $tm_css);
-	elgg_load_css('elgg.tgstheme.tinymce');
-
 	// Register general tgstheme JS library
 	$t_js = elgg_get_simplecache_url('js', 'tgstheme/tgstheme');
 	elgg_register_simplecache_view('js/tgstheme/tgstheme');
@@ -63,12 +59,7 @@ function tgstheme_init() {
 	elgg_register_simplecache_view('js/tgstheme/activityping');
 	elgg_register_js('elgg.activityping', $ap_js);
 	
-	// Register Share Ping JS library
-	$s_js = elgg_get_simplecache_url('js', 'tgstheme/share');
-	elgg_register_simplecache_view('js/tgstheme/share');
-	elgg_register_js('elgg.share', $s_js);
-	
-	// Register Share Ping JS library
+	// Register Share JS library
 	$s_js = elgg_get_simplecache_url('js', 'tgstheme/share');
 	elgg_register_simplecache_view('js/tgstheme/share');
 	elgg_register_js('elgg.share', $s_js);
@@ -85,41 +76,12 @@ function tgstheme_init() {
 	elgg_register_js('chosen.js', $c_js);
 	elgg_load_js('chosen.js');
 
-	// Register filtrate js library
-	$f_js = elgg_get_simplecache_url('js', 'filtrate/filtrate');
-	elgg_register_simplecache_view('js/filtrate/filtrate');
-	elgg_register_js('elgg.filtrate', $f_js);
-	
-
-	// Register filtrate js library
-	$f_css = elgg_get_simplecache_url('css', 'filtrate/filtrate');
-	elgg_register_simplecache_view('css/filtrate/filtrate');
-	elgg_register_css('elgg.filtrate', $f_css);
-	elgg_load_css('elgg.filtrate');
-
-	// Register filtrate utilities js library
-	$f_js = elgg_get_simplecache_url('js', 'filtrate/utilities');
-	elgg_register_simplecache_view('js/filtrate/utilities');
-	elgg_register_js('elgg.filtrate.utilities', $f_js);
-
-	// Register chosen.js css library
-	$c_css = elgg_get_simplecache_url('css', 'chosen');
-	elgg_register_simplecache_view('css/chosen');
-	elgg_register_css('chosen.js', $c_css);
-	elgg_load_css('chosen.js');
-
-	// Register jquery ui css
-	$css = elgg_get_simplecache_url('css', 'jquery.ui');
-	elgg_register_simplecache_view('css/jquery.ui');
-	elgg_register_css('elgg.jquery.ui', $css);
-	elgg_load_css('elgg.jquery.ui');
+	// Register filtrate js AMD
+	elgg_register_external_view('js/filtrate/Filtrate.js', true);
 
 	if (elgg_get_context() == 'activity') {
 		elgg_load_js('elgg.activityping');
 	}
-
-	// Register JS for jQuery HTML extension (fixes weird autocomplete when ajax loaded)
-	elgg_register_js('elgg.userpicker.html', 'mod/tgstheme/vendors/jquery.ui.autocomplete.html.js');
 
 	// Register 'home' page handler if roles isn't enabled
 	if (!elgg_is_active_plugin('roles')) {
@@ -159,8 +121,6 @@ function tgstheme_init() {
 		elgg_load_js('lightbox');
 		elgg_load_js('elgg.share');
 		elgg_load_css('lightbox');
-		elgg_load_js('elgg.userpicker');
-		elgg_load_js('elgg.userpicker.html');
 	
 		$address = urlencode(current_page_url());
 	
@@ -191,7 +151,6 @@ function tgstheme_init() {
 	
 	// Extend admin CSS
 	elgg_extend_view('css/admin', 'css/tgstheme/admin');
-	elgg_extend_view('css/admin', 'css/elements/autocomplete_admin');
 	
 	// Extend custommenus CSS
 	elgg_extend_view('css/custommenus/css', 'css/tgstheme/custommenus');

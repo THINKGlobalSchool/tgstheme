@@ -272,7 +272,11 @@ input[type="radio"] {
 }
 .ui-autocomplete a:hover {
 	text-decoration: none;
-	color: #4690D6;
+	color: #91131E;
+}
+
+.ui-autocomplete .ui-menu .ui-menu-item a {
+	padding: none;
 }
 
 /* ***************************************

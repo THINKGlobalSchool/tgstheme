@@ -397,7 +397,7 @@ $ui_img_path = $theme_img_path . 'jqueryui/';
 .ui-menu .ui-menu-item a {
 	text-decoration:none;
 	display:block;
-	padding:.2em .4em;
+	padding: none;
 	line-height:1.5;
 	zoom:1;
 }
