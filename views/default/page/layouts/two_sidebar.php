@@ -19,14 +19,6 @@ if (isset($vars['class'])) {
 	$class = "$class {$vars['class']}";
 }
 
-// navigation defaults to breadcrumbs
-$nav = elgg_extract('nav', $vars, elgg_view('navigation/breadcrumbs'));
-
-$extras = elgg_view_menu('extras', array(
-	'sort_by' => 'priority',
-	'class' => 'elgg-menu-hz',
-));
-
 ?>
 
 <div class="<?php echo $class; ?>">
@@ -42,9 +34,14 @@ $extras = elgg_view_menu('extras', array(
 	</div>
 
 	<div class="elgg-main elgg-body">
-		<?php
-			echo $nav;
-			echo $extras;
+		<?php		
+			echo elgg_extract('nav', $vars, elgg_view('navigation/breadcrumbs'));
+			echo elgg_view_menu('extras', array(
+				'sort_by' => 'priority',
+				'class' => 'elgg-menu-hz',
+			));
+
+			echo elgg_view('page/layouts/elements/header', $vars);
 
 			// @todo deprecated so remove in Elgg 2.0
 			if (isset($vars['area1'])) {
@@ -53,6 +50,8 @@ $extras = elgg_view_menu('extras', array(
 			if (isset($vars['content'])) {
 				echo $vars['content'];
 			}
+
+			echo elgg_view('page/layouts/elements/footer', $vars);
 		?>
 	</div>
 </div>

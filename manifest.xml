@@ -1,29 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin_manifest xmlns="http://www.elgg.org/plugin_manifest/1.8">
-	<name>TGS Theme 2</name>
+	<name>TGS Theme</name>
+	<id>tgstheme</id>
 	<author>Jeff Tilson</author>
-	<version>1.8</version>
+	<version>1.9</version>
 	<category>theme</category>
 	<category>tgs</category>
-	<blurb>TGS Theme 2</blurb>
-	<description>Spiffy new TGS Spot Theme. Includes custom landing page</description>
+	<blurb>TGS Theme</blurb>
+	<description>Official TGS Spot theme</description>
 	<website>http://www.thinkglobalschool.org/</website>
 	<copyright>THINK Global School 2010 - 2014</copyright>
 	<license>GNU Public License version 2</license>
 	<requires>
 		<type>elgg_release</type>
-		<version>1.8</version>
+		<version>1.9</version>
 	</requires>
 	<requires>
 		<type>plugin</type>
 		<name>roles</name>
-		<version>1.8</version>
-		<comparison>ge</comparison>
-	</requires>
-	<requires>
-		<type>plugin</type>
-		<name>wire-extender</name>
-		<version>1.8</version>
+		<version>1.9</version>
 		<comparison>ge</comparison>
 	</requires>
 	<requires>

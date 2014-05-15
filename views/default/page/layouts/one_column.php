@@ -17,31 +17,28 @@ if (isset($vars['class'])) {
 	$class = "$class {$vars['class']}";
 }
 
-// navigation defaults to breadcrumbs
-$nav = elgg_extract('nav', $vars, elgg_view('navigation/breadcrumbs'));
-
-$extras = elgg_view_menu('extras', array(
-	'sort_by' => 'priority',
-	'class' => 'elgg-menu-hz',
-));
-
 ?>
 <div class="<?php echo $class; ?>">
-	<div class="elgg-body elgg-main">
-	<?php
-		echo $nav;
-		echo $extras;
+	<div class="elgg-main elgg-body">
+		<?php		
+			echo elgg_extract('nav', $vars, elgg_view('navigation/breadcrumbs'));
+			echo elgg_view_menu('extras', array(
+				'sort_by' => 'priority',
+				'class' => 'elgg-menu-hz',
+			));
 
-		if ($vars['title']) {
-			echo elgg_view_title($vars['title'], array('class' => 'elgg-heading-main'));
-		}
+			echo elgg_view('page/layouts/elements/header', $vars);
 
-		echo $vars['content'];
-		
-		// @deprecated 1.8
-		if (isset($vars['area1'])) {
-			echo $vars['area1'];
-		}
-	?>
+			// @todo deprecated so remove in Elgg 2.0
+			if (isset($vars['area1'])) {
+				echo $vars['area1'];
+			}
+			if (isset($vars['content'])) {
+				echo $vars['content'];
+			}
+
+			echo elgg_view('page/layouts/elements/footer', $vars);
+		?>
+	</div>
 	</div>
 </div>

@@ -125,6 +125,10 @@
 	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/two_sidebar_background.gif) repeat-y right top;
 }
 
+.elgg-layout-widgets > .elgg-widgets {
+	float: right;
+}
+
 /* Fix tinyMCE toolbar in two-sidebar layout */
 .elgg-layout-two-sidebar .mceToolbar * {
     white-space: normal !important;

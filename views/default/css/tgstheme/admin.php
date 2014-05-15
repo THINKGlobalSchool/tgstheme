@@ -1,15 +1,20 @@
 <?php
 /**
- * TGS Theme 2 Admin CSS
+ * TGS Theme Admin CSS
  *
  * @package TGSTheme2
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010
+ * @copyright THINK Global School 2010 - 2014
  * @link http://www.thinkglobalschool.com/
  *
  */
+
+// Include other views
+echo elgg_view('css/tgstheme/entitymenu', $vars);
+
 ?>
+/** <style> /**/
 
 /* ***************************************
 	List
@@ -162,4 +167,10 @@
 	top: -6px;
 	left: 0;
 }
+
+/** Inputs **/
+.elgg-user-picker input[name="match_on"] {
+	display: none;
+}
+/** End Inputs **/
 

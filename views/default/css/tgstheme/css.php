@@ -1,6 +1,6 @@
 <?php
 /**
- * TGS Theme 2 CSS
+ * TGS Theme CSS
  *
  * @package TGSTheme2
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
@@ -8,9 +8,15 @@
  * @copyright THINK Global School 2010 - 2014
  * @link http://www.thinkglobalschool.com/
  *
- */
+ **/
+
+// Include other views
+echo elgg_view('css/tgstheme/entitymenu', $vars);
+
 ?>
-/* <style> /**/
+/** <style> /**/
+
+/** Activity Update **/
 a.activity-update-link {
 	display: inline-block;
 	color:white;
@@ -36,6 +42,8 @@ a.activity-update-link:hover {
 	color:white;
 	text-decoration: none;
 }
+
+/** End Activity Update **/
 
 /** Custom sidebars **/
 .elgg-home-sidebar {
@@ -81,17 +89,9 @@ a.activity-update-link:hover {
 	margin: 0 10px 15px;
 }
 
-
-
 /** End roles homepage styles **/
 
-.tgs-footer {
-	background: #aaa;
-	width: 100%;
-	padding: 5px;
-	color: #222222;
-	font-size: 10px;
-}
+/** TGSTheme profile **/
 
 table.tgstheme-profile {
 	width: 100%;
@@ -128,85 +128,6 @@ table.tgstheme-profile .profile-right {
 	margin-bottom: 0;
 }
 
-/* By default, don't add a margin for modules within modules on homepage */
-.elgg-layout-one-sidebar-roles-home .elgg-module .elgg-module {
-	margin-bottom: 0;
-}
-
-.elgg-layout-one-sidebar-roles-home .elgg-module .elgg-module {
-	
-}
-
-.elgg-widget-instance-announcements.elgg-module .elgg-module {
-	margin-bottom: 5px;
-}
-
-.tgstheme-profile-module {
-	border: 0;
-	border-radius: 0;
-}
-
-.tgstheme-groups-module {
-	padding-bottom: 15px;
-}
-
-.tgstheme-profile-module .elgg-body {
-	padding: 0px;
-}
-
-
-.tgstheme-group-listing {
-	clear: both;
-	border-bottom: 1px solid #ccc;
-	padding: 5px;
-}
-
-.tgstheme-group-icon {
-	float: left;
-	margin-right: 10px;
-}
-
-.tgstheme-group-info {
-	float: left;
-	width: 50%;
-}
-
-.tgstheme-group-updated {
-	float: right;
-	text-align: right;
-}
-
-.tgstheme-group-updated .time-updated {
-	font-weight: bold;
-	color: #888;
-}
-
-/** Widget  menus **/
-.elgg-menu-widget > li.elgg-menu-item-extra-tooltip,
-.elgg-menu-widget > li.elgg-menu-item-river-view-all,
-.elgg-menu-widget > li.elgg-menu-item-groups-view-all,
-.elgg-menu-widget > li.elgg-menu-item-todo-view-all {
-	float: left;
-	position: relative;
-	right: 6px;
-	top: 2px;
-	width: auto;
-}
-
-.elgg-menu-widget > li.elgg-menu-item-extra-tooltip a,
-.elgg-menu-widget > li.elgg-menu-item-river-view-all a,
-.elgg-menu-widget > li.elgg-menu-item-groups-view-all a,
-.elgg-menu-widget > li.elgg-menu-item-groups-view-all a {
-	display: block;
-}
-
-.elgg-widget-instance-tgstheme_extra ul.elgg-menu-widget,
-.elgg-widget-instance-tgstheme_river ul.elgg-menu-widget,
-.elgg-widget-instance-tgstheme_groups ul.elgg-menu-widget,
-.elgg-widget-instance-todo ul.elgg-menu-widget {
-	float: right;
-}
-
 table#tgstheme-profile-stats {
 	height: 111px;
 	border-top: none;
@@ -238,7 +159,97 @@ table#tgstheme-profile-stats td.stat {
 	color: #91131E;
 }
 
-/* STATS */
+/** End TGSTheme profile **/
+
+/** Modules **/
+
+/** By default, don't add a margin for modules within modules on homepage **/
+.elgg-layout-one-sidebar-roles-home .elgg-module .elgg-module {
+	margin-bottom: 0;
+}
+
+.elgg-layout-one-sidebar-roles-home .elgg-module .elgg-module {
+	
+}
+
+.elgg-widget-instance-announcements.elgg-module .elgg-module {
+	margin-bottom: 5px;
+}
+
+.tgstheme-profile-module {
+	border: 0;
+	border-radius: 0;
+}
+
+.tgstheme-groups-module {
+	padding-bottom: 15px;
+}
+
+.tgstheme-profile-module .elgg-body {
+	padding: 0px;
+}
+
+/** End Modules **/
+
+/** Group listings **/
+
+.tgstheme-group-listing {
+	clear: both;
+	border-bottom: 1px solid #ccc;
+	padding: 5px;
+}
+
+.tgstheme-group-icon {
+	float: left;
+	margin-right: 10px;
+}
+
+.tgstheme-group-info {
+	float: left;
+	width: 50%;
+}
+
+.tgstheme-group-updated {
+	float: right;
+	text-align: right;
+}
+
+.tgstheme-group-updated .time-updated {
+	font-weight: bold;
+	color: #888;
+}
+
+/** End group listings **/
+
+/** Widget  menus **/
+.elgg-menu-widget > li.elgg-menu-item-extra-tooltip,
+.elgg-menu-widget > li.elgg-menu-item-river-view-all,
+.elgg-menu-widget > li.elgg-menu-item-groups-view-all,
+.elgg-menu-widget > li.elgg-menu-item-todo-view-all {
+	float: left;
+	position: relative;
+	right: 6px;
+	top: 2px;
+	width: auto;
+}
+
+.elgg-menu-widget > li.elgg-menu-item-extra-tooltip a,
+.elgg-menu-widget > li.elgg-menu-item-river-view-all a,
+.elgg-menu-widget > li.elgg-menu-item-groups-view-all a,
+.elgg-menu-widget > li.elgg-menu-item-groups-view-all a {
+	display: block;
+}
+
+.elgg-widget-instance-tgstheme_extra ul.elgg-menu-widget,
+.elgg-widget-instance-tgstheme_river ul.elgg-menu-widget,
+.elgg-widget-instance-tgstheme_groups ul.elgg-menu-widget,
+.elgg-widget-instance-todo ul.elgg-menu-widget {
+	float: right;
+}
+
+/** End Widget menus **/
+
+/** Stats **/
 
 table#stats-table td.label {
 	text-shadow: 1px 1px 1px #AAAAAA;
@@ -249,186 +260,38 @@ table#stats-table td.stat {
 	color: #800518;
 }
 
-/* PROFILE TWEAK */
+/** End Stats **/
+
+/** Profile Tweaks **/
 
 #profile-owner-block ul.elgg-menu {
 	margin-top: 15px;
 }
 
-/* Parentportal */
+/** End Profile Tweaks **/
+
+/** Parentportal **/
 .parentportal-header-two-column {
 	padding-top: 10px;
 }
 
-/* Spot Logo */
+/** End Parentportal **/
+
+/** Spot Logo **/
 .spot-logo {
 	position: absolute;
 	left: 0;
 }
 
-/* Likes Tweak */
+/** End Spot Logo **/
+
+/** Likes Tweaks **/
 .elgg-menu .elgg-menu-item-likes-count {
 	margin-left: 15px !important; 
 }
+/** End Likes Tweaks **/
 
-/* Custom menu tweaks */
-#custommenu {
-	margin-top: -4px;
-}
-
-#custommenu ul.elgg-menu {
-	margin-top: -2px;
-}
-
-/* Entity Menu Improvements */
-
-.entity_anchor_hidden {
-	display: none !important;
-}
-
-.tgstheme-entity-menu {
-	float: right;
-	height: 25px;
-}
-
-.tgstheme-entity-menu .tgstheme-entity-menu-actions {
-	display: none;
-}
-
-.tgstheme-entity-menu-actions .elgg-menu-entity {
-	margin-left: 0px;
-}
-
-.elgg-icon-settings-menu {
-	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/elgg_sprites.png) no-repeat left;
-	width: 16px;
-	height: 16px;
-	background-position: 0 -972px;
-	float: right;
-	margin-left: 5px;
-}
-
-.elgg-menu-entity-buttons {
-	float: none;
-	height: auto;
-	margin-top: 11px;
-}
-
-.elgg-menu-entity-core {
-	height: auto;
-	float: none;
-	text-align: left;
-	width: 100%;
-	border-bottom: 1px dotted #CDCDCD;
-	padding-bottom: 4px;
-}
-
-.elgg-menu-entity-core.core-only-child {
-	border-bottom: none;
-	padding-bottom: 0px;
-}
-
-.elgg-menu-entity-core li {
-	margin-left: 0;
-	margin-right: 15px;
-}
-
-.elgg-menu-entity-hidden {
-	display: none;
-}
-
-.elgg-menu-entity-actions {
-	height: auto;
-	float: none;
-	margin-top: 8px;
-	margin-bottom: 8px;
-	text-align: left;
-}
-
-.elgg-menu-entity-actions li {
-	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/elgg_sprites.png) no-repeat left;
-	background-position: 0 -1224px;
-	height: 16px;
-	margin-top: 5px;
-}
-
-.elgg-menu-entity-actions li:hover {
-	background-position: 0 -1206px;
-}
-
-.elgg-menu-entity-actions li a {
-	margin-left: 20px;
-}
-
-.tgstheme-entity-menu-actions .notch {
-    position: absolute;
-    top: -10px;
-    right: 3px;
-    margin: 0;
-    border-top: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #FFFFFF;
-    padding: 0;
-    width: 0;
-    height: 0;
-    /* ie6 height fix */
-    font-size: 0;
-    line-height: 0;
-     /* ie6 transparent fix */
-    _border-right-color: pink;
-    _border-left-color: pink;
-    _filter: chroma(color=pink);
-}
-
-.tgstheme-entity-menu-actions .border-notch { 
-	border-bottom-color: #333333; top: -11px;
-}
-
-.tgstheme-entity-menu-actions {
-	background-color: #FFFFFF;
-	border: 1px solid #999999;
-	box-shadow: 0 0 2px #BBBBBB;
-	-webkit-box-shadow: 0 0 2px #BBBBBB;
-	-moz-box-shadow: 0 0 2px #BBBBBB;
-	min-height: 24px;
-	padding: 8px 10px 4px;
-	position: absolute;
-	z-index: 9004;
-}
-
-span.actions-caret {
-	position: relative;
-	bottom: 1px;
-	margin-left: 3px;
-}
-
-span.actions-text {
-	border-right: 1px dotted #999999;
-	padding-right: 3px;
-}
-
-.entity-action-toggler {
-	font-size: 1em;
-	padding: 3px 3px 3px 5px !important;
-}
-
-.entity-action-toggler span {
-	color: #333333;
-	font-size: 11px !important;
-	text-transform: uppercase !important;
-}
-
-.elgg-module-featured > .elgg-head .entity-action-toggler span {
-	color: #333333;
-}
-
-.entity-action-toggler:hover span, 
-.entity-action-toggler:focus span {
-	color: #FFFFFF !important;
-}
-
-/* Group Owner Block Improvements */
+/** Group Owner Block Improvements **/
 #tgstheme-collapsable-ownerblock {
 }
 
@@ -495,7 +358,7 @@ span.actions-text {
 	color: #999999;
 }
 
-/* Fancybox Overrides */
+/** Fancybox Overrides **/
 
 #fancybox-wrap {
 	z-index: 9002 !important;
@@ -505,7 +368,7 @@ span.actions-text {
 	z-index: 9003 !important;
 }
 
-/* Home page modules */
+/** Home page modules **/
 
 .home-popup { 
 	position: absolute;
@@ -818,18 +681,18 @@ span.actions-text {
 	column-rule: 1px solid #DDD;
 }*/
 
-/* Multi column general styles */
+/** Multi column general styles **/
 .elgg-menu-topbar .dropdown-wrapper .dropdown-split {
 	width: 50%;
 	float: left;
 }
 
-/* Multi column style for explore item */
+/** Multi column style for explore item **/
 .elgg-menu-topbar .elgg-menu-item-explore .dropdown-wrapper {
 	width: 280px;
 }
 
-/* Multi column style for my groups item */
+/** Multi column style for my groups item **/
 .elgg-menu-topbar .elgg-menu-item-my-groups .dropdown-wrapper {
 	width: 500px;
 }
@@ -912,7 +775,7 @@ span.actions-text {
 	margin-right: 12px;
 }
 
-/* Wrangle in all the topbar menus */
+/** Wrangle in all the topbar menus **/
 .elgg-menu-topbar > li > ul.elgg-menu-topbar-dropdown,
 .elgg-menu-topbar > li > ul.elgg-child-menu,
 .elgg-menu-topbar > li #todo-topbar-hover,
@@ -933,7 +796,7 @@ span.actions-text {
 	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
 }
 
-/* Start notch */
+/** Start notch **/
 .elgg-menu-topbar > li > ul.elgg-menu-topbar-dropdown:after,
 .elgg-menu-topbar > li > ul.elgg-child-menu:after,
 .elgg-menu-topbar > li #todo-topbar-hover:after,
@@ -978,7 +841,7 @@ span.actions-text {
 	border-width: 18px;
 }
 
-/* Profile notch */
+/** Profile notch **/
 .elgg-menu-topbar > li.elgg-menu-item-profile > ul.elgg-child-menu:before {
 	left: 50%;
 	margin-left: 45px;
@@ -988,7 +851,7 @@ span.actions-text {
 	margin-left: 48px;
 }
 
-/* Groups notch */
+/** Groups notch **/
 .elgg-menu-topbar > li #groups-topbar-hover:before {
 	left: 0;
 	margin-left: 47px;
@@ -998,7 +861,7 @@ span.actions-text {
 	margin-left: 50px;
 }
 
-/* Todo notch */
+/** Todo notch **/
 .elgg-menu-topbar > li #todo-topbar-hover:before {
 	left: 0;
 	margin-left: 40px;
@@ -1008,7 +871,7 @@ span.actions-text {
 	margin-left: 43px;
 }
 
-/* Browse notch */
+/** Browse notch **/
 .elgg-menu-topbar > li > ul.elgg-menu-topbar-dropdown:before,
 .elgg-menu-topbar > li > div.dropdown-wrapper:before {
 	left: 0;
@@ -1020,7 +883,7 @@ span.actions-text {
 	margin-left: 23px;
 }
 
-/* Login notch */
+/** Login notch **/
 #login-dropdown-box:before {
 	left: 50%;
 	margin-left: 48px;
@@ -1034,7 +897,7 @@ span.actions-text {
 	z-index: 9001;
 }
 
-/* End notch */
+/** End notch **/
 
 .elgg-menu-topbar > li > ul.elgg-child-menu li:last-child > a,
 .elgg-menu-topbar > li > ul.elgg-child-menu > li:last-child > a:hover,
@@ -1044,7 +907,7 @@ span.actions-text {
 	border-radius: 0px;
 }
 
-/* Reset borders on menu items */
+/** Reset borders on menu items **/
 .elgg-menu-topbar > li > a,
 .elgg-menu-item-search,
 .elgg-menu-item-home {
@@ -1052,7 +915,7 @@ span.actions-text {
 	border-right: none;
 }
 
-/* Set border right on topbar li's */
+/** Set border right on topbar li's **/
 .elgg-menu-topbar > li {
 	/*border-right: 1px solid #DB1730;*/
 }
@@ -1062,15 +925,15 @@ span.actions-text {
 }
 
 .elgg-page-topbar {
-	/* Firefox v3.6+ */
+	/** Firefox v3.6+ **/
 	background-image:-moz-linear-gradient(50% 0% -180deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%); 
-	/* safari v4.0+ and by Chrome v3.0+ */
+	/** safari v4.0+ and by Chrome v3.0+ **/
 	background-image:-webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(171,51,45)),color-stop(1, rgb(127,19,25)));
-	/* Chrome v10.0+ and by safari nightly build*/
+	/** Chrome v10.0+ and by safari nightly build*/
 	background-image:-webkit-linear-gradient(-90deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%);
-	/* Opera v11.10+ */
+	/** Opera v11.10+ **/
 	background-image:-o-linear-gradient(-180deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%);
-	/* IE v10+ */
+	/** IE v10+ **/
 	background-image:-ms-linear-gradient(-180deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%);
 	background-image:linear-gradient(-180deg,rgb(171,51,45) 0%,rgb(127,19,25) 100%);
 	height: 60px;
@@ -1134,7 +997,7 @@ body#elgg-iframe-body .ui-dialog.ui-widget {
 	z-index: 9010 !important;
 }
 
-/* Fix for simplekaltura flash object */
+/** Fix for simplekaltura flash object **/
 body#elgg-iframe-body object#simplekaltura-uploader {
 	width: 100%;
 	height: 33px;
@@ -1209,7 +1072,7 @@ body#elgg-iframe-body #googleapps-docs-container {
 	padding: 10px;
 }
 
-/** Activity menu filters */
+/** Activity menu filters **/
 #activity-type-filter {
 	min-width: 250px;
 }
