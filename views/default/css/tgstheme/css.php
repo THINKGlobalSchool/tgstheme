@@ -1130,3 +1130,8 @@ body#elgg-iframe-body #googleapps-docs-container {
 	border-bottom: 1px solid #ccc;
 	font-weight: normal;
 }
+
+/** Colorbox tweaks **/
+#cboxLoadedContent {
+	padding: 3px;
+}

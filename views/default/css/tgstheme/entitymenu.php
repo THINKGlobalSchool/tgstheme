@@ -22,12 +22,18 @@
 	height: 25px;
 }
 
+
+
 .tgstheme-entity-menu .tgstheme-entity-menu-actions {
 	display: none;
 }
 
 .tgstheme-entity-menu-actions .elgg-menu-entity {
 	margin-left: 0px;
+}
+
+.tgstheme-entity-menu-actions .hidden {
+	display: none;
 }
 
 .elgg-icon-settings-menu {

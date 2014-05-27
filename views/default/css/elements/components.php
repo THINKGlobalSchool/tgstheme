@@ -7,24 +7,14 @@
  * @package Elgg.Core
  * @subpackage UI
  */
-/**
- * elgg-body fills the space available to it.
- * It uses hidden text to expand itself. The combination of auto width, overflow
- * hidden, and the hidden text creates this effect.
- *
- * This allows us to float fixed width divs to either side of an .elgg-body div
- * without having to specify the body div's width.
- *
- * @todo check what happens with long <pre> tags or large images
- * @todo Move this to its own file -- it is very complicated and should not have to be overridden.
- */
 ?>
+/* <style> /**/
 
 /* ***************************************
 	Image Block
 *************************************** */
 .elgg-image-block {
-	padding:0;		
+	padding: 0;		
 	margin: 4px 0 6px 0;	
 }
 
@@ -174,7 +164,7 @@
 	margin-bottom: 5px;
 }
 .elgg-item .elgg-content {
-	margin: 10px 5px 3px 5px;
+	margin: 10px 5px;
 }
 
 /* ***************************************
@@ -219,7 +209,11 @@
 	width: 100%;
 	border-top: 1px solid #ccc;
 }
-.elgg-table-alt td {
+.elgg-table-alt th {
+	background-color: #eee;
+	font-weight: bold;
+}
+.elgg-table-alt td, .elgg-table-alt th {
 	padding: 2px 4px 2px 4px;
 	border-bottom: 1px solid #ccc;
 }
@@ -262,6 +256,7 @@
 }
 .elgg-state-error {
 	background-color: red;
+	border: 2px solid white;
 }
 .elgg-state-notice {
 	background-color: #666666;
@@ -271,10 +266,10 @@
 /* ***************************************
 	River
 *************************************** */
-.elgg-river {
+.elgg-list-river {
 	border-top: 1px solid #CCC;
 }
-.elgg-river > li {
+.elgg-list-river > li {
 	border-bottom: 1px solid #CCC;
 }
 .elgg-river-item {
@@ -288,7 +283,6 @@
 	font-size: 85%;
 	font-style: italic;
 	line-height: 1.2em;
-	display: block;
 }
 
 .elgg-river-attachments,
@@ -318,9 +312,6 @@
 	float: right;
 	font-size: 85%;
 	padding: 1px 7px;
-	
-	-webkit-border-radius: 5px 5px 0 0;
-	-moz-border-radius: 5px 5px 0 0;
 	border-radius: 5px 5px 0 0;
 }
 
@@ -330,13 +321,9 @@
 	border-top: none;
 }
 .elgg-river-comments li:first-child {
-	-webkit-border-radius: 5px 0 0;
-	-moz-border-radius: 5px 0 0;
 	border-radius: 5px 0 0;
 }
 .elgg-river-comments li:last-child {
-	-webkit-border-radius: 0 0 5px 5px;
-	-moz-border-radius-bottomleft: 0 0 5px 5px;
 	border-radius-bottomleft: 0 0 5px 5px;
 }
 .elgg-river-comments li {
@@ -350,11 +337,7 @@
 }
 .elgg-river-more {
 	background-color: #EEE;
-	
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	
+	border-radius: 5px;	
 	padding: 2px 4px;
 	font-size: 85%;
 	margin-bottom: 2px;
@@ -364,15 +347,11 @@
 .elgg-river-item form {
 	background-color: #EEE;
 	padding: 4px;
-	
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	
+	border-radius: 5px;	
 	height: 30px;
 }
 .elgg-river-item input[type=text] {
-	width: 79%;
+	width: 80%;
 }
 .elgg-river-item input[type=submit] {
 	margin: 0 0 0 10px;
@@ -382,6 +361,11 @@
 /* **************************************
 	Comments (from elgg_view_comments)
 ************************************** */
+
+.elgg-river-item .elgg-form-comment-save {
+	height: auto;
+}
+
 .elgg-comments {
 	margin-top: 25px;
 }
@@ -425,19 +409,16 @@
 	Tags
 *************************************** */
 .elgg-tags {
-	display: inline;
 	font-size: 85%;
-	position: relative;
-	bottom: 4px;
 }
-.elgg-tags li {
-	display: inline;
+.elgg-tags > li {
+	float:left;
 	margin-right: 5px;
 }
-.elgg-tags li:after {
+.elgg-tags li.elgg-tag:after {
 	content: ",";
 }
-.elgg-tags li:last-child:after {
+.elgg-tags li.elgg-tag:last-child:after {
 	content: "";
 }
 .elgg-tagcloud {

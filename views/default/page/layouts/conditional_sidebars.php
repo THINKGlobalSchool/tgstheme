@@ -30,6 +30,7 @@ if ($sidebar && $sidebar_alt) {
 } else if ($sidebar && !$sidebar_alt) {
 	echo elgg_view_layout('one_sidebar', $vars);
 } else if (!$sidebar && $sidebar_alt) {
+	$vars['sidebar'] = $sidebar_alt;
 	echo elgg_view_layout('one_sidebar_alt', $vars);
 } else {
 	echo elgg_view_layout('one_column', $vars);

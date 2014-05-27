@@ -66,5 +66,6 @@ $filter = elgg_view('page/layouts/elements/filter', $vars);
 $vars['content'] = $filter . $vars['content'];
 
 set_input('conditional_sidebars_core_overrides', true);
+
 echo elgg_view_layout('conditional_sidebars', $vars);
 

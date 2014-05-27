@@ -54,29 +54,24 @@ function tgstheme_init() {
 	
 	// Register general tgstheme JS library
 	$t_js = elgg_get_simplecache_url('js', 'tgstheme/tgstheme');
-	elgg_register_simplecache_view('js/tgstheme/tgstheme');
 	elgg_register_js('elgg.tgstheme', $t_js);
 	elgg_load_js('elgg.tgstheme');
 
 	// Register Activity Ping JS library
 	$ap_js = elgg_get_simplecache_url('js', 'tgstheme/activityping');
-	elgg_register_simplecache_view('js/tgstheme/activityping');
 	elgg_register_js('elgg.activityping', $ap_js);
 	
 	// Register Share JS library
 	$s_js = elgg_get_simplecache_url('js', 'tgstheme/share');
-	elgg_register_simplecache_view('js/tgstheme/share');
 	elgg_register_js('elgg.share', $s_js);
 	
 	// Register Menus JS library
 	$m_js = elgg_get_simplecache_url('js', 'tgstheme/tgsmenus');
-	elgg_register_simplecache_view('js/tgstheme/tgsmenus');
 	elgg_register_js('elgg.tgsmenus', $m_js);
 	elgg_load_js('elgg.tgsmenus');
 
 	// Register chosen.js library
 	$c_js = elgg_get_simplecache_url('js', 'chosen');
-	elgg_register_simplecache_view('js/chosen');
 	elgg_register_js('chosen.js', $c_js);
 	elgg_load_js('chosen.js');
 
@@ -242,14 +237,11 @@ function home_page_handler($page) {
 	gatekeeper();
 
 	/** Tidypics Required Libs **/
-
-	// Load jquery-file-upload libs
-	elgg_load_js('jquery.ui.widget');
-	elgg_load_js('jquery-file-upload');
-	elgg_load_js('jquery.iframe-transport');
-
-	elgg_load_js('tidypics');
-	elgg_load_js('tidypics:upload');
+	// @TODO move to tidypics/AMD load
+	if (elgg_is_active_plugin('tidypics')) {
+		elgg_load_js('tidypics');
+		elgg_load_js('tidypics:upload');
+	}
 
 	// Forward parents to parentportal home, not the dashboard
 	if (elgg_is_active_plugin('parentportal')) {
@@ -587,7 +579,6 @@ function iframe_page_handler($page) {
 		case 'thewire':
 			// register the wire's JavaScript
 			$thewire_js = elgg_get_simplecache_url('js', 'thewire');
-			elgg_register_simplecache_view('js/thewire');
 			elgg_register_js('elgg.thewire', $thewire_js);
 			elgg_load_js('elgg.thewire');
 			$title = "Mini Post";
@@ -932,7 +923,8 @@ function tgstheme_entity_menu_handler($hook, $type, $return, $params) {
 		$core_action_items = array(
 			'edit',
 			'delete',
-			'likes',
+			'like',
+			'unlike',
 			'history',
 		);
 
@@ -947,7 +939,7 @@ function tgstheme_entity_menu_handler($hook, $type, $return, $params) {
 				if (in_array($item->getName(), $core_info_items)) {
 			        $item->setSection('info');
 				} else if (in_array($item->getName(), $core_action_items)) {
-					if ($item->getName() == 'likes' && !elgg_is_logged_in()) {
+					if ($item->getName() == 'like' && !elgg_is_logged_in()) {
 						unset($return[$idx]); // Likes are showing up not logged in for some reason
 					}
 			        $item->setSection('core');

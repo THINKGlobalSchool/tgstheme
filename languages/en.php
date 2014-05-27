@@ -10,7 +10,7 @@
  *
  */
 
-$english = array(
+return array(
 	// Generic
 	'home' => 'Home',
 
@@ -141,5 +141,3 @@ $english = array(
 	'filtrate:title:dashboard' => 'Some title',
 	'filtrate:error:content' => 'There was an error loading content',
 );
-
-add_translation('en',$english);

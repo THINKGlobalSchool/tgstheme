@@ -8,12 +8,15 @@
  * @subpackage UI
  */
 ?>
+/* <style> /**/
 
 .clearfloat { 
 	clear: both;
 }
 
-.hidden {
+<?php /* Need .elgg-page to be able to override .elgg-menu-hz > li {display:inline-block} and such */ ?>
+.hidden,
+.elgg-page .hidden {
 	display: none;
 }
 
@@ -25,33 +28,16 @@
 	text-align: center;
 }
 
-.float {
+.float, .left {
 	float: left;
 }
 
-.float-alt {
+.float-alt, .right {
 	float: right;
-}
-
-.right {
-	float: right;
-}
-
-.left {
-	float: left;
 }
 
 .link {
 	cursor: pointer;
-}
-
-<?php @todo // do we need something like large and small? ?>
-.large {
-	font-size: 120%;
-}
-
-.small {
-	font-size: 80%;
 }
 
 .elgg-discover .elgg-discoverable {
@@ -62,7 +48,9 @@
 	display: block;
 }
 
-.elgg-transition:hover {
+.elgg-transition:hover,
+.elgg-transition:focus,
+:focus > .elgg-transition {
 	opacity: .7;
 }
 
@@ -158,4 +146,3 @@ echo <<<CSS
 .mtl, .mvl{margin-top:$large}
 .mbl, .mvl{margin-bottom:$large}
 CSS;
-?>
