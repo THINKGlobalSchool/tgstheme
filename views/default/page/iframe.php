@@ -5,7 +5,7 @@
  * @package TGSTheme2
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010
+ * @copyright THINK Global School 2010 - 2014
  * @link http://www.thinkglobalschool.com/
  */
 
@@ -44,31 +44,6 @@ $foot = elgg_view('page/elements/foot', $vars);
 	<script type='text/javascript'>
 		$(document).ready(function() {
 			elgg.tgstheme.publishIframeReady();
-
-				// Close the bookmarklet
-				var destroy = function() {
-					window.parent.postMessage("destroy_bookmarklet","*");
-				};
-
-				//Customize colorbox dimensions
-				var colorboxResize = function() {
-					height = window.innerHeight - 250;
-					$.colorbox.resize({
-						'height': height,
-					});
-				}
-
-				$(".publish-lightbox").colorbox({
-					'inline': true,
-					'top': 75,
-					'innerWidth': '620px',
-					'onClosed': function(event) {
-						destroy();
-					},
-					'onComplete': function(event) {
-						colorboxResize();
-					}
-				}).trigger('click');
 		});
 	</script>
 </body>
