@@ -342,6 +342,8 @@ table#stats-table td.stat {
 	position: inherit;
 }
 
+/** Share form **/
+
 .tgstheme-share-email-module {
 	width: 500px;
 }
@@ -356,6 +358,10 @@ table#stats-table td.stat {
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
 	color: #999999;
+}
+
+#email-to-users  {
+	width: 500px;
 }
 
 /** Fancybox Overrides **/
@@ -492,8 +498,6 @@ table#stats-table td.stat {
 }
 
 /** End Publish Module **/
-
-
 
 /** General topbar tweaks **/
 
@@ -952,25 +956,33 @@ div.tidypics-upload-image-element .tidypics-upload-image-progress .tidypics-uplo
 	background: darkred !important;
 }
 
-/** Bookmarklet/iframe **/
-body#elgg-bookmarklet-body,
+/** iframe **/
 body#elgg-iframe-body {
-	background-color: transparent;
+	background: transparent;
 	overflow: hidden;
 }
 
-div#elgg-bookmarklet-wrapper,
-div#elgg-iframe-wrapper  {
+#publish-overlay {
+	background-color: #FFFFFF;
+	opacity: 0.9;
+}
+
+div#elgg-iframe-wrapper {
 	width: 400px;
 }
 
-div#elgg-bookmarklet-form {
-	padding: 10px;
-}
-
 div#elgg-iframe-content {
-	padding: 5px; 
-	width: 750px
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #999999;
+	box-shadow: 0 0 4px #666666;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+	position: relative;
+	top: 100px;
+	width: 750px;
+	overflow-y: scroll;
+	max-height: 80%;
 }
 
 div#elgg-iframe-content hr {
@@ -988,7 +1000,7 @@ span.message.warning {
 	margin-bottom: 7px;
 }
 
-/** Bookmarklet/iframe tweaks **/
+/** iframe tweaks **/
 body#elgg-iframe-body .ui-widget-overlay {
 	background: none !important;
 }

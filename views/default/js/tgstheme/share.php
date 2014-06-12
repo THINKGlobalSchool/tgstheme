@@ -5,7 +5,7 @@
  * @package TGSTheme2
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010
+ * @copyright THINK Global School 2010 - 2014
  * @link http://www.thinkglobalschool.com/
  *
  */
@@ -16,13 +16,13 @@ elgg.provide('elgg.share');
 // Init function
 elgg.share.init = function() {
 	// Email send handler
-	$(document).delegate('#tgstheme-share-email-send', 'click', elgg.share.emailSendClick);
+	$(document).on('click', '#tgstheme-share-email-send', elgg.share.emailSendClick);
 	
 	// Prevent form submit on enter
-	$(document).delegate('#tgstheme-share-email-form input', 'keypress', elgg.share.preventSubmit);
+	$(document).on('keypress', '#tgstheme-share-email-form input', elgg.share.preventSubmit);
 
 	// Share user/address menu click handler
-	$(document).delegate('.share-email-menu-item', 'click', elgg.share.shareMenuClick);
+	$(document).on('click', '.share-email-menu-item', elgg.share.shareMenuClick);
 }
 
 // Email send handler
@@ -55,7 +55,7 @@ elgg.share.emailSendClick = function(event) {
 		},
 		success: function(data) {
 			if (data.status != -1) {
-				$.fancybox.close();
+				$.colorbox.close();
 			} else {
 				$_this.removeAttr('disabled');
 			}

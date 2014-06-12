@@ -82,6 +82,10 @@ function tgstheme_init() {
 		elgg_load_js('elgg.activityping');
 	}
 
+	// Replace colorbox CSS
+	elgg_unregister_css('lightbox', 'vendors/jquery/colorbox/theme/colorbox.css');
+	elgg_register_css('lightbox', elgg_get_site_url() . "mod/tgstheme/vendors/jquery/colorbox/theme/colorbox.css");
+
 	// Register 'home' page handler if roles isn't enabled
 	if (!elgg_is_active_plugin('roles')) {
 		elgg_register_page_handler('home', 'home_page_handler');
@@ -130,6 +134,10 @@ function tgstheme_init() {
 			'link_class' => 'elgg-lightbox',
 			'rel' => 'nofollow',
 		));
+
+		// Load autocomplete for share
+		elgg_load_js('elgg.autocomplete');
+		elgg_load_js('jquery.ui.autocomplete.html');
 	}
 	
 	// Share by email action

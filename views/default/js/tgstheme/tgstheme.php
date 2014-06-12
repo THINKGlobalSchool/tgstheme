@@ -41,24 +41,46 @@ elgg.tgstheme.init = function() {
 	elgg.tgstheme.initPublish();
 }
 
+/** 
+ *  Init profile module 'publish' links
+ */
 elgg.tgstheme.initPublish = function() {
 	// Init publish links
-	$('.tgstheme-publish-item.clickable, .tgstheme-publish-more-menu li.clickable').each(function(){
-		// Get iframe url	
-		var href = elgg.get_site_url() + "iframe/" + $(this).data('type');
-		$(this).fancybox({
-			'href': href,
-			'type': 'iframe',
-			'scrolling': 'auto',
-			'autoSize': true,
-			'width': 760,
-			'onComplete' : function(){
-				$('#fancybox-content').addClass('elgg-ajax-loader');
-				$('#fancybox-frame').load(function(){
-					$('#fancybox-content').removeClass('elgg-ajax-loader');
-				});
-        	}
+	$(document).on('click', '.tgstheme-publish-item.clickable, .tgstheme-publish-more-menu li.clickable', function(event) {	
+		// Get link source for iframe
+		var src = elgg.get_site_url() + "iframe/" + $(this).data('type');
+
+		// Build overlay
+		var $overlay = $(document.createElement('div'));
+		$overlay.addClass('elgg-ajax-loader');
+		$overlay.attr('id', 'publish-overlay');
+
+		// Build iframe
+		var $iframe = $(document.createElement('iframe'));
+		$iframe.attr({
+			'id': 'publish-iframe',
+			'src': src
 		});
+		$iframe.css({
+			'visibility': 'hidden'
+		});
+
+		// Shared CSS for overlay/iframe
+		var common_styles = {
+			'position': 'fixed', 
+			'top': '0',
+			'left': '0', 
+			'height': '100%',
+			'width': '100%',
+			'z-index': '16777270',
+		}
+
+		// Set CSS
+		var $elements = $([$overlay[0], $iframe[0]]);
+		$elements.css(common_styles);
+
+		// Add to body
+		$('body').append($elements);
 	});
 
 	// Init 'more' toggle
@@ -79,6 +101,65 @@ elgg.tgstheme.initPublish = function() {
 	// Hack links in the iframe, need them to target the parent window
 	$('#elgg-iframe-body .ui-dialog-content a').live('click', elgg.tgstheme.parentLocation);
 	$('#elgg-iframe-body .tidypics-lightbox').live('click', elgg.tgstheme.parentLocation);
+}
+
+/** 
+ * Perform post load tasks for the publish iframe
+ */
+elgg.tgstheme.publishIframeReady = function() {
+	// Modify overlay CSS and make the iframe visible
+	window.parent.$('#publish-overlay').css({'z-index': '16777269'}).removeClass('elgg-ajax-loader');	
+	window.parent.$('#publish-iframe').css({'visibility': 'visible'});
+
+	// Create a 'cancel' button
+	var $button = $(document.createElement('a'));
+	$button.attr({
+		'class': 'elgg-button elgg-button-delete'
+	})
+	.html(elgg.echo('cancel'))
+	.on('click', elgg.tgstheme.closePublishIframe);
+
+	// Append button to the form footer
+	$('.elgg-foot').append($button);
+
+	// Bind 'esc' keyup
+	$(document).keyup(function(event) {
+		// Make sure a lightbox isn't visible (prevent cancelling everything accidentally)
+		if (event.keyCode == 27 && !$('#cboxContent').is(':visible')) {
+			elgg.tgstheme.closePublishIframe(event);
+		}
+	});
+
+	// Initial size check
+	setTimeout(function() {
+		var scrollHeight = $("#elgg-iframe-content")[0].scrollHeight;
+		var height = $(window).height();
+		if (scrollHeight > (height - 150)) {
+			console.log('tweaking');
+			$("#elgg-iframe-content").height(height - 250);
+		}
+	}, 1000);
+
+	// Resize the content on window resize
+	$(window).resize(function() {
+		var scrollHeight = $("#elgg-iframe-content")[0].scrollHeight;
+		var height = $(window).height();
+
+		if (scrollHeight > (height - 150)) {
+			$("#elgg-iframe-content").height(height - 250);
+		} else {
+			$("#elgg-iframe-content").height('auto');
+		}
+
+	});
+}
+
+/**
+ *  Close the publish iframe
+ */
+elgg.tgstheme.closePublishIframe = function(event) {
+	window.parent.$('#publish-overlay').remove();
+	window.parent.$('#publish-iframe').remove();
 }
 
 /**
