@@ -5,7 +5,7 @@
  * @package TGSTheme2
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010 - 2013
+ * @copyright THINK Global School 2010 - 2014
  * @link http://www.thinkglobalschool.com/
  *
  * VIEW OVERRIDES:
@@ -32,6 +32,8 @@
  *   * profile/header
  *   * group/default (set view location)
  *   * groups/profile/summary
+ *   * core/account/login_box
+ *   * core/river/filter
  *
  * 1.9 UPDATE TODOS
  *   * Re-work chosen/main theme JS libs (use AMD)
