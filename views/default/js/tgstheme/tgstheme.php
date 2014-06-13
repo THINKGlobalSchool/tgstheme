@@ -185,8 +185,7 @@ elgg.tgstheme.parentLocation = function(event) {
 elgg.tgstheme.loginHandler = function(hook, type, params, options) {
 	if (params.target.attr('id') == 'login-dropdown-box') {
 		options.my = 'right top';
-		options.at = 'right bottom';
-		options.offset = '15px';
+		options.at = 'right+15px bottom+15px';
 		return options;
 	}
 	return options;
