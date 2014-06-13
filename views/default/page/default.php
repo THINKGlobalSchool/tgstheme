@@ -30,6 +30,7 @@ if (elgg_get_context() == 'admin') {
 
 // render content before head so that JavaScript and CSS can be loaded. See #4032
 $messages = elgg_view('page/elements/messages', array('object' => $vars['sysmessages']));
+$topbar = elgg_view('page/elements/topbar', $vars);
 $content = elgg_view('page/elements/body', $vars);
 $footer = elgg_view('page/elements/footer', $vars);
 
@@ -41,7 +42,6 @@ $body = <<<__BODY
 __BODY;
 
 if (elgg_is_logged_in()) {
-	$topbar = elgg_view('page/elements/topbar', $vars);
 	$quickbar = elgg_view('page/elements/quickbar', $vars);
 
 	$body .= <<<__BODY
@@ -50,14 +50,14 @@ if (elgg_is_logged_in()) {
 			$quickbar
 		</div>
 	</div>
+__BODY;
+}	
+$body .= <<<__BODY
 	<div class="elgg-page-topbar">
 		<div class="elgg-inner">
 			$topbar
 		</div>
 	</div>
-__BODY;
-}	
-$body .= <<<__BODY
 	<div class="elgg-page-body">
 		<div class="elgg-inner">
 			$content
