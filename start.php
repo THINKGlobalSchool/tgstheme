@@ -262,7 +262,14 @@ function tgstheme_init() {
 
 	// Register new page handler for activity
 	elgg_register_page_handler('activity', 'tgstheme_river_page_handler');
+
+	// Unregister core avatar upload action
+	elgg_unregister_action('avatar/upload');
 	
+	// Register new avatar upload action
+	$action_path = elgg_get_plugins_path() . 'tgstheme/actions/avatar';
+	elgg_register_action('avatar/upload', "$action_path/upload.php");
+
 	// Whitelist ajax views
 	elgg_register_ajax_view('tgstheme/email_share');
 	elgg_register_ajax_view('tgstheme/modules/liked');
