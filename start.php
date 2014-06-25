@@ -132,6 +132,7 @@ function tgstheme_init() {
 		elgg_register_widget_type('tgstheme_groups', elgg_echo('tgstheme:widget:groups_title'), elgg_echo('tgstheme:widget:groups_desc'), 'rolewidget');
 		elgg_register_widget_type('tgstheme_river', elgg_echo('content:latest'), elgg_echo('tgstheme:widget:river_desc'), 'rolewidget');
 		elgg_register_widget_type('tgstheme_weekly', elgg_echo('tgstheme:widget:weekly_title'), elgg_echo('tgstheme:widget:weekly_desc'), 'rolewidget');
+		elgg_register_widget_type('tgstheme_social', elgg_echo('tgstheme:widget:social_title'), elgg_echo('tgstheme:widget:social_desc'), 'rolewidget');
 
 		if (elgg_get_plugin_setting('module_enable', 'tgstheme')) {
 			$extra_title = elgg_get_plugin_setting('module_tag', 'tgstheme');
@@ -231,6 +232,9 @@ function tgstheme_init() {
 
 	// Set up activity menu
 	elgg_register_plugin_hook_handler('register', 'menu:activity_filter', 'tgstheme_activity_menu_setup');
+
+	// Set up social menu
+	elgg_register_plugin_hook_handler('register', 'menu:social-menu', 'tgstheme_social_menu_setup');
 
 	// Modify the 'site' menu to get return just the browse menu
 	//elgg_register_plugin_hook_handler('prepare', 'menu:site', 'elgg_site_menu_setup');
@@ -1299,6 +1303,68 @@ function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
 
 	$return[] = ElggMenuItem::factory($options);
 
+
+	return $return;
+}
+
+/**
+ * Set up the social menu
+ */
+function tgstheme_social_menu_setup($hook, $type, $return, $params) {
+	$options = array(
+		'name' => 'facebook',
+		'href' => 'https://www.facebook.com/THINKGlobalSchool',
+		'text' => '<span class="sociocon-facebook"></span>',
+		'item_class' => 'elgg-menu-social-menu-item',
+		'target' => '_blank',
+		'priority' => 100,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
+	$options = array(
+		'name' => 'twitter',
+		'href' => 'http://twitter.com/tgsthinkglobal',
+		'text' => '<span class="sociocon-twitter"></span>',
+		'item_class' => 'elgg-menu-social-menu-item',
+		'target' => '_blank',
+		'priority' => 200,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
+	$options = array(
+		'name' => 'youtube',
+		'href' => 'http://www.youtube.com/user/ThinkGlobalSchool',
+		'text' => '<span class="sociocon-youtube"></span>',
+		'item_class' => 'elgg-menu-social-menu-item',
+		'target' => '_blank',
+		'priority' => 300,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
+	$options = array(
+		'name' => 'flickr',
+		'href' => 'http://www.flickr.com/photos/thinkglobalschool/',
+		'text' => '<span class="sociocon-flickr"></span>',
+		'item_class' => 'elgg-menu-social-menu-item',
+		'target' => '_blank',
+		'priority' => 400,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
+	$options = array(
+		'name' => 'rss',
+		'href' => 'http://thinkglobalschool.org/feed/',
+		'text' => '<span class="sociocon-rss"></span>',
+		'item_class' => 'elgg-menu-social-menu-item',
+		'target' => '_blank',
+		'priority' => 500,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
 
 	return $return;
 }

@@ -5,7 +5,7 @@
  * @package TGSTheme2
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010
+ * @copyright THINK Global School 2010 - 2014
  * @link http://www.thinkglobalschool.com/
  *
  */
@@ -1266,4 +1266,38 @@ body#elgg-iframe-body #googleapps-docs-container {
 .elgg-output a.mentions-user-link {
 	border-bottom: 1px solid #ccc;
 	font-weight: normal;
+}
+
+/* Social Menu */
+.elgg-menu-social-menu {
+	margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.elgg-menu-social-menu .elgg-menu-social-menu-item span {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background-size: 50px 50px;
+
+}
+.elgg-menu-social-menu .sociocon-facebook {
+	background: white url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sociocon/facebook-sociocon.png") no-repeat;
+}
+
+.elgg-menu-social-menu .sociocon-twitter {
+	background: white url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sociocon/twitter-sociocon.png") no-repeat;
+}
+
+.elgg-menu-social-menu .sociocon-youtube {
+	background: white url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sociocon/youtube-sociocon.png") no-repeat;
+}
+
+.elgg-menu-social-menu .sociocon-flickr {
+	background: white url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sociocon/flickr-sociocon.png") no-repeat;
+}
+
+.elgg-menu-social-menu .sociocon-rss {
+	background: white url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sociocon/rss-sociocon.png") no-repeat;
 }

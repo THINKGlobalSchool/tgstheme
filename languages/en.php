@@ -133,6 +133,9 @@ $english = array(
 	'tgstheme:widget:weekly_title' => 'TGS Weekly',
 	'tgstheme:widget:weekly_desc' => 'Display TGS Weekly Tag Dashboards',
 
+	'tgstheme:widget:social_title' => 'Connect with TGS',
+	'tgstheme:widget:social_desc' => 'Display Social Widget',
+
 	// Filtrate strings
 	'filtrate:label:sortasc' => 'Ascending',
 	'filtrate:label:sortdesc' => 'Descending',
