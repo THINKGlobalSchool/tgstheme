@@ -22,6 +22,7 @@ elgg.provide('elgg.filtrate');
 		var defaults = {
 			ajaxListUrl: null,
 			defaultParams: {},
+			ignoreQueryString: false,
 			enableInfinite: false,
 			disableHistory: false,
 			context: null
@@ -354,7 +355,7 @@ elgg.provide('elgg.filtrate');
 			// Get querystring, if available
 			var query_index = window.location.href.indexOf('?');
 
-			if (query_index != -1) {
+			if (query_index != -1 && !options.ignoreQueryString) {
 				var params = deParam(window.location.href.slice(query_index + 1));
 				var base_url = window.location.href.slice(0, query_index);
 			} else {
