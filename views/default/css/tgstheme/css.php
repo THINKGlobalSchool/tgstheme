@@ -1269,10 +1269,32 @@ body#elgg-iframe-body #googleapps-docs-container {
 }
 
 /* Social Menu */
+.tgstheme-social-menu-center {
+	float:left;
+	width:100%;
+	overflow:hidden;
+	position:relative;
+}
+
 .elgg-menu-social-menu {
-	margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+	clear:left;
+	float:left;
+	list-style:none;
+	margin:0;
+	padding:0;
+	position:relative;
+	left:50%;
+	text-align:center;
+}
+
+.elgg-menu-social-menu .elgg-menu-social-menu-item {
+	display:block;
+	float:left;
+	list-style:none;
+	margin: 0px 5px 8px;
+	padding:0;
+	position:relative;
+	right:50%;
 }
 
 .elgg-menu-social-menu .elgg-menu-social-menu-item span {

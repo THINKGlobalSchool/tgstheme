@@ -14,4 +14,4 @@ $menu = elgg_view_menu('social-menu', array(
 	'class' => 'elgg-menu-hz'
 ));
 
-echo $menu;
+echo "<div class='tgstheme-social-menu-center'>$menu</div>";
