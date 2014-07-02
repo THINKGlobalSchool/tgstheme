@@ -1211,7 +1211,7 @@ body#elgg-iframe-body #googleapps-docs-container {
 
 /** Activity menu filters */
 #activity-type-filter {
-	min-width: 250px;
+	width: 200px;
 }
 
 #activity-tag-filter {

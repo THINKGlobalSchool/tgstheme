@@ -9,9 +9,28 @@
  * @link http://www.thinkglobalschool.com/
  */
 
+elgg_load_js('jquery.tiptip');
+
 $menu = elgg_view_menu('social-menu', array(
 	'sort_by' => 'priority',
 	'class' => 'elgg-menu-hz'
 ));
 
 echo "<div class='tgstheme-social-menu-center'>$menu</div>";
+
+$js = <<<JAVASCRIPT
+	 <script type='text/javascript'>
+	 	// Init tiptips
+		$('.elgg-menu-social-menu-item a').each(function() {
+			$(this).tipTip({
+				delay           : 0,
+				defaultPosition : 'top',
+				fadeIn          : 25,
+				fadeOut         : 300,
+				edgeOffset      : -5
+			});
+		});
+	 </script>
+JAVASCRIPT;
+
+echo $js;

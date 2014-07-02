@@ -5,7 +5,7 @@
  * @package TGSTheme2
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010 - 2013
+ * @copyright THINK Global School 2010 - 2014
  * @link http://www.thinkglobalschool.com/
  *
  * VIEW OVERRIDES:
@@ -117,6 +117,16 @@ function tgstheme_init() {
 	if (elgg_get_context() == 'activity') {
 		elgg_load_js('elgg.activityping');
 	}
+
+	// Register JS for tiptip
+	$tt_js = elgg_get_simplecache_url('js', 'tiptip');
+	elgg_register_simplecache_view('js/tiptip');
+	elgg_register_js('jquery.tiptip', $tt_js, 'head', 501);
+
+	// Register CSS for tiptip
+	$t_css = elgg_get_simplecache_url('css', 'tiptip');
+	elgg_register_simplecache_view('css/tiptip');
+	elgg_register_css('jquery.tiptip', $t_css);
 
 	// Register JS for jQuery HTML extension (fixes weird autocomplete when ajax loaded)
 	elgg_register_js('elgg.userpicker.html', 'mod/tgstheme/vendors/jquery.ui.autocomplete.html.js');
@@ -1168,7 +1178,7 @@ function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
 	$options = array(
 		'name' => 'activity-type-filter',
 		'href' => false,
-		'label' => elgg_echo('Type'),
+		'label' => elgg_echo('tgstheme:label:contentfilter'),
 		'text' => $type_input,
 		'encode_text' => false,
 		'section' => 'main',
@@ -1316,6 +1326,7 @@ function tgstheme_social_menu_setup($hook, $type, $return, $params) {
 		'href' => 'https://www.facebook.com/THINKGlobalSchool',
 		'text' => '<span class="sociocon-facebook"></span>',
 		'item_class' => 'elgg-menu-social-menu-item',
+		'title' => elgg_echo('tgstheme:label:followfacebook'),
 		'target' => '_blank',
 		'priority' => 100,
 	);
@@ -1327,6 +1338,7 @@ function tgstheme_social_menu_setup($hook, $type, $return, $params) {
 		'href' => 'http://twitter.com/tgsthinkglobal',
 		'text' => '<span class="sociocon-twitter"></span>',
 		'item_class' => 'elgg-menu-social-menu-item',
+		'title' => elgg_echo('tgstheme:label:followtwitter'),
 		'target' => '_blank',
 		'priority' => 200,
 	);
@@ -1338,6 +1350,7 @@ function tgstheme_social_menu_setup($hook, $type, $return, $params) {
 		'href' => 'http://www.youtube.com/user/ThinkGlobalSchool',
 		'text' => '<span class="sociocon-youtube"></span>',
 		'item_class' => 'elgg-menu-social-menu-item',
+		'title' => elgg_echo('tgstheme:label:followyoutube'),
 		'target' => '_blank',
 		'priority' => 300,
 	);
@@ -1349,6 +1362,7 @@ function tgstheme_social_menu_setup($hook, $type, $return, $params) {
 		'href' => 'http://www.flickr.com/photos/thinkglobalschool/',
 		'text' => '<span class="sociocon-flickr"></span>',
 		'item_class' => 'elgg-menu-social-menu-item',
+		'title' => elgg_echo('tgstheme:label:followflickr'),
 		'target' => '_blank',
 		'priority' => 400,
 	);
@@ -1360,6 +1374,7 @@ function tgstheme_social_menu_setup($hook, $type, $return, $params) {
 		'href' => 'http://thinkglobalschool.org/feed/',
 		'text' => '<span class="sociocon-rss"></span>',
 		'item_class' => 'elgg-menu-social-menu-item',
+		'title' => elgg_echo('tgstheme:label:followblog'),
 		'target' => '_blank',
 		'priority' => 500,
 	);

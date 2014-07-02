@@ -48,7 +48,8 @@ $english = array(
 	'tgstheme:label:thingsliked' => 'Things %s Liked',
 	'tgstheme:label:noresults' => 'No results',
 	'tgstheme:label:explore' => 'Explore',
-	'tgstheme:label:selecttype' => 'Select type(s)',
+	'tgstheme:label:contentfilter' => 'Content Filter',
+	'tgstheme:label:selecttype' => 'Select content',
 	'tgstheme:label:startdate' => 'Start Date',
 	'tgstheme:label:enddate' => 'End Date',
 	'tgstheme:label:groupclass' => 'Group/Class',
@@ -58,6 +59,13 @@ $english = array(
 	'tgstheme:label:showadvanced' => 'Advanced Options',
 	'tgstheme:label:nogroups' => 'No Groups',
 	
+	// Social widget
+	'tgstheme:label:followfacebook' => 'TGS on Facebook',
+	'tgstheme:label:followtwitter' => 'TGS on Twitter',
+	'tgstheme:label:followyoutube' => 'TGS on YouTube',
+	'tgstheme:label:followflickr' => 'TGS on Flickr',
+	'tgstheme:label:followblog' => 'TGS Blog',
+
 	'tgstheme:stats:blog' => 'Blog Posts',
 	'tgstheme:stats:photo' => 'Photos',
 	'tgstheme:stats:bookmark' => 'Bookmarks',
@@ -133,7 +141,7 @@ $english = array(
 	'tgstheme:widget:weekly_title' => 'TGS Weekly',
 	'tgstheme:widget:weekly_desc' => 'Display TGS Weekly Tag Dashboards',
 
-	'tgstheme:widget:social_title' => 'Connect with TGS',
+	'tgstheme:widget:social_title' => 'Follow TGS Online',
 	'tgstheme:widget:social_desc' => 'Display Social Widget',
 
 	// Filtrate strings
