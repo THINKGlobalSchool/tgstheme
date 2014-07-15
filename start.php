@@ -53,6 +53,7 @@ function tgstheme_init() {
 	// Extend admin CSS
 	elgg_extend_view('css/admin', 'css/tgstheme/admin');
 	elgg_extend_view('css/admin', 'css/jquery.ui');
+	elgg_extend_view('css/admin', 'css/elements/icons');
 	
 	// Register general tgstheme JS library
 	$t_js = elgg_get_simplecache_url('js', 'tgstheme/tgstheme');

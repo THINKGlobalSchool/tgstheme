@@ -174,3 +174,23 @@ echo elgg_view('css/tgstheme/entitymenu', $vars);
 }
 /** End Inputs **/
 
+/* ***************************************
+	Tags
+*************************************** */
+.elgg-tags {
+	font-size: 85%;
+}
+.elgg-tags > li {
+	float:left;
+	margin-right: 5px;
+}
+.elgg-tags li.elgg-tag:after {
+	content: ",";
+}
+.elgg-tags li.elgg-tag:last-child:after {
+	content: "";
+}
+.elgg-tagcloud {
+	text-align: justify;
+}
+

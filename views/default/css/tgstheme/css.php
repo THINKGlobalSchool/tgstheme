@@ -1150,7 +1150,10 @@ body#elgg-iframe-body #googleapps-docs-container {
 
 /** Login box tweaks **/
 .tgstheme-login-box {
-	width: 40%;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.elgg-body > .tgstheme-login-box {
+	width: 40%;
 }
