@@ -15,6 +15,7 @@
 }
 
 .message.unread a {
+	font-weight: bold;
 	color: #91131E;
 	margin-bottom:3px;
 }
