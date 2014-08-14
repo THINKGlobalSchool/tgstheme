@@ -49,6 +49,12 @@ elgg.tgstheme.initPublish = function() {
 	$('.tgstheme-publish-item.clickable, .tgstheme-publish-more-menu li.clickable').each(function(){
 		// Get iframe url	
 		var href = elgg.get_site_url() + "iframe/" + $(this).data('type');
+		var container_guid = $(this).data('container_guid');
+
+		if (container_guid) {
+			href += "?container_guid=" + container_guid; 
+		}
+
 		$(this).fancybox({
 			'href': href,
 			'type': 'iframe',

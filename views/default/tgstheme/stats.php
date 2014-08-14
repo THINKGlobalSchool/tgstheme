@@ -36,7 +36,7 @@ $bookmark_link = elgg_view('output/url', array(
 	'text' => $bookmark_count,
 ));
 
-if (elgg_is_active_plugin('todo')) {
+if (elgg_is_active_plugin('todos')) {
 	$todo_label = elgg_echo('tgstheme:stats:todo');
 	
 	global $CONFIG;
