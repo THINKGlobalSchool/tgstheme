@@ -239,3 +239,4 @@ ul.as-list,  x:-moz-any-link, x:default {
 }
 BODY:first-of-type ul.as-list, x:-moz-any-link, x:default { /* Target FF 3.5+ */
 	border: none;
+}
