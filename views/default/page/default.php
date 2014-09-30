@@ -58,7 +58,7 @@ $lang = get_current_language();
 	</div>
 	<?php } ?>
 	<div class="elgg-page-topbar">
-		<div class="elgg-inner">
+		<div class="elgg-inner" id='tgstheme-cacheabe-topbar'>
 			<?php echo $topbar; ?>
 		</div>
 	</div>
