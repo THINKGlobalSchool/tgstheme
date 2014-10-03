@@ -46,20 +46,13 @@ $js_linkhash = ubercache_get_etag_hash($js);
 $js_filename = ubercache_get_cache_filename('uberjs.', $js_linkhash, $encoding);
 $js_url = elgg_get_site_url() . "uber/{$js_filename}.js?location=head";
 
-$search = 'ajax/view';
-$exclude_cache_keys = array_keys(array_filter($css, function($var) use ($search){
-    return strpos($var, $search) !== false;
-}));
+// Exclude
+$filtered_css = ubercache_filter_css($css);
+$filtered_js = ubercache_filter_js($js);
 
-$exclude_cache_links = array();
+$_SESSION['ubercss'] = $filtered_css['cache'];
+$_SESSION['uberjshead'] = $filtered_js['cache'];
 
-foreach ($exclude_cache_keys as $key) {
-	$exclude_cache_links[$key] = $css[$key];
-	unset($css[$key]);
-}
-
-$_SESSION['ubercss'] = $css;
-$_SESSION['uberjshead'] = $js;
 /** END UBER CSS/JS **/
 
 $version = get_version();
@@ -75,7 +68,7 @@ $release = get_version(true);
 	<link rel="stylesheet" href="<?php echo $css_url; ?>" type="text/css" />
 	<!-- END UBER CSS -->
 
-	<?php foreach ($exclude_cache_links as $link) { ?>
+	<?php foreach ($filtered_css['exclude'] as $link) { ?>
 	<link rel="stylesheet" href="<?php echo $link; ?>" type="text/css" />
 <?php } ?>
 
@@ -96,6 +89,10 @@ $release = get_version(true);
 
 
 	<script type="text/javascript" src="<?php echo $js_url; ?>"></script>
+
+	<?php foreach ($filtered_js['exclude'] as $link) { ?>
+	<script type="text/javascript" src="<?php echo $link; ?>"></script>
+	<?php } ?>
 
 <script type="text/javascript">
 // <![CDATA[

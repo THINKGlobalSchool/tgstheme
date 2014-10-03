@@ -94,3 +94,54 @@ function ubercache_get_compression_method() {
 	return $encoding;
 }
 
+/**
+ * Hack: remove certain CSS urls from the ubercache
+ *
+ * @param array $css Array of CSS links to filter
+ */
+function ubercache_filter_css($css) {
+	$search = array('ajax/view');
+	$exclude_css_cache_keys = array_keys(array_filter($css, function($var) use ($search){
+		foreach ($search as $s) {
+			return strpos($var, $s) !== false;	
+		}
+	}));
+
+	$exclude = array();
+
+	foreach ($exclude_css_cache_keys as $key) {
+		$exclude[$key] = $css[$key];
+		unset($css[$key]);
+	}
+
+	return array(
+		'cache' => $css,
+		'exclude' => $exclude
+	);
+}
+
+/**
+ * Hack: remove certain JS urls from the ubercache
+ *
+ * @param array $js Array of JS links to filter
+ */
+function ubercache_filter_js($js) {
+	$search = array('tinymce');
+	$exclude_js_cache_keys = array_keys(array_filter($js, function($var) use ($search){
+		foreach ($search as $s) {
+			return strpos($var, $s) !== false;	
+		}
+	}));
+
+	$exclude = array();
+
+	foreach ($exclude_js_cache_keys as $key) {
+		$exclude[$key] = $js[$key];
+		unset($js[$key]);
+	}
+
+	return array(
+		'cache' => $js,
+		'exclude' => $exclude
+	);
+}

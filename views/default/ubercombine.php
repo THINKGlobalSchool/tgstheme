@@ -68,7 +68,7 @@ if (isset($_SERVER['HTTP_IF_NONE_MATCH']) &&
     // Get contents of the files 
     $contents = ''; 
     foreach ($files as $link) {
-        $contents .=  ($type == 'js' ? ";" : "\n\n") . file_get_contents($link);
+        $contents .=  ($type == 'js' ? "\r\n;\r\n" : "\n\n") . file_get_contents($link);
     } 
 
     // Send Content-Type 
