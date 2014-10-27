@@ -1500,3 +1500,23 @@ function tgstheme_tags_exceptions_handler($hook, $type, $value, $params) {
 	$value[] = 'activity_tag_filter';
 	return $value;
 }
+
+function tgstheme_picker_add_user($user_id) {
+	$user = get_entity($user_id);
+	if (!$user || !($user instanceof ElggUser)) {
+		return false;
+	}
+	
+	$icon = elgg_view_entity_icon($user, 'tiny', array('use_hover' => false));
+
+	// this html must be synced with the userpicker.js library
+	$code = '<li><div class="elgg-image-block">';
+	$code .= "<div class='elgg-image'>$icon</div>";
+	$code .= "<div class='elgg-image-alt'><a href='#' class='elgg-userpicker-remove'>X</a></div>";
+	$code .= "<div class='elgg-body'>" . $user->name . "</div>";
+	$code .= "</div>";
+	$code .= "<input type=\"hidden\" name=\"members[]\" value=\"$user_id\">";
+	$code .= '</li>';
+	
+	return $code;
+}
