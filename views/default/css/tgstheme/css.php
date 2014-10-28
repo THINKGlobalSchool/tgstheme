@@ -1218,6 +1218,16 @@ body#elgg-iframe-body #googleapps-docs-container {
 	width: 125px !important;
 }
 
+.elgg-menu-item-switch-mode {
+	float: right;
+}
+
+.elgg-menu-item-switch-mode a {
+	font-weight: bold;
+	font-size: 0.85em;
+	text-transform: uppercase;
+}
+
 /** Group tweaks **/
 .elgg-form-groups-search .elgg-input-search {
 	margin-right: 4px;

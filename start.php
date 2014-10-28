@@ -487,6 +487,12 @@ function tgstheme_river_page_handler($page) {
 	$title = elgg_echo('river:all');
 	$page_filter = 'all';
 
+	$endpoint = elgg_get_site_url() . 'ajax/view/tgstheme/activity_list';
+
+	if (!get_input('classic')) {
+		$endpoint .= '?spiffy=1';
+	}
+
 	$params = array(
 		'content' =>  elgg_view('filtrate/dashboard', array(
 			'menu_name' => 'activity_filter',
@@ -494,7 +500,7 @@ function tgstheme_river_page_handler($page) {
 			'default_params' => array(
 				'type' => 0
 			),
-			'list_url' => elgg_get_site_url() . 'ajax/view/tgstheme/activity_list',
+			'list_url' => $endpoint,
 			'id' => 'activity-filtrate'
 		)),
 		'filter' => ' ',
@@ -1313,6 +1319,27 @@ function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
 
 	$return[] = ElggMenuItem::factory($options);
 
+	$current_url = strtok(current_page_url(),'?');
+
+	if (!get_input('classic')) {
+		$current_url .= '?classic=1';
+		$text = elgg_echo('tgstheme:label:classicactivity');
+	} else {
+		$text = elgg_echo('tgstheme:label:newactivity');
+	}
+
+	$options = array(
+		'name' => 'switch-mode',
+		'text' => elgg_view('output/url', array(
+			'text' => $text,
+			'href' => $current_url
+		)),
+		'href' => false,
+		'section' => 'main',
+		'priority' => 700,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
 
 	return $return;
 }

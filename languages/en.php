@@ -58,6 +58,8 @@ $english = array(
 	'tgstheme:label:typename' => 'Type a name',
 	'tgstheme:label:showadvanced' => 'Advanced Options',
 	'tgstheme:label:nogroups' => 'No Groups',
+	'tgstheme:label:classicactivity' => 'Switch to Classic Activity',
+	'tgstheme:label:newactivity' => 'Switch to New Activity',
 	
 	// Social widget
 	'tgstheme:label:followfacebook' => 'TGS on Facebook',
