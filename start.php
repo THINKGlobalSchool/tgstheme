@@ -39,12 +39,6 @@ elgg_register_event_handler('init', 'system', 'tgstheme_init');
 elgg_register_event_handler('pagesetup', 'system', 'tgstheme_pagesetup', 501);
 
 function tgstheme_init() {
-	// Register ubercache library
-	elgg_register_library('elgg:ubercache', elgg_get_plugins_path() . "tgstheme/lib/ubercache.php");
-
-	// Load library
-	elgg_load_library('elgg:ubercache');
-
 	// Register Global CSS
 	$t_css = elgg_get_simplecache_url('css', 'tgstheme/css');
 	elgg_register_simplecache_view('css/tgstheme/css');
@@ -167,9 +161,6 @@ function tgstheme_init() {
 
 	// Register activity ping page handler
 	elgg_register_page_handler('activity_ping', 'ping_page_handler');
-
-	// Ubercache page handler
-	elgg_register_page_handler('uber', 'ubercache_page_handler');
 
 	// Hook into mentions get views
 	elgg_register_plugin_hook_handler('get_views', 'mentions', 'tgstheme_mentions_get_views_handler');
@@ -482,15 +473,6 @@ function ping_page_handler($page) {
 	}
 
 	return FALSE;
-}
-
-function ubercache_page_handler($page) {
-	// Determine type
-	$type = substr($page[0], strrpos($page[0], '.') +1);
-	
-	// Output corresponding uber view
-	echo elgg_view("{$type}/uber");
-	return true;
 }
 
 /**
