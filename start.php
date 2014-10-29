@@ -507,6 +507,12 @@ function tgstheme_river_page_handler($page) {
 	$title = elgg_echo('river:all');
 	$page_filter = 'all';
 
+	$endpoint = elgg_get_site_url() . 'ajax/view/tgstheme/activity_list';
+
+	if (!get_input('classic')) {
+		$endpoint .= '?spiffy=1';
+	}
+
 	$params = array(
 		'content' =>  elgg_view('filtrate/dashboard', array(
 			'menu_name' => 'activity_filter',
@@ -514,7 +520,7 @@ function tgstheme_river_page_handler($page) {
 			'default_params' => array(
 				'type' => 0
 			),
-			'list_url' => elgg_get_site_url() . 'ajax/view/tgstheme/activity_list',
+			'list_url' => $endpoint,
 			'id' => 'activity-filtrate'
 		)),
 		'filter' => ' ',
@@ -1340,6 +1346,30 @@ function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
 	$return[] = ElggMenuItem::factory($options);
 
 
+	if (elgg_get_context() == 'activity') {
+		$current_url = strtok(current_page_url(),'?');
+
+		if (!get_input('classic')) {
+			$current_url .= '?classic=1';
+			$text = elgg_echo('tgstheme:label:classicactivity');
+		} else {
+			$text = elgg_echo('tgstheme:label:newactivity');
+		}
+
+		$options = array(
+			'name' => 'switch-mode',
+			'text' => elgg_view('output/url', array(
+				'text' => $text,
+				'href' => $current_url
+			)),
+			'href' => false,
+			'section' => 'main',
+			'priority' => 700,
+		);
+
+		$return[] = ElggMenuItem::factory($options);
+	}
+
 	return $return;
 }
 
@@ -1531,4 +1561,24 @@ function tgstheme_layout_output_handler($hook, $type, $value, $params) {
 function tgstheme_tags_exceptions_handler($hook, $type, $value, $params) {
 	$value[] = 'activity_tag_filter';
 	return $value;
+}
+
+function tgstheme_picker_add_user($user_id) {
+	$user = get_entity($user_id);
+	if (!$user || !($user instanceof ElggUser)) {
+		return false;
+	}
+	
+	$icon = elgg_view_entity_icon($user, 'tiny', array('use_hover' => false));
+
+	// this html must be synced with the userpicker.js library
+	$code = '<li><div class="elgg-image-block">';
+	$code .= "<div class='elgg-image'>$icon</div>";
+	$code .= "<div class='elgg-image-alt'><a href='#' class='elgg-userpicker-remove'>X</a></div>";
+	$code .= "<div class='elgg-body'>" . $user->name . "</div>";
+	$code .= "</div>";
+	$code .= "<input type=\"hidden\" name=\"members[]\" value=\"$user_id\">";
+	$code .= '</li>';
+	
+	return $code;
 }

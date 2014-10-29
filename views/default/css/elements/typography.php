@@ -193,12 +193,12 @@ h6 { font-size: 0.8em; }
 	text-transform:none;
 }
 
-.elgg-output h1 { font-size: 2.0em; line-height: 0.75em; margin-bottom: 0.75em;}
-.elgg-output h2 { font-size: 1.8em; line-height: 0.83em; margin-bottom: 0.75em;}
-.elgg-output h3 { font-size: 1.6em; line-height: 0.94em; margin-bottom: 0.75em;}
-.elgg-output h4 { font-size: 1.4em; line-height: 1.07em; margin-bottom: 0.75em;}
-.elgg-output h5 { font-size: 1.2em; line-height: 1.25em; margin-bottom: 0.75em;}
-.elgg-output h6 { font-size: 1.0em; line-height: 1.5em; margin-bottom: 0.75em;}
+.elgg-output h1 { font-size: 2.0em; line-height: 1em; margin-bottom: 0.75em;}
+.elgg-output h2 { font-size: 1.8em; line-height: 1.1em; margin-bottom: 0.75em;}
+.elgg-output h3 { font-size: 1.6em; line-height: 1.15em; margin-bottom: 0.75em;}
+.elgg-output h4 { font-size: 1.4em; line-height: 1.2em; margin-bottom: 0.75em;}
+.elgg-output h5 { font-size: 1.2em; line-height: 1.15em; margin-bottom: 0.75em;}
+.elgg-output h6 { font-size: 1.0em; line-height: 1.3em; margin-bottom: 0.75em;}
 
 .elgg-output a {
 	color: #91131E;
