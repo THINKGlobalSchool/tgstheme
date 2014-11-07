@@ -1333,3 +1333,7 @@ body#elgg-iframe-body #googleapps-docs-container {
 .elgg-menu-social-menu .sociocon-rss {
 	background: white url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sociocon/rss-sociocon.png") no-repeat;
 }
+
+button#cboxClose {
+	border: 0;
+}
