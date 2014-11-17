@@ -60,6 +60,7 @@ $english = array(
 	'tgstheme:label:nogroups' => 'No Groups',
 	'tgstheme:label:classicactivity' => 'Switch to Classic Activity',
 	'tgstheme:label:newactivity' => 'Switch to New Activity',
+	'LOGGED_IN' => "Logged-in users",
 	
 	// Social widget
 	'tgstheme:label:followfacebook' => 'TGS on Facebook',
