@@ -58,7 +58,7 @@ $english = array(
 	'tgstheme:label:typename' => 'Type a name',
 	'tgstheme:label:showadvanced' => 'Advanced Options',
 	'tgstheme:label:nogroups' => 'No Groups',
-	'tgstheme:label:postnew' => 'Post New',
+	'tgstheme:label:posttogroup' => 'Post To Group',
 	'tgstheme:label:classicactivity' => 'Switch to Classic Activity',
 	'tgstheme:label:newactivity' => 'Switch to New Activity',
 

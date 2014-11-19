@@ -1340,7 +1340,7 @@ body#elgg-iframe-body #googleapps-docs-container {
 }
 
 .tgstheme-group-profile-top-widget .elgg-module-publish {
-	width: 550px;
+	width: 380px;
 	margin-left: auto;
 	margin-right: auto;
 }

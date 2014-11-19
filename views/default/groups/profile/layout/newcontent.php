@@ -18,7 +18,7 @@ if (elgg_get_page_owner_entity()->canEdit()) {
 		'class' => 'tgstheme-group-profile-top-widget',
 	);
 
-	$module = elgg_view_module('widget', elgg_echo('tgstheme:label:postnew'), $widget_content, $options);
+	$module = elgg_view_module('widget', elgg_echo('tgstheme:label:posttogroup'), $widget_content, $options);
 
 	echo $module;
 }
