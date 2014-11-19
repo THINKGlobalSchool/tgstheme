@@ -58,10 +58,11 @@ $english = array(
 	'tgstheme:label:typename' => 'Type a name',
 	'tgstheme:label:showadvanced' => 'Advanced Options',
 	'tgstheme:label:nogroups' => 'No Groups',
+	'tgstheme:label:posttogroup' => 'Post To Group',
 	'tgstheme:label:classicactivity' => 'Switch to Classic Activity',
 	'tgstheme:label:newactivity' => 'Switch to New Activity',
 	'LOGGED_IN' => "Logged-in users",
-	
+
 	// Social widget
 	'tgstheme:label:followfacebook' => 'TGS on Facebook',
 	'tgstheme:label:followtwitter' => 'TGS on Twitter',
@@ -135,6 +136,9 @@ $english = array(
 	// Widgets
 	'tgstheme:widget:profile_title' => 'Profile',
 	'tgstheme:widget:profile_desc' => 'TGS Theme Profile Widget',
+
+	'tgstheme:widget:newcontent_title' => 'New Content',
+	'tgstheme:widget:newcontent_desc' => 'New Content Widget',
 
 	'tgstheme:widget:groups_title' => 'Groups',
 	'tgstheme:widget:groups_desc' => 'TGS Theme User Groups Widget',

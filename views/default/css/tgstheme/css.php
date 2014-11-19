@@ -541,7 +541,6 @@ span.actions-text {
 .elgg-module-publish .tgstheme-publish-more-menu {
 	border-top: 2px solid #DDD;
 	display: none;
-	width: 398px;
 }
 
 .elgg-module-publish .tgstheme-publish-more-menu ul {
@@ -1333,7 +1332,18 @@ body#elgg-iframe-body #googleapps-docs-container {
 .elgg-menu-social-menu .sociocon-rss {
 	background: white url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sociocon/rss-sociocon.png") no-repeat;
 }
-
 button#cboxClose {
 	border: 0;
+}
+
+/** Group profile widget(s) **/
+.tgstheme-group-profile-top-widget {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.tgstheme-group-profile-top-widget .elgg-module-publish {
+	width: 380px;
+	margin-left: auto;
+	margin-right: auto;
 }

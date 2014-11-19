@@ -55,8 +55,6 @@ elgg.tgstheme.initPublish = function() {
 			href += "?container_guid=" + container_guid; 
 		}
 
-
-
 		$(this).fancybox({
 			'href': href,
 			'type': 'iframe',

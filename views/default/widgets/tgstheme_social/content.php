@@ -20,16 +20,18 @@ echo "<div class='tgstheme-social-menu-center'>$menu</div>";
 
 $js = <<<JAVASCRIPT
 	 <script type='text/javascript'>
-	 	// Init tiptips
-		$('.elgg-menu-social-menu-item a').each(function() {
-			$(this).tipTip({
-				delay           : 0,
-				defaultPosition : 'top',
-				fadeIn          : 25,
-				fadeOut         : 300,
-				edgeOffset      : -5
+	 	if ($.fn.tipTip) {
+		 	// Init tiptips
+			$('.elgg-menu-social-menu-item a').each(function() {
+				$(this).tipTip({
+					delay           : 0,
+					defaultPosition : 'top',
+					fadeIn          : 25,
+					fadeOut         : 300,
+					edgeOffset      : -5
+				});
 			});
-		});
+		}
 	 </script>
 JAVASCRIPT;
 

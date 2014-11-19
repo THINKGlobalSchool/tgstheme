@@ -39,7 +39,6 @@ elgg_register_event_handler('init', 'system', 'tgstheme_init');
 elgg_register_event_handler('pagesetup', 'system', 'tgstheme_pagesetup', 501);
 
 function tgstheme_init() {
-
 	// Register Global CSS
 	$t_css = elgg_get_simplecache_url('css', 'tgstheme/css');
 	elgg_register_simplecache_view('css/tgstheme/css');
@@ -139,6 +138,7 @@ function tgstheme_init() {
 		
 		// Roles is enabled, register widgets
 		elgg_register_widget_type('tgstheme_profile', $user->name, elgg_echo('tgstheme:widget:profile_title'), 'rolewidget');
+		elgg_register_widget_type('tgstheme_newcontent', elgg_echo('tgstheme:widget:newcontent_title'), elgg_echo('tgstheme:widget:newcontent_desc'), 'rolewidget');
 		elgg_register_widget_type('tgstheme_groups', elgg_echo('tgstheme:widget:groups_title'), elgg_echo('tgstheme:widget:groups_desc'), 'rolewidget');
 		elgg_register_widget_type('tgstheme_river', elgg_echo('content:latest'), elgg_echo('tgstheme:widget:river_desc'), 'rolewidget');
 		elgg_register_widget_type('tgstheme_weekly', elgg_echo('tgstheme:widget:weekly_title'), elgg_echo('tgstheme:widget:weekly_desc'), 'rolewidget');
@@ -216,6 +216,9 @@ function tgstheme_init() {
 	if (!elgg_is_logged_in() && elgg_get_plugin_setting('analytics_enable', 'tgstheme')) {
 		elgg_extend_view('page/elements/head', 'tgstheme/analytics');
 	}
+
+	// Extend the top of the groups profile
+	elgg_extend_view('groups/profile/layout/top/extend', 'groups/profile/layout/newcontent');
 
 	// Plugin hook for index redirect
 	if (elgg_is_logged_in()) {
@@ -472,7 +475,6 @@ function ping_page_handler($page) {
 	return FALSE;
 }
 
-
 /**
  * Page handler for activity
  *
@@ -640,6 +642,12 @@ function tgstheme_route_profile_handler($hook, $type, $return, $params) {
 function iframe_page_handler($page) {
 	gatekeeper();
 	$title = $content = '';
+
+	// Set container guid if available
+	if (get_input('container_guid') != 0) {
+		elgg_set_page_owner_guid(get_input('container_guid'));
+	}
+
 	switch ($page[0]) {
 		case 'thewire':
 			// register the wire's JavaScript
@@ -1459,12 +1467,18 @@ function tgstheme_iframe_forward_handler($hook, $type, $value, $params) {
 			if (!strpos($forward_url, 'thewire')) {				
 				return $params['forward_url'];
 			} else {
-				// @todo this should probably be a plugin hook
-				$params['forward_url'] = elgg_normalize_url('home');
+				// Check for groups
+				$group = get_entity(get_input('container_guid', FALSE));
+				if (elgg_instanceof($group, 'group')) {
+					$params['forward_url'] = $group->getURL();
+				} else {
+					$params['forward_url'] = elgg_normalize_url('home');
+				}
 			}
 		}
 
 		$forward_url = $params['forward_url'];
+
 		return elgg_normalize_url("iframe/forward?forward_to={$forward_url}");
 		
 	}
