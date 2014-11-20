@@ -1308,9 +1308,9 @@ body#elgg-iframe-body #googleapps-docs-container {
 
 .elgg-menu-social-menu .elgg-menu-social-menu-item span {
 	display: inline-block;
-	width: 50px;
-	height: 50px;
-	background-size: 50px 50px;
+	width: 41px;
+	height: 41px;
+	background-size: 41px 41px;
 
 }
 .elgg-menu-social-menu .sociocon-facebook {
@@ -1335,6 +1335,10 @@ body#elgg-iframe-body #googleapps-docs-container {
 
 .elgg-menu-social-menu .sociocon-instagram {
 	background: white url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sociocon/instagram-sociocon.png") no-repeat;
+}
+
+.elgg-menu-social-menu .sociocon-tagboard {
+	background: white url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/sociocon/tagboard-sociocon.png") no-repeat;
 }
 
 button#cboxClose {

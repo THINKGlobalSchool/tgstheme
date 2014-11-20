@@ -1431,6 +1431,18 @@ function tgstheme_social_menu_setup($hook, $type, $return, $params) {
 
 	$return[] = ElggMenuItem::factory($options);
 
+	$options = array(
+		'name' => 'tagboard',
+		'href' => 'https://tagboard.com/tgslife/search',
+		'text' => '<span class="sociocon-tagboard"></span>',
+		'item_class' => 'elgg-menu-social-menu-item',
+		'title' => elgg_echo('tgstheme:label:followtagboard'),
+		'target' => '_blank',
+		'priority' => 700,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
 	return $return;
 }
 
