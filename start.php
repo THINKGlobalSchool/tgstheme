@@ -1419,6 +1419,18 @@ function tgstheme_social_menu_setup($hook, $type, $return, $params) {
 
 	$return[] = ElggMenuItem::factory($options);
 
+	$options = array(
+		'name' => 'instagram',
+		'href' => 'http://instagram.com/thinkglobalschool',
+		'text' => '<span class="sociocon-instagram"></span>',
+		'item_class' => 'elgg-menu-social-menu-item',
+		'title' => elgg_echo('tgstheme:label:followinstagram'),
+		'target' => '_blank',
+		'priority' => 600,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
 	return $return;
 }
 

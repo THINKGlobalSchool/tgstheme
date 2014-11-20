@@ -69,6 +69,7 @@ $english = array(
 	'tgstheme:label:followyoutube' => 'TGS on YouTube',
 	'tgstheme:label:followflickr' => 'TGS on Flickr',
 	'tgstheme:label:followblog' => 'TGS Blog',
+	'tgstheme:label:followinstagram' => 'TGS on Instagram',
 
 	'tgstheme:stats:blog' => 'Blog Posts',
 	'tgstheme:stats:photo' => 'Photos',
