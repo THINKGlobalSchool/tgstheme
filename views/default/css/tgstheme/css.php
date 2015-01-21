@@ -1374,6 +1374,10 @@ button#cboxClose {
 	-webkit-column-count: 2;
 }
 
+.profile-content-groups-filter-container .elgg-menu-entity {
+	display: none;
+}
+
 .elgg-widget-instance-profile_portfolio .tagdashboards-recommended-button {
 	margin-right: 4px;
 }
