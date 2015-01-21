@@ -61,6 +61,8 @@ $english = array(
 	'tgstheme:label:posttogroup' => 'Post To Group',
 	'tgstheme:label:classicactivity' => 'Switch to Classic Activity',
 	'tgstheme:label:newactivity' => 'Switch to New Activity',
+	'tgstheme:label:usercontent' => 'Content',
+	'tgstheme:label:usergroups' => 'Groups',
 	'LOGGED_IN' => "Logged-in users",
 
 	// Social widget
@@ -152,6 +154,9 @@ $english = array(
 
 	'tgstheme:widget:social_title' => 'Follow TGS Online',
 	'tgstheme:widget:social_desc' => 'Display Social Widget',
+
+	'tgstheme:widget:profile_content_title' => 'User Content/Groups',
+	'tgstheme:widget:profile_content_desc' => 'Display user content menu and groups',
 
 	// Filtrate strings
 	'filtrate:label:sortasc' => 'Ascending',

@@ -1346,6 +1346,11 @@ button#cboxClose {
 	border: 0;
 }
 
+/** Role profile **/
+.roles-profile-user-block {
+       border-bottom: 1px solid #aaa;
+}
+
 /** Group profile widget(s) **/
 .tgstheme-group-profile-top-widget {
 	margin-left: 0;
@@ -1356,4 +1361,19 @@ button#cboxClose {
 	width: 380px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+/** Role Profile Widgets **/
+.elgg-layout-one-sidebar-roles-home .elgg-widget-instance-profile_content_groups > .elgg-head {
+	display: none;
+}
+
+.profile-content-groups-filter-container .elgg-menu-owner-block {
+	column-count: 2;
+	-moz-column-count: 2;
+	-webkit-column-count: 2;
+}
+
+.elgg-widget-instance-profile_portfolio .tagdashboards-recommended-button {
+	margin-right: 4px;
 }

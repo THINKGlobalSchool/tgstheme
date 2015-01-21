@@ -40,6 +40,9 @@ elgg.tgstheme.init = function() {
 		}
 	});
 
+	// Delegate profile content/groups menu items click handler
+	$(document).delegate('.profile-content-groups-menu-item', 'click', elgg.tgstheme.profileContentGroupsClick);
+
 	// Init publish module
 	elgg.tgstheme.initPublish();
 }
@@ -222,6 +225,19 @@ elgg.tgstheme.addParameter = function(url, parameterName, parameterValue, atStar
     }
     return urlParts[0] + newQueryString + urlhash;
 };
+
+// Register click handler for profile content/groups click event
+elgg.tgstheme.profileContentGroupsClick = function(event) {
+	$('.profile-content-groups-menu-item').parent().removeClass('elgg-state-selected');
+	$(this).parent().addClass('elgg-state-selected');
+
+	$('.profile-content-groups-filter-container').hide();
+	
+	$($(this).attr('href')).show();
+	
+	event.preventDefault();
+}
+
 
 /**
  * Extra tasks after filtrate content is loaded
