@@ -151,6 +151,7 @@ function tgstheme_init() {
 
 		// Register profile widgets
 		elgg_register_widget_type('profile_content_groups', elgg_echo('tgstheme:widget:profile_content_title'), elgg_echo('tgstheme:widget:profile_content_desc'), 'roleprofilewidget');
+		elgg_register_widget_type('profile_liked', elgg_echo('tgstheme:widget:profile_liked_title'), elgg_echo('tgstheme:widget:profile_liked_desc'), 'roleprofilewidget');
 
 		// Set up content/group filter menu
 		elgg_register_plugin_hook_handler('register', 'menu:content_groups_profile_menu', 'tgstheme_content_groups_profile_menu_setup');

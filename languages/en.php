@@ -158,6 +158,9 @@ $english = array(
 	'tgstheme:widget:profile_content_title' => 'User Content/Groups',
 	'tgstheme:widget:profile_content_desc' => 'Display user content menu and groups',
 
+	'tgstheme:widget:profile_liked_title' => 'Liked',
+	'tgstheme:widget:profile_liked_desc' => 'Display user liked content',
+
 	// Filtrate strings
 	'filtrate:label:sortasc' => 'Ascending',
 	'filtrate:label:sortdesc' => 'Descending',
