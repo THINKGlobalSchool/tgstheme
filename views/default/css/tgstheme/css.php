@@ -1346,11 +1346,6 @@ button#cboxClose {
 	border: 0;
 }
 
-/** Role profile **/
-.roles-profile-user-block {
-       border-bottom: 1px solid #aaa;
-}
-
 /** Group profile widget(s) **/
 .tgstheme-group-profile-top-widget {
 	margin-left: 0;

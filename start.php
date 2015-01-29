@@ -130,6 +130,12 @@ function tgstheme_init() {
 	// Register JS for jQuery HTML extension (fixes weird autocomplete when ajax loaded)
 	elgg_register_js('elgg.userpicker.html', 'mod/tgstheme/vendors/jquery.ui.autocomplete.html.js');
 
+	// Register chosen.js css library
+	$fa_css = elgg_get_simplecache_url('css', 'fontawesome');
+	elgg_register_simplecache_view('css/fontawesome');
+	elgg_register_css('fontawesome', $fa_css);
+	elgg_load_css('fontawesome');
+
 	// Register 'home' page handler if roles isn't enabled
 	if (!elgg_is_active_plugin('roles')) {
 		elgg_register_page_handler('home', 'home_page_handler');
