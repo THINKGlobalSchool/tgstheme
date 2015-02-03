@@ -698,7 +698,8 @@ li:hover > .elgg-menu-site-more {
 	color: #91131E;
 }
 
-.elgg-menu-entity > li > a:hover, , .elgg-menu-annotation > li > a:hover {
+.elgg-menu-entity > li > a:hover, 
+.elgg-menu-annotation > li > a:hover {
 	color: #2D3F46;
 }
 

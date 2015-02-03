@@ -10,9 +10,13 @@
  */
 
 /** Tidypics Required Libs **/
-// @TODO AMD loading?
-if (elgg_is_active_plugin('tidypics')) {
-	elgg_load_js('tidypics');
-	elgg_load_js('tidypics:upload');
-}
-echo elgg_view('tgstheme/modules/profile');
+
+// Load jquery-file-upload libs
+elgg_load_js('jquery.ui.widget');
+elgg_load_js('jquery-file-upload');
+elgg_load_js('jquery.iframe-transport');
+
+elgg_load_js('tidypics');
+elgg_load_js('tidypics:upload');
+
+echo elgg_view('tgstheme/modules/publish');

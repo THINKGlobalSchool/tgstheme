@@ -43,7 +43,6 @@ elgg_register_event_handler('init', 'system', 'tgstheme_init');
 elgg_register_event_handler('pagesetup', 'system', 'tgstheme_pagesetup', 501);
 
 function tgstheme_init() {
-
 	// Extend global CSS
 	elgg_extend_view('css/elgg', 'css/tgstheme/css');
 	elgg_extend_view('css/elgg', 'css/filtrate/filtrate');
@@ -89,22 +88,49 @@ function tgstheme_init() {
 	elgg_unregister_css('lightbox', 'vendors/jquery/colorbox/theme/colorbox.css');
 	elgg_register_css('lightbox', elgg_get_site_url() . "mod/tgstheme/vendors/jquery/colorbox/theme/colorbox.css");
 
+	// Register JS for tiptip
+	$tt_js = elgg_get_simplecache_url('js', 'tiptip');
+	elgg_register_simplecache_view('js/tiptip');
+	elgg_register_js('jquery.tiptip', $tt_js, 'head', 501);
+
+	// Register CSS for tiptip
+	$t_css = elgg_get_simplecache_url('css', 'tiptip');
+	elgg_register_simplecache_view('css/tiptip');
+	elgg_register_css('jquery.tiptip', $t_css);
+
+
+	// Register chosen.js css library
+	$fa_css = elgg_get_simplecache_url('css', 'fontawesome');
+	elgg_register_simplecache_view('css/fontawesome');
+	elgg_register_css('fontawesome', $fa_css);
+	elgg_load_css('fontawesome');
+
 	// Register 'home' page handler if roles isn't enabled
 	if (!elgg_is_active_plugin('roles')) {
 		elgg_register_page_handler('home', 'home_page_handler');
 	} else {
 		$user = elgg_get_logged_in_user_entity();
 		
-		// Roles is enabled, register widgets
+		// Roles is enabled, register homepage widgets widgets
 		elgg_register_widget_type('tgstheme_profile', $user->name, elgg_echo('tgstheme:widget:profile_title'), 'rolewidget');
+		elgg_register_widget_type('tgstheme_newcontent', elgg_echo('tgstheme:widget:newcontent_title'), elgg_echo('tgstheme:widget:newcontent_desc'), 'rolewidget');
 		elgg_register_widget_type('tgstheme_groups', elgg_echo('tgstheme:widget:groups_title'), elgg_echo('tgstheme:widget:groups_desc'), 'rolewidget');
 		elgg_register_widget_type('tgstheme_river', elgg_echo('content:latest'), elgg_echo('tgstheme:widget:river_desc'), 'rolewidget');
 		elgg_register_widget_type('tgstheme_weekly', elgg_echo('tgstheme:widget:weekly_title'), elgg_echo('tgstheme:widget:weekly_desc'), 'rolewidget');
+		elgg_register_widget_type('tgstheme_social', elgg_echo('tgstheme:widget:social_title'), elgg_echo('tgstheme:widget:social_desc'), 'rolewidget');
 
 		if (elgg_get_plugin_setting('module_enable', 'tgstheme')) {
 			$extra_title = elgg_get_plugin_setting('module_tag', 'tgstheme');
 			elgg_register_widget_type('tgstheme_extra', $extra_title, $extra_title, 'rolewidget');
 		}
+
+		// Register profile widgets
+		elgg_register_widget_type('profile_content_groups', elgg_echo('tgstheme:widget:profile_content_title'), elgg_echo('tgstheme:widget:profile_content_desc'), 'roleprofilewidget');
+		elgg_register_widget_type('profile_liked', elgg_echo('tgstheme:widget:profile_liked_title'), elgg_echo('tgstheme:widget:profile_liked_desc'), 'roleprofilewidget');
+
+		// Set up content/group filter menu
+		elgg_register_plugin_hook_handler('register', 'menu:content_groups_profile_menu', 'tgstheme_content_groups_profile_menu_setup');
+
 	}
 
 	// Register 'legal' page handler
@@ -114,7 +140,7 @@ function tgstheme_init() {
 	elgg_register_page_handler('iframe', 'iframe_page_handler');
 
 	// Extend profile page handler
-	elgg_register_plugin_hook_handler('route', 'profile', 'tgstheme_route_profile_handler');
+	//elgg_register_plugin_hook_handler('route', 'profile', 'tgstheme_route_profile_handler');
 
 	// Register activity ping page handler
 	elgg_register_page_handler('activity_ping', 'ping_page_handler');
@@ -165,6 +191,9 @@ function tgstheme_init() {
 	if (!elgg_is_logged_in() && elgg_get_plugin_setting('analytics_enable', 'tgstheme')) {
 		elgg_extend_view('page/elements/head', 'tgstheme/analytics');
 	}
+
+	// Extend the top of the groups profile
+	elgg_extend_view('groups/profile/layout/top/extend', 'groups/profile/layout/newcontent');
 
 	// Plugin hook for index redirect
 	if (elgg_is_logged_in()) {
@@ -225,11 +254,19 @@ function tgstheme_init() {
 
 	// Register new page handler for activity
 	elgg_register_page_handler('activity', 'tgstheme_river_page_handler');
+
+	// Unregister core avatar upload action
+	elgg_unregister_action('avatar/upload');
 	
+	// Register new avatar upload action
+	$action_path = elgg_get_plugins_path() . 'tgstheme/actions/avatar';
+	elgg_register_action('avatar/upload', "$action_path/upload.php");
+
 	// Whitelist ajax views
 	elgg_register_ajax_view('tgstheme/email_share');
 	elgg_register_ajax_view('tgstheme/modules/liked');
 	elgg_register_ajax_view('tgstheme/modules/weekly');
+	elgg_register_ajax_view('tgstheme/modules/profile_groups');
 	elgg_register_ajax_view('page/elements/topbar_ajax');
 	elgg_register_ajax_view('tgstheme/activity_list');
 
@@ -411,7 +448,6 @@ function ping_page_handler($page) {
 	return FALSE;
 }
 
-
 /**
  * Page handler for activity
  *
@@ -426,6 +462,12 @@ function tgstheme_river_page_handler($page) {
 	$title = elgg_echo('river:all');
 	$page_filter = 'all';
 
+	$endpoint = elgg_get_site_url() . 'ajax/view/tgstheme/activity_list';
+
+	if (!get_input('classic')) {
+		$endpoint .= '?spiffy=1';
+	}
+
 	$params = array(
 		'content' =>  elgg_view('filtrate/dashboard', array(
 			'menu_name' => 'activity_filter',
@@ -433,7 +475,7 @@ function tgstheme_river_page_handler($page) {
 			'default_params' => array(
 				'type' => 0
 			),
-			'list_url' => elgg_get_site_url() . 'ajax/view/tgstheme/activity_list',
+			'list_url' => $endpoint,
 			'id' => 'activity-filtrate'
 		)),
 		'filter' => ' ',
@@ -565,7 +607,7 @@ function tgstheme_route_profile_handler($hook, $type, $return, $params) {
 
 		elgg_push_breadcrumb(elgg_echo("profile:{$section}"));
 
-		$content = tabbed_profile_layout_page($user, $section);
+		//$content = tabbed_profile_layout_page($user, $section);
 		$body = elgg_view_layout('one_sidebar', array(
 			'content' => $content,
 			'class' => 'tabbed-profile',
@@ -586,6 +628,12 @@ function tgstheme_route_profile_handler($hook, $type, $return, $params) {
 function iframe_page_handler($page) {
 	gatekeeper();
 	$title = $content = '';
+
+	// Set container guid if available
+	if (get_input('container_guid') != 0) {
+		elgg_set_page_owner_guid(get_input('container_guid'));
+	}
+
 	switch ($page[0]) {
 		case 'thewire':
 			// register the wire's JavaScript
@@ -642,8 +690,8 @@ function iframe_page_handler($page) {
 			elgg_load_js('elgg.readinglist');
 
 			// Load google libs
-			elgg_load_library('gapc:apiClient');       // Main client
-		 	elgg_load_library('gapc:apiBooksService'); // Books service
+			elgg_load_library('gapc:Client'); // Main client
+			elgg_load_library('gapc:Books');  // Books service
 
 			elgg_load_css('lightbox');
 			elgg_load_js('lightbox');
@@ -1130,7 +1178,7 @@ function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
 	$options = array(
 		'name' => 'activity-type-filter',
 		'href' => false,
-		'label' => elgg_echo('Type'),
+		'label' => elgg_echo('tgstheme:label:contentfilter'),
 		'text' => $type_input,
 		'encode_text' => false,
 		'section' => 'main',
@@ -1266,6 +1314,121 @@ function tgstheme_activity_menu_setup($hook, $type, $return, $params) {
 	$return[] = ElggMenuItem::factory($options);
 
 
+	if (elgg_get_context() == 'activity') {
+		$current_url = strtok(current_page_url(),'?');
+
+		if (!get_input('classic')) {
+			$current_url .= '?classic=1';
+			$text = elgg_echo('tgstheme:label:classicactivity');
+		} else {
+			$text = elgg_echo('tgstheme:label:newactivity');
+		}
+
+		$options = array(
+			'name' => 'switch-mode',
+			'text' => elgg_view('output/url', array(
+				'text' => $text,
+				'href' => $current_url
+			)),
+			'href' => false,
+			'section' => 'main',
+			'priority' => 700,
+		);
+
+		$return[] = ElggMenuItem::factory($options);
+	}
+
+	return $return;
+}
+
+/**
+ * Set up the social menu
+ */
+function tgstheme_social_menu_setup($hook, $type, $return, $params) {
+	$options = array(
+		'name' => 'facebook',
+		'href' => 'https://www.facebook.com/THINKGlobalSchool',
+		'text' => '<span class="sociocon-facebook"></span>',
+		'item_class' => 'elgg-menu-social-menu-item',
+		'title' => elgg_echo('tgstheme:label:followfacebook'),
+		'target' => '_blank',
+		'priority' => 100,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
+	$options = array(
+		'name' => 'twitter',
+		'href' => 'http://twitter.com/tgsthinkglobal',
+		'text' => '<span class="sociocon-twitter"></span>',
+		'item_class' => 'elgg-menu-social-menu-item',
+		'title' => elgg_echo('tgstheme:label:followtwitter'),
+		'target' => '_blank',
+		'priority' => 200,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
+	$options = array(
+		'name' => 'youtube',
+		'href' => 'http://www.youtube.com/user/ThinkGlobalSchool',
+		'text' => '<span class="sociocon-youtube"></span>',
+		'item_class' => 'elgg-menu-social-menu-item',
+		'title' => elgg_echo('tgstheme:label:followyoutube'),
+		'target' => '_blank',
+		'priority' => 300,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
+	$options = array(
+		'name' => 'flickr',
+		'href' => 'http://www.flickr.com/photos/thinkglobalschool/',
+		'text' => '<span class="sociocon-flickr"></span>',
+		'item_class' => 'elgg-menu-social-menu-item',
+		'title' => elgg_echo('tgstheme:label:followflickr'),
+		'target' => '_blank',
+		'priority' => 400,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
+	$options = array(
+		'name' => 'rss',
+		'href' => 'http://thinkglobalschool.org/feed/',
+		'text' => '<span class="sociocon-rss"></span>',
+		'item_class' => 'elgg-menu-social-menu-item',
+		'title' => elgg_echo('tgstheme:label:followblog'),
+		'target' => '_blank',
+		'priority' => 500,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
+	$options = array(
+		'name' => 'instagram',
+		'href' => 'http://instagram.com/thinkglobalschool',
+		'text' => '<span class="sociocon-instagram"></span>',
+		'item_class' => 'elgg-menu-social-menu-item',
+		'title' => elgg_echo('tgstheme:label:followinstagram'),
+		'target' => '_blank',
+		'priority' => 600,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
+	$options = array(
+		'name' => 'tagboard',
+		'href' => 'https://tagboard.com/tgslife/search',
+		'text' => '<span class="sociocon-tagboard"></span>',
+		'item_class' => 'elgg-menu-social-menu-item',
+		'title' => elgg_echo('tgstheme:label:followtagboard'),
+		'target' => '_blank',
+		'priority' => 700,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
 	return $return;
 }
 
@@ -1328,12 +1491,18 @@ function tgstheme_iframe_forward_handler($hook, $type, $value, $params) {
 			if (!strpos($forward_url, 'thewire')) {				
 				return $params['forward_url'];
 			} else {
-				// @todo this should probably be a plugin hook
-				$params['forward_url'] = elgg_normalize_url('home');
+				// Check for groups
+				$group = get_entity(get_input('container_guid', FALSE));
+				if (elgg_instanceof($group, 'group')) {
+					$params['forward_url'] = $group->getURL();
+				} else {
+					$params['forward_url'] = elgg_normalize_url('home');
+				}
 			}
 		}
 
 		$forward_url = $params['forward_url'];
+
 		return elgg_normalize_url("iframe/forward?forward_to={$forward_url}");
 		
 	}
@@ -1398,4 +1567,51 @@ function tgstheme_layout_output_handler($hook, $type, $value, $params) {
 function tgstheme_tags_exceptions_handler($hook, $type, $value, $params) {
 	$value[] = 'activity_tag_filter';
 	return $value;
+}
+
+/**
+ * Set up the profile content/groups filter menu
+ */
+function tgstheme_content_groups_profile_menu_setup($hook, $type, $return, $params) {
+	$options = array(
+		'name' => 'user_content',
+		'text' => elgg_echo('tgstheme:label:usercontent'),
+		'href' => '#user-content',
+		'priority' => 1,
+		'class' => 'profile-content-groups-menu-item',
+		'selected' => TRUE,
+	);
+	$return[] = ElggMenuItem::factory($options);
+
+	$options = array(
+		'name' => 'user_groups',
+		'text' => elgg_echo('tgstheme:label:usergroups'),
+		'href' => '#user-groups',
+		'priority' => 2,
+		'class' => 'profile-content-groups-menu-item',
+	);
+	
+	$return[] = ElggMenuItem::factory($options);
+	
+	return $return;
+}
+
+function tgstheme_picker_add_user($user_id) {
+	$user = get_entity($user_id);
+	if (!$user || !($user instanceof ElggUser)) {
+		return false;
+	}
+	
+	$icon = elgg_view_entity_icon($user, 'tiny', array('use_hover' => false));
+
+	// this html must be synced with the userpicker.js library
+	$code = '<li><div class="elgg-image-block">';
+	$code .= "<div class='elgg-image'>$icon</div>";
+	$code .= "<div class='elgg-image-alt'><a href='#' class='elgg-userpicker-remove'>X</a></div>";
+	$code .= "<div class='elgg-body'>" . $user->name . "</div>";
+	$code .= "</div>";
+	$code .= "<input type=\"hidden\" name=\"members[]\" value=\"$user_id\">";
+	$code .= '</li>';
+	
+	return $code;
 }

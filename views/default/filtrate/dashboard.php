@@ -26,6 +26,7 @@ $default_params = json_encode(elgg_extract('default_params' , $vars));
 $disable_history = elgg_extract('disable_history', $vars);
 $context = elgg_extract('page_context', $vars, elgg_get_context());
 $id = elgg_extract('id', $vars, uniqid());
+$ignore_query_string = elgg_extract('ignore_query_string', $vars, 0);
 
 if (!$infinite_scroll) {
 	$infinite_scroll = 0;
@@ -45,10 +46,10 @@ $js = <<<JAVASCRIPT
 					ajaxListUrl: '$list_url',
 					enableInfinite: $infinite_scroll,
 					disableHistory: $disable_history,
-					context: '$context'
+					context: '$context',
+					ignoreQueryString: $ignore_query_string
 				});
 			});
-
 		});
 	</script>
 JAVASCRIPT;

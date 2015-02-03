@@ -48,7 +48,8 @@ return array(
 	'tgstheme:label:thingsliked' => 'Things %s Liked',
 	'tgstheme:label:noresults' => 'No results',
 	'tgstheme:label:explore' => 'Explore',
-	'tgstheme:label:selecttype' => 'Select type(s)',
+	'tgstheme:label:contentfilter' => 'Content Filter',
+	'tgstheme:label:selecttype' => 'Select content',
 	'tgstheme:label:startdate' => 'Start Date',
 	'tgstheme:label:enddate' => 'End Date',
 	'tgstheme:label:groupclass' => 'Group/Class',
@@ -57,7 +58,22 @@ return array(
 	'tgstheme:label:typename' => 'Type a name',
 	'tgstheme:label:showadvanced' => 'Advanced Options',
 	'tgstheme:label:nogroups' => 'No Groups',
-	
+	'tgstheme:label:posttogroup' => 'Post To Group',
+	'tgstheme:label:classicactivity' => 'Switch to Classic Activity',
+	'tgstheme:label:newactivity' => 'Switch to New Activity',
+	'tgstheme:label:usercontent' => 'Content',
+	'tgstheme:label:usergroups' => 'Groups',
+	'LOGGED_IN' => "Logged-in users",
+
+	// Social widget
+	'tgstheme:label:followfacebook' => 'TGS on Facebook',
+	'tgstheme:label:followtwitter' => 'TGS on Twitter',
+	'tgstheme:label:followyoutube' => 'TGS on YouTube',
+	'tgstheme:label:followflickr' => 'TGS on Flickr',
+	'tgstheme:label:followblog' => 'TGS Blog',
+	'tgstheme:label:followinstagram' => 'TGS on Instagram',
+	'tgstheme:label:followtagboard' => 'TGS on Tagboard',
+
 	'tgstheme:stats:blog' => 'Blog Posts',
 	'tgstheme:stats:photo' => 'Photos',
 	'tgstheme:stats:bookmark' => 'Bookmarks',
@@ -125,6 +141,9 @@ return array(
 	'tgstheme:widget:profile_title' => 'Profile',
 	'tgstheme:widget:profile_desc' => 'TGS Theme Profile Widget',
 
+	'tgstheme:widget:newcontent_title' => 'New Content',
+	'tgstheme:widget:newcontent_desc' => 'New Content Widget',
+
 	'tgstheme:widget:groups_title' => 'Groups',
 	'tgstheme:widget:groups_desc' => 'TGS Theme User Groups Widget',
 
@@ -132,6 +151,15 @@ return array(
 
 	'tgstheme:widget:weekly_title' => 'TGS Weekly',
 	'tgstheme:widget:weekly_desc' => 'Display TGS Weekly Tag Dashboards',
+
+	'tgstheme:widget:social_title' => 'Follow TGS Online',
+	'tgstheme:widget:social_desc' => 'Display Social Widget',
+
+	'tgstheme:widget:profile_content_title' => 'User Content/Groups',
+	'tgstheme:widget:profile_content_desc' => 'Display user content menu and groups',
+
+	'tgstheme:widget:profile_liked_title' => 'Liked',
+	'tgstheme:widget:profile_liked_desc' => 'Display user liked content',
 
 	// Filtrate strings
 	'filtrate:label:sortasc' => 'Ascending',

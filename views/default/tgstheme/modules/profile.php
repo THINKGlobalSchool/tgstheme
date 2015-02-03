@@ -35,8 +35,6 @@ $body = <<<HTML
 	</table>
 HTML;
 
-$body .= elgg_view('tgstheme/modules/publish');
-
 $options = array(
 	'class' => 'tgstheme-module tgstheme-profile-module',
 );

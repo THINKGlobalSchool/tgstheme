@@ -29,13 +29,19 @@ elgg.tgstheme.init = function() {
 			// Remove original
 			$(this).remove();
 
+			// Add wmode param to url
+			url = elgg.tgstheme.addParameter(url, 'wmode', 'opaque', false);
+
 			// Modify src attribute
-			iframe.attr("src",url+"?wmode=opaque");
+			iframe.attr("src",url);
 
 			// Append new iframe to parent
 			parent.append(iframe);
 		}
 	});
+
+	// Delegate profile content/groups menu items click handler
+	$(document).delegate('.profile-content-groups-menu-item', 'click', elgg.tgstheme.profileContentGroupsClick);
 
 	// Init publish module
 	elgg.tgstheme.initPublish();
@@ -247,6 +253,65 @@ elgg.tgstheme.setupActivityInputs = function (hook, type, params, options) {
 
 	return options;
 }
+
+/**
+ * Add a parameter to a url
+ */
+elgg.tgstheme.addParameter = function(url, parameterName, parameterValue, atStart) { /*Add param before others*/
+    replaceDuplicates = true;
+    if(url.indexOf('#') > 0){
+        var cl = url.indexOf('#');
+        urlhash = url.substring(url.indexOf('#'),url.length);
+    } else {
+        urlhash = '';
+        cl = url.length;
+    }
+    sourceUrl = url.substring(0,cl);
+
+    var urlParts = sourceUrl.split("?");
+    var newQueryString = "";
+
+    if (urlParts.length > 1)
+    {
+        var parameters = urlParts[1].split("&");
+        for (var i=0; (i < parameters.length); i++)
+        {
+            var parameterParts = parameters[i].split("=");
+            if (!(replaceDuplicates && parameterParts[0] == parameterName))
+            {
+                if (newQueryString == "")
+                    newQueryString = "?";
+                else
+                    newQueryString += "&";
+                newQueryString += parameterParts[0] + "=" + (parameterParts[1]?parameterParts[1]:'');
+            }
+        }
+    }
+    if (newQueryString == "")
+        newQueryString = "?";
+
+    if(atStart){
+        newQueryString = '?'+ parameterName + "=" + parameterValue + (newQueryString.length>1?'&'+newQueryString.substring(1):'');
+    } else {
+        if (newQueryString !== "" && newQueryString != '?')
+            newQueryString += "&";
+        newQueryString += parameterName + "=" + (parameterValue?parameterValue:'');
+    }
+    return urlParts[0] + newQueryString + urlhash;
+};
+
+// Register click handler for profile content/groups click event
+elgg.tgstheme.profileContentGroupsClick = function(event) {
+	$('.profile-content-groups-menu-item').parent().removeClass('elgg-state-selected');
+	$(this).parent().addClass('elgg-state-selected');
+
+	$('.profile-content-groups-filter-container').hide();
+	
+	$($(this).attr('href')).show();
+	
+	event.preventDefault();
+}
+
 
 /**
  * Extra tasks after filtrate content is loaded

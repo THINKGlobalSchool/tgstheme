@@ -106,6 +106,7 @@ $options['list_class'] = 'elgg-list-river elgg-river';
 $options = elgg_trigger_plugin_hook('get_options', 'activity_list', $params, $options);
 
 $activity = elgg_list_river($options);
+
 if (!$activity) {
 	$activity = "<br /><center><label>" . elgg_echo('river:none') . "</label></center>";
 }
