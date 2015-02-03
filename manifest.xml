@@ -3,7 +3,7 @@
 	<name>TGS Theme</name>
 	<id>tgstheme</id>
 	<author>Jeff Tilson</author>
-	<version>1.9</version>
+	<version>1.10</version>
 	<category>theme</category>
 	<category>tgs</category>
 	<blurb>TGS Theme</blurb>
@@ -13,18 +13,13 @@
 	<license>GNU Public License version 2</license>
 	<requires>
 		<type>elgg_release</type>
-		<version>1.9</version>
+		<version>1.10</version>
 	</requires>
 	<requires>
 		<type>plugin</type>
 		<name>roles</name>
-		<version>1.9</version>
+		<version>1.10</version>
 		<comparison>ge</comparison>
-	</requires>
-	<requires>
-		<type>priority</type>
-		<priority>after</priority>
-		<plugin>tinymce</plugin>
 	</requires>
 	<activate_on_install>true</activate_on_install>
 </plugin_manifest>
