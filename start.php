@@ -45,8 +45,6 @@ elgg_register_event_handler('pagesetup', 'system', 'tgstheme_pagesetup', 501);
 function tgstheme_init() {
 	// Extend global CSS
 	elgg_extend_view('css/elgg', 'css/tgstheme/css');
-	elgg_extend_view('css/elgg', 'css/filtrate/filtrate');
-	elgg_extend_view('css/elgg', 'css/chosen');
 	elgg_extend_view('css/elgg', 'css/jquery.ui');
 
 	// Extend admin CSS
@@ -71,14 +69,6 @@ function tgstheme_init() {
 	$m_js = elgg_get_simplecache_url('js', 'tgstheme/tgsmenus');
 	elgg_register_js('elgg.tgsmenus', $m_js);
 	elgg_load_js('elgg.tgsmenus');
-
-	// Register chosen.js library
-	$c_js = elgg_get_simplecache_url('js', 'chosen');
-	elgg_register_js('chosen.js', $c_js);
-	elgg_load_js('chosen.js');
-
-	// Register filtrate js AMD
-	elgg_register_external_view('js/filtrate/Filtrate.js', true);
 
 	if (elgg_get_context() == 'activity') {
 		elgg_load_js('elgg.activityping');

@@ -56,7 +56,7 @@ return array(
 	'tgstheme:label:selectagroup' => 'Select a group',
 	'tgstheme:label:tag' => 'Tag',
 	'tgstheme:label:typename' => 'Type a name',
-	'tgstheme:label:showadvanced' => 'Advanced Options',
+
 	'tgstheme:label:nogroups' => 'No Groups',
 	'tgstheme:label:posttogroup' => 'Post To Group',
 	'tgstheme:label:classicactivity' => 'Switch to Classic Activity',
@@ -160,12 +160,4 @@ return array(
 
 	'tgstheme:widget:profile_liked_title' => 'Liked',
 	'tgstheme:widget:profile_liked_desc' => 'Display user liked content',
-
-	// Filtrate strings
-	'filtrate:label:sortasc' => 'Ascending',
-	'filtrate:label:sortdesc' => 'Descending',
-	'filtrate:label:sortascarrow' => 'Ascending ▲',
-	'filtrate:label:sortdescarrow' => 'Descending ▼',
-	'filtrate:title:dashboard' => 'Some title',
-	'filtrate:error:content' => 'There was an error loading content',
 );
