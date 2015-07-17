@@ -10,9 +10,6 @@
  *
  */
 
-// Include other views
-echo elgg_view('css/tgstheme/entitymenu', $vars);
-
 ?>
 /** <style> /**/
 

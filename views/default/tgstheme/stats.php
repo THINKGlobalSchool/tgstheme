@@ -5,7 +5,7 @@
  * @package TGSTheme2
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010
+ * @copyright THINK Global School 2010 - 2015
  * @link http://www.thinkglobalschool.com/
  *
  */
@@ -41,8 +41,8 @@ if (elgg_is_active_plugin('todos')) {
 	
 	global $CONFIG;
 
-	$test_id = get_metastring_id('manual_complete');
-	$one_id = get_metastring_id(1);
+	$test_id = elgg_get_metastring_id('manual_complete');
+	$one_id = elgg_get_metastring_id(1);
 	$wheres = array();
 
 	$user_id = $user->guid;

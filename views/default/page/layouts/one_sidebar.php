@@ -38,7 +38,7 @@ if (isset($vars['class'])) {
 				'sort_by' => 'priority',
 				'class' => 'elgg-menu-hz',
 			));
-
+			
 			echo elgg_view('page/layouts/elements/header', $vars);
 
 			// @todo deprecated so remove in Elgg 2.0

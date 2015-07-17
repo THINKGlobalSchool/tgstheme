@@ -24,6 +24,11 @@ if ($sidebar == $sidebar_alt) {
 	$sidebar = null;
 }
 
+// allow page handlers to override the default header
+if (isset($vars['header'])) {
+	$vars['header_override'] = $vars['header'];
+}
+
 // Check for main sidebar (LHS) content
 if ($sidebar && $sidebar_alt) {
 	echo elgg_view_layout('two_sidebar', $vars);

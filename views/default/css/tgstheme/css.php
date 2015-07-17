@@ -5,45 +5,38 @@
  * @package TGSTheme2
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010 - 2014
- * @link http://www.thinkglobalschool.com/
+ * @copyright THINK Global School 2010 - 2015
+ * @link http://www.thinkglobalschool.org/
  *
  **/
-
-// Include other views
-echo elgg_view('css/tgstheme/entitymenu', $vars);
 
 ?>
 /** <style> /**/
 
-/** Activity Update **/
-a.activity-update-link {
-	display: inline-block;
-	color:white;
-	font-weight: bold;
-	padding:1px 8px 2px 24px;
-	margin-top:9px;
-	cursor: pointer;
-	background: red url("<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/refresh.png") no-repeat 5px 3px;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	float: right;
+/** General topbar tweaks **/
+
+.elgg-topbar-dropdown:after {
+	content: "▼";
+	font-size: 8px;
+	margin-left: 4px;
 	position: relative;
-	bottom: 5px;
-	right: 15px;
+	bottom: 2px;
 }
 
-.elgg-widget-content .filtrate-menu-container a.activity-update-link {
-	right: 40px;
+.elgg-topbar-avatar.elgg-topbar-dropdown:after {
+	bottom: 6px;
+	font-size: 10px;
 }
 
-a.activity-update-link:hover {
-	color:white;
-	text-decoration: none;
+
+.elgg-menu-item-spot-logo {
+	margin-right: 12px;
 }
 
-/** End Activity Update **/
+.elgg-menu-item-explore > ul .elgg-menu-content,
+.elgg-menu-item-explore > ul > li {
+	width: 100%;
+}
 
 /** Custom sidebars **/
 .elgg-home-sidebar {
@@ -83,6 +76,7 @@ a.activity-update-link:hover {
 .elgg-layout-one-sidebar-roles-home #elgg-widget-col-1 {
 	width: 570px;
 	padding-top: 15px;
+	float: right;
 }
 
 .elgg-layout-one-sidebar-roles-home .elgg-module-widget {
@@ -300,205 +294,7 @@ table#stats-table td.stat {
 	margin-top: -2px;
 }
 
-/* Entity Menu Improvements */
 
-.entity_anchor_hidden {
-	display: none !important;
-}
-
-.tgstheme-entity-menu {
-	float: right;
-	height: 25px;
-}
-
-.tgstheme-entity-menu .tgstheme-entity-menu-actions {
-	display: none;
-}
-
-.tgstheme-entity-menu-actions .elgg-menu-entity {
-	margin-left: 0px;
-}
-
-.elgg-icon-settings-menu {
-	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/elgg_sprites.png) no-repeat left;
-	width: 16px;
-	height: 16px;
-	background-position: 0 -738px;
-	float: right;
-	margin-left: 5px;
-}
-
-.elgg-menu-entity-buttons {
-	float: none;
-	height: auto;
-	margin-top: 11px;
-}
-
-.elgg-menu-entity-core {
-	height: auto;
-	float: none;
-	text-align: left;
-	width: 100%;
-	border-bottom: 1px dotted #CDCDCD;
-	padding-bottom: 4px;
-}
-
-.elgg-menu-entity-core.core-only-child {
-	border-bottom: none;
-	padding-bottom: 0px;
-}
-
-.elgg-menu-entity-core li {
-	margin-left: 0;
-	margin-right: 15px;
-}
-
-.elgg-menu-entity-hidden {
-	display: none;
-}
-
-.elgg-menu-entity-actions {
-	height: auto;
-	float: none;
-	margin-top: 8px;
-	margin-bottom: 8px;
-	text-align: left;
-}
-
-.elgg-menu-entity-actions li {
-	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/tgstheme/_graphics/elgg_sprites.png) no-repeat left;
-	background-position: 0 -1008px;
-	height: 16px;
-	margin-top: 5px;
-}
-
-.elgg-menu-entity-actions li:hover {
-	background-position: 0 -990px;
-}
-
-.elgg-menu-entity-actions li a {
-	margin-left: 20px;
-}
-
-.tgstheme-entity-menu-actions .notch {
-    position: absolute;
-    top: -10px;
-    right: 3px;
-    margin: 0;
-    border-top: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #FFFFFF;
-    padding: 0;
-    width: 0;
-    height: 0;
-    /* ie6 height fix */
-    font-size: 0;
-    line-height: 0;
-     /* ie6 transparent fix */
-    _border-right-color: pink;
-    _border-left-color: pink;
-    _filter: chroma(color=pink);
-}
-
-.tgstheme-entity-menu-actions .border-notch { 
-	border-bottom-color: #333333; top: -11px;
-}
-
-.tgstheme-entity-menu-actions {
-	background-color: #FFFFFF;
-	border: 1px solid #999999;
-	box-shadow: 0 0 2px #BBBBBB;
-	-webkit-box-shadow: 0 0 2px #BBBBBB;
-	-moz-box-shadow: 0 0 2px #BBBBBB;
-	min-height: 24px;
-	padding: 8px 10px 4px;
-	position: absolute;
-	z-index: 9004;
-}
-
-span.actions-caret {
-	position: relative;
-	bottom: 1px;
-	margin-left: 3px;
-}
-
-span.actions-text {
-	border-right: 1px dotted #999999;
-	padding-right: 3px;
-}
-
-.entity-action-toggler {
-	font-size: 1em;
-	padding: 3px 3px 3px 5px !important;
-}
-
-.entity-action-toggler span {
-	color: #333333;
-	font-size: 11px !important;
-	text-transform: uppercase !important;
-}
-
-.elgg-module-featured > .elgg-head .entity-action-toggler span,
-.forum-topic .forum-reply .elgg-module-featured > .elgg-head .entity-action-toggler span {
-	color: #333333;
-}
-
-.entity-action-toggler:hover span, 
-.entity-action-toggler:focus span {
-	color: #FFFFFF !important;
-}
-
-/* Group Owner Block Improvements */
-#tgstheme-collapsable-ownerblock {
-}
-
-#tgstheme-collapsable-ownerblock-full {
-	display: none;
-}
-
-#tgstheme-collapsable-ownerblock-full .elgg-menu-owner-block li a {
-	padding: 2px 4px 2px 18px;
-}
-
-.ownerblock-browse-content-closed, .ownerblock-browse-content-open {
-	padding: 2px 4px 2px 8px;
-    display: block;
-    color: #91131E;
-	margin-top: -2px;
-	font-family: 'Shanti',sans-serif;
-	text-transform: uppercase;
-}
-
-.ownerblock-browse-content-open {
-	border-bottom: 1px dotted #BBB;
-}
-
-.ownerblock-browse-content-closed:hover, .ownerblock-browse-content-open:hover {
-	color: #FFFFFF;
-	background: #2D3F46;
-	text-decoration: none;
-}
-
-.ownerblock-browse-content-closed:after {
-	font-size: smaller;
-	content: " \25BC";
-}
-
-.ownerblock-browse-content-open:after {
-	font-size: smaller;
-	content: " \25B2";
-}
-
-/*.ownerblock-show-more:hover, .ownerblock-show-less:hover {
-	background: #444444 !important;
-	color: white !important;
-}
-*/
-#tgstheme-collapsable-ownerblock ul li.elgg-menu-item-more-ownerblock,
-#tgstheme-collapsable-ownerblock ul li.elgg-menu-item-less-ownerblock {
-	position: inherit;
-}
 
 /** Share form **/
 
@@ -656,25 +452,28 @@ span.actions-text {
 
 /** End Publish Module **/
 
-/** General topbar tweaks **/
-
-.tgstheme-topbar-dropdown:after {
-	content: "▼";
-	font-size: 8px;
-	margin-left: 4px;
-	position: relative;
-	bottom: 2px;
-}
-
-.elgg-topbar-avatar.tgstheme-topbar-dropdown:after {
-	bottom: 6px;
-	font-size: 10px;
-}
-
 /** User name topbar style **/
 .tgstheme-topbar-username {
 	margin-left: 10px;
 	float: right;
+}
+
+.elgg-menu-topbar .elgg-menu-topbar-dropdown > li > a {
+	font-weight: normal;
+	padding: 6px 10px;
+	font-family: 'Shanti', sans-serif;
+	text-transform:uppercase;
+	font-size:1em;	
+	
+	background: white;
+	color: #555;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
 }
 
 /** Search tweaks **/
@@ -812,130 +611,6 @@ span.actions-text {
 	top: -6px;
 }
 
-.elgg-menu-topbar li:hover  > .dropdown-wrapper,
-.elgg-menu-topbar li:hover > .elgg-menu-topbar-dropdown {
-	display: block;
-}
-
-
-
-/*.elgg-menu-topbar li > .elgg-menu-topbar-dropdown {
-	position: absolute;
-	display: none;
-	display: block;
-	z-index: 1;
-	left: -1px;
-	min-width: 280px;
-	width: 100%;
-	background: #FFF;
-
-	-webkit-column-count: 2;
-	-moz-column-count: 2;
-	column-count: 2;
-
-	-webkit-column-gap: 1px;
-	-moz-column-gap: 1px;
-	column-gap: 1px;
-
-	-webkit-column-rule: 1px solid #DDD;
-	-moz-column-rule: 0px;
-	column-rule: 1px solid #DDD;
-}*/
-
-/** Multi column general styles **/
-.elgg-menu-topbar .dropdown-wrapper .dropdown-split {
-	width: 50%;
-	float: left;
-}
-
-/** Multi column style for explore item **/
-.elgg-menu-topbar .elgg-menu-item-explore .dropdown-wrapper {
-	width: 280px;
-}
-
-/** Multi column style for my groups item **/
-.elgg-menu-topbar .elgg-menu-item-my-groups .dropdown-wrapper {
-	width: 500px;
-}
-
-.elgg-menu-topbar .dropdown-wrapper .dropdown-split.split-first li {
-	border-right: 1px solid #ccc;
-}
-
-.elgg-menu-topbar li > .elgg-menu-topbar-dropdown,
-.elgg-menu-topbar .dropdown-wrapper {
-	position: absolute;
-	display: none;
-	z-index: 1;
-	left: -1px;
-	background: #FFF;
-}
-
-.elgg-menu-topbar .elgg-menu-topbar-dropdown > li > a {
-	font-weight: normal;
-	padding: 6px 10px;
-	font-family: 'Shanti', sans-serif;
-	text-transform:uppercase;
-	font-size:1em;	
-	
-	background: white;
-	color: #555;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	border-radius: 0;
-	
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
-}
-
-.elgg-menu-topbar .elgg-menu-topbar-dropdown > li > a:hover {
-	text-decoration: none;
-	background: #2D3F46;
-	color: white;
-}
-
-
-/*
-.elgg-menu-topbar li > .elgg-menu-topbar-dropdown li {
-	display: inline-block;
-	width: 140px;
-	margin-left: -1px;
-}*/
-
-.elgg-menu-item-my-groups .elgg-menu-topbar-dropdown li a div {
-	display: table;
-}
-
-.elgg-menu-item-my-groups .elgg-menu-topbar-dropdown li a img {
-	vertical-align: middle;
-	display: inline-table;
-	margin-right: 4px;
-}
-
-.elgg-menu-item-my-groups > .elgg-menu-topbar-dropdown li a span {
-	white-space: nowrap;
-	display: table-cell;
-}
-
-/** Crazy firefox hack **/
-/*@-moz-document url-prefix() {
-	.elgg-menu-topbar li > .elgg-menu-topbar-dropdown li {
-		border-right: 1px solid #DDD;
-		left: -1px;
-		margin-left: 1px;
-		width: 100%;
-	}
-}*/
-
-.elgg-menu-topbar li > .elgg-menu-topbar-dropdown li:first-child {
-	border-top: none;
-}
-
-.elgg-menu-item-spot-logo {
-	margin-right: 12px;
-}
-
 /** Wrangle in all the topbar menus **/
 .elgg-menu-topbar > li > ul.elgg-menu-topbar-dropdown,
 .elgg-menu-topbar > li > ul.elgg-child-menu,
@@ -956,7 +631,6 @@ span.actions-text {
 	-moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
 	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
 }
-
 /** Start notch **/
 .elgg-menu-topbar > li > ul.elgg-menu-topbar-dropdown:after,
 .elgg-menu-topbar > li > ul.elgg-child-menu:after,
@@ -978,7 +652,6 @@ span.actions-text {
 	position: absolute;
 	pointer-events: none;
 }
-
 .elgg-menu-topbar > li > ul.elgg-menu-topbar-dropdown:after,
 .elgg-menu-topbar > li > ul.elgg-child-menu:after,
 .elgg-menu-topbar > li #todo-topbar-hover:after,
@@ -1001,7 +674,6 @@ span.actions-text {
 	border-bottom-color: #999;
 	border-width: 18px;
 }
-
 /** Profile notch **/
 .elgg-menu-topbar > li.elgg-menu-item-profile > ul.elgg-child-menu:before {
 	left: 50%;
@@ -1011,27 +683,24 @@ span.actions-text {
 	left: 50%;
 	margin-left: 48px;
 }
-
 /** Groups notch **/
-.elgg-menu-topbar > li #groups-topbar-hover:before {
+.elgg-menu-topbar > li.elgg-menu-item-my-groups > ul.elgg-child-menu:before {
 	left: 0;
 	margin-left: 47px;
 }
-.elgg-menu-topbar > li #groups-topbar-hover:after {
+.elgg-menu-topbar > li.elgg-menu-item-my-groups > ul.elgg-child-menu:after {
 	left: 0;
 	margin-left: 50px;
 }
-
 /** Todo notch **/
-.elgg-menu-topbar > li #todo-topbar-hover:before {
+.elgg-menu-topbar > li.elgg-menu-item-todo > ul.elgg-child-menu:before {
 	left: 0;
 	margin-left: 40px;
 }
-.elgg-menu-topbar > li #todo-topbar-hover:after {
+.elgg-menu-topbar > li.elgg-menu-item-todo > ul.elgg-child-menu:after {
 	left: 0;
 	margin-left: 43px;
 }
-
 /** Browse notch **/
 .elgg-menu-topbar > li > ul.elgg-menu-topbar-dropdown:before,
 .elgg-menu-topbar > li > div.dropdown-wrapper:before {
@@ -1043,7 +712,6 @@ span.actions-text {
 	left: 0;
 	margin-left: 23px;
 }
-
 /** Login notch **/
 #login-dropdown-box:before {
 	left: 50%;
@@ -1399,7 +1067,15 @@ button#cboxClose {
 .elgg-body > .tgstheme-login-box {
 	width: 40%;
 }
-/** Role Profile Widgets **/
+/** Role Profile/Dashboard/Widgets **/
+.elgg-layout-one-sidebar-roles-home.border-top div#elgg-widget-col-2 {
+	border-top: 2px solid #AAA;
+}
+
+.elgg-layout-one-sidebar-roles-home.border-top div#elgg-widget-col-1 {
+	border-top: 2px solid #DDD;
+}
+
 .elgg-layout-one-sidebar-roles-home .elgg-widget-instance-profile_content_groups > .elgg-head {
 	display: none;
 }

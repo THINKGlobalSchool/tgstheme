@@ -55,7 +55,7 @@ __BODY;
 $body .= <<<__BODY
 	<div class="elgg-page-topbar">
 		<div class="elgg-inner" id='tgstheme-cacheabe-topbar'>
-			<?php echo $topbar; ?>
+			$topbar
 		</div>
 	</div>
 	<div class="elgg-page-body">

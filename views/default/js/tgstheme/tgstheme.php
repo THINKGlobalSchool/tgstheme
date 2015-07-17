@@ -197,63 +197,6 @@ elgg.tgstheme.loginHandler = function(hook, type, params, options) {
 	return options;
 };
 
-// Default init function for chosen dropdowns - plugins can completely override
-elgg.tgstheme.defaultChosenInit = function(element) {
-	var multi = element.attr('multiple');
-
-	// Default options
-	var options = {
-		'placeholder_text_multiple': 'Select items..'
-	};
-
-	// Trigger a hook for options
-	var options = elgg.trigger_hook('getOptions', 'chosen.js', {'id' : element.attr('id')}, options);
-
-	// Init and bind change
-	element.chosen(options).change(elgg.trigger_hook('change', 'chosen.js', {'id' : element.attr('id'), 'element' : element}, function(){return;}));
-
-	// Hacky fix for chosen containers truncating text
-	var sibling = element.siblings('.chosen-container-single');
-	sibling.css({
-		'min-width': sibling.width(),
-		'width' : ''
-	});
-}
-
-/**
- * Chosen setup handler for todo dashboard inputs
- */
-elgg.tgstheme.setupActivityInputs = function (hook, type, params, options) {
-	
-	// Set up the activity type filter
-	if (params.id == "activity-type-filter") {
-		//options.placeholder_text_multiple = 'hisadasd';
-	}
-
-	// // Disable search for these inputs
-	// var disable_search_ids = new Array(
-	// );
-
-	// // Disable search for above inputs
-	// if ($.inArray(params.id, disable_search_ids) != -1) {
-	// 	options.disable_search = true;
-	// }
-
-	// Allow deselect for these ids
-	var allow_deselect_ids = new Array(
-		'activity-group-filter',
-		'activity-role-filter'
-	);
-
-	// Set deselect for dashboard inputs
-	if ($.inArray(params.id, allow_deselect_ids) != -1) {
-		options.width = "135px";
-		options.allow_single_deselect = true;
-	}
-
-	return options;
-}
-
 /**
  * Add a parameter to a url
  */
@@ -313,3 +256,4 @@ elgg.tgstheme.profileContentGroupsClick = function(event) {
 }
 
 elgg.register_hook_handler('init', 'system', elgg.tgstheme.init);
+elgg.register_hook_handler('getOptions', 'ui.popup', elgg.tgstheme.loginHandler);
