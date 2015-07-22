@@ -13,6 +13,15 @@
 ?>
 /** <style> /**/
 
+/** Float helpers **/
+.float-right {
+	float: right;
+}
+
+.float-left {
+	float: left;
+}
+
 /** General topbar tweaks **/
 
 .elgg-topbar-dropdown:after {

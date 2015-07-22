@@ -84,18 +84,13 @@ $ui_img_path = $theme_img_path . 'jqueryui/';
 
 /* Interaction states
 ----------------------------------*/
-/*.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #d8dcdf; background: #eeeeee url(<?php echo $ui_img_path; ?>ui-bg_highlight-hard_100_eeeeee_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #004276; }*/
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: none; background: none; font-weight: bold; color: #004276; }
 .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #004276; text-decoration: none; }
-.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: 1px solid #cdd5da; background: #f6f6f6 url(<?php echo $ui_img_path; ?>ui-bg_highlight-hard_100_f6f6f6_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #111111; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: none; background: none; font-weight: bold; color: #111111; }
 .ui-state-hover a, .ui-state-hover a:hover { color: #111111; text-decoration: none; }
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #eeeeee; background: #ffffff url(<?php echo $ui_img_path; ?>ui-bg_flat_65_ffffff_40x100.png) 50% 50% repeat-x; font-weight: bold; color: #cc0000; }
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #cc0000; text-decoration: none; }
 .ui-widget :active { outline: none; }
-
-.ui-dialog-titlebar > button {
-	background: none repeat scroll 0 0 transparent !important;
-    border: 0 none !important;
-}
 
 /* Interaction Cues
 ----------------------------------*/
@@ -112,14 +107,14 @@ $ui_img_path = $theme_img_path . 'jqueryui/';
 ----------------------------------*/
 
 /* states and images */
-.ui-icon { width: 16px; height: 16px; }
-.ui-widget-content .ui-icon {}
-.ui-widget-header .ui-icon {background-image: url(<?php echo $ui_img_path; ?>ui-icons_ffffff_256x240.png); }
-.ui-state-default .ui-icon { }
-.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {}
-.ui-state-active .ui-icon {}
+.ui-icon { width: 16px; height: 16px; background-image: url(<?php echo $ui_img_path; ?>ui-icons_cc0000_256x240.png); }
+.ui-widget-content .ui-icon {background-image: url(<?php echo $ui_img_path; ?>ui-icons_cc0000_256x240.png); }
+.ui-state-default .ui-icon { background-image: url(<?php echo $ui_img_path; ?>ui-icons_cc0000_256x240.png); }
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(<?php echo $ui_img_path; ?>ui-icons_cc0000_256x240.png); }
+.ui-state-active .ui-icon {background-image: url(<?php echo $ui_img_path; ?>ui-icons_cc0000_256x240.png); }
 .ui-state-highlight .ui-icon {background-image: url(<?php echo $ui_img_path; ?>ui-icons_004276_256x240.png); }
-.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {}
+.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url(<?php echo $ui_img_path; ?>ui-icons_cc0000_256x240.png); }
+.ui-widget-header .ui-icon {background-image: url(<?php echo $ui_img_path; ?>ui-icons_ffffff_256x240.png); }
 
 /* positioning */
 .ui-icon-carat-1-n { background-position: 0 0; }
@@ -402,7 +397,7 @@ $ui_img_path = $theme_img_path . 'jqueryui/';
 .ui-menu .ui-menu-item a {
 	text-decoration:none;
 	display:block;
-	padding: none;
+	padding:.2em .4em;
 	line-height:1.5;
 	zoom:1;
 }
@@ -437,8 +432,8 @@ button.ui-button-icons-only { width: 3.7em; }
 input.ui-button { padding: .4em 1em; }
 
 /*button icon element(s) */
-.ui-button-icon-only .ui-icon, .ui-button-text-icon-primary .ui-icon, .ui-button-text-icon-secondary .ui-icon, .ui-button-text-icons .ui-icon, .ui-button-icons-only .ui-icon { position: absolute; top: 50%; margin-top: -8px; }
-.ui-button-icon-only .ui-icon { left: 50%; margin-left: -8px; }
+/*.ui-button-icon-only .ui-icon, .ui-button-text-icon-primary .ui-icon, .ui-button-text-icon-secondary .ui-icon, .ui-button-text-icons .ui-icon, .ui-button-icons-only .ui-icon { position: absolute; top: 50%; margin-top: -8px; }
+.ui-button-icon-only .ui-icon { left: 50%; margin-left: -8px; }*/
 .ui-button-text-icon-primary .ui-button-icon-primary, .ui-button-text-icons .ui-button-icon-primary, .ui-button-icons-only .ui-button-icon-primary { left: .5em; }
 .ui-button-text-icon-secondary .ui-button-icon-secondary, .ui-button-text-icons .ui-button-icon-secondary, .ui-button-icons-only .ui-button-icon-secondary { right: .5em; }
 .ui-button-text-icons .ui-button-icon-secondary, .ui-button-icons-only .ui-button-icon-secondary { right: .5em; }
@@ -462,7 +457,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 .ui-dialog .ui-dialog-titlebar { text-transform: uppercase; font-family: 'Shanti',sans-serif; padding: .4em 1em; position: relative;  }
 .ui-dialog .ui-dialog-title { float: left; margin: .1em 16px .1em 0; } 
 .ui-dialog .ui-dialog-titlebar-close { position: absolute; right: .3em; top: 50%; width: 19px; margin: -10px 0 0 0; padding: 1px; height: 18px; }
-.ui-dialog .ui-dialog-titlebar-close span { display: block; }
+.ui-dialog .ui-dialog-titlebar-close span { display: block; margin: 1px; }
 .ui-dialog .ui-dialog-titlebar-close:hover, .ui-dialog .ui-dialog-titlebar-close:focus { padding: 0; }
 .ui-dialog .ui-dialog-content { position: relative; border: 0; padding: .5em 1em; background: none; overflow: auto; zoom: 1; }
 .ui-dialog .ui-dialog-buttonpane { text-align: left; border-width: 1px 0 0 0; background-image: none; margin: .5em 0 0 0; padding: .3em 1em .5em .4em; }
