@@ -9,10 +9,4 @@
  * @link http://www.thinkglobalschool.com/
  */
 
-/** Tidypics Required Libs **/
-// @TODO AMD loading?
-if (elgg_is_active_plugin('tidypics')) {
-	elgg_load_js('tidypics');
-	elgg_load_js('tidypics:upload');
-}
 echo elgg_view('tgstheme/modules/profile');
