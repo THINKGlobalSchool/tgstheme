@@ -18,6 +18,10 @@ $content = $vars['body'];
 
 $messages = elgg_view('page/elements/messages', array('object' => $vars['sysmessages']));
 
+// Unextend extraneous views from the footer (just need the JS and AMD code)
+elgg_unextend_view('page/elements/foot', 'developers/log');
+elgg_unextend_view('page/elements/foot', 'tgsadmin/admin_stats');
+
 // Need to include this for AMD deps
 $foot = elgg_view('page/elements/foot', $vars);
 
