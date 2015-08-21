@@ -1197,16 +1197,56 @@ function tgstheme_picker_add_user($user_id) {
 /**
  * Register items for the html head
  *
- * @param string $hook Hook name ('head')
- * @param string $type Hook type ('page')
- * @param array  $data Array of items for head
+ * @param string $hook   Hook name ('head')
+ * @param string $type   Hook type ('page')
+ * @param array  $params Array of items for head
  * @return array
  */
-function tgstheme_setup_head($hook, $type, $data) {	
-	$data['links'][] = array(
-		'rel' => 'SHORTCUT ICON',
-		'href' => elgg_normalize_url("mod/tgstheme/_graphics/favicon.ico"),
+function tgstheme_setup_head($hook, $type, $params) {	
+
+	foreach ($params['links'] as $idx => $link) {
+		if ($link['rel'] == 'icon') {
+			unset($params['links'][$idx]);
+		}
+	}
+
+	// favicons
+	$params['links'][] = array(
+		'rel' => 'icon',
+		'href' => elgg_normalize_url('mod/tgstheme/_graphics/favicon.ico'),
+	);
+	$params['links'][] = array(
+		'rel' => 'icon',
+		'sizes' => '16x16 32x32 48x48 64x64 128x128',
+		'type' => 'image/svg+xml',
+		'href' => elgg_normalize_url('mod/tgstheme/_graphics/favicon.svg'),
+	);
+	$params['links'][] = array(
+		'rel' => 'icon',
+		'sizes' => '16x16',
+		'type' => 'image/png',
+		'href' => elgg_normalize_url('mod/tgstheme/_graphics/favicon-16.png'),
+	);
+	$params['links'][] = array(
+		'rel' => 'icon',
+		'sizes' => '32x32',
+		'type' => 'image/png',
+		'href' => elgg_normalize_url('mod/tgstheme/_graphics/favicon-32.png'),
+	);
+	$params['links'][] = array(
+		'rel' => 'icon',
+		'sizes' => '64x64',
+		'type' => 'image/png',
+		'href' => elgg_normalize_url('mod/tgstheme/_graphics/favicon-64.png'),
+	);
+	$params['links'][] = array(
+		'rel' => 'icon',
+		'sizes' => '128x128',
+		'type' => 'image/png',
+		'href' => elgg_normalize_url('mod/tgstheme/_graphics/favicon-128.png'),
 	);
 
-	return $data;
+	elgg_dump($params);
+
+	return $params;
 }
