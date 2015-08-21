@@ -1246,7 +1246,5 @@ function tgstheme_setup_head($hook, $type, $params) {
 		'href' => elgg_normalize_url('mod/tgstheme/_graphics/favicon-128.png'),
 	);
 
-	elgg_dump($params);
-
 	return $params;
 }
