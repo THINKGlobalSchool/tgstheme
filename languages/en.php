@@ -81,6 +81,8 @@ return array(
 	// Admin
 	'tgstheme:label:helplink' => 'Help Link Title',
 	'tgstheme:label:helpgroup' => 'Help Link Group:',
+	'tgstheme:label:portfoliolinklabel' => 'Portfolio Link Title',
+	'tgstheme:label:portfoliolink' => 'Portfolio Link URL',
 	'tgstheme:label:librarylink' => 'Library Link Title',
 	'tgstheme:label:librarygroup' => 'Library Link Group:',
 	'tgstheme:label:wexplorelink' => 'weXplore Link Title',

@@ -55,6 +55,22 @@ $library_groups_input = elgg_view('input/dropdown', array(
 	'value' => $vars['entity']->library_group,
 ));
 
+$portfolio_link_label_label = elgg_echo('tgstheme:label:portfoliolinklabel');
+
+$portfolio_link_label_input = elgg_view('input/text', array(
+	'id' => 'portfolio_link_label',
+	'name' => 'params[portfolio_link_label]',
+	'value' => $vars['entity']->portfolio_link_label
+));
+
+$portfolio_link_label = elgg_echo('tgstheme:label:portfoliolink');
+
+$portfolio_link_input = elgg_view('input/text', array(
+	'id' => 'portfolio_link',
+	'name' => 'params[portfolio_link]',
+	'value' => $vars['entity']->portfolio_link
+));
+
 $wexplore_link_label = elgg_echo('tgstheme:label:wexplorelink');
 
 $wexplore_link_input = elgg_view('input/text', array(
@@ -134,6 +150,14 @@ $content = <<<HTML
 	<div>
 		<label>$library_groups_label</label><br />
 		$library_groups_input
+	</div>
+	<div>
+		<label>$portfolio_link_label_label</label><br />
+		$portfolio_link_label_input
+	</div>
+	<div>
+		<label>$portfolio_link_label</label><br />
+		$portfolio_link_input
 	</div>
 	<div>
 		<label>$wexplore_link_label</label><br />

@@ -365,6 +365,12 @@ function tgstheme_pagesetup() {
 		elgg_register_menu_item('quickbar', $item);
 	}
 
+	// Porfolio link (from admin)
+	if (($group_guid = elgg_get_plugin_setting('portfolio_link', 'tgstheme')) && elgg_is_logged_in()) {
+		$item = new ElggMenuItem('portfolio_link', elgg_get_plugin_setting('portfolio_link_label', 'tgstheme'), elgg_get_plugin_setting('portfolio_link', 'tgstheme'));
+		elgg_register_menu_item('quickbar', $item);
+	}
+
 	// weXplore link (from admin)
 	if (($group_guid = elgg_get_plugin_setting('wexplore_group', 'tgstheme')) && elgg_is_logged_in()) {
 		$group = get_entity($group_guid);
