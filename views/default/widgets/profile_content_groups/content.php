@@ -39,5 +39,3 @@ $content .= "<div id='user-groups' class='profile-content-groups-filter-containe
 
 
 echo $content;
-
-//echo elgg_view('tgstheme/modules/content_groups', array('limit' => 6));

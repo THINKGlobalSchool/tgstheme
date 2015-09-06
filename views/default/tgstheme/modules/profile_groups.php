@@ -29,8 +29,9 @@ $params = array(
 	'full_view' => FALSE,
 	'group_by' => 'ec.container_guid',
 	'order_by' => 'ec.time_updated DESC',
-	'limit' => $limit,
+	'limit' => 2,
 	'offset' => $offset,
+	'base_url' => "ajax/view/tgstheme/modules/profile_groups?t=1&guid={$guid}"
 );
 
 // Need to throw in a new select as well
