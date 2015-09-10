@@ -195,14 +195,14 @@ h6 { font-size: 0.8em; }
 	text-transform:none;
 }
 
-.elgg-output h1 { font-size: 2.0em; line-height: 1em; margin-bottom: 0.75em;}
-.elgg-output h2 { font-size: 1.8em; line-height: 1.1em; margin-bottom: 0.75em;}
-.elgg-output h3 { font-size: 1.6em; line-height: 1.15em; margin-bottom: 0.75em;}
-.elgg-output h4 { font-size: 1.4em; line-height: 1.2em; margin-bottom: 0.75em;}
-.elgg-output h5 { font-size: 1.2em; line-height: 1.15em; margin-bottom: 0.75em;}
-.elgg-output h6 { font-size: 1.0em; line-height: 1.3em; margin-bottom: 0.75em;}
+.elgg-output h1, .cke_editable h1 { font-size: 2.0em; line-height: 1em; margin-bottom: 0.75em;}
+.elgg-output h2, .cke_editable h2 { font-size: 1.8em; line-height: 1.1em; margin-bottom: 0.75em;}
+.elgg-output h3, .cke_editable h3 { font-size: 1.6em; line-height: 1.15em; margin-bottom: 0.75em;}
+.elgg-output h4, .cke_editable h4 { font-size: 1.4em; line-height: 1.2em; margin-bottom: 0.75em;}
+.elgg-output h5, .cke_editable h5 { font-size: 1.2em; line-height: 1.15em; margin-bottom: 0.75em;}
+.elgg-output h6, .cke_editable h6 { font-size: 1.0em; line-height: 1.3em; margin-bottom: 0.75em;}
 
-.elgg-output a {
+.elgg-output a, .cke_editable a {
 	color: #91131E;
 	border-bottom: 1px dotted #91131E;
 	font-weight: bold;
@@ -213,7 +213,7 @@ h6 { font-size: 0.8em; }
 	border-bottom: none;
 }
 
-.elgg-output a:hover {
+.elgg-output a:hover, .cke_editable a:hover {
 	color: #2D3F46;
 	border-bottom: 1px solid #2D3F46;
 	text-decoration: none;
