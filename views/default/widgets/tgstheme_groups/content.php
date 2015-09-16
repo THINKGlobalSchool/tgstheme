@@ -9,4 +9,4 @@
  * @link http://www.thinkglobalschool.com/
  */
 
-echo elgg_view('tgstheme/modules/groups', array('limit' => 6));
+echo elgg_view('tgstheme/modules/groups', array('limit' => 9));
