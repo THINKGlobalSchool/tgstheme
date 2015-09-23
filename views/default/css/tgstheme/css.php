@@ -1102,3 +1102,8 @@ button#cboxClose {
 .elgg-widget-instance-profile_portfolio .tagdashboards-recommended-button {
 	margin-right: 4px;
 }
+
+/** River **/
+.elgg-layout-widgets .elgg-list.elgg-list-river.elgg-river li.elgg-item .elgg-river-attachments img {
+	max-width: 453px;
+}
