@@ -77,7 +77,8 @@ input[type="radio"] {
 	width:auto;
 }
 .elgg-input-checkboxes.elgg-horizontal li,
-.elgg-input-radio.elgg-horizontal li {
+.elgg-input-radio.elgg-horizontal li,
+.elgg-input-radios.elgg-horizontal li {
 	display: inline;
 	padding-right: 10px;
 }
