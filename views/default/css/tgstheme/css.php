@@ -486,16 +486,16 @@ table#stats-table td.stat {
 }
 
 /** Search tweaks **/
-.elgg-menu-item-search {
+.elgg-menu-topbar .elgg-menu-item-search {
 	padding-right: 10px;
 }
 
 /** Topbar settings menu **/
-.elgg-menu-item-profile {
+.elgg-menu-topbar .elgg-menu-item-profile {
 	height: 35px;
 }
 
-.elgg-menu-item-profile .elgg-child-menu {
+.elgg-menu-topbar .elgg-menu-item-profile .elgg-child-menu {
 	display: none;
 	position: absolute;
 	right: -1px;
@@ -515,15 +515,15 @@ table#stats-table td.stat {
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
 }
 
-.elgg-menu-item-profile:hover > .elgg-child-menu {
+.elgg-menu-topbar .elgg-menu-item-profile:hover > .elgg-child-menu {
 	display: block;
 }
 
-.elgg-menu-item-profile .elgg-child-menu > li:last-child > a {
+.elgg-menu-topbar .elgg-menu-item-profile .elgg-child-menu > li:last-child > a {
 	border-bottom: none;
 }
 
-.elgg-menu-item-profile .elgg-child-menu > li > a {
+.elgg-menu-topbar .elgg-menu-item-profile .elgg-child-menu > li > a {
 	border-bottom: 1px dotted #CCCCCC;
 	background: white;
 	color: #555;
@@ -542,36 +542,36 @@ table#stats-table td.stat {
 	box-shadow: none;
 }
 
-.elgg-menu-item-profile .elgg-child-menu > li > a:hover {
+.elgg-menu-topbar .elgg-menu-item-profile .elgg-child-menu > li > a:hover {
 	background: #2D3F46;
 	color: white;
 }
 
-.elgg-menu-item-profile .elgg-child-menu > li > a > span.elgg-icon {
+.elgg-menu-topbar .elgg-menu-item-profile .elgg-child-menu > li > a > span.elgg-icon {
 	vertical-align: top;
 	margin-top: 0;
 }
 
 @-moz-document url-prefix() {
-    .elgg-menu-item-profile .elgg-child-menu > li > a > span.elgg-icon {
+    .elgg-menu-topbar .elgg-menu-item-profile .elgg-child-menu > li > a > span.elgg-icon {
        vertical-align: middle;
        margin-top: -2px;
     }
 }
 
 /** Tweaks for topbar settings icons **/
-.elgg-menu-item-profile .elgg-child-menu .elgg-icon-settings {
+.elgg-menu-topbar .elgg-menu-item-profile .elgg-child-menu .elgg-icon-settings {
 	background-position: 0 -972px;
 }
 
-.elgg-menu-item-profile .elgg-child-menu > li:last-child > a,
-.elgg-menu-item-profile .elgg-child-menu > li:last-child > a:hover {
+.elgg-menu-topbar .elgg-menu-item-profile .elgg-child-menu > li:last-child > a,
+.elgg-menu-topbar .elgg-menu-item-profile .elgg-child-menu > li:last-child > a:hover {
 	-webkit-border-radius: 0 0 4px 4px;
 	-moz-border-radius: 0 0 4px 4px;
 	border-radius: 0 0 4px 4px;
 }
 
-.elgg-menu-item-profile .elgg-child-menu > li > a:hover {
+.elgg-menu-topbar .elgg-menu-item-profile .elgg-child-menu > li > a:hover {
     text-decoration: none;
 }
 
