@@ -54,7 +54,7 @@ elgg.tgstheme.initPublish = function() {
 	// Init publish links
 	$(document).on('click', '.tgstheme-publish-item.clickable, .tgstheme-publish-more-menu li.clickable', function(event) {	
 		// Get link source for iframe
-		var src = elgg.get_site_url() + "iframe/" + $(this).data('type');
+		var src = elgg.get_site_url() + "iframe/" + $(this).data('type') + '?container_guid=' + $(this).data('container_guid');
 
 		// Build overlay
 		var $overlay = $(document.createElement('div'));
