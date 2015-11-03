@@ -21,7 +21,13 @@ $img_path = elgg_normalize_url('mod/tgstheme/_graphics/publish_icons');
 
 // Primary items (plugin conditional)
 if (elgg_is_active_plugin('tidypics')) {
-	$photos = "<div class=\"tgstheme-publish-item _tp-uploader\" data-context=\"addphotos\">
+
+	// Add group guid input if we're in a groups context
+	if ($container_guid) {
+		$group_guid = "data-group_guid=\"{$page_owner->guid}\"";
+	}
+
+	$photos = "<div class=\"tgstheme-publish-item _tp-uploader\" $group_guid data-context=\"addphotos\">
 		<img src=\"$img_path/photo-icon.png\">
 		<span>Photo</span>
 	</div>";
